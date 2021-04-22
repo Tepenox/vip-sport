@@ -14,7 +14,7 @@
         height="80"
         class="text-center"
       />
-      <h1 class="h3 mb-3 fw-normal text-center">Connexion</h1>
+      <h1 class="h3 mb-3 fw-normal text-center">Inscription</h1>
       <input
         formControlName="email"
         type="email"
@@ -24,6 +24,7 @@
         required=""
         autofocus=""
       />
+      <br />
       <input
         formControlName="password"
         type="password"
@@ -33,13 +34,22 @@
         required=""
         style="margin-top: 5px"
       />
+      <input
+        formControlName="confirmPassword"
+        type="password"
+        id="confirmPassword"
+        class="form-control"
+        placeholder="Confirmer le mot de passe"
+        required=""
+        style="margin-top: 5px"
+      />
       <br />
       <button
         class="w-100 btn btn-lg btn-warning"
         type="submit"
         [disabled]="loginForm.invalid"
       >
-        Se connecter
+        S'inscrire
       </button>
       <br />
       <br />
@@ -53,7 +63,7 @@
           >Se souvenir de moi</label
         >
       </div>
-      <a class="text-center" href="">T'es nouveau ? Inscris toi ici.</a>
+      <a class="text-center" href="">Déja un compte? Connectez vous ici</a>
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
     </form>
   </div>
