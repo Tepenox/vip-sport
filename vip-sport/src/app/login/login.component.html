@@ -1,0 +1,8 @@
+<main class="form-signin">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+      <h1 class="h3 mb-3 fw-normal">Connexion</h1>
+      <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Adresse mail" required="" autofocus="">
+      <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required="">
+      <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+    </form>
+  </main>
