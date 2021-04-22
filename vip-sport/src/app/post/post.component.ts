@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'f-post',
@@ -6,7 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-  userName = "User"
-  postDate = "22/04/2021 à 17:08"
-  postContent = "Lorem ipsum dolor sit amet"
+  @Input() id: number
+  userName: string;
+  postDate: string;
+  postContent: string;
+
+  constructor() {
+    this.userName = "User";
+    this.postDate = "22/04/2021 à 18:14";
+    this.postContent = "Lorem ipsum dolor sit amet.";
+  }
 }
