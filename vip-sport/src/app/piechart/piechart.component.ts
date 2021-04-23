@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PiechartComponent implements OnInit {
 
-  public pieLabels = ['Protéine', 'Glucides', 'Lipides'];
+  public pieLabels = ['Protéines', 'Glucides', 'Lipides'];
   public pieData = [200, 180, 90];
   public pieType = 'pie';
 
