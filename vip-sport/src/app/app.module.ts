@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PiechartComponent } from './piechart/piechart.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PiechartComponent } from './piechart/piechart.component';
     LoginComponent,
     SignUpComponent,
     PiechartComponent
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
