@@ -11,7 +11,7 @@ export class PiechartComponent implements OnInit {
   public pieData = [200, 180, 90];
   public pieType = 'pie';
 
-  public lineChartOptions:any = {
+  public colorFont:any = {
     legend : {
         labels : {
           fontColor : '#ffffff'  
