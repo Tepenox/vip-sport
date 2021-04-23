@@ -11,6 +11,15 @@ export class PiechartComponent implements OnInit {
   public pieData = [200, 180, 90];
   public pieType = 'pie';
 
+  public lineChartOptions:any = {
+    legend : {
+        labels : {
+          fontColor : '#ffffff'  
+        }
+    }
+};
+
+
   constructor() { }
 
   ngOnInit(): void {
