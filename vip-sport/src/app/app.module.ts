@@ -20,7 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
     WelcomeComponent,
     LoginComponent,
     SignUpComponent,
-    PiechartComponent
+    PiechartComponent,
     ProfileComponent
   ],
   imports: [
