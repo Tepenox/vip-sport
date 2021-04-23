@@ -2,5 +2,6 @@
 
 body {
   background-color: rgb(73, 72, 72);
-  padding-top: 115px;
+  max-width: 100%;
+  overflow-x: hidden;
 }

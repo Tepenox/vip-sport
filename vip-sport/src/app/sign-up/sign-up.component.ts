@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -15,11 +20,19 @@ export class SignUpComponent implements OnInit {
   }
 
   initForm() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-    });
+    this.loginForm = this.formBuilder.group(
+      {
+        email: new FormControl('', [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ]),
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: checkPassword('password', 'confirmPassword'),
+      }
+    );
   }
 
   onSubmitForm() {
@@ -28,12 +41,20 @@ export class SignUpComponent implements OnInit {
     const email = formValue['email'];
     const password = formValue['password'];
     const passwordConfirmation = formValue['confirmPassword'];
-
-    if (password !== passwordConfirmation) {
-      alert('Les mots de passes doivent être pareil. Réessayer.');
-    } else {
-      //Gérer inscription backend
-      alert("Tout semble OK! Redirection vers l'acueil");
-    }
   }
+}
+
+function checkPassword(password: string, otherPassword: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls[password];
+    const matchingControl = formGroup.controls[otherPassword];
+    if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+      return;
+    }
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ mustMatch: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
+  };
 }

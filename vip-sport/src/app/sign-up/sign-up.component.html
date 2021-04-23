@@ -1,71 +1,70 @@
 <div class="text-center">
-    <div class="form-signin row justify-content-center">
-      <form
-        class="rounder"
-        [formGroup]="loginForm"
-        (ngSubmit)="onSubmitForm()"
-        style="background-color: ghostwhite"
+  <div class="form-signin row justify-content-center">
+    <form
+      class="rounder"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmitForm()"
+      style="background-color: ghostwhite"
+    >
+      <img
+        class="mb-4"
+        src="../assets/logo.png"
+        alt=""
+        width="80"
+        height="80"
+        class="text-center"
+      />
+      <h1 class="h3 mb-3 fw-normal text-center">Inscription</h1>
+      <input
+        formControlName="email"
+        type="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Adresse mail"
+        required=""
+        autofocus=""
+      />
+      <br />
+      <input
+        formControlName="password"
+        type="password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="Mot de passe"
+        required=""
+        style="margin-top: 5px"
+      />
+      <input
+        formControlName="confirmPassword"
+        type="password"
+        id="confirmPassword"
+        class="form-control"
+        placeholder="Confirmer le mot de passe"
+        required=""
+        style="margin-top: 5px"
+      />
+      <br />
+      <button
+        class="w-100 btn btn-lg btn-warning"
+        type="submit"
+        [disabled]="loginForm.invalid"
       >
-        <img
-          class="mb-4"
-          src="../assets/logo.png"
-          alt=""
-          width="80"
-          height="80"
-          class="text-center"
-        />
-        <h1 class="h3 mb-3 fw-normal text-center">Inscription</h1>
-        <input
-          formControlName="email"
-          type="email"
-          id="inputEmail"
-          class="form-control"
-          placeholder="Adresse mail"
-          required=""
-          autofocus=""
-        />
-        <br />
-        <input
-          formControlName="password"
-          type="password"
-          id="inputPassword"
-          class="form-control"
-          placeholder="Mot de passe"
-          required=""
-          style="margin-top: 5px"
-        />
-        <input
-          formControlName="confirmPassword"
-          type="password"
-          id="confirmPassword"
-          class="form-control"
-          placeholder="Confirmer le mot de passe"
-          required=""
-          style="margin-top: 5px"
-        />
-        <br />
-        <button
-          class="w-100 btn btn-lg btn-warning"
-          type="submit"
-          [disabled]="loginForm.invalid"
+        S'inscrire
+      </button>
+      <br />
+      <br />
+      <div class="dropdown-divider black" style="color: black"></div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="dropdownCheck2" />
+        <label
+          class="form-check-label"
+          for="dropdownCheck2"
+          style="padding-left: 5px"
+          >Se souvenir de moi</label
         >
-          S'inscrire
-        </button>
-        <br />
-        <br />
-        <div class="dropdown-divider black" style="color: black"></div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="dropdownCheck2" />
-          <label
-            class="form-check-label"
-            for="dropdownCheck2"
-            style="padding-left: 5px"
-            >Se souvenir de moi</label
-          >
-        </div>
-        <a class="text-center" href="">Déja un compte? Connectez vous ici</a>
-        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
-      </form>
-    </div>
+      </div>
+      <a class="text-center" href="">Déja un compte? Connectez vous ici</a>
+      <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    </form>
   </div>
-  
+</div>
