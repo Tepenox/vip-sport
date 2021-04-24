@@ -12,6 +12,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     SignUpComponent,
     PiechartComponent,
-    ProfileComponent
+    ProfileComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
