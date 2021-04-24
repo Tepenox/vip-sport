@@ -22,12 +22,12 @@ export class CardComponent implements OnInit {
   {
     src: '../assets/sports/sport3.jpg',
     name: "Judo",
-    description: 'Le judo (litt. « voie de la souplesse ») est un art martial créé en tant que pédagogie physique, mentale et morale au Japon par Jigoro Kano en 1882. Par rapport au Kobudo ou voie martiale traditionnelle de combat japonaises, le judo est ce qu’on appelle un Shin Budo c’est-à-dire une «voie martial moderne » qui connait une branche qui a évolué en sport de combat et en sport olympique en 1964.'
+    description: 'Le judo (litt. « voie de la souplesse ») est un art martial créé en tant que pédagogie physique, mentale et morale au Japon par Jigoro Kano en 1882. Par rapport au Kobudo ou voie martiale traditionnelle de combat japonaises, le judo est ce qu’on appelle un Shin Budo c’est-à-dire une «voie martial moderne » qui connait une branche qui a évolué en sport de combat et en sport olympique en 1964. Sa caractéristique la plus proéminente est de projeter, soit d’amener l’adversaire au sol et de l’immobiliser (Techniques de maîtrise) ou de l’obliger à abandonner à l’aide de clés articulaires et d’étranglements.'
   },
   {
     src: '../assets/sports/sport4.jpg',
     name: "Bobsleigh",
-    description: 'Le bobsleigh (ou bobsled, ou encore bob par abréviation) est un sport d’hiver dans lequel des équipes de deux ou quatre bobeurs, assis en file, effectuent des courses chronométrées à bord d’un engin caréné glissant sur une étroite et sinueuse piste glacée en pente. Le pilote dirige le bobsleigh grâce à deux anneaux liés aux patins, les pousseurs donnent sa vitesse à l’engin au début du parcours et le freineur (également pousseur) freine à la fin du parcours.'
+    description: 'Le bobsleigh (ou bobsled, ou encore bob par abréviation) est un sport d’hiver dans lequel des équipes de deux ou quatre bobeurs, assis en file, effectuent des courses chronométrées à bord d’un engin caréné glissant sur une étroite et sinueuse piste glacée en pente. Le pilote dirige le bobsleigh grâce à deux anneaux liés aux patins, les pousseurs donnent sa vitesse à l’engin au début du parcours et le freineur (également pousseur) freine à la fin du parcours. Les deux grandes nations du bobsleigh sont la Suisse et l’Allemagne. Cependant d’autres nations se sont parfois jointes à la course aux titres telles que l’Italie, l’Autriche, le Canada, les États-Unis et la Jamaïque.'
   },
   {
     src: '../assets/sports/sport5.jpg',
@@ -37,7 +37,7 @@ export class CardComponent implements OnInit {
   {
     src: '../assets/sports/sport6.jpg',
     name: "Tennis",
-    description: 'Le tennis est un sport de raquette qui oppose soit deux joueurs (on parle alors de jeu en simple) soit quatre joueurs qui forment deux équipes de deux (on parle alors de jeu en double).'
+    description: 'Le tennis est un sport de raquette qui oppose soit deux joueurs (on parle alors de jeu en simple) soit quatre joueurs qui forment deux équipes de deux (on parle alors de jeu en double). Cette raquette, dont les matériaux peuvent varier, sert à frapper une balle en caoutchouc, remplie d’air et recouverte de feutre. Le but du jeu est de frapper la balle de telle sorte que l’adversaire ne puisse la remettre dans les limites du terrain, soit en marquant le point en mettant l’adversaire hors de portée de la balle, soit en l’obligeant à commettre une faute (si sa balle ne retombe pas dans les limites du court, ou si elle ne passe pas le filet).'
   }
   ];
 

@@ -4,3 +4,15 @@
 
 .section-color2{background-color: #dbd8d2;}
 .section-color1{background-color: rgb(207, 205, 200);}
+
+.row{
+    padding-bottom: 105px;
+}
+
+
+
+#text{
+    background-color: orange;
+    color: black;
+    border-radius: 25px;
+}
