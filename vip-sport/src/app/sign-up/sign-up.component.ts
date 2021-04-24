@@ -28,6 +28,8 @@ export class SignUpComponent implements OnInit {
         ]),
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
+        age: ['', Validators.required],
+        sport: ['', Validators.required],
       },
       {
         validator: checkPassword('password', 'confirmPassword'),
