@@ -6,12 +6,15 @@
 .section-color1{background-color: rgb(207, 205, 200);}
 
 .row{
-    padding-top: 105px;
+    padding-bottom: 90px;
+    padding-top: 90px;
 }
 
 
 
 #text{
+    padding-top: 25px;
+    padding-bottom: 25px;
     background-color: orange;
     color: black;
     border-radius: 25px;

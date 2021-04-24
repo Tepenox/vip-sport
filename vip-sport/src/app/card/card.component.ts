@@ -10,7 +10,7 @@ export class CardComponent implements OnInit {
 
   imagesS = [
   {
-    src: '../assets/sports/sport1.jpg',
+    src: '../assets/sports/sport1.2.jpg',
     name: "Haltérophilie",
     description: 'L’haltérophilie est un sport consistant à soulever des poids. C’est un sport de force nécessitant également maîtrise d une technique particulière, vitesse, souplesse, coordination et équilibre. En compétition, deux mouvements sont évalués : l’arraché et l’épaulé-jeté. L’athlète dispose de trois essais pour chaque mouvement. La somme du meilleur essai réalisé par l’athlète à l’arraché et du meilleur essai à l’épaulé-jeté donne le total olympique. L’athlète ayant le meilleur total olympique de sa catégorie de poids de corps l’emporte.'
   },
