@@ -13,6 +13,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CardComponent } from './card/card.component';
+import { TrainerComponent } from './trainer/trainer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CardComponent } from './card/card.component';
     SignUpComponent,
     PiechartComponent,
     ProfileComponent,
-    CardComponent
+    CardComponent,
+    TrainerComponent
   ],
   imports: [
     BrowserModule,
