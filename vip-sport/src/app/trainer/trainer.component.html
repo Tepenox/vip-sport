@@ -1,0 +1,15 @@
+<div class="text-left" style="padding-top: 150px">
+  <button type="button" class="btn btn-outline-danger" (click)="onClick()">
+    Trouves moi des exercices
+  </button>
+  <ul class="exercices">
+    <li *ngFor="let exercice of list">
+      <div>
+        <p class="name">{{ exercice.name }}</p>
+        <br />
+        <p>{{ exercice.description }}</p>
+        <br />
+      </div>
+    </li>
+  </ul>
+</div>
