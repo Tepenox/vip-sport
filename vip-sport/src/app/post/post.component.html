@@ -1,9 +1,11 @@
-<div class="post" id="post-{{ id }}">
-    <span>
-        <span class="userName"> {{ userName }} </span>
-        <span class="postDate"> {{ postDate }} </span>
-    </span>
-    <p class="postContent">
-        {{ postContent }}
-    </p>
+<div class="post card mb-2 shadow-sm" id="post-{{ id }}">
+    <div class="card-body">
+        <span>
+            <a class="userName"> {{ userName }} </a>
+            <span class="postDate text-muted"> {{ postDate }} </span>
+        </span>
+        <p class="postContent">
+            {{ postContent }}
+        </p>
+    </div>
 </div>

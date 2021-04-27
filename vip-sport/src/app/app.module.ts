@@ -16,6 +16,7 @@ import { PiechartComponent } from './piechart/piechart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CardComponent } from './card/card.component';
 import { TrainerComponent } from './trainer/trainer.component';
+import { ForumComponent } from './forum/forum.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,14 @@ import { TrainerComponent } from './trainer/trainer.component';
     NavbarComponent,
     WelcomeComponent,
     PostComponent,
-    ThreadComponent
+    ThreadComponent,
     LoginComponent,
     SignUpComponent,
     PiechartComponent,
     ProfileComponent,
     CardComponent,
-    TrainerComponent
+    TrainerComponent,
+    ForumComponent
   ],
   imports: [
     BrowserModule,
