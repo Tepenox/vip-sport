@@ -23,7 +23,7 @@ import { TrainerComponent } from './trainer/trainer.component';
     NavbarComponent,
     WelcomeComponent,
     PostComponent,
-    ThreadComponent
+    ThreadComponent,
     LoginComponent,
     SignUpComponent,
     PiechartComponent,
