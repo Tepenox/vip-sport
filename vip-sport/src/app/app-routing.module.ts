@@ -4,6 +4,7 @@ import { CardComponent } from './card/card.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ThreadComponent } from './thread/thread.component';
 import { TrainerComponent } from './trainer/trainer.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'login', component : LoginComponent},
   {path: 'signup', component : SignUpComponent},
   {path: 'sportspage', component : CardComponent},
-  {path: 'trainer', component : TrainerComponent}
+  {path: 'trainer', component : TrainerComponent},
+  {path: 'forum', component : ThreadComponent}
 ];
 
 @NgModule({
