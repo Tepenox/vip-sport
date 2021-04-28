@@ -16,6 +16,7 @@ import { PiechartComponent } from './piechart/piechart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CardComponent } from './card/card.component';
 import { TrainerComponent } from './trainer/trainer.component';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TrainerComponent } from './trainer/trainer.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
