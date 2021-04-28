@@ -1,0 +1,16 @@
+#postContent {
+    width: 100%;
+    min-height: 200px;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border: 2px solid red;
+}
+
+.character-count {
+    text-align: right
+}
+
+.character-count.invalid {
+    color: red;
+}

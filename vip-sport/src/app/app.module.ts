@@ -17,6 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { CardComponent } from './card/card.component';
 import { TrainerComponent } from './trainer/trainer.component';
 import { ForumComponent } from './forum/forum.component';
+import { PostFormComponent } from './post-form/post-form.component';
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 
 @NgModule({
   declarations: [
@@ -31,14 +33,16 @@ import { ForumComponent } from './forum/forum.component';
     ProfileComponent,
     CardComponent,
     TrainerComponent,
-    ForumComponent
+    ForumComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    TextareaAutosizeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
