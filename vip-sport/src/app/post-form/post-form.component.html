@@ -1,0 +1,24 @@
+<form [formGroup]="form">
+    <div class="form-group">
+        <div class="textAreaLabel">
+            <label for="post-content">Nouveau message</label>
+        </div>
+        <div *ngIf="postContent.touched && postContent.invalid" class="alert alert-danger">
+            <div *ngIf="postContent.errors.required">Votre message ne peut pas être vide.</div>
+            <div *ngIf="postContent.errors.maxlength">Votre message ne peut pas contenir plus de {{ postContent.errors.maxlength.requiredLength }} caractères. </div>
+        </div>
+        <textarea
+            autosize
+            formControlName="postContent"
+            cdkTextareaAutosize
+            id="postContent"
+            name="postContent"
+            class="form-control"
+            [(ngModel)]="content">
+        </textarea>
+        <div class="character-count" [ngClass]="content.length > characterLimit ? 'invalid' : ''">
+            {{ content.length }}/{{ characterLimit }}
+        </div>
+    </div>
+    <button class="btn btn-primary" [disabled]="!form.valid">Envoyer</button>
+</form>

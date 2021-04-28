@@ -16,6 +16,9 @@ import { PiechartComponent } from './piechart/piechart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CardComponent } from './card/card.component';
 import { TrainerComponent } from './trainer/trainer.component';
+import { ForumComponent } from './forum/forum.component';
+import { PostFormComponent } from './post-form/post-form.component';
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
@@ -30,7 +33,9 @@ import {HttpClientModule} from '@angular/common/http'
     PiechartComponent,
     ProfileComponent,
     CardComponent,
-    TrainerComponent
+    TrainerComponent,
+    ForumComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import {HttpClientModule} from '@angular/common/http'
     NgbModule,
     FormsModule,ReactiveFormsModule,
     ChartsModule,
+    TextareaAutosizeModule,
     HttpClientModule
   ],
   providers: [],
