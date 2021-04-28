@@ -7,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainerComponent implements OnInit {
   public apiUrl: String = 'https://wger.de/api/v2/exercise/?language=2';
-  name: String;
-  description: String;
-  list = [];
+  list : Exercice[] = [];
 
   constructor() {}
 
