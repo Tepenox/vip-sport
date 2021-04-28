@@ -8,7 +8,7 @@ import { Exercice } from 'src/models/Exercice';
   styleUrls: ['./trainer.component.css'],
 })
 export class TrainerComponent implements OnInit {
-  exercices : Exercice[] = [];
+  exercices : any ;
 
   constructor(private apiSportService:ApiService) {}
 
@@ -27,6 +27,7 @@ export class TrainerComponent implements OnInit {
     // }
 
     this.apiSportService.request(["exercise"]).subscribe(data => this.exercices = data, err => console.log(err))
+    console.log(this.exercices);
   }
 
 }

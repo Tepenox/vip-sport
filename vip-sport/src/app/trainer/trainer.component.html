@@ -2,8 +2,8 @@
   <button type="button" class="btn btn-outline-danger" (click)="onClick()">
     Trouves moi des exercices
   </button>
-  <ul class="exercices">
-    <li *ngFor="let exercice of exercices">
+  <ul class="exercices" *ngIf="exercices">
+    <li *ngFor="let exercice of exercices.results">
       <div>
         <p class="name">{{ exercice.name }}</p>
         <br />
