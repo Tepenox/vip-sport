@@ -1,5 +1,7 @@
 export class Exercice {
-    name: string;
-    description: string;
-  }
-  
+  id: String;
+  name: String;
+  description: String;
+  image: String;
+  nameId:String;
+}

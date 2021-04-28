@@ -17,7 +17,7 @@ export class ApiService {
 
    }
 
-   request(args:string[]):any{
+   request(args:String[]):any{
       let request:string = this.apiUrl + args.join("/")+"/?format=json&language=2";
       console.log(request);
       return this.httpClient.get<any>(request).pipe(catchError(this.errorHandler))    ;

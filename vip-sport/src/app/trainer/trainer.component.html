@@ -2,14 +2,60 @@
   <button type="button" class="btn btn-outline-danger" (click)="onClick()">
     Trouves moi des exercices
   </button>
-  <ul class="exercices" *ngIf="exercices">
-    <li *ngFor="let exercice of exercices.results">
-      <div>
-        <p class="name">{{ exercice.name }}</p>
-        <br />
-        <p>{{ exercice.description }}</p>
-        <br />
+  <div class="exercices" *ngIf="exercices">
+    <div class="row">
+      <div *ngFor="let exercice of exercices">
+        <div class="col-4">
+          <div class="card" style="margin-bottom: 25px; width: 18rem">
+            <img
+              *ngIf="!exercice.image"
+              class="card-img-top"
+              src="../assets/dumbbell.png"
+              
+            />
+            <img
+            *ngIf="exercice.image"
+            class="card-img-top"
+            [src]="exercice.image"
+            
+          />
+            <div class="card-body">
+              <h5 class="card-title">{{ exercice.name }}</h5>
+              <!-- <p class="card-text">{{ exercice.description }}</p> -->
+              <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#{{exercice.nameId}}" role="button" aria-expanded="false" aria-controls="{{exercice.nameId}}">
+                  Description
+                </a>
+
+            
+                
+              </p>
+              <div class="collapse" id="{{exercice.nameId}}">
+                <div class="card card-body">
+                  {{exercice.description}}
+                </div>
+              </div>
+
+              <!-- <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Link with href
+                </a>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  Button with data-target
+                </button>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+              </div> -->
+
+
+
+            </div>
+          </div>
+        </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
