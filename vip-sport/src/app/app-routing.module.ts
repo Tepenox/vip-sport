@@ -5,6 +5,7 @@ import { ForumComponent } from './forum/forum.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ThreadComponent } from './thread/thread.component';
 import { TrainerComponent } from './trainer/trainer.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 

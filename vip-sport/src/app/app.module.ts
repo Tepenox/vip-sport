@@ -19,6 +19,7 @@ import { TrainerComponent } from './trainer/trainer.component';
 import { ForumComponent } from './forum/forum.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
     NgbModule,
     FormsModule,ReactiveFormsModule,
     ChartsModule,
-    TextareaAutosizeModule
+    TextareaAutosizeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
