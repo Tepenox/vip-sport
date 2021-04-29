@@ -12,7 +12,7 @@ router.post("/signup",(req,res)=>{
 
 router.post("/login",(req,res)=>{
     //login user et envoyer user
-    res.json(User.get("the user"))
+    res.json(User.get(1))
 });
 
 module.exports = router;
