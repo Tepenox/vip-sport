@@ -8,11 +8,14 @@ import { Exercice } from 'src/models/Exercice';
   styleUrls: ['./trainer.component.css'],
 })
 export class TrainerComponent implements OnInit {
-  exercices: Exercice[] ;
+  exercices: Exercice[];
+  exercicesId: number[];
 
   constructor(private apiSportService: ApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getExerciseId([]);
+  }
 
   onClick() {
     // const response = await fetch(this.apiUrl.toString());
@@ -27,25 +30,41 @@ export class TrainerComponent implements OnInit {
 
     this.apiSportService.request(['exercise']).subscribe(
       (data) => {
-        this.exercices = data.results
+        this.exercices = data.results;
         this.exercices.map(async (exercice) => {
-          exercice.description = exercice.description.replace(/(<([^>]+)>)/gi, '');
-          exercice.nameId = exercice.name.replace(/(\s+|\d+)/gi,"")
-          console.log( exercice.nameId );
+          exercice.description = exercice.description.replace(
+            /(<([^>]+)>)/gi,
+            ''
+          );
+          exercice.nameId = exercice.name.replace(/(\s+|\d+)/gi, '');
+          //console.log(exercice.nameId);
           await this.assignImageId(exercice);
           return exercice;
         });
-        console.log(this.exercices);
+        //console.log(this.exercices);
       },
       (err) => console.log(err)
     );
-    
-    
   }
 
-  assignImageId(exercice:Exercice){
-    this.apiSportService.request(['exerciseimage',exercice.id,'thumbnails']).subscribe((data)=>{
-      exercice.image = "https://wger.de/"+data.medium_cropped.url;
-    },(err) => console.log(err))
+  getExerciseId(filters: string[]) {
+    this.apiSportService
+      .request(['exercise'].concat(filters))
+      .subscribe( (data) => {
+       this.exercicesId = data.results;
+        console.log('Voici les id: ' + this.exercicesId);
+      });
+      
+  }
+
+  assignImageId(exercice: Exercice) {
+    this.apiSportService
+      .request(['exerciseimage', exercice.id, 'thumbnails'])
+      .subscribe(
+        (data) => {
+          exercice.image = 'https://wger.de/' + data.medium_cropped.url;
+        },
+        (err) => console.log(err)
+      );
   }
 }
