@@ -1,0 +1,16 @@
+#imageUp{
+    width: 50px ;
+    height: 50px ;
+    padding-bottom: 5px;
+    transform: scaleY(-1);
+}
+
+#imageDown{
+    width: 50px ;
+    height: 50px ;
+}
+
+.badge-bg-secondary{
+    width: 100px ;
+    height: 100px ;
+}

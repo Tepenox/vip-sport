@@ -19,7 +19,8 @@ import { TrainerComponent } from './trainer/trainer.component';
 import { ForumComponent } from './forum/forum.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { LikeDislikeComponent } from './like-dislike/like-dislike.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {HttpClientModule} from '@angular/common/http'
     CardComponent,
     TrainerComponent,
     ForumComponent,
-    PostFormComponent
+    PostFormComponent,
+    LikeDislikeComponent
   ],
   imports: [
     BrowserModule,
