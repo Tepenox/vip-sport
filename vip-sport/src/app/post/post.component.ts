@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ForumService } from '../services/forum.service';
 
 @Component({
   selector: 'f-post',
@@ -12,21 +12,19 @@ export class PostComponent implements OnInit{
   userId: number;
   postDate: string;
   postContent: string;
-  private postsUrl = 'https://my-json-server.typicode.com/taguet/posts/posts';
-  private usersUrl = 'https://my-json-server.typicode.com/taguet/posts/users'
 
-  constructor(private http: HttpClient) {
+  constructor(private service: ForumService) {
   }
 
   getUsername() {
-    this.http.get(this.usersUrl + '?id=' + this.userId)
+    this.service.getUser(this.userId)
       .subscribe((response : { id, username }) => {
         this.userName = response[0].username;
       });
   }
 
   ngOnInit() {
-    this.http.get(this.postsUrl + '?id=' + this.id)
+    this.service.getPost(this.id)
       .subscribe((response: { id, thread, user, date, content }) => {
         console.log(response[0].id);
         this.userId = response[0].user;

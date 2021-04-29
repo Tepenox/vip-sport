@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ForumService } from '../services/forum.service';
 
 @Component({
   selector: 'f-thread',
@@ -10,19 +10,17 @@ export class ThreadComponent implements OnInit{
   @Input() id: number;
   threadTitle: string;
   posts: Object;
-  private threadsUrl = 'https://my-json-server.typicode.com/taguet/posts/threads';
-  private postsUrl = 'https://my-json-server.typicode.com/taguet/posts/posts';
 
-  constructor(private http: HttpClient) {
+  constructor(private service: ForumService) {
   }
 
   ngOnInit() {
-    this.http.get(this.postsUrl + '?thread=' + this.id)
+    this.service.getPostsInThread(this.id)
       .subscribe(response => {
         this.posts = response;
       });
 
-    this.http.get(this.threadsUrl + '?id=' + this.id)
+    this.service.getThread(this.id)
       .subscribe((response: { id, title, first }) => {
         this.threadTitle = response.title;
       });
