@@ -2,20 +2,35 @@
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-4 text-center">
       <img
-        src="../assets/pp.png"
+        [src]="user.profilePicturePath"
         alt="100*100"
         class="profile-pic rounded-circle z-depth-2"
         data-holder-rendered="true"
       />
+      <h1 *ngIf="!profileModification">{{ user.name }}</h1>
+      <div class="text-center padder">
+        <input *ngIf="profileModification" [(ngModel)]="user.name" />
+      </div>
+
+      <button
+        *ngIf="!profileModification"
+        class="btn btn-outline-danger"
+        (click)="enableProfileModif()"
+      >
+        Modifier le profil
+      </button>
+      <button
+        *ngIf="profileModification"
+        class="btn btn-success"
+        (click)="saveModification()"
+      >
+        Enregistrer les mofifications
+      </button>
     </div>
-    <div class="col-md-12 col-lg-4" style="color: rgb(0, 0, 0)">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad molestiae
-      ipsa ipsam nihil consequatur accusamus explicabo labore, cum rem voluptate
-      dicta soluta error consectetur illo adipisci eveniet totam eius quasi?
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad molestiae
-      ipsa ipsam nihil consequatur accusamus explicabo labore, cum rem voluptate
-      dicta soluta error consectetur illo adipisci eveniet totam eius quasi?
+    <div *ngIf="!profileModification" class="col-md-12 col-lg-4" style="color: rgb(0, 0, 0)">
+      {{ user.description }}  
     </div>
+    <textarea *ngIf="profileModification" [(ngModel)]="user.description" ></textarea>
   </div>
 </div>
 <div class="container-fluid section-color2 padding-top padding-bottom-25">
@@ -23,21 +38,17 @@
     <div class="col-2" style="color: rgb(0, 0, 0)">
       <h2>Information personnelle:</h2>
       <ul>
-        <p *ngFor="let info of infos">
-          <li>{{ "Age: " + info.age + " ans" }}</li>
-          <li>{{ "Sport: " + info.sport }}</li>
-          <li>{{ "Citation: " + info.citation }}</li>
-          <li>{{ "Poid: " + info.weigth + "kg" }}</li>
+        <p>
+          <li *ngIf="!profileModification">{{ "Age: " + user.age + " ans" }}</li>
+          <li *ngIf="profileModification"> Age: <input type="number" min="18" max="100" [(ngModel)]="user.age"> </li>
+          <li *ngIf="!profileModification">{{ "Sport: " + user.sport }}</li>
+          <li *ngIf="profileModification"> Sport:  <input type="text"  [(ngModel)]="user.sport"> </li>
+          <li *ngIf="!profileModification">{{ "Citation: " + user.citation }}</li>
+          <li *ngIf="profileModification"> Citation: <input type="text"  [(ngModel)]="user.citation"> </li>
+          <li *ngIf="!profileModification">{{ "Poid: " + user.weigth + "kg" }}</li>
+          <li *ngIf="profileModification"> Poid: <input type="number" min="30" max="400" [(ngModel)]="user.weigth"> </li>
         </p>
       </ul>
-      <div *ngIf="moreInfos.length > 0">
-        <h3>Information(s) complémentaire(s):</h3>
-        <ul>
-          <p *ngFor="let info of moreInfos">
-            <li>{{ info.content }}</li>
-          </p>
-        </ul>
-      </div>
     </div>
     <div class="col-4" style="color: rgb(0, 0, 0)">
       <app-piechart></app-piechart>
