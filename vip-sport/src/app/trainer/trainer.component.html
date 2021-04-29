@@ -7,32 +7,28 @@
       <div *ngFor="let exercice of exercices">
         <div class="col-4">
           <div class="card" style="margin-bottom: 25px; width: 18rem">
-            <img
-              *ngIf="!exercice.image"
-              class="card-img-top"
-              src="../assets/dumbbell.png"
-              
-            />
-            <img
-            *ngIf="exercice.image"
-            class="card-img-top"
-            [src]="exercice.image"
             
-          />
+            <p >
+              {{ exercice.videoUrl }}
+            </p>
             <div class="card-body">
               <h5 class="card-title">{{ exercice.name }}</h5>
               <!-- <p class="card-text">{{ exercice.description }}</p> -->
               <p>
-                <a class="btn btn-primary" data-toggle="collapse" href="#{{exercice.nameId}}" role="button" aria-expanded="false" aria-controls="{{exercice.nameId}}">
+                <a
+                  class="btn btn-primary"
+                  data-toggle="collapse"
+                  href="#{{ exercice.nameId }}"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="{{ exercice.nameId }}"
+                >
                   Description
                 </a>
-
-            
-                
               </p>
-              <div class="collapse" id="{{exercice.nameId}}">
+              <div class="collapse" id="{{ exercice.nameId }}">
                 <div class="card card-body">
-                  {{exercice.description}}
+                  {{ exercice.description }}
                 </div>
               </div>
 
@@ -49,9 +45,6 @@
                   Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                 </div>
               </div> -->
-
-
-
             </div>
           </div>
         </div>

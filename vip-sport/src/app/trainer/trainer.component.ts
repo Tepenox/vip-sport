@@ -1,3 +1,4 @@
+import { YoutubeAPIService } from './../services/youtube-api.service';
 import { ApiService } from './../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Exercice } from 'src/models/Exercice';
@@ -11,7 +12,7 @@ export class TrainerComponent implements OnInit {
   exercices: Exercice[];
   exercicesId: number[];
 
-  constructor(private apiSportService: ApiService) {}
+  constructor(private apiSportService: ApiService, private youtubeApi:YoutubeAPIService) {}
 
   ngOnInit(): void {
     this.getExerciseId([]);
@@ -38,7 +39,7 @@ export class TrainerComponent implements OnInit {
           );
           exercice.nameId = exercice.name.replace(/(\s+|\d+)/gi, '');
           //console.log(exercice.nameId);
-          await this.assignImageId(exercice);
+          await this.youtubeApi.assignExerciceVideo(exercice);
           return exercice;
         });
         //console.log(this.exercices);
@@ -57,14 +58,15 @@ export class TrainerComponent implements OnInit {
       
   }
 
-  assignImageId(exercice: Exercice) {
-    this.apiSportService
-      .request(['exerciseimage', exercice.id, 'thumbnails'])
-      .subscribe(
-        (data) => {
-          exercice.image = 'https://wger.de/' + data.medium_cropped.url;
-        },
-        (err) => console.log(err)
-      );
-  }
+
+  // assignImageId(exercice: Exercice) {
+  //   this.apiSportService
+  //     .request(['exerciseimage', exercice.id, 'thumbnails'])
+  //     .subscribe(
+  //       (data) => {
+  //         exercice.image = 'https://wger.de/' + data.medium_cropped.url;
+  //       },
+  //       (err) => console.log(err)
+  //     );
+  // }
 }
