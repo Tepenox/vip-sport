@@ -20,6 +20,7 @@ import { ForumComponent } from './forum/forum.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import {HttpClientModule} from '@angular/common/http'
+import { ForumService } from './services/forum.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import {HttpClientModule} from '@angular/common/http'
     TextareaAutosizeModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ForumService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
