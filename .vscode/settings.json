@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "driver": "SQLite",
+            "name": "vip-sport-bd",
+            "database": "${workspaceFolder:sportProject}/server/bd.sqlite"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
