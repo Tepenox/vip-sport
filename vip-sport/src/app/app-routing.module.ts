@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ThreadComponent } from './thread/thread.component';
 import { TrainerComponent } from './trainer/trainer.component';
+import { WallComponent } from './wall/wall.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
@@ -17,7 +18,9 @@ const routes: Routes = [
   {path: 'signup', component : SignUpComponent},
   {path: 'sportspage', component : CardComponent},
   {path: 'trainer', component : TrainerComponent},
-  {path: 'forum', component : ForumComponent}
+  {path: 'forum', component : ForumComponent},
+  {path: 'wall', component : WallComponent}
+
 ];
 
 @NgModule({

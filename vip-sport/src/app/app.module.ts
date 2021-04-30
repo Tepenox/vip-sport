@@ -20,7 +20,8 @@ import { ForumComponent } from './forum/forum.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import {HttpClientModule} from '@angular/common/http';
-import { LikeDislikeComponent } from './like-dislike/like-dislike.component'
+import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
+import { WallComponent } from './wall/wall.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LikeDislikeComponent } from './like-dislike/like-dislike.component'
     TrainerComponent,
     ForumComponent,
     PostFormComponent,
-    LikeDislikeComponent
+    LikeDislikeComponent,
+    WallComponent
   ],
   imports: [
     BrowserModule,
