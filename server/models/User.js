@@ -29,7 +29,7 @@ VALUES (\
 );"
     )
     .run(user);
-  return result; // contains changes count and the last added rrow id
+  return result.lastInsertRowid; // contains changes count and the last added rrow id
 };
 
 exports.edit = function (user) {
