@@ -56,6 +56,11 @@ exports.getByUserName= function (username) {
     let user = db.prepare("select * from users where username = ?").get(username);
     return user;
 }
+
+exports.searchByUserName= function (username) {
+  let users = db.prepare("select * from user where username like '%?%'").all(username); 
+  return users;
+}
 //le cous va pas suprrimmer son compte 
 
 // exports.delete = function (user) {
