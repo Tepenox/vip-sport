@@ -23,6 +23,7 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { SecretComponent } from './secret/secret.component'
 import { ForumService } from './services/forum.service';
+import { ThreadLinkComponent } from './thread-link/thread-link.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ForumService } from './services/forum.service';
     TrainerComponent,
     ForumComponent,
     PostFormComponent,
-    SecretComponent
+    SecretComponent,
+    ThreadLinkComponent
   ],
   imports: [
     BrowserModule,
