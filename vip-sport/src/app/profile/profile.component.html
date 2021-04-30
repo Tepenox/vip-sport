@@ -27,10 +27,17 @@
         Enregistrer les mofifications
       </button>
     </div>
-    <div *ngIf="!profileModification" class="col-md-12 col-lg-4" style="color: rgb(0, 0, 0)">
-      {{ user.description }}  
+    <div
+      *ngIf="!profileModification"
+      class="col-md-12 col-lg-4"
+      style="color: rgb(0, 0, 0)"
+    >
+      {{ user.description }}
     </div>
-    <textarea *ngIf="profileModification" [(ngModel)]="user.description" ></textarea>
+    <textarea
+      *ngIf="profileModification"
+      [(ngModel)]="user.description"
+    ></textarea>
   </div>
 </div>
 <div class="container-fluid section-color2 padding-top padding-bottom-25">
@@ -39,16 +46,103 @@
       <h2>Information personnelle:</h2>
       <ul>
         <p>
-          <li *ngIf="!profileModification">{{ "Age: " + user.age + " ans" }}</li>
-          <li *ngIf="profileModification"> Age: <input type="number" min="18" max="100" [(ngModel)]="user.age"> </li>
+          <li *ngIf="!profileModification">
+            {{ "Age: " + user.age + " ans" }}
+          </li>
+          <li *ngIf="profileModification">
+            Age:
+            <input type="number" min="18" max="100" [(ngModel)]="user.age" />
+          </li>
           <li *ngIf="!profileModification">{{ "Sport: " + user.sport }}</li>
-          <li *ngIf="profileModification"> Sport:  <input type="text"  [(ngModel)]="user.sport"> </li>
-          <li *ngIf="!profileModification">{{ "Citation: " + user.citation }}</li>
-          <li *ngIf="profileModification"> Citation: <input type="text"  [(ngModel)]="user.citation"> </li>
-          <li *ngIf="!profileModification">{{ "Poid: " + user.weigth + "kg" }}</li>
-          <li *ngIf="profileModification"> Poid: <input type="number" min="30" max="400" [(ngModel)]="user.weigth"> </li>
+          <li *ngIf="profileModification">
+            Sport: <input type="text" [(ngModel)]="user.sport" />
+          </li>
+          <li *ngIf="!profileModification">
+            {{ "Citation: " + user.citation }}
+          </li>
+          <li *ngIf="profileModification">
+            Citation: <input type="text" [(ngModel)]="user.citation" />
+          </li>
+          <li *ngIf="!profileModification">
+            {{ "Poid: " + user.weigth + "kg" }}
+          </li>
+          <li *ngIf="profileModification">
+            Poid:
+            <input type="number" min="30" max="400" [(ngModel)]="user.weigth" />
+          </li>
+          <li *ngIf="!profileModification">
+            {{ "Taille: " + user.height + "cm" }}
+          </li>
+          <li *ngIf="profileModification">
+            Taille:
+            <input type="number" min="100" max="250" [(ngModel)]="user.height" />
+          </li>
         </p>
       </ul>
+    </div>
+    <div class="col-2" style="color: rgb(0, 0, 0)">
+      <h2>Information(s) complémentaire(s):</h2>
+      <ul>
+        <li>
+          Votre IMC (Indice de Masse Corporelle) est de:
+          <span class="imc" [ngStyle]="{ color: styleExp }">{{
+            imc | number: "1.0-2"
+          }}</span>
+        </li>
+      </ul>
+      <div class="progress">
+        <div
+          class="progress-bar bg-info"
+          role="progressbar"
+          style="width: 15%"
+          aria-valuenow="15"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          Maigreur
+        </div>
+        <div
+          class="progress-bar bg-success"
+          role="progressbar"
+          style="width: 25%"
+          aria-valuenow="30"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          Normal
+        </div>
+        <div
+          class="progress-bar bg-warning"
+          role="progressbar"
+          style="width: 20%"
+          aria-valuenow="20"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          Surpoids
+        </div>
+        <div
+          class="progress-bar"
+          style="color: orangered"
+          role="progressbar"
+          style="width: 20%"
+          aria-valuenow="20"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          Obésité
+        </div>
+        <div
+          class="progress-bar bg-danger"
+          role="progressbar"
+          style="width: 20%"
+          aria-valuenow="20"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          Adios
+        </div>
+      </div>
     </div>
     <div class="col-4" style="color: rgb(0, 0, 0)">
       <app-piechart></app-piechart>
