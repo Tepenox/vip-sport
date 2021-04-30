@@ -47,6 +47,6 @@ export class AuthenticationService {
    }
    
    errorHandler(error:HttpErrorResponse){
-    return observableThrowError(error.message || "api sport error");
+    return observableThrowError(error.error || "server error");
   }
 }

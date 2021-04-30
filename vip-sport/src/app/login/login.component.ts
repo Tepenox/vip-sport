@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data[1].token);
         this.authService.setCurentUser(data[0]);
         this.router.navigate(['/secret']);
-      },err=> console.error("authentication service login :"+err)
+      },err=> console.error("authentication service login :"+ err )
       )
   }
 }
