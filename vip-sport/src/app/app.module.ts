@@ -1,3 +1,4 @@
+import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +20,8 @@ import { TrainerComponent } from './trainer/trainer.component';
 import { ForumComponent } from './forum/forum.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { SecretComponent } from './secret/secret.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import {HttpClientModule} from '@angular/common/http'
     CardComponent,
     TrainerComponent,
     ForumComponent,
-    PostFormComponent
+    PostFormComponent,
+    SecretComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,11 @@ import {HttpClientModule} from '@angular/common/http'
     TextareaAutosizeModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

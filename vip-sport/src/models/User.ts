@@ -2,15 +2,15 @@ export class User {
     
     constructor(
     
-    userName: string,
-    firstName: string,
-    lastName: string,
-    age: string,
-    email: string,
-    password: string,
-    description: string,
-    isAdmin?: boolean,
-    id?: number
+    public username: string,
+    public firstName: string,
+    public lastName: string,
+    public  age: string,
+    public email: string,
+    public password: string,
+    public description: string,
+    public isAdmin: boolean = false,
+    public  id?: number
     
   ){
 

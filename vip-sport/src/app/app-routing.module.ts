@@ -1,3 +1,5 @@
+import { AuthGuard } from './auth.guard';
+import { SecretComponent } from './secret/secret.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CardComponent } from './card/card.component';
@@ -17,6 +19,7 @@ const routes: Routes = [
   {path: 'signup', component : SignUpComponent},
   {path: 'sportspage', component : CardComponent},
   {path: 'trainer', component : TrainerComponent},
+  {path: 'secret', canActivate :[AuthGuard],component : SecretComponent},
   {path: 'forum', component : ForumComponent}
 ];
 

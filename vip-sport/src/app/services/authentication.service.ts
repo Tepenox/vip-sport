@@ -1,4 +1,4 @@
-import { User } from './../models/User';
+import { User } from './../../models/User';
 import { HttpClient ,HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,15 +12,17 @@ export class AuthenticationService {
   private signUpUrl = "http://localhost:3000/signup";
   private loginUrl = "http://localhost:3000/login";
 
+  private currentUser:User;
+
   constructor(private httpClient : HttpClient,private router:Router) {   
    }
 
    registerUser(user:User){
-      return this.httpClient.post(this.signUpUrl,user).pipe(catchError(this.errorHandler));
+      return this.httpClient.post<any>(this.signUpUrl,user).pipe(catchError(this.errorHandler));
    }
 
    loginUser(credentials:{email:string,password:string}){
-    return this.httpClient.post(this.loginUrl,credentials).pipe(catchError(this.errorHandler));
+    return this.httpClient.post<any>(this.loginUrl,credentials).pipe(catchError(this.errorHandler));
    }
 
    logOutUser(){
@@ -34,6 +36,14 @@ export class AuthenticationService {
 
    loggedIn(){
      return Boolean(this.getToken());
+   }
+
+   setCurentUser(user:User){
+     this.currentUser = user;
+   }
+
+   getCurrentUser(){
+     return this.currentUser;
    }
    
    errorHandler(error:HttpErrorResponse){
