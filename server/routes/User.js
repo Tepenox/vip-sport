@@ -49,7 +49,7 @@ router.post("/login", (req, res) => {
   }
 });
 
-router.post("/edit", Middlewares.verifyToken, (req, res) => {
+router.post("/user/edit:id", Middlewares.verifyToken, (req, res) => {
   let receivedData = req.body;
     if(!req.userId === receivedData.id){
       res.status(401).send("nice try");
@@ -57,8 +57,9 @@ router.post("/edit", Middlewares.verifyToken, (req, res) => {
       User.edit(receivedData);
       res.json(User.getById(receivedData.id))
     }
-
   res.send("hmm helo user");
 });
+
+
 
 module.exports = router;

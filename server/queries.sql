@@ -2,6 +2,7 @@
 
 
 drop table if exists users;
+
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     userName TEXT NOT NULL,
