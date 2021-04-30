@@ -20,8 +20,13 @@ import { TrainerComponent } from './trainer/trainer.component';
 import { ForumComponent } from './forum/forum.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+<<<<<<< HEAD
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { SecretComponent } from './secret/secret.component'
+=======
+import {HttpClientModule} from '@angular/common/http'
+import { ForumService } from './services/forum.service';
+>>>>>>> e595b6689834f4efcef6861229ea3138ca7d15e9
 
 @NgModule({
   declarations: [
@@ -49,11 +54,17 @@ import { SecretComponent } from './secret/secret.component'
     TextareaAutosizeModule,
     HttpClientModule
   ],
+<<<<<<< HEAD
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
   }],
+=======
+  providers: [
+    ForumService
+  ],
+>>>>>>> e595b6689834f4efcef6861229ea3138ca7d15e9
   bootstrap: [AppComponent]
 })
 export class AppModule { }
