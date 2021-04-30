@@ -43,7 +43,8 @@ import { WallComponent } from './wall/wall.component'
     PostFormComponent,
     SecretComponent,
     LikeDislikeComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    WallComponent
   ],
   imports: [
     BrowserModule,
