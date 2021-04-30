@@ -37,6 +37,7 @@
       </li>
     </ul>
     <button
+      *ngIf="!authService.loggedIn()"
       type="button"
       class="btn btn-outline-success"
       routerLink="/signup"
@@ -45,8 +46,29 @@
     >
       Inscription
     </button>
-    <button type="button" class="btn btn-outline-warning"  routerLinkActive="active" routerLink="/login">
+    <button
+      *ngIf="!authService.loggedIn()"
+      type="button"
+      class="btn btn-outline-warning"
+      routerLinkActive="active"
+      routerLink="/login"
+    >
       Connexion
+    </button>
+    <div
+      *ngIf="authService.loggedIn()"
+      class="nav-item"
+      routerLinkActive="active"
+    >
+      <a class="nav-link" routerLink="/profile">{{authService.getCurrentUser().userName}}</a>
+  </div>
+    <button
+      *ngIf="authService.loggedIn()"
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="logOut()"
+    >
+      logOut
     </button>
   </div>
 </nav>

@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   cheminImage = '../assets/logo.png';
-  constructor() {}
+
+
+  constructor(public authService:AuthenticationService) {}
 
   ngOnInit(): void {}
+
+  logOut(){
+    this.authService.logOutUser();
+  }
 }

@@ -1,3 +1,4 @@
+import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +20,9 @@ import { TrainerComponent } from './trainer/trainer.component';
 import { ForumComponent } from './forum/forum.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { SecretComponent } from './secret/secret.component'
+import { ForumService } from './services/forum.service';
 import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
 import { WallComponent } from './wall/wall.component'
 
@@ -38,8 +41,9 @@ import { WallComponent } from './wall/wall.component'
     TrainerComponent,
     ForumComponent,
     PostFormComponent,
+    SecretComponent,
     LikeDislikeComponent,
-    WallComponent
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,11 @@ import { WallComponent } from './wall/wall.component'
     TextareaAutosizeModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ForumService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
