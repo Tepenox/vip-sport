@@ -29,7 +29,7 @@ VALUES (\
 );"
     )
     .run(user);
-  return result.lastInsertRowid; // contains changes count and the last added rrow id
+  return result.lastInsertRowid; 
 };
 
 exports.edit = function (user) {
@@ -58,7 +58,12 @@ exports.getByUserName= function (username) {
 }
 
 exports.searchByUserName= function (username) {
-  let users = db.prepare("select * from user where username like '%?%'").all(username); 
+  let users = db.prepare("select * from users where username like ?").all('%'+ username +'%'); 
+  return users;
+}
+
+exports.getAllUsers= function () {
+  let users = db.prepare("select * from users").all(); 
   return users;
 }
 //le cous va pas suprrimmer son compte 

@@ -1,16 +1,24 @@
 let express = require("express");
 let router = express.Router(); //new instance of the express router
 let Middlewares = require("../middlewares/middlewares");
-const util = require('util')
+const util = require("util");
 
 let User = require("../models/User");
 let Token = require("../models/Token");
-let jwt = require("jsonwebtoken")
+let jwt = require("jsonwebtoken");
 
-router.get("/user/:username", (req, res) => {
-  let user = User.getByUserName(req.params.username);
+router.get("/users", (req, res) => {
+  if (req.query.username) {
+    res.json(User.searchByUserName(req.query.username));
+  } else {
+    res.json(User.getAllUsers());
+  }
+});
+
+router.get("/users/:id", (req, res) => {
+  let user = User.getById(req.params.id);
   if (!user) {
-    res.status(404).send("Uknown userName");
+    res.status(404).send("no user found");
   } else {
     res.json(user);
   }
@@ -27,8 +35,14 @@ router.post("/signup", (req, res) => {
     let createdUser = User.getById(userId);
     let paylaod = { subject: userId };
     let token = jwt.sign(paylaod, Token.hashKey);
-    
-    console.log("received :" + util.inspect([req.body],false, null, true)  + "\n" + "sent:" +util.inspect([createdUser, { token }],false, null, true) );
+
+    console.log(
+      "received :" +
+        util.inspect([req.body], false, null, true) +
+        "\n" +
+        "sent:" +
+        util.inspect([createdUser, { token }], false, null, true)
+    );
     res.json([createdUser, { token }]);
   }
 });
@@ -44,22 +58,30 @@ router.post("/login", (req, res) => {
   } else {
     let paylaod = { subject: user.id };
     let token = jwt.sign(paylaod, "soo secret"); // should be set to a global variable , it s encrypt the payload
-    console.log("received :" + util.inspect([req.body],false, null, true)  + "\n" + "sent:" +util.inspect([user, { token }],false, null, true) );
+    console.log(
+      "received :" +
+        util.inspect([req.body], false, null, true) +
+        "\n" +
+        "sent:" +
+        util.inspect([user, { token }], false, null, true)
+    );
     res.json([user, { token }]);
   }
 });
 
-router.post("/user/edit:id", Middlewares.verifyToken, (req, res) => {
+router.put("/users/:id", Middlewares.verifyToken, (req, res) => {
   let receivedData = req.body;
-    if(!req.userId === receivedData.id){
-      res.status(401).send("nice try");
-    }else{
-      User.edit(receivedData);
-      res.json(User.getById(receivedData.id))
-    }
-  res.send("hmm helo user");
+  receivedData.id = req.params.id;
+  if (!req.userId === req.params.id) {
+    res.status(401).send("nice try,that's not yours");
+  } else {
+    User.edit(receivedData);
+    res.json(User.getById(receivedData.id));
+  }
 });
 
-
+// router.get("/test", (req ,res)=>{
+//   res.json(req.query);
+// })
 
 module.exports = router;
