@@ -1,5 +1,5 @@
 let express = require("express");
-let router = express.Router(); //new instance of the express router
+let router = express.Router(); 
 let Middlewares = require("../middlewares/middlewares");
 const util = require("util");
 

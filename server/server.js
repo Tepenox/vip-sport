@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const port = 3000;
 
-const User = require('./routes/User');
+const Users = require('./routes/Users');
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 
-app.use('', User);
+app.use('', Users);
 
 app.listen(port, function(){
     console.log("Server running on localhost:" + port);
