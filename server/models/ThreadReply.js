@@ -4,7 +4,7 @@ const db = new Sqlite("db.sqlite");
 let ThreadReply = {};
 
 ThreadReply.getByid = function (id) {
-  return db.prepare("select * from threadreplies where id = ?").get(id);
+  return db.prepare("select * from threadreplies where id = ? order by date DESC").get(id);
 };
 
 ThreadReply.getAllByThreadId = function (threadId) {
