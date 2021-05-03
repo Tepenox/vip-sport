@@ -3,13 +3,19 @@ const db = new Sqlite("db.sqlite");
 
 let Post = {};
 
+Post.getAll = function (){
+    return db.prepare("select * from posts order by date desc").all();
+}
+
+
+
 Post.getByid = function (id){
-    return db.prepare("select * from posts where id = ?").get(id);
+    return db.prepare("select * from posts where id = ? order by date desc" ).get(id);
 }
 
 Post.getByCategory = function (category){
 
-    return db.prepare("select * from posts where categories like ?").all('%'+category+'%');
+    return db.prepare("select * from posts where categories like ? order by date desc").all('%'+category+'%');
 }
 
 Post.create = function(post){
