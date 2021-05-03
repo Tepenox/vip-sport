@@ -1,3 +1,4 @@
+let fs = require('fs');
 let hashKey = "ammooggoosee";
 
 let token ={};
