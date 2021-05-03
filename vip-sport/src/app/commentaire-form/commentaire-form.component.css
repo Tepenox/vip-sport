@@ -1,0 +1,14 @@
+#profilePicture{
+    height: 70px;
+    width: 70px;
+}
+
+#comment{
+    padding-top: 25px;
+    padding-left: 300px;
+}
+
+#postButton{
+    padding-top: 15px;
+    padding-left: 430px;
+}
