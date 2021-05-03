@@ -7,7 +7,7 @@ const util = require("util");
 let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
-router.get("/posts/", (req, res) => {
+router.get("/posts", (req, res) => {
   //get all posts desc by dates
 });
 

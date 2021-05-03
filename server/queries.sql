@@ -37,9 +37,9 @@ CREATE TABLE threadReplies (
 CREATE TABLE posts(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
-    contenuType TEXT NOT NULL, -- text
-    contenu TEXT , 
-    contenuUrl TEXT , 
+    contentType TEXT NOT NULL, -- text
+    content TEXT , 
+    contentUrl TEXT , 
     ownerId TEXT NOT NULL,
     date TEXT NOT NULL,
     categories TEXT NOT NULL,
@@ -113,9 +113,9 @@ values (
 
 insert into posts ( 
     title ,
-    contenuType , -- text
-    contenu , 
-    contenuUrl , 
+    contentType , -- text
+    content , 
+    contentUrl , 
     ownerId ,
     date ,
     categories 
