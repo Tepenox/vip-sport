@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Comment} from 'src/models/PostComment';
 
 @Component({
   selector: 'app-statut',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./statut.component.css']
 })
 export class StatutComponent implements OnInit {
+
+  replies:Comment[] = [new Comment()]; 
+  
 
   constructor() { }
 

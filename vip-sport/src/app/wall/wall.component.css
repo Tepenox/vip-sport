@@ -22,3 +22,17 @@
 #post{
     padding-left: 30px;
 }
+
+#addPostButton{
+    padding-left: 100px;
+}
+
+#addStatutButton{
+    padding-left: 550px;
+}
+
+#addStatut{
+    padding-left: 100px;
+    padding-top: 50px;
+    padding-bottom: 200px;
+}

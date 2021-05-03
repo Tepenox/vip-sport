@@ -5,6 +5,7 @@
 
     
    <app-statut></app-statut>
+  
 
 
     <!-------Commentaire du post---------->
@@ -12,5 +13,45 @@
    <app-commentaire-form id="comment"></app-commentaire-form>
 
 </div>
+
+<div class="col" id="addPostButton">
+    <div *ngIf="isLocked == true">
+        <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockAdd()">Add a post</button>
+    </div>
+</div>
+
+<div id="addStatut">
+    <div *ngIf="isLocked == false">
+        <div class="col-5">
+            <div class="input-group mb-3">
+                <div class="col-auto">
+                    <div id="profilePicture">
+                        <img id='profilePicture' src="../assets/pp.png" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+                    </div>
+                    <div class="dropdown">
+                        <button data-flip="false" class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div *ngFor="let category of categories ">
+                                <a class="dropdown-item" >{{category}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<input type="text" class="form-control" placeholder="Give your opinion here" aria-label="Text input with dropdown button">-->
+                <textarea class="form-control" placeholder="Give your opinion here" id="floatingTextarea2" style="height: 100px"></textarea>
+                
+            </div>
+        </div>
+
+        <div id="addStatutButton">
+            <button type="submit" class="btn btn-warning mb-3">Add Statut</button>
+        </div>
+
+    </div>
+</div>
+
+
 
 

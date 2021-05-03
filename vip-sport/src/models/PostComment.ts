@@ -3,5 +3,11 @@ export class Post {
     userName: String;
     content: String;
     image:HTMLImageElement;
-    comments:String[];
+    comments:Post[];
   }
+
+export class Comment {
+  userName: String;
+  content: String;
+  image:HTMLImageElement;
+}
