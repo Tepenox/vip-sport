@@ -14,7 +14,8 @@
                         <div class="card" style="width: 18rem;">
                             <img [src]="image.src" class="card-img-top d-block w-100">
                             <div class="card-body">
-                            <h5 class="card-title">{{image.name}}</h5>
+                            <h5 class="card-title" routerLink="/wall">{{image.name}}</h5>
+                            <button type="button" class="btn btn-warning" routerLink="/wall" style="font-weight: bold;">Related posts</button>
                             </div>
                         </div>
                     </div>
