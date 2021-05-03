@@ -13,6 +13,7 @@ exports.create = function (user) {
     username,\
     firstName,\
     lastName,\
+    imageUrl,\
     age,\
     email,\
     password,\
@@ -22,6 +23,7 @@ VALUES (\
     @username,\
     @firstName,\
     @lastName,\
+    @imageUrl,\
     @age,\
     @email,\
     @password,\
@@ -38,6 +40,7 @@ exports.edit = function (user) {
     username = @username ,\
     firstName = @firstName,\
     lastName = @lastName,\
+    imageUrl = @imageUrl,\
     age = @age,\
     email = @email,\
     password= @password,\
