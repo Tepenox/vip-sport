@@ -1,4 +1,6 @@
 -- drop table if exists notifications;
+drop table if exists postReplies;
+drop table if exists posts;
 drop table if exists threadReplies;
 drop table if exists threads;
 drop table if exists users;
@@ -7,6 +9,7 @@ CREATE TABLE users (
     userName TEXT NOT NULL,
     firstName TEXT NOT NULL,
     lastName TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
     age INTEGER NOT NULL,
     email TEXT NOT NULL,
     password TEXT NOT NULL,
@@ -30,6 +33,30 @@ CREATE TABLE threadReplies (
     FOREIGN KEY (ownerId) REFERENCES users(id),
     FOREIGN KEY (threadId) REFERENCES threads(id)
 );
+
+CREATE TABLE posts(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    contenuType TEXT NOT NULL, -- text
+    contenu TEXT , 
+    contenuUrl TEXT , 
+    ownerId TEXT NOT NULL,
+    date TEXT NOT NULL,
+    categories TEXT NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id)
+);
+
+CREATE TABLE postReplies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    postId INTEGER NOT NULL,
+    content TEXT NOT NULL,
+    ownerId TEXT NOT NULL,
+    date TEXT NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id),
+    FOREIGN KEY (postId) REFERENCES posts(id)
+);
+
+
 -- CREATE TABLE notifications (
 --     id INTEGER PRIMARY KEY AUTOINCREMENT,
 --     type TEXT NOT NULL,
@@ -46,6 +73,7 @@ insert INTO users(
         username,
         firstName,
         lastName,
+        imageUrl,
         age,
         email,
         password,
@@ -55,6 +83,7 @@ VALUES (
         'anasselafya',
         'anass',
         'el afya',
+        'https://media.discordapp.net/attachments/833721785182191646/838767621074714724/isleep.png',
         23,
         'anasselafya@gmail.com',
         "password",
@@ -80,3 +109,34 @@ values (
         1,
         datetime('now')
     );
+
+
+insert into posts ( 
+    title ,
+    contenuType , -- text
+    contenu , 
+    contenuUrl , 
+    ownerId ,
+    date ,
+    categories 
+    )values(
+        "est ce que avoir un imc de 17 est normal ?",
+        "text",
+        "c est pas normal mon imc , a laide , je veux pas finir comme cedric ",
+        "",
+        1,
+        datetime('now'),
+        'cyclisme'
+   );
+
+   insert into postReplies(
+    postId ,
+    content ,
+    ownerId ,
+    date 
+   )values(
+       1,
+       "frere te renchoouf ",
+       1,
+       datetime('now')
+   );
