@@ -1,6 +1,7 @@
 -- drop table if exists notifications;
-drop table if exists users;
+drop table if exists threadReplies;
 drop table if exists threads;
+drop table if exists users;
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     userName TEXT NOT NULL,
@@ -19,6 +20,15 @@ CREATE TABLE threads (
     date TEXT NOT NULL,
     categories TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id)
+);
+CREATE TABLE threadReplies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    threadId INTEGER NOT NULL,
+    content TEXT NOT NULL,
+    ownerId TEXT NOT NULL,
+    date TEXT NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id),
+    FOREIGN KEY (threadId) REFERENCES threads(id)
 );
 -- CREATE TABLE notifications (
 --     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,15 +60,23 @@ VALUES (
         "password",
         "puceau ? moi ? serieusement ?"
     );
-
 insert into threads(
-    title ,
-    ownerId ,
-    date ,
-    categories 
-)values(
-    'is being virgin at the age of 23 a problme',
-    1,
-    datetime('now'),
-    'sports'
-);
+        title,
+        ownerId,
+        date,
+        categories
+    )
+values(
+        'is being virgin at the age of 23 a problme',
+        1,
+        datetime('now'),
+        'sports'
+    );
+    
+insert into threadReplies(threadId, content, ownerId, date)
+values (
+        1,
+        "u need to build de mooosskles",
+        1,
+        datetime('now')
+    );
