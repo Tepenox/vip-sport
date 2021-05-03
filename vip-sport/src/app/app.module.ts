@@ -25,8 +25,7 @@ import { SecretComponent } from './secret/secret.component'
 import { ForumService } from './services/forum.service';
 import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
 import { WallComponent } from './wall/wall.component';
-import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component';
-import { StatutComponent } from './statut/statut.component'
+import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component'
 
 @NgModule({
   declarations: [
@@ -47,8 +46,7 @@ import { StatutComponent } from './statut/statut.component'
     LikeDislikeComponent,
     WelcomeComponent,
     WallComponent,
-    CommentaireFormComponent,
-    StatutComponent
+    CommentaireFormComponent
   ],
   imports: [
     BrowserModule,
