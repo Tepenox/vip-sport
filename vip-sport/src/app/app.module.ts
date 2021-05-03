@@ -24,7 +24,8 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { SecretComponent } from './secret/secret.component'
 import { ForumService } from './services/forum.service';
 import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
-import { WallComponent } from './wall/wall.component'
+import { WallComponent } from './wall/wall.component';
+import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { WallComponent } from './wall/wall.component'
     SecretComponent,
     LikeDislikeComponent,
     WelcomeComponent,
-    WallComponent
+    WallComponent,
+    CommentaireFormComponent
   ],
   imports: [
     BrowserModule,
