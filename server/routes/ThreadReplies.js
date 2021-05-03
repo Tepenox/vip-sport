@@ -3,7 +3,7 @@ let router = express.Router();
 let Middlewares = require("../middlewares/middlewares");
 const util = require("util");
 
-let ThreadReply = require("../models/ThreadReplie");
+let ThreadReply = require("../models/ThreadReply");
 let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 

@@ -1,4 +1,3 @@
-const { sortBy } = require("async");
 const Sqlite = require("better-sqlite3");
 const db = new Sqlite("db.sqlite");
 
