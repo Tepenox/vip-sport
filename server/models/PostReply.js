@@ -1,19 +1,19 @@
 const Sqlite = require("better-sqlite3");
 const db = new Sqlite("db.sqlite");
 
-let PostReplies = {};
+let PostReply = {};
 
-PostReplies.getAll = function (){
+PostReply.getAll = function (){
     return db.prepare("select * from postReplies order by date desc").all();
 }
 
-PostReplies.getAllByPostId = function(postId){
-    return db.prepare("select * from postReplies where postId =? ").get(postId);
+PostReply.getAllByPostId = function(postId){
+    return db.prepare("select * from postReplies where postId =? order by date desc ").all(postId);
 }
 
 
 
-PostReplies.create = function(postReplies){
+PostReply.create = function(postReplies){
     return db.prepare("insert into postReplies(\
         postId , \
         content , \
@@ -27,6 +27,8 @@ PostReplies.create = function(postReplies){
        );").run(postReplies).lastInsertRowid;
 }
 
-PostReplies.delete = function(id){
+PostReply.delete = function(id){
     return db.prepare("delete from postReplies where id = ?").run(id).changes;
 }
+
+module.exports = PostReply;
