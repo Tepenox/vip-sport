@@ -15,6 +15,8 @@ export class AuthenticationService {
   private currentUser:User;
 
   constructor(private httpClient : HttpClient,private router:Router) {   
+    
+    
    }
 
    registerUser(user:User){
@@ -40,6 +42,10 @@ export class AuthenticationService {
 
    setCurentUser(user:User){
      this.currentUser = user;
+   }
+
+   getUserId(){
+     return localStorage.getItem('userId');
    }
 
    getCurrentUser(){

@@ -56,18 +56,18 @@ export class SignUpComponent implements OnInit {
     const passwordConfirmation = formValue['confirmPassword'];
     const description = 'sessshhhh';
 
-    let newUser = new User(
-      username,
-      firstName,
-      lastName,
-      age,
-      email,
-      password,
-      description
-    );
-    console.log(newUser);
+    // let newUser = new User(
+    //   username,
+    //   firstName,
+    //   lastName,
+    //   age,
+    //   email,
+    //   password,
+    //   description
+    // );
+    // console.log(newUser);
     
-    this.registerUser(newUser);
+    // this.registerUser(newUser);
   }
   checkPassword(password: string, otherPassword: string) {
     return (formGroup: FormGroup) => {
@@ -88,6 +88,7 @@ export class SignUpComponent implements OnInit {
     this.authService.registerUser(user).subscribe(
       (data) => {
         localStorage.setItem('token', data[1].token);
+        localStorage.setItem('userId',data[0].id);
         this.authService.setCurentUser(data[0]);
         this.router.navigate(['/secret']);
       },
