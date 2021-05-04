@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from '../services/categories.service';
 import { SubcategoriesService } from '../services/subcategories.service';
+import { ThreadService } from '../services/thread.service';
 
 @Component({
   selector: 'app-forum',
@@ -11,14 +12,13 @@ import { SubcategoriesService } from '../services/subcategories.service';
 export class ForumComponent implements OnInit {
   currentCategoryId: number;
   categories: any[];
+  threads: any[];
 
-  constructor(private route: ActivatedRoute, private categoriesService: CategoriesService, private subcategoriesService: SubcategoriesService) { }
+  constructor(private route: ActivatedRoute, private categoriesService: CategoriesService, private subcategoriesService: SubcategoriesService, private threadService: ThreadService) { }
 
   ngOnInit(): void {
     this.route.paramMap
-      .subscribe(params => {
-        this.currentCategoryId = +params.get('category');
-      });
+      .subscribe(params => this.currentCategoryId = +params.get('subcategoryID'));
 
     this.categoriesService.getByParentId(this.currentCategoryId)
       .subscribe((response: any[]) => {
@@ -27,6 +27,12 @@ export class ForumComponent implements OnInit {
           this.subcategoriesService.getByParentId(this.categories[i].id)
             .subscribe((response: any[]) => this.categories[i].subcategories = response);
         }
+      });
+
+    this.threadService.getByParentId(this.currentCategoryId)
+      .subscribe((response: any[]) => {
+        this.threads = response;
+        console.log(this.threads);
       });
   }
 
