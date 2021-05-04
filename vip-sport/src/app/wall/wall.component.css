@@ -4,6 +4,7 @@
 }
 
 #comment{
+    padding-top: 25px;
     padding-left: 300px;
 }
 
@@ -20,4 +21,21 @@
 
 #post{
     padding-left: 30px;
+}
+
+#addPostButton{
+    padding-left: 100px;
+}
+
+#addStatutButton{
+    padding-left: 550px;
+}
+
+#addStatut{
+    padding-left: 30px;
+    padding-top: 50px;
+}
+
+#newPost{
+    padding-bottom: 100px;
 }

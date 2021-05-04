@@ -27,6 +27,7 @@ import { ThreadLinkComponent } from './thread-link/thread-link.component';
 import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
 import { WallComponent } from './wall/wall.component';
 import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component'
+import {StatutComponent} from './statut/statut.component'
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CommentaireFormComponent } from './commentaire-form/commentaire-form.co
     LikeDislikeComponent,
     WelcomeComponent,
     WallComponent,
-    CommentaireFormComponent
+    CommentaireFormComponent,
+    StatutComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { CommentaireFormComponent } from './commentaire-form/commentaire-form.co
     FormsModule,ReactiveFormsModule,
     ChartsModule,
     TextareaAutosizeModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [ForumService,{
     provide: HTTP_INTERCEPTORS,
