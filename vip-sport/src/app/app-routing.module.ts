@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'sportspage', component : CardComponent},
   {path: 'trainer', component : TrainerComponent},
   {path: 'secret', canActivate :[AuthGuard],component : SecretComponent},
-  {path: 'forum/:category/:name', component : ForumComponent},
+  {path: 'forum/:subcategoryID/:name', component : ForumComponent},
   {path: 'forum', component : ForumComponent},
   {path: 'wall', component : WallComponent}
 ];
