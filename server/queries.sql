@@ -19,7 +19,7 @@ CREATE TABLE users (
 CREATE TABLE threads (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
-    ownerId TEXT NOT NULL,
+    ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
     categories TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id)
@@ -28,7 +28,7 @@ CREATE TABLE threadReplies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     threadId INTEGER NOT NULL,
     content TEXT NOT NULL,
-    ownerId TEXT NOT NULL,
+    ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id),
     FOREIGN KEY (threadId) REFERENCES threads(id)
@@ -40,7 +40,7 @@ CREATE TABLE posts(
     contentType TEXT NOT NULL, -- text
     content TEXT , 
     contentUrl TEXT , 
-    ownerId TEXT NOT NULL,
+    ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
     categories TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id)
@@ -50,7 +50,7 @@ CREATE TABLE postReplies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     postId INTEGER NOT NULL,
     content TEXT NOT NULL,
-    ownerId TEXT NOT NULL,
+    ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id),
     FOREIGN KEY (postId) REFERENCES posts(id)

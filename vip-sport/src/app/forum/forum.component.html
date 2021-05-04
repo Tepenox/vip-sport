@@ -1,4 +1,13 @@
-<div class="forum-page">
-    <h1>Test</h1>
-    <thread-link></thread-link>
+<div class="forum-page container mx-auto shadow">
+    <div *ngFor="let category of categories">
+        <span>{{ category.name }}</span>
+        <div class="subcategory-list">
+            <div *ngFor="let subcategory of category.subcategories">
+                <a [routerLink]="['/forum', subcategory.id, subcategory.name]">{{ subcategory.name }}</a>
+                <div class="subcategory-info">
+                    {{ subcategory.description }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

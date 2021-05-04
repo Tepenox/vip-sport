@@ -29,7 +29,7 @@ router.post("/posts",Middlewares.verifyToken, (req, res) => {
   let receivedData = req.body;
   receivedData.ownerId = req.userId;
   let postId= Post.create(receivedData);
-  return Post.getByid(postId);
+  return res.json(Post.getByid(postId));
 });
 
 router.put("/posts/:id",Middlewares.verifyToken, verifyPostOwnerShip,(req, res) => {

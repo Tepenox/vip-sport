@@ -57,7 +57,7 @@ router.post("/login", (req, res) => {
     res.status(401).send("Invalid Password");
   } else {
     let paylaod = { subject: user.id };
-    let token = jwt.sign(paylaod, "soo secret"); // should be set to a global variable , it s encrypt the payload
+    let token = jwt.sign(paylaod, Token.hashKey); // should be set to a global variable , it s encrypt the payload
     console.log(
       "received :" +
         util.inspect([req.body], false, null, true) +
