@@ -57,7 +57,8 @@ import {StatutComponent} from './statut/statut.component'
     FormsModule,ReactiveFormsModule,
     ChartsModule,
     TextareaAutosizeModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [ForumService,{
     provide: HTTP_INTERCEPTORS,

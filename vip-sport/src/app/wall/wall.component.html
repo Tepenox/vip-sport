@@ -1,28 +1,32 @@
 
-<div id="post">
+<div class="col-md-9 offset-md-3" id="post">
+    <div *ngFor="let number of numbers" let i = index; trackBy:index>
+        <!-------Statut---------->
 
-    <!-------Post---------->
-
+        <div style="padding-top: 100px;">
+    <app-statut></app-statut>
+        </div>
     
-   <app-statut></app-statut>
-  
 
 
-    <!-------Commentaire du post---------->
+        <!-------Commentaire du post---------->
 
-   <app-commentaire-form id="comment"></app-commentaire-form>
+    <app-commentaire-form id="comment"></app-commentaire-form>
 
-</div>
+    </div>
 
-<div class="col" id="addPostButton">
-    <div *ngIf="isLocked == true">
-        <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockAdd()">Add a post</button>
+    <div class="col" id="addPostButton">
+        <div *ngIf="isLocked == true">
+            <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
+        </div>
     </div>
 </div>
 
-<div id="addStatut">
+<!---------Ajout d'un post----------->
+
+<div  class="col-md-9 offset-md-3" id="addStatut">
     <div *ngIf="isLocked == false">
-        <div class="col-5">
+        <div class="col-md-7">
             <div class="input-group mb-3">
                 <div class="col-auto">
                     <div id="profilePicture">
@@ -46,11 +50,38 @@
         </div>
 
         <div id="addStatutButton">
-            <button type="submit" class="btn btn-warning mb-3">Add Statut</button>
+            <button type="submit" class="btn btn-warning mb-3" (click)="postStatut()">Add Statut</button>
         </div>
 
     </div>
 </div>
+
+
+<!-- <div *ngIf="posted == true">
+        <div class="col-md-9 offset-md-3" id="newPost">
+        <app-statut></app-statut>
+        <app-commentaire-form id="comment"></app-commentaire-form>
+        </div>   
+</div> 
+
+<script>
+
+ var i = 0;
+  var op = document.getElementById('post');
+
+  function addPost(){   
+    var clone = op.cloneNode(true);
+    clone.id = "otherPost" + i++; 
+    document.parentNode.appendChild(clone);
+  } 
+
+
+</script> -->
+
+
+
+
+
 
 
 

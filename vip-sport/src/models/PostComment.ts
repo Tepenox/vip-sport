@@ -3,7 +3,7 @@ export class Post {
     userName: String;
     content: String;
     image:HTMLImageElement;
-    comments:Post[];
+    comments:Comment[];
   }
 
 export class Comment {
