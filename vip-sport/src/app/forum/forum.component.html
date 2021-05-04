@@ -10,4 +10,7 @@
             </div>
         </div>
     </div>
+    <div *ngFor="let thread of threads" class="thread-element">
+        <thread-link [threadId]="thread.id"></thread-link>
+    </div>
 </div>
