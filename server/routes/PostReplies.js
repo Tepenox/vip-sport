@@ -8,7 +8,12 @@ let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
 router.get("/posts/:postid/postreplies", (req, res) => {
-  //get all posts desc date of a post 
+    if (req.query.postId){
+      res.json(PostReplies.getAllById(req.query.postId))
+    }
+    else {
+      res.json(PostReplies.getAll());
+    }
 });
 
 router.post("/posts/:postid/postreplies", (req, res) => {
@@ -20,5 +25,9 @@ router.put("/posts/:postid/postreplies/:id", (req, res) => {
 });
 
 router.delete("/posts/:postid/postreplies/:id", (req, res) => {
-  // delete a postreply related to a post with a postid 
+  if (PostReplies.delete(req.params.id) > 0){
+    res.send("deleted");
+  }else{
+    res.status(500).send('something went wrong');
+}
 });
