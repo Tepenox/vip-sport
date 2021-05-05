@@ -3,8 +3,8 @@ const db = new Sqlite("db.sqlite");
 
 let PostReply = {};
 
-PostReply.getAll = function (){
-    return db.prepare("select * from postReplies order by date desc").all();
+PostReply.getById = function (id){
+    return db.prepare("select * from postReplies where id = ? ").get(id);
 }
 
 PostReply.getAllByPostId = function(postId){
@@ -13,7 +13,7 @@ PostReply.getAllByPostId = function(postId){
 
 
 
-PostReply.create = function(postReplies){
+PostReply.create = function(postReply){
     return db.prepare("insert into postReplies(\
         postId , \
         content , \
@@ -24,8 +24,13 @@ PostReply.create = function(postReplies){
            @content, \
            @ownerId, \
            datetime('now') \
-       );").run(postReplies).lastInsertRowid;
+       );").run(postReply).lastInsertRowid;
 }
+
+PostReply.edit = function(postReply){
+    return db.prepare("update postreplies set content=@content where id = @id").run(postReply).changes;
+}
+
 
 PostReply.delete = function(id){
     return db.prepare("delete from postReplies where id = ?").run(id).changes;

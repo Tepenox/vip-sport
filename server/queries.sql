@@ -174,6 +174,6 @@ insert into posts (
    )values(
        1,
        "frere te renchoouf ",
-       2,
+       1,
        datetime('now')
    );
