@@ -1,32 +1,51 @@
-<div class="text-left" style="padding-top: 150px">
-  <div class="dropdown">
-    <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button"
-      id="dropdownMenuButton"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      Selectionner une partie du corps
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a
-        *ngFor="let category of categories"
-        class="dropdown-item"
-        (click)="getExercise(category.id)"
-        >{{ category.name }}</a
+<div class="text" style="padding-top: 150px; padding-left: 50px">
+  <div class="btn-group" style="padding-bottom: 25px">
+    <div class="dropdown">
+      <button
+        class="btn btn-danger dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
       >
+        Select a body part
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a
+          *ngFor="let category of categories"
+          class="dropdown-item"
+          (click)="getExercise(category.id, null)"
+          >{{ category.name }}</a
+        >
+      </div>
+    </div>
+    <div style="padding-left: 8px">
+      <button
+        class="btn btn-warning dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton2"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Select a muscle
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+        <a
+          *ngFor="let muscle of muscles"
+          class="dropdown-item"
+          (click)="getExercise(null, muscle.id)"
+          >{{ muscle.name }}</a
+        >
+      </div>
     </div>
   </div>
-  <div class="exercices" *ngIf="exercices">
+  <div class="container mx-auto" *ngIf="exercices">
     <div class="row">
       <div *ngFor="let exercice of exercices">
         <div class="col-4">
-          <div class="card" style="margin-bottom: 25px; width: 18rem">
-            <p>
-              {{ exercice.videoUrl }}
-            </p>
+          <div class="card" style="margin-bottom: 35px; width: 18rem">
             <div class="card-body">
               <h5 class="card-title">{{ exercice.name }}</h5>
               <p>

@@ -1,4 +1,3 @@
-import { YoutubeAPIService } from './../services/youtube-api.service';
 import { ApiService } from './../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Exercice } from 'src/models/Exercice';
@@ -11,19 +10,21 @@ import { Exercice } from 'src/models/Exercice';
 export class TrainerComponent implements OnInit {
   exercices: Exercice[];
   categories: number[];
+  muscles: number[];
   exercicesId: number[];
 
   constructor(private apiSportService: ApiService) {
     this.getCategories();
+    this.getMuscles();
   }
 
   ngOnInit(): void {
-    this.getExercise();
+    this.getExercise(null,null);
   }
 
-  getExercise(filter?: number) {
+  getExercise(filter: number,muscle: number) {
     this.exercices = [];
-    this.apiSportService.request(['exercise'], filter).subscribe(
+    this.apiSportService.request(['exercise'], filter,muscle).subscribe(
       (data) => {
         this.exercices = data.results;
         this.exercices.map(async (exercice) => {
@@ -43,6 +44,14 @@ export class TrainerComponent implements OnInit {
     this.apiSportService.requestCategory().subscribe((data) => {
       this.categories = data.results;
       (err) => console.log(err);
+    });
+  }
+
+  getMuscles() {
+    this.apiSportService.requestMuscles().subscribe((data) => {
+      this.muscles = data.results;
+      (err) => console.log(err);
+      console.log(this.muscles)
     });
   }
 }
