@@ -1,4 +1,4 @@
-import { Post } from './../../models/Post&Comment';
+
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../services/user.service';

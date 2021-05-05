@@ -17,10 +17,16 @@ export class ApiService {
 
    }
 
-   request(args:String[]):any{
-      let request:string = this.apiUrl + args.join("/")+"/?format=json&language=2";
-      console.log(request);
+   request(args:String[], muscleFilter? : number):any{
+      let request:string = this.apiUrl + args.join("/")+"/?format=json&language=2" + "&category=" + muscleFilter;
+      console.log('Here s the request: ' +request);
       return this.httpClient.get<any>(request).pipe(catchError(this.errorHandler))    ;
+   }
+
+   requestCategory(){
+    let request:string = this.apiUrl + "exercisecategory/?format=json";
+    console.log('Here s the request: ' +request);
+    return this.httpClient.get<any>(request).pipe(catchError(this.errorHandler))    ;
    }
 
    errorHandler(error:HttpErrorResponse){
