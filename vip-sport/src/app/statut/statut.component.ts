@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Comment} from 'src/models/PostComment';
 
 @Component({
   selector: 'app-statut',

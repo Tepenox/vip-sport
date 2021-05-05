@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Post} from 'src/models/PostComment';
 
 
 
@@ -17,7 +16,6 @@ export class WallComponent implements OnInit {
   nbStatuts = 1
 
   
-  posts: Post[];
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
   numbers = Array.from(Array(this.nbStatuts),(x,i)=>i);
 
