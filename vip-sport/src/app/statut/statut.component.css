@@ -1,0 +1,20 @@
+#profilePicture{
+    height: 70px;
+    width: 70px;
+}
+
+#comment{
+    padding-top: 25px;
+    padding-left: 300px;
+}
+
+#userName{
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+#profileName{
+    padding-left: 100px;
+    padding-bottom: 10px;
+}
+
