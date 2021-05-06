@@ -4,7 +4,7 @@
         <!-------Statut---------->
 
         <div style="padding-top: 100px;">
-        <app-statut></app-statut>
+        <app-statut [item]="userInput"></app-statut>
         </div>
     
 
@@ -20,6 +20,7 @@
             <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
         </div>
     </div>
+    
 </div>
 
 <!---------Ajout d'un post----------->

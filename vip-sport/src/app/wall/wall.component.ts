@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post} from 'src/models/PostComment';
-
-
 
 
 
@@ -10,12 +8,17 @@ import { Post} from 'src/models/PostComment';
   templateUrl: './wall.component.html',
   styleUrls: ['./wall.component.css'],
 })
+
+
 export class WallComponent implements OnInit {
 
   public isLocked = true;
   public posted = false;
   public statutIsEmpty = false;
   nbStatuts = 1
+
+
+ // public userInput = document.forms["statutForm"]["statutTextarea"].value
 
   
   posts: Post[];
