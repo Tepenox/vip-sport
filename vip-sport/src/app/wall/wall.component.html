@@ -1,10 +1,10 @@
 
-<div class="col-md-9 offset-md-3" id="post">
+<div class="col-9 offset-md-3" id="post">
     <div *ngFor="let number of numbers" let i = index; trackBy:index>
         <!-------Statut---------->
 
         <div style="padding-top: 100px;">
-    <app-statut></app-statut>
+        <app-statut></app-statut>
         </div>
     
 
@@ -43,9 +43,12 @@
                         </div>
                     </div>
                 </div>
-                <!--<input type="text" class="form-control" placeholder="Give your opinion here" aria-label="Text input with dropdown button">-->
-                <textarea class="form-control" placeholder="Give your opinion here" id="floatingTextarea2" style="height: 100px"></textarea>
-                
+                <div class="col">
+                    <form name="statutForm">
+                    <div *ngIf="statutIsEmpty" class="alert alert-danger" role="alert">Vous ne pouvez pas poster un statut vide !</div>
+                    <input class="form-control" name="statutTextarea" style="height: 100px">
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -57,26 +60,7 @@
 </div>
 
 
-<!-- <div *ngIf="posted == true">
-        <div class="col-md-9 offset-md-3" id="newPost">
-        <app-statut></app-statut>
-        <app-commentaire-form id="comment"></app-commentaire-form>
-        </div>   
-</div> 
 
-<script>
-
- var i = 0;
-  var op = document.getElementById('post');
-
-  function addPost(){   
-    var clone = op.cloneNode(true);
-    clone.id = "otherPost" + i++; 
-    document.parentNode.appendChild(clone);
-  } 
-
-
-</script> -->
 
 
 
