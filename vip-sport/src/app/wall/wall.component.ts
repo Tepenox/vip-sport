@@ -14,6 +14,7 @@ export class WallComponent implements OnInit {
 
   public isLocked = true;
   public posted = false;
+  public statutIsEmpty = false;
   nbStatuts = 1
 
   
@@ -39,10 +40,19 @@ export class WallComponent implements OnInit {
   }
 
   postStatut(){
+    this.statutIsEmpty = false;
+
+    if(document.forms["statutForm"]["statutTextarea"].value == ""){
+      this.statutIsEmpty = true;
+     // alert("Vous ne pouvez pas poster un statut vide !");
+    }
+    else{ 
     this.isLocked = true;
     this.posted = true; 
     this.nbStatuts += 1;
     this.numbers.push(this.numbers.length);
+    }
+    
   }
 
   

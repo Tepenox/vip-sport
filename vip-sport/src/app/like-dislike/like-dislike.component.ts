@@ -29,9 +29,10 @@ export class LikeDislikeComponent implements OnInit {
       this.isClickedDown = false;
       this.imageDown = "./assets/dumbDown.png";
     }
+
+
     else
     this.counterUp += 1;
-
     this.imageUp = "./assets/dumbDownActived2.png"
   }
 
