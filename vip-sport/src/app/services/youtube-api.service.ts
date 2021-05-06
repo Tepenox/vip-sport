@@ -24,7 +24,7 @@ export class YoutubeAPIService {
         (data) => {
           let videoId = data.items[0].id.videoId;
           exercice.videoUrl = this.youtubeUrl + videoId;
-          console.log('here is the link bruduh ' + exercice.videoUrl);
+          //console.log('here is the link bruduh ' + exercice.videoUrl);
         },
         (err) => console.log(err)
       );

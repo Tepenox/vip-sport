@@ -21,12 +21,13 @@ import { ForumComponent } from './forum/forum.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { SecretComponent } from './secret/secret.component'
+import { SecretComponent } from './secret/secret.component';
 import { ForumService } from './services/forum.service';
+import { ThreadLinkComponent } from './thread-link/thread-link.component';
 import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
 import { WallComponent } from './wall/wall.component';
-import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component'
-import {StatutComponent} from './statut/statut.component'
+import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component';
+import {StatutComponent} from './statut/statut.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {StatutComponent} from './statut/statut.component'
     ForumComponent,
     PostFormComponent,
     SecretComponent,
+    ThreadLinkComponent,
     LikeDislikeComponent,
     WelcomeComponent,
     WallComponent,

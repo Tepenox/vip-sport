@@ -14,13 +14,16 @@ exports.create = function (user) {
     firstName,\
     lastName,\
     imageUrl,\
+    height,\
+    weight,\
+    sport,\
     age,\
     email,\
     password,\
     description\
 )\
 VALUES (\
-    @username,\
+    @userName,\
     @firstName,\
     @lastName,\
     @imageUrl,\
@@ -37,10 +40,13 @@ VALUES (\
 exports.edit = function (user) {
   let results = db.prepare(
     "update users set \
-    username = @username ,\
+    userName = @userName ,\
     firstName = @firstName,\
     lastName = @lastName,\
     imageUrl = @imageUrl,\
+    height= @height,\
+    weight = @weight,\
+    sport = @sport,\
     age = @age,\
     email = @email,\
     password= @password,\

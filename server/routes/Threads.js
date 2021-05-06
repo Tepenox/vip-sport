@@ -50,7 +50,7 @@ router.delete(
     if(Thread.delete(req.params.id)>=1){
         res.send('deleted');
     }else{
-        res.status(404).send('something went wrong');
+        res.status(500).send('something went wrong');
     }
     
 

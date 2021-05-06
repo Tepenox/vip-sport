@@ -15,7 +15,6 @@ router.get("/threads/:threadid/threadreplies",(req,res)=>{
 
 
 router.post("/threads/:threadid/threadreplies",(req,res)=>{
-    //create a threadReplie
 
 });
 

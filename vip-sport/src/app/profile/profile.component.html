@@ -3,14 +3,14 @@
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-4 text-center">
       <img
-        [src]="user.profilePicturePath"
+        [src]="user.imageUrl"
         alt="100*100"
         class="profile-pic rounded-circle z-depth-2"
         data-holder-rendered="true"
       />
-      <h1 *ngIf="!profileModification">{{ user.name }}</h1>
+      <h1 *ngIf="!profileModification">{{ user.userName }}</h1>
       <div class="text-center padder">
-        <input *ngIf="profileModification" [(ngModel)]="user.name" />
+        <input *ngIf="profileModification" [(ngModel)]="user.userName" />
       </div>
 
       <button
@@ -68,17 +68,11 @@
             Sport: <input type="text" [(ngModel)]="user.sport" />
           </li>
           <li *ngIf="!profileModification">
-            {{ "Citation: " + user.citation }}
-          </li>
-          <li *ngIf="profileModification">
-            Citation: <input type="text" [(ngModel)]="user.citation" />
-          </li>
-          <li *ngIf="!profileModification">
-            {{ "Poid: " + user.weigth + "kg" }}
+            {{ "Poid: " + user.weight + "kg" }}
           </li>
           <li *ngIf="profileModification">
             Poid:
-            <input type="number" min="30" max="400" [(ngModel)]="user.weigth" />
+            <input type="number" min="30" max="400" [(ngModel)]="user.weight" />
           </li>
           <li *ngIf="!profileModification">
             {{ "Taille: " + user.height + "cm" }}

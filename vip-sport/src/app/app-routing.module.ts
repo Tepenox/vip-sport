@@ -1,3 +1,4 @@
+import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './auth.guard';
 import { SecretComponent } from './secret/secret.component';
 import { NgModule } from '@angular/core';
@@ -15,12 +16,14 @@ import { WelcomeComponent } from './welcome/welcome.component';
 const routes: Routes = [
   {path: '', component : WelcomeComponent},
   {path: 'welcome', component : WelcomeComponent},
-  {path: 'profile', component : ProfileComponent},
+  {path: 'profile/:id',canActivate:[AuthGuard],component : ProfileComponent},
   {path: 'login', component : LoginComponent},
   {path: 'signup', component : SignUpComponent},
   {path: 'sportspage', component : CardComponent},
   {path: 'trainer', component : TrainerComponent},
   {path: 'secret', canActivate :[AuthGuard],component : SecretComponent},
+  {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent},
+  {path: 'forum/:subcategoryID', component : ForumComponent},
   {path: 'forum', component : ForumComponent},
   {path: 'wall', component : WallComponent}
 ];

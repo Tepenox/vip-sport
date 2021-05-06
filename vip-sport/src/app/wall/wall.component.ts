@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Post} from 'src/models/PostComment';
+import { Component, OnInit } from '@angular/core';
 
 
 
@@ -21,7 +20,6 @@ export class WallComponent implements OnInit {
  // public userInput = document.forms["statutForm"]["statutTextarea"].value
 
   
-  posts: Post[];
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
   numbers = Array.from(Array(this.nbStatuts),(x,i)=>i);
 
