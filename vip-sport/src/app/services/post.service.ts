@@ -15,11 +15,11 @@ export class PostService {
   constructor(private httpClient:HttpClient) { }
 
 
-  getPosts(){
+  getPosts():Observable<Post[]>{
     return this.httpClient.get<Post[]>(this.postsUrl).pipe(catchError(this.errorHandler));
   }
 
-  getPostByCategory(categories:string[]){
+  getPostByCategory(categories:string[]):Observable<Post[]>{
     let params = new HttpParams().set('categories',categories.join('$$'));
     return this.httpClient.get<Post[]>(this.postsUrl, {params:params} ).pipe(catchError(this.errorHandler));
 
@@ -29,7 +29,7 @@ export class PostService {
     return this.httpClient.post<Post>(this.postsUrl,post).pipe(catchError(this.errorHandler))
   }
 
-  editPost(id:number,post:Post){
+  editPost(id:number,post:Post):Observable<Post>{
     return this.httpClient.put<Post>(this.postsUrl+`/${id}`, post ).pipe(catchError(this.errorHandler));
 
   }
