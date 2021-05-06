@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ForumPostService } from '../services/forum-post.service';
 import { ForumService } from '../services/forum.service';
 
 @Component({
@@ -10,9 +11,9 @@ import { ForumService } from '../services/forum.service';
 export class ThreadComponent implements OnInit{
   id: number;
   threadTitle: string;
-  posts: Object;
+  posts: any[];
 
-  constructor(private route: ActivatedRoute, private service: ForumService) { }
+  constructor(private route: ActivatedRoute, private service: ForumPostService) { }
 
   ngOnInit() {
     this.route.paramMap
@@ -21,8 +22,8 @@ export class ThreadComponent implements OnInit{
         this.threadTitle = param.get('threadTitle');
       });
     
-    this.service.getPostsInThread(this.id)
-      .subscribe(response => {
+    this.service.getPostsByThreadID(this.id)
+      .subscribe((response: any[]) => {
         this.posts = response;
       });
   }
