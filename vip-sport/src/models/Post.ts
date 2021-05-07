@@ -7,8 +7,8 @@ export class Post{
         public onwerId:number, 
         public categories:string, 
         public date?:string,
-        public id?:string
-     
+        public id?:string  
+          
     ){
 
     }

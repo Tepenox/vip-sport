@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+
+/// <reference path="wall.component.ts" />
+
 
 @Component({
   selector: 'app-statut',
@@ -7,8 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatutComponent implements OnInit {
 
-  replies:Comment[] = [new Comment()]; 
-  
+  @Input() userInput:string;
 
   constructor() { }
 
