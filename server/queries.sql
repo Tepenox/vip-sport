@@ -37,6 +37,24 @@ CREATE TABLE threadReplies (
     FOREIGN KEY (threadId) REFERENCES threads(id)
 );
 
+CREATE TABLE like (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    postId INTEGER NOT NULL,
+    subjectType TEXT NOT NULL,
+    ownerId INTEGER NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id),
+    FOREIGN KEY (postId) REFERENCES posts(id)
+);
+
+CREATE TABLE dislike (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    postId INTEGER NOT NULL,
+    subjectType TEXT NOT NULL,
+    ownerId INTEGER NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id),
+    FOREIGN KEY (postId) REFERENCES posts(id)
+);
+
 CREATE TABLE posts(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
