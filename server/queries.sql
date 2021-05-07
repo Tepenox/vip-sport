@@ -6,6 +6,7 @@ drop table if exists posts;
 drop table if exists threadReplies;
 drop table if exists threads;
 drop table if exists users;
+
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     userName TEXT NOT NULL,
