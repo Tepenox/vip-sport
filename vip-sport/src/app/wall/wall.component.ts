@@ -17,7 +17,7 @@ export class WallComponent implements OnInit {
   nbStatuts = 1
 
 
- // public userInput = document.forms["statutForm"]["statutTextarea"].value
+ //public userInput = document.forms["statutForm"]["statutTextarea"].value
 
   
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
