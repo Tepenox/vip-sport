@@ -1,4 +1,3 @@
-
 <div class="container-fluid section-color1 padding-top padding-bottom-25">
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-4 text-center">
@@ -42,17 +41,9 @@
   </div>
 </div>
 
-
-
-
-<div class="container-fluid section-color2  padding-bottom-25">
-
- 
-
+<div class="container-fluid section-color2 padding-bottom-25">
   <div class="row justify-content-around" id="infos">
-  
-
-    <div class="col-2 " style="color: rgb(0, 0, 0)">
+    <div class="col-2" style="color: rgb(0, 0, 0)">
       <h2>Information personnelle:</h2>
       <ul>
         <p>
@@ -79,13 +70,16 @@
           </li>
           <li *ngIf="profileModification">
             Taille:
-            <input type="number" min="100" max="250" [(ngModel)]="user.height" />
+            <input
+              type="number"
+              min="100"
+              max="250"
+              [(ngModel)]="user.height"
+            />
           </li>
         </p>
       </ul>
     </div>
-
-    
 
     <div class="col-3 justify-content-center" style="color: rgb(0, 0, 0)">
       <h2>Information(s) complémentaire(s):</h2>
@@ -150,28 +144,21 @@
           Adios
         </div>
       </div>
-      
-      
-    
     </div>
 
-    
-
-    <div class="col-4"  style="color: rgb(0, 0, 0)">
+    <div class="col-4" style="color: rgb(0, 0, 0)">
       <h2>Macros :</h2>
       <app-piechart></app-piechart>
     </div>
   </div>
 
-  
-    
+  <div class="container-fluid section-color1">
+    <h1>Public posts:</h1>
+    <app-wall></app-wall>
+  </div>
+  <div *ngIf="publications" class="container-fluid section-color2">
+    <div ngFor="let post of publications">
+      <app-status></app-status>
+    </div>
+  </div>
 </div>
-
-
-
-
-
-
-
-
-

@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   profileModification: boolean = false;
   imc: number = 0.0;
   styleExp: string = 'black';
+  publications :String[];
 
   // user: User = {
   //   id: 1,
@@ -40,6 +41,7 @@ export class ProfileComponent implements OnInit {
       });
   
     });
+    this.publications = [];//ask to DB
 
     
     
