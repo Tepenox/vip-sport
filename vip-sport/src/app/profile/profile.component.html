@@ -2,11 +2,15 @@
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-4 text-center">
       <img
+        *ngIf="!profileModification"
         [src]="user.imageUrl"
         alt="100*100"
         class="profile-pic rounded-circle z-depth-2"
         data-holder-rendered="true"
       />
+      <div *ngIf="profileModification">
+        URL: <input type="text" [(ngModel)]="user.imageUrl" />
+      </div>
       <h1 *ngIf="!profileModification">{{ user.userName }}</h1>
       <div class="text-center padder">
         <input *ngIf="profileModification" [(ngModel)]="user.userName" />
@@ -152,13 +156,14 @@
     </div>
   </div>
 
-  <div class="container-fluid section-color1">
+  <!-- <div class="container-fluid section-color1">
     <h1>Public posts:</h1>
     <app-wall></app-wall>
-  </div>
-  <div *ngIf="publications" class="container-fluid section-color2">
-    <div ngFor="let post of publications">
-      <app-status></app-status>
+  </div> -->
+  <div class="container-fluid section-color1">
+    <div *ngFor="let post of publications">
+      <app-statut [userInput]="post" [user]="user"></app-statut>
     </div>
   </div>
+  <!--AJOUTER LES POST ICI-->
 </div>
