@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent},
   {path: 'forum/:subcategoryID', component : ForumComponent},
   {path: 'forum', component : ForumComponent},
-  {path: 'wall', component : WallComponent}
+  {path: 'posts', component : WallComponent}
 ];
 
 @NgModule({
