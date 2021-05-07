@@ -2,7 +2,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './auth.guard';
 import { SecretComponent } from './secret/secret.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 import { CardComponent } from './card/card.component';
 import { ForumComponent } from './forum/forum.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +12,12 @@ import { ThreadComponent } from './thread/thread.component';
 import { TrainerComponent } from './trainer/trainer.component';
 import { WallComponent } from './wall/wall.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  onSameUrlNavigation: 'reload'
+};
 
 const routes: Routes = [
   {path: '', component : WelcomeComponent},
@@ -29,7 +35,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

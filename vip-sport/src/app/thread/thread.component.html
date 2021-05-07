@@ -8,6 +8,12 @@
         <f-post *ngFor="let post of posts" [id]="post.id"></f-post>
     </div>
     <div>
-        <post-form [threadID]="id"></post-form>
+        <a [routerLink]="['./']" fragment="reply-form" [hidden]="isReplyActive">
+            <button class="btn btn-primary" (click)="toggleReplyForm()">Répondre</button>
+        </a>
+    </div>
+    <div [hidden]="!isReplyActive">
+        <button class="btn btn-primary" (click)="toggleReplyForm()">Annuler</button>
+        <post-form [threadID]="id" id="reply-form"></post-form>
     </div>
 </div>

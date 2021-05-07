@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ForumPostService } from '../services/forum-post.service';
-import { ForumService } from '../services/forum.service';
 
 @Component({
   selector: 'f-thread',
@@ -11,6 +10,7 @@ import { ForumService } from '../services/forum.service';
 export class ThreadComponent implements OnInit{
   id: number;
   threadTitle: string;
+  isReplyActive = false;
   posts: any[];
 
   constructor(private route: ActivatedRoute, private service: ForumPostService) { }
@@ -26,5 +26,9 @@ export class ThreadComponent implements OnInit{
       .subscribe((response: any[]) => {
         this.posts = response;
       });
+  }
+
+  toggleReplyForm() {
+    this.isReplyActive = !this.isReplyActive;
   }
 }
