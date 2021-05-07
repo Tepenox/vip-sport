@@ -7,6 +7,10 @@ Likes.getCountBySubjectId = function (subjectType, subjectId){
     return db.prepare("select count(*) from likes where subjectType = ? and subjectId = ?").get(subjectType,subjectId);
 }
 
+Likes.getLike = function (subjectType,subjectId,ownerId){
+    return db.prepare("select * from likes where subjectType = ? AND subjectId = ? AND ownerId = ?").get(subjectType,subjectId,ownerId);
+} 
+
 Likes.create = function(subjectType,subjectId,ownerId) {
     return db.prepare("insert into likes(subjectId,subjectType,ownerId) values (?,?,?)").run(subjectType,subjectId,ownerId).lastInsertRowid;
 
