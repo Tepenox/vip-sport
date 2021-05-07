@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ForumService } from '../services/forum.service';
+import { ForumPostService } from '../services/forum-post.service';
 
 @Component({
   selector: 'f-thread',
@@ -10,9 +10,10 @@ import { ForumService } from '../services/forum.service';
 export class ThreadComponent implements OnInit{
   id: number;
   threadTitle: string;
-  posts: Object;
+  isReplyActive = false;
+  posts: any[];
 
-  constructor(private route: ActivatedRoute, private service: ForumService) { }
+  constructor(private route: ActivatedRoute, private service: ForumPostService) { }
 
   ngOnInit() {
     this.route.paramMap
@@ -21,9 +22,13 @@ export class ThreadComponent implements OnInit{
         this.threadTitle = param.get('threadTitle');
       });
     
-    this.service.getPostsInThread(this.id)
-      .subscribe(response => {
+    this.service.getPostsByThreadID(this.id)
+      .subscribe((response: any[]) => {
         this.posts = response;
       });
+  }
+
+  toggleReplyForm() {
+    this.isReplyActive = !this.isReplyActive;
   }
 }
