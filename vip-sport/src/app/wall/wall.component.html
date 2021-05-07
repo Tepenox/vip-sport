@@ -1,11 +1,13 @@
 
 <div class="col-9 offset-md-3" id="post">
-    <div *ngFor="let number of numbers" let i = index; trackBy:index>
+    <div *ngFor="let post of posts" let i = index; trackBy:index>
+        
         <!-------Statut---------->
 
         <div style="padding-top: 100px;">
-        <app-statut></app-statut>
-        </div>
+        <app-statut  [userInput] = "post.content"></app-statut>
+
+     </div>
     
 
 
@@ -20,6 +22,7 @@
             <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
         </div>
     </div>
+    
 </div>
 
 <!---------Ajout d'un post----------->
