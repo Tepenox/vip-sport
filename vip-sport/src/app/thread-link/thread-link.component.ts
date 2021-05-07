@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ThreadService } from '../services/thread.service';
 
 @Component({
   selector: 'thread-link',
@@ -7,10 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ThreadLinkComponent implements OnInit {
   @Input('threadId') id: number;
+  subcategoryID: number;
+  thread: any;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private service: ThreadService) { }
 
   ngOnInit(): void {
+    this.route.paramMap
+      .subscribe(params => this.subcategoryID = +params.get('subcategoryID'));
+
+    this.service.getById(this.id)
+      .subscribe((response: any) => this.thread = response);
   }
 
 }

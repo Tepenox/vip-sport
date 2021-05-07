@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ForumService } from '../services/forum.service';
 
 @Component({
@@ -7,22 +8,22 @@ import { ForumService } from '../services/forum.service';
   styleUrls: ['./thread.component.css']
 })
 export class ThreadComponent implements OnInit{
-  @Input() id: number;
+  id: number;
   threadTitle: string;
   posts: Object;
 
-  constructor(private service: ForumService) {
-  }
+  constructor(private route: ActivatedRoute, private service: ForumService) { }
 
   ngOnInit() {
+    this.route.paramMap
+      .subscribe(param => {
+        this.id = +param.get('threadID');
+        this.threadTitle = param.get('threadTitle');
+      });
+    
     this.service.getPostsInThread(this.id)
       .subscribe(response => {
         this.posts = response;
-      });
-
-    this.service.getThread(this.id)
-      .subscribe((response: { id, title, first }) => {
-        this.threadTitle = response.title;
       });
   }
 }
