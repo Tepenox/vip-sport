@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from './../../models/Post';
+import {PostService} from '../services/post.service';
 
 
 
@@ -14,25 +16,32 @@ export class WallComponent implements OnInit {
   public isLocked = true;
   public posted = false;
   public statutIsEmpty = false;
-  nbStatuts = 1
 
+  posts:Post[] = [];
 
- //public userInput = document.forms["statutForm"]["statutTextarea"].value
+  
+
+ 
 
   
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
-  numbers = Array.from(Array(this.nbStatuts),(x,i)=>i);
+  
 
   
 
-  constructor() {
-    
+  constructor(private postService : PostService) {
+  }
+
+  getPosts(){
+    this.postService.getPosts().subscribe(data => {
+      this.posts = data;
+    });
   }
 
   
 
   ngOnInit(): void {
-   
+    this.getPosts();
   }
 
 
@@ -50,8 +59,6 @@ export class WallComponent implements OnInit {
     else{ 
     this.isLocked = true;
     this.posted = true; 
-    this.nbStatuts += 1;
-    this.numbers.push(this.numbers.length);
     }
     
   }
