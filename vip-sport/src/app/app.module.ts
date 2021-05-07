@@ -26,8 +26,8 @@ import { ForumService } from './services/forum.service';
 import { ThreadLinkComponent } from './thread-link/thread-link.component';
 import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
 import { WallComponent } from './wall/wall.component';
-import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component'
-import {StatutComponent} from './statut/statut.component'
+import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component';
+import {StatutComponent} from './statut/statut.component';
 
 @NgModule({
   declarations: [

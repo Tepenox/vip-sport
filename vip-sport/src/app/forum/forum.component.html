@@ -3,7 +3,7 @@
         <span>{{ category.name }}</span>
         <div class="subcategory-list">
             <div *ngFor="let subcategory of category.subcategories">
-                <a [routerLink]="['/forum', subcategory.id, subcategory.name]">{{ subcategory.name }}</a>
+                <a [routerLink]="['/forum', subcategory.id]">{{ subcategory.name }}</a>
                 <div class="subcategory-info">
                     {{ subcategory.description }}
                 </div>
