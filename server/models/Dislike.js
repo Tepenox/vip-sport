@@ -4,7 +4,7 @@ const db = new Sqlite("db.sqlite");
 let Disikes = {};
 
 Dislikes.getAllByPost = function (postId){
-    return db.prepare("select * from dislikes where postId = ? order by date desc").all(postId);
+    return db.prepare("select * from dislikes where postId = ?").all(postId);
 }
 
 Dislikes.delete = function(id){
