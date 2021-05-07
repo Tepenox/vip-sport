@@ -34,7 +34,7 @@ export class PostFormComponent {
     this.service.create(post)
       .subscribe((response: { id }) => {
         post['id'] = response.id;
-        console.log(response);
       })
+      window.location.reload();
   }
 }
