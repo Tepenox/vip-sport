@@ -14,4 +14,8 @@ export class DataService {
   getById(id: number) {
     return this.http.get(this.url + '/' + id);
   }
+
+  create(resource) {
+    return this.http.post(this.url, resource);
+  }
 }
