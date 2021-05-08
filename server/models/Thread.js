@@ -13,6 +13,11 @@ Thread.getAll = function () {
   return threads;
 };
 
+Thread.getAllInSubcategory = function (subcategoryId) {
+  let threads = db.prepare("select * from Threads where subcategoryId = ? order by date DESC").all(subcategoryId);
+  return threads;
+};
+
 Thread.create = function (thread) {
   let threadId = db
     .prepare(

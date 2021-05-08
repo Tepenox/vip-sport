@@ -150,7 +150,7 @@ VALUES (
         email,
         password,
         description,
-         sport,
+        sport,
         weight,
         height
     )
@@ -176,7 +176,7 @@ VALUES (
         'issoucisse@gmail.com',
         "password",
         "La chancla",
-        "aucun"
+        "aucun",
         121,
         220
     ),
@@ -184,7 +184,9 @@ VALUES (
         'Temsoka',
         'Adriano',
         'Toronto',
+        21,
         '../assets/pp.png',
+        'temsoka@gmail.com',
         "password",
         "Oui",
         "muscu",
@@ -195,7 +197,10 @@ VALUES (
         'Tintintamarre',
         'Jean-Gaspard',
         'Feur',
+        22,
         '../assets/pp.png',
+        'tintintamarre@gmail.com',
+        'password',
         "Feur",
         "course",
         72,
@@ -203,12 +208,12 @@ VALUES (
     );
 
 insert into categories(
-    id, name, parentId
+    name, parentId
 )
 values ("Site", 0), ("Général", 0);
 
 insert into subcategories(
-    id, name, parentId, description
+    name, parentId, description
 )
 values  ("Annonces", 1, "Cette section regroupe toutes les annonces importantes du forum."),
         ("Suggestions", 1, "Vous avez une suggestion pour le site ? Vous pouvez la proposer ici."),
@@ -227,11 +232,12 @@ insert into threads(
         lastPostId
     )
 values(
-        4,
+        5,
         'Alors comme ça on me traite de FAIBLE ?',
         1,
         datetime('now'),
-        'sports'
+        1,
+        4
     );
     
 insert into threadReplies(threadId, ownerId, date, content)

@@ -17,7 +17,9 @@ function verifyThreadOwnerShip(req, res, next) {
 
 router.get("/threads", (req, res) => {
   if (req.query.title) {
-    res.json(Thread.searchByTitle(title));
+    res.json(Thread.searchByTitle(req.query.title));
+  } else if (req.query.subcategoryId) {
+    res.json(Thread.getAllInSubcategory(req.query.subcategoryId));
   } else {
     res.json(Thread.getAll());
   }
