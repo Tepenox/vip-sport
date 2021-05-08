@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from './../../models/Post';
+import { User } from './../../models/User';
 import {PostService} from '../services/post.service';
+import {UserService} from '../services/user.service';
+import {AuthenticationService} from '../services/authentication.service';
 
 
 
@@ -21,7 +24,7 @@ export class WallComponent implements OnInit {
 
   
 
- 
+ //public userInput = document.forms["statutForm"]["statutTextarea"].value
 
   
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
@@ -29,7 +32,8 @@ export class WallComponent implements OnInit {
 
   
 
-  constructor(private postService : PostService) {
+  constructor(private postService : PostService, private authentificationService : AuthenticationService) {
+    
   }
 
   getPosts(){
@@ -54,9 +58,12 @@ export class WallComponent implements OnInit {
 
     if(document.forms["statutForm"]["statutTextarea"].value == ""){
       this.statutIsEmpty = true;
-     // alert("Vous ne pouvez pas poster un statut vide !");
     }
     else{ 
+    var url = window.location.href;
+    var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, url.slice(url.lastIndexOf('=')+1));
+    this.postService.createPost(post);
+    this.posts.push(post);
     this.isLocked = true;
     this.posted = true; 
     }
