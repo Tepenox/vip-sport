@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from './../../models/Post';
-import { User } from './../../models/User';
 import {PostService} from '../services/post.service';
-import {UserService} from '../services/user.service';
 import {AuthenticationService} from '../services/authentication.service';
 
 
@@ -24,7 +22,7 @@ export class WallComponent implements OnInit {
 
   
 
- //public userInput = document.forms["statutForm"]["statutTextarea"].value
+ 
 
   
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
@@ -33,7 +31,6 @@ export class WallComponent implements OnInit {
   
 
   constructor(private postService : PostService, private authentificationService : AuthenticationService) {
-    
   }
 
   getPosts(){
@@ -41,6 +38,7 @@ export class WallComponent implements OnInit {
       this.posts = data;
     });
   }
+
 
   
 
