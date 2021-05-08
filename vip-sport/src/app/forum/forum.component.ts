@@ -31,6 +31,7 @@ export class ForumComponent implements OnInit {
 
     this.threadService.getByParentId(this.currentCategoryId)
       .subscribe((response: any[]) => {
+        console.log(response);
         this.threads = response;
         console.log(this.threads);
       });

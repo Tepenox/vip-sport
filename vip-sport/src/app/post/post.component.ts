@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ThreadReply } from 'src/models/ThreadReply';
 import { ForumPostService } from '../services/forum-post.service';
 import { ForumService } from '../services/forum.service';
 
@@ -8,8 +9,8 @@ import { ForumService } from '../services/forum.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit{
-  @Input() id: number
-  post: { id, thread, user, date, content };
+  @Input('id') id: number
+  post: ThreadReply;
   user: { id, username };
 
   constructor(private postService: ForumPostService, private forumService: ForumService) { }
@@ -23,9 +24,8 @@ export class PostComponent implements OnInit{
 
   ngOnInit() {
     this.postService.getById(this.id)
-      .subscribe((response: { id, thread, user, date, content }) => {
+      .subscribe((response: ThreadReply) => {
         this.post = response;
-        this.getUsername(this.post.user)
       });
 
   }

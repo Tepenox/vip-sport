@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ThreadReply } from 'src/models/ThreadReply';
 import { DataService } from './data.service';
 
 @Injectable({
@@ -7,10 +9,11 @@ import { DataService } from './data.service';
 })
 export class ForumPostService extends DataService {
   constructor(http: HttpClient) { 
-    super('https://my-json-server.typicode.com/taguet/posts/posts', http);
+    super('http://localhost:3000/threadReplies', http);
   }
 
-  getPostsByThreadID(id) {
-    return this.http.get(this.url + '?thread=' + id);
+  getPostsByThreadID(id: number): Observable<ThreadReply[]> {
+    let params = new HttpParams().set('threadId', String(id));
+    return this.http.get<ThreadReply[]>(this.url, { params: params });
   }
 }

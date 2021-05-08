@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ThreadReply } from 'src/models/ThreadReply';
 import { ForumPostService } from '../services/forum-post.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class ThreadComponent implements OnInit{
   id: number;
   threadTitle: string;
   isReplyActive = false;
-  posts: any[];
+  posts: ThreadReply[];
 
   constructor(private route: ActivatedRoute, private service: ForumPostService) { }
 
@@ -23,7 +24,7 @@ export class ThreadComponent implements OnInit{
       });
     
     this.service.getPostsByThreadID(this.id)
-      .subscribe((response: any[]) => {
+      .subscribe((response: ThreadReply[]) => {
         this.posts = response;
       });
   }
