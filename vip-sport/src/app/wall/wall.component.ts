@@ -62,7 +62,7 @@ export class WallComponent implements OnInit {
     else{ 
     var url = window.location.href;
     var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, url.slice(url.lastIndexOf('=')+1));
-    this.postService.createPost(post);
+    $this.postService.createPost(post);
     this.posts.push(post);
     this.isLocked = true;
     this.posted = true; 
