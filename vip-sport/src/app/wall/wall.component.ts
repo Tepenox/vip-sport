@@ -21,12 +21,17 @@ export class WallComponent implements OnInit {
   posts:Post[] = [];
 
   
+
+ //public userInput = document.forms["statutForm"]["statutTextarea"].value
+
+  
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
   
 
   
 
   constructor(private postService : PostService, private authentificationService : AuthenticationService) {
+    
   }
 
   getPosts(){
