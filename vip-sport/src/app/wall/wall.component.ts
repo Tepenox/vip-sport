@@ -21,10 +21,6 @@ export class WallComponent implements OnInit {
   posts:Post[] = [];
 
   
-
- 
-
-  
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
   
 
@@ -38,12 +34,10 @@ export class WallComponent implements OnInit {
       this.posts = data;
     });
   }
-
-
   
 
   ngOnInit(): void {
-    this.getPosts();
+   this.getPosts();
   }
 
 
