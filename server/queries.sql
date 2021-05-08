@@ -1,9 +1,12 @@
 -- drop table if exists notifications;
+drop table if  exists likes;
+drop table if  exists dislikes;
 drop table if exists postReplies;
 drop table if exists posts;
 drop table if exists threadReplies;
 drop table if exists threads;
 drop table if exists users;
+
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     userName TEXT NOT NULL,
@@ -35,6 +38,23 @@ CREATE TABLE threadReplies (
     date TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id),
     FOREIGN KEY (threadId) REFERENCES threads(id)
+);
+
+CREATE TABLE likes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    subjectId INTEGER NOT NULL,
+    subjectType TEXT NOT NULL,
+    ownerId INTEGER NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id)
+);
+
+CREATE TABLE dislikes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    subjectId INTEGER NOT NULL,
+    subjectType TEXT NOT NULL,
+    ownerId INTEGER NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id)
+    
 );
 
 CREATE TABLE posts(

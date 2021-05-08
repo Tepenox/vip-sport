@@ -39,11 +39,10 @@ export class WallComponent implements OnInit {
       this.posts = data;
     });
   }
-
   
 
   ngOnInit(): void {
-    this.getPosts();
+   this.getPosts();
   }
 
 
