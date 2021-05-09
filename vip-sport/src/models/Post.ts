@@ -4,7 +4,7 @@ export class Post{
         public contentType:string, 
         public content:string, 
         public contentUrl:string, 
-        public onwerId:number, 
+        public ownerId:number, 
         public categories:string, 
         public date?:string,
         public id?:string  

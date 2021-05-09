@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Post } from 'src/models/Post';
 import { User } from 'src/models/User';
+import { UserService } from '../services/user.service';
+
+
 
 
 /// <reference path="wall.component.ts" />
@@ -12,13 +16,20 @@ import { User } from 'src/models/User';
 })
 export class StatutComponent implements OnInit {
 
-  @Input() userInput:string;
-  @Input() user:User;
+  @Input() userPost:Post;
 
-  constructor() {
+  public ownerUser:User;
+
+
+  constructor(private userService:UserService) {
+   
    }
 
   ngOnInit(): void {
+    this.userService.getUserById(this.userPost.ownerId).subscribe(data => {
+      this.ownerUser = data;
+    } )
+
   }
 
 }
