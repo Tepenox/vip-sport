@@ -6,6 +6,8 @@ drop table if exists posts;
 drop table if exists threadReplies;
 drop table if exists threads;
 drop table if exists users;
+drop table if exists categories;
+drop table if exists subcategories;
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,20 +24,39 @@ CREATE TABLE users (
     sport TEXT NOT NULL,
     isAdmin TEXT DEFAULT 'false'
 );
+
+CREATE TABLE categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    parentId INTEGER NOT NULL
+);
+
+CREATE TABLE subcategories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    parentId INTEGER NOT NULL,
+    description TEXT NOT NULL,
+    FOREIGN KEY (parentId) REFERENCES categories(id)
+);
+
 CREATE TABLE threads (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    subcategoryId INTEGER NOT NULL,
     title TEXT NOT NULL,
     ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
-    categories TEXT NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id)
+    firstPostId INTEGER NOT NULL,
+    lastPostId INTEGER NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id),
+    FOREIGN KEY (firstPostId) REFERENCES threadReplies(id),
+    FOREIGN KEY (lastPostId) REFERENCES threadReplies(id)
 );
 CREATE TABLE threadReplies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     threadId INTEGER NOT NULL,
-    content TEXT NOT NULL,
     ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
+    content TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id),
     FOREIGN KEY (threadId) REFERENCES threads(id)
 );
@@ -129,7 +150,7 @@ VALUES (
         email,
         password,
         description,
-         sport,
+        sport,
         weight,
         height
     )
@@ -145,26 +166,106 @@ VALUES (
         "cyclisme",
         70,
         200
+    ),
+    (
+        'Issoucisse',
+        'Jerry',
+        'Golay',
+        '../assets/pp.png',
+        25,
+        'issoucisse@gmail.com',
+        "password",
+        "La chancla",
+        "aucun",
+        121,
+        220
+    ),
+    (
+        'Temsoka',
+        'Adriano',
+        'Toronto',
+        21,
+        '../assets/pp.png',
+        'temsoka@gmail.com',
+        "password",
+        "Oui",
+        "muscu",
+        60,
+        190
+    ),
+    (
+        'Tintintamarre',
+        'Jean-Gaspard',
+        'Feur',
+        22,
+        '../assets/pp.png',
+        'tintintamarre@gmail.com',
+        'password',
+        "Feur",
+        "course",
+        72,
+        200
     );
+
+insert into categories(
+    name, parentId
+)
+values ("Site", 0), ("Général", 0);
+
+insert into subcategories(
+    name, parentId, description
+)
+values  ("Annonces", 1, "Cette section regroupe toutes les annonces importantes du forum."),
+        ("Suggestions", 1, "Vous avez une suggestion pour le site ? Vous pouvez la proposer ici."),
+        ("Signaler un bug", 1, "Vous avez rencontré un problème ? Signalez-le ici."),
+        ("Entraide", 2, "Vous avez des questions par rapport à un exercice ? Vous pouvez obtenir de l'aide auprès de nos membres ici."),
+        ("Discussions générales", 2, "Pour discuter de sujet sérieux."),
+        ("Forum libre", 2, "Pour discuter de tout et de rien.");
+
+
 insert into threads(
+        subcategoryId,
         title,
         ownerId,
         date,
-        categories
+        firstPostId,
+        lastPostId
     )
 values(
-        'is being virgin at the age of 23 a problme',
+        5,
+        'Alors comme ça on me traite de FAIBLE ?',
         1,
         datetime('now'),
-        'sports'
+        1,
+        4
     );
     
-insert into threadReplies(threadId, content, ownerId, date)
+insert into threadReplies(threadId, ownerId, date, content)
 values (
-        1,
-        "u need to build de mooosskles",
-        1,
-        datetime('now')
+        1, 2, datetime('now'),
+        'faible moi ? serieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps :) demande a mes potes si je suis 
+        faible tu vas voir les reponses que tu vas te prendre XD rien que la semaine passee j ai soulevé donc chuuuuut ferme la 
+        faible de merde car oui toi tu m as tout l air d un bon faible de merde car souvent vous etes frustrer de ne pas avoir de
+          MUSCLES :) ses agreable de soulever des haltères ou un faire des pompes avec ses potes hein? tu peux pas repondre
+           car tu ne sais pas ce que c ou alors tu le sais mais tu as du taper dans ta barre de recherche "haltères muscles" ou 
+           "pompes muscles" pour comprendre ce que c etait mdddrrr !! c est grave quoiquil en soit.... pour revenir a moi, je pense 
+           que je suis le mec le moins faible de ma bande de 11 meilleurs amis pas psk j ai le plus de muscles mais psk j ai fais les 
+           meilleurs exercices que mes amis :D ses pas moi qui le dit, ses eux qui commente sous mes photos insta "trop belle la 
+           pompe que tu as fait hier en salle notamment!" donc apres si tu veux que sa parte plus loi sa peut partir vraiment loi 
+           j habite dans la banlieue de niort sa te parle steven sanchez ? ses juste un cousin donc OKLM hahaha on verra si tu parles encore 
+           le faible de merde mdddrrr pk insulter qd on est soi meme faible tu me feras toujour marrer!!'
+    ),
+    (
+        1, 3, datetime('now'),
+        "??? Fréro il t'arrives quoi ?"
+    ),
+    (
+        1, 4, datetime('now'),
+        "feur"
+    ),
+    (
+        1, 3, datetime('now'),
+        "ah ok"
     );
 
 

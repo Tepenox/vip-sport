@@ -1,7 +1,7 @@
 <div class="thread">
     <div class="row">
         <div class="col">
-            <a [routerLink]="['/forum', subcategoryID, 'thread', thread.id, thread.title]">Titre du thread</a>
+            <a [routerLink]="['/forum', subcategoryID, 'thread', thread.id, thread.title]">{{ thread.title }}</a>
             <div class="thread-info">
                 <span>
                     Par <a class="profile-link">Utilisateur</a> date placeholder

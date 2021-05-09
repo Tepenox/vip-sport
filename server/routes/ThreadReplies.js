@@ -8,23 +8,28 @@ let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
 
-router.get("/threads/:threadid/threadreplies",(req,res)=>{
-    //get all threadRplies of a thread with threadId
-
+router.get("/threadReplies",(req,res)=>{
+    if (req.query.threadId)
+        res.json(ThreadReply.getAllByThreadId(req.query.threadId));
+    else if (req.query.id)
+        res.json(ThreadReply.getByid(req.query.id));
+    else
+        res.json(ThreadReply.getAll());
 });
 
 
-router.post("/threads/:threadid/threadreplies",(req,res)=>{
+router.post("/threadReplies",(req,res)=>{
 
 });
 
-router.put("threads/:threadid/threadreplies/:id",(req,res)=>{
+router.put("threadReplies/:id",(req,res)=>{
     
 
 });
 
-router.delete("threads/:threadid/threadreplies/:id",(req,res)=>{
+router.delete("threadReplies/:id",(req,res)=>{
     
 
 });
 
+module.exports = router;
