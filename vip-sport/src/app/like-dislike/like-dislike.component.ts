@@ -23,30 +23,50 @@ export class LikeDislikeComponent implements OnInit {
   }
 
   upVoteClick(){
-    if(this.isClickedDown == true){
+    if(this.isClickedDown == true && this.isClickedUp == false){
       this.counterUp += 1;
       this.counterDown -= 1;
       this.isClickedDown = false;
+      this.isClickedUp = true;
       this.imageDown = "./assets/dumbDown.png";
+      this.imageUp = "./assets/dumbDownActived2.png"
     }
-
-
-    else
+    else if(this.isClickedUp == true && this.isClickedDown == false){
+      this.isClickedUp = false;
+      this.counterUp -= 1;
+      this.imageUp = "./assets/dumbDown.png"
+    }
+    
+    else if(this.isClickedDown == false && this.isClickedUp == false){
     this.counterUp += 1;
     this.imageUp = "./assets/dumbDownActived2.png"
+    this.isClickedUp = true;
+    }
+    
   }
 
   downVoteClick(){
-    if(this.isClickedUp == true){
-      this.counterDown += 1;
+
+    if(this.isClickedDown == false && this.isClickedUp == true){
       this.counterUp -= 1;
+      this.counterDown += 1;
+      this.isClickedDown = true;
       this.isClickedUp = false;
       this.imageUp = "./assets/dumbDown.png";
+      this.imageDown = "./assets/dumbDownActived2.png"
     }
-    else
+    else if(this.isClickedUp == false && this.isClickedDown == true){
+      this.isClickedDown = false;
+      this.counterDown -= 1;
+      this.imageDown = "./assets/dumbDown.png"
+    }
+    
+    else if(this.isClickedDown == false && this.isClickedUp == false){
     this.counterDown += 1;
-
     this.imageDown = "./assets/dumbDownActived2.png"
+    this.isClickedDown = true;
+    }
+    
   }
 
 }

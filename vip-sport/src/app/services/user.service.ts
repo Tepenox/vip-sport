@@ -17,13 +17,12 @@ export class UserService {
 
    }
 
-   getUserById(id:number){
-    return this.httpClient.get<any>(this.getUserByIdUrl + id ).pipe(catchError(this.errorHandler));
-
+   getUserById(id:number):Observable<User>{
+    return this.httpClient.get<User>(this.getUserByIdUrl + id ).pipe(catchError(this.errorHandler));
    }
 
-   modifyUserById(id:number,user:User){
-     return this.httpClient.put<any>(this.modifyUserByIdUrl + id,user).pipe(catchError(this.errorHandler))
+   modifyUserById(id:number,user:User):Observable<User>{
+     return this.httpClient.put<User>(this.modifyUserByIdUrl + id,user).pipe(catchError(this.errorHandler))
    }
 
 
