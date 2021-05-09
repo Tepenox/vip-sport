@@ -1,11 +1,11 @@
 <div id="statut">
 <div class="row" id="profileName">
-    <img id='profilePicture' [src]="user.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
-    <a id="userName" style="color: white;" routerLink = "/profile">{{user.userName}}</a>
+    <img id='profilePicture' [src]="ownerUser.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+    <a id="userName" style="color: white;" routerLink = "/profile">{{ownerUser.userName}}</a>
 </div>
 
 <div class="row">
-    <app-like-dislike id="likeDislike"></app-like-dislike>
+  <app-like-dislike id="likeDislike"></app-like-dislike>
     <div class="col-6">
         <div class="card">
             <div class="card-body">
@@ -15,7 +15,7 @@
                 Brothers and Swolesisters, though ye may call me an agent of Broki, I implore you hear my plea! For just as Wheysus was first cast out by his people, so too will his gospel be met with Iron-hardened hearts. 
                 Our prayers in the iron temple are always heard, but home workouts and supplemental body weight exercises please the Allspotter as well - for he knows all, including the value of body weight strength.-->
 
-                {{userInput}}
+                {{userPost.content}}
             </div>
         </div>
     </div>

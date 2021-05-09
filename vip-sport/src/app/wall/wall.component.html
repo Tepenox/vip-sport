@@ -5,7 +5,7 @@
         <!-------Statut---------->
 
         <div style="padding-top: 100px;">
-        <app-statut  [userInput] = "post.content"></app-statut>
+        <app-statut  [userPost] = "post"></app-statut>
 
      </div>
     
@@ -35,7 +35,7 @@
                     <div id="profilePicture">
                         <img id='profilePicture' src="../assets/pp.png" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
                     </div>
-                    <div class="dropdown">
+                  <!--  <div class="dropdown">
                         <button data-flip="false" class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Category
                         </button>
@@ -44,7 +44,7 @@
                                 <a class="dropdown-item" >{{category}}</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col">
                     <form name="statutForm">

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/models/User';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-commentaire-form',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentaireFormComponent implements OnInit {
 
-  constructor() { }
+  public currentUser:User;
+
+  constructor(private authentificationService:AuthenticationService) {
+    this.currentUser = this.authentificationService.getCurrentUser();
+     
+   }
+
+  
 
   ngOnInit(): void {
   }
