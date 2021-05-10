@@ -3,13 +3,17 @@ const db = new Sqlite("db.sqlite");
 
 let ThreadReply = {};
 
+ThreadReply.getAll = function () {
+  return db.prepare("SELECT * FROM threadReplies").all();
+}
+
 ThreadReply.getByid = function (id) {
-  return db.prepare("select * from threadreplies where id = ? order by date DESC").get(id);
+  return db.prepare("select * from threadreplies where id = ?").get(id);
 };
 
 ThreadReply.getAllByThreadId = function (threadId) {
   return db
-    .prepare("select * from threadreplies where threadId = ?")
+    .prepare("select * from threadReplies where threadId = ? order by id ASC")
     .all(threadId);
 };
 

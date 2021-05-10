@@ -4,6 +4,8 @@ import { UserService } from './../services/user.service';
 import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit, Output } from '@angular/core';
 import { User } from '../../models/User';
+import { Post } from '../../models/Post';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,11 +17,11 @@ export class ProfileComponent implements OnInit {
   profileModification: boolean = false;
   imc: number = 0.0;
   styleExp: string = 'black';
-  publications: String[];
+  posts: Post[];
 
   user: User= new User("Bruh","Pd","caca",12,"zob@gmail.com","bruh","MEGAZOB","zobitus",145,154);
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: UserService, private route: ActivatedRoute,private postService: PostService,private activatedRoute :ActivatedRoute) {
     this.route.paramMap.subscribe((params) => {
       this.userService
         .getUserById(parseInt(params.get('id')))
@@ -28,10 +30,18 @@ export class ProfileComponent implements OnInit {
           this.calculateImc();
         });
     });
-    this.publications = ["Salut j'ai finis mon entrainement", "Yo l'équipe"]; //ask to DB
+    this.getPosts(); //Les potsts ne sont pas les bons il faudra les changer
   }
 
   ngOnInit(): void {}
+
+  getPosts(){
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.postService.getPostByCategory([params['categories']]).subscribe(data => {
+        this.posts = data;
+      });
+    })
+  }
 
   enableProfileModif() {
     this.profileModification = !this.profileModification;

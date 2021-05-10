@@ -161,8 +161,8 @@
     <app-wall></app-wall>
   </div> -->
   <div class="container-fluid section-color1">
-    <div *ngFor="let post of publications">
-      <app-statut [userInput]="post" [user]="user"></app-statut>
+    <div *ngFor="let post of posts">
+      <app-statut [userPost]="post" ></app-statut>
     </div>
   </div>
   <!--AJOUTER LES POST ICI-->

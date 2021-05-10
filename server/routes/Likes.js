@@ -12,16 +12,20 @@ router.get("/likes/:subjecttype/:subjectid", (req, res) => {
 });
 
 router.get("/likes/:subjecttype/:subjectid/:ownerid", (req, res) => {
-  res.json(Like.getLike(req.params.subjecttype,req.params.subjectid,req.params.ownerid))
+  if(Like.getLike(req.params.subjecttype,req.params.subjectid,req.params.ownerid)){
+    res.send("true")
+  }else{
+    res.send("false");
+  }
 });
 
 
-router.post("/likes/:subjecttype/:subjectid",Middlewares.verifyToken, (req, res) => {
-  if(Like.getLike(req.params.subjecttype,req.params.subjectid,req.userId)){
+router.post("/likes",Middlewares.verifyToken, (req, res) => {
+  if(Like.getLike(req.body.subjectType,req.body.subjectId,req.userId)){
     res.status(401).send('user already liked this object');
   }else {
-    Like.create(req.params.subjecttype,req.params.subjectid,req.userId)
-    res.json(Like.getLike(req.params.subjecttype,req.params.subjectid,req.userId));
+    Like.create(req.body.subjectType,req.body.subjectId,req.userId)
+    res.json(Like.getLike(req.body.subjectType,req.body.subjectId,req.userId));
   }
 });
 

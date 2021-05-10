@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Thread } from 'src/models/Thread';
 import { ThreadService } from '../services/thread.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { ThreadService } from '../services/thread.service';
 export class ThreadLinkComponent implements OnInit {
   @Input('threadId') id: number;
   subcategoryID: number;
-  thread: any;
+  thread: Thread;
 
   constructor(private route: ActivatedRoute, private service: ThreadService) { }
 
@@ -19,7 +20,7 @@ export class ThreadLinkComponent implements OnInit {
       .subscribe(params => this.subcategoryID = +params.get('subcategoryID'));
 
     this.service.getById(this.id)
-      .subscribe((response: any) => this.thread = response);
+      .subscribe((response: Thread[]) => this.thread = response[0]);
   }
 
 }
