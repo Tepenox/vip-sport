@@ -3,11 +3,6 @@ html{
   height :100%;
 }
 
-*{
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
 body {
   background-color: rgb(73, 72, 72);
   max-width: 100%;
