@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/models/Post';
 import { PostReply } from 'src/models/PostReply';
 import { User } from 'src/models/User';
+import { PostService } from '../services/post.service';
 import { UserService } from '../services/user.service';
 
 
@@ -24,7 +25,7 @@ export class StatutComponent implements OnInit {
   public replies:PostReply[] = [];
 
 
-  constructor(private userService:UserService) {
+  constructor(private userService:UserService, private postService:PostService) {
    
    }
 
