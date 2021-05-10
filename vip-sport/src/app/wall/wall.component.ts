@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from './../../models/Post';
+import { User } from './../../models/User';
 import {PostService} from '../services/post.service';
 import {AuthenticationService} from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
@@ -20,6 +21,7 @@ export class WallComponent implements OnInit {
   public statutIsEmpty = false;
 
   posts:Post[] = [];
+  currentUser:User = this.authentificationService.getCurrentUser();
 
   
 
@@ -42,14 +44,12 @@ export class WallComponent implements OnInit {
         console.log(this.posts)
       });
     })
-    
-
-    
   }
   
 
   ngOnInit(): void {
    this.getPosts();
+
   }
 
 
