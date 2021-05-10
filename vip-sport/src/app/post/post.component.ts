@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit{
-  @Input('id') id: number
+  @Input('postId') id: number
   post: ThreadReply;
   user: User;
 

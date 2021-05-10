@@ -4,17 +4,17 @@
             <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]">{{ thread?.title }}</a>
             <div class="thread-info">
                 <span>
-                    Par <a class="profile-link">{{ author?.userName }}</a> <span> le {{ thread?.date }}</span>
+                    Par <a [routerLink]="['/profile', author?.id]" class="profile-link">{{ author?.userName }}</a> <span> le {{ thread?.date }}</span>
                 </span>
             </div>
         </div>
         <div class="col">
             <div class="thread-info">
-                <a class="last-message-link">Dernier message</a><br>
+                <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]" fragment="post-{{ lastPost?.id }}" class="last-message-link">Dernier message</a><br>
                 <span>
-                    par <a class="profile-link">{{ lastUser?.userName }}</a>
+                    par <a [routerLink]="['/profile', lastUser?.id]" class="profile-link">{{ lastUser?.userName }}</a>
                 </span><br>
-                <span>le {{ lastPost.date }}</span>
+                <span>le {{ lastPost?.date }}</span>
             </div>
         </div>
     </div>
