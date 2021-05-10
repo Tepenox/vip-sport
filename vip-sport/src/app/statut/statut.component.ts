@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/models/Post';
+import { PostReply } from 'src/models/PostReply';
 import { User } from 'src/models/User';
 import { UserService } from '../services/user.service';
 
@@ -19,6 +20,8 @@ export class StatutComponent implements OnInit {
   @Input() userPost:Post;
 
   public ownerUser:User;
+
+  public replies:PostReply[] = [];
 
 
   constructor(private userService:UserService) {
