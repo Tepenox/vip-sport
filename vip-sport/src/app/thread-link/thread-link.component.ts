@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Thread } from 'src/models/Thread';
+import { ThreadReply } from 'src/models/ThreadReply';
 import { User } from 'src/models/User';
+import { ForumPostService } from '../services/forum-post.service';
 import { ThreadService } from '../services/thread.service';
 import { UserService } from '../services/user.service';
 
@@ -15,8 +17,10 @@ export class ThreadLinkComponent implements OnInit {
   subcategoryID: number;
   thread: Thread;
   author: User;
+  lastPost: ThreadReply;
+  lastUser: User;
 
-  constructor(private route: ActivatedRoute, private threadService: ThreadService, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private threadService: ThreadService, private userService: UserService, private forumPostService: ForumPostService) { }
 
   ngOnInit(): void {
     this.route.paramMap
@@ -26,9 +30,13 @@ export class ThreadLinkComponent implements OnInit {
       .subscribe((response: Thread) =>  {
         this.thread = response[0];
         this.userService.getUserById(this.thread.ownerId)
-          .subscribe((response: User) => { 
-            this.author = response;
-            console.log(response);
+          .subscribe((response: User) => this.author = response);
+        
+        this.forumPostService.getById(this.thread.lastPostId)
+          .subscribe((response: ThreadReply) => {
+            this.lastPost = response;
+            this.userService.getUserById(this.lastPost.id)
+              .subscribe((response: User) => this.lastUser = response);
           });
       });
   }

@@ -1,10 +1,10 @@
 <div class="thread">
     <div class="row">
         <div class="col">
-            <a [routerLink]="['/forum', subcategoryID, 'thread', thread.id, thread.title]">{{ thread.title }}</a>
+            <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]">{{ thread?.title }}</a>
             <div class="thread-info">
                 <span>
-                    Par <a class="profile-link">{{ author.userName }}</a> <span> le {{ thread.date }}</span>
+                    Par <a class="profile-link">{{ author?.userName }}</a> <span> le {{ thread?.date }}</span>
                 </span>
             </div>
         </div>
@@ -12,9 +12,9 @@
             <div class="thread-info">
                 <a class="last-message-link">Dernier message</a><br>
                 <span>
-                    par <a class="profile-link">Utilisateur</a>
+                    par <a class="profile-link">{{ lastUser?.userName }}</a>
                 </span><br>
-                <span>date placeholder</span>
+                <span>le {{ lastPost.date }}</span>
             </div>
         </div>
     </div>

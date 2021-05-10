@@ -1,11 +1,11 @@
 <div class="post card mb-2 shadow-sm" id="post-{{ id }}">
     <div class="card-body">
         <span>
-            <a class="userName">{{ user.userName }}</a>
-            <span class="postDate text-muted"> {{ post.date }} </span>
+            <a class="userName">{{ user?.userName }}</a>
+            <span class="postDate text-muted"> {{ post?.date }} </span>
         </span>
         <p class="postContent">
-            {{ post.content }}
+            {{ post?.content }}
         </p>
     </div>
 </div>
