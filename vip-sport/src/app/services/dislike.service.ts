@@ -14,21 +14,21 @@ export class DislikeService {
   constructor(private httpClient:HttpClient) { }
 
 
-  getdislikeCount(subjectType:string,subjectId:number):Observable<Dislike[]>{
+  getDislikesCount(subjectType:string,subjectId:number):Observable<Dislike[]>{
       return this.httpClient.get<Dislike[]>(`${this.dislikeUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
   }
 
   
-  ifLikeExists(subjectType:string,subjectId:number,ownerId:number):Observable<boolean>{
+  ifDislikeExists(subjectType:string,subjectId:number,ownerId:number):Observable<boolean>{
       return this.httpClient.get<boolean>(`${this.dislikeUrl}/${subjectType}/${subjectId}/${ownerId}`)
       .pipe(catchError(this.errorHandler));
   }
 
-  createLike(subjectType:string,subjectId:number):Observable<Dislike>{
+  createDislike(subjectType:string,subjectId:number):Observable<Dislike>{
       return this.httpClient.post<Dislike>(`${this.dislikeUrl}`,{subjectType,subjectId}).pipe(catchError(this.errorHandler));
   }
 
-  removeLike(subjectType:string,subjectId:number):Observable<Dislike>{
+  removeDislike(subjectType:string,subjectId:number):Observable<Dislike>{
     return this.httpClient.delete<Dislike>(`${this.dislikeUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
 }
 
