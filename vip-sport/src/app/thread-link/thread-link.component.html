@@ -4,7 +4,7 @@
             <a [routerLink]="['/forum', subcategoryID, 'thread', thread.id, thread.title]">{{ thread.title }}</a>
             <div class="thread-info">
                 <span>
-                    Par <a class="profile-link">Utilisateur</a> date placeholder
+                    Par <a class="profile-link">{{ author.userName }}</a> <span> le {{ thread.date }}</span>
                 </span>
             </div>
         </div>
