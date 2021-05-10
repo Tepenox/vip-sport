@@ -1,29 +1,42 @@
 
 <div class="col-9 offset-md-3" id="post">
-    <div *ngFor="let post of posts" let i = index; trackBy:index>
-        
-        <!-------Statut---------->
 
-        <div style="padding-top: 100px;">
-        <app-statut  [userPost] = "post"></app-statut>
+    <div *ngIf ="posts.length > 0">
+        <div *ngFor="let post of posts" let i = index; trackBy:index>
+            
+            <!-------Statut---------->
 
-     </div>
-    
+            <div style="padding-top: 100px;">
+            <app-statut  [userPost] = "post"></app-statut>
 
-
-        <!-------Commentaire du post---------->
-
-    <app-commentaire-form id="comment"></app-commentaire-form>
-
-    </div>
-
-    <div class="col" id="addPostButton">
-        <div *ngIf="isLocked == true">
-            <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
         </div>
+        
+
+
+            <!-------Commentaire du post---------->
+
+        <app-commentaire-form id="comment"></app-commentaire-form>
+
+        </div>
+
+        <div class="col" id="addPostButton">
+            <div *ngIf="isLocked == true">
+                <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
+            </div>
+        </div>
+
+   </div> 
+
+   <div *ngIf="posts.length == 0">
+    <div class="col" id="addPostButton" style="padding-top: 150px;">
+        <h2 style="color: white;">Nobody has written anything yet. Now is your chance !</h2>
+        <button type="button" id="addButton2" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
     </div>
-    
+   </div>
+
 </div>
+
+
 
 <!---------Ajout d'un post----------->
 
@@ -35,16 +48,6 @@
                     <div id="profilePicture">
                         <img id='profilePicture' src="../assets/pp.png" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
                     </div>
-                  <!--  <div class="dropdown">
-                        <button data-flip="false" class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Category
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <div *ngFor="let category of categories ">
-                                <a class="dropdown-item" >{{category}}</a>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="col">
                     <form name="statutForm">
