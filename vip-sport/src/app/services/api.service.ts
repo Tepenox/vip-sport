@@ -13,7 +13,7 @@ export class ApiService {
 
   request(args: String[], category: number, muscle: number): any {
     let request: string =
-      this.apiUrl + args.join('/') + '/?format=json&language=2&limit=50';
+      this.apiUrl + args.join('/') + '/?format=json&language=2&limit=15';
     if (category != null) {
       request += '&category=' + category;
     }

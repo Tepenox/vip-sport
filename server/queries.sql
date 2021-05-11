@@ -1,6 +1,7 @@
 -- drop table if exists notifications;
-drop table if  exists likes;
-drop table if  exists dislikes;
+
+drop table if exists likes;
+drop table if exists dislikes;
 drop table if exists postReplies;
 drop table if exists posts;
 drop table if exists threadReplies;
@@ -8,6 +9,7 @@ drop table if exists threads;
 drop table if exists users;
 drop table if exists categories;
 drop table if exists subcategories;
+
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
