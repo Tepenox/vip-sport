@@ -12,6 +12,7 @@ const PostReplies = require('./routes/PostReplies');
 const Threads = require('./routes/Threads');
 const ThreadReplies = require('./routes/ThreadReplies');
 const Categories = require('./routes/Categories');
+const Subcategories = require('./routes/Subcategories');
 
 const app = express();
 
@@ -35,6 +36,8 @@ app.use('', Threads);
 app.use('', ThreadReplies);
 
 app.use('', Categories);
+
+app.use('', Subcategories);
 
 app.listen(port, function(){
     console.log("Server running on localhost:" + port);
