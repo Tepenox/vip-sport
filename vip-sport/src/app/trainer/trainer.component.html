@@ -41,16 +41,16 @@
       </div>
     </div>
   </div>
-  <div class="container mx-auto" *ngIf="exercices">
+  <div class="container" *ngIf="exercices">
     <div class="row">
       <div *ngFor="let exercice of exercices">
         <div class="col-4">
-          <div class="card" style="margin-bottom: 35px; width: 18rem">
+          <div class="card bg-light" style="margin-bottom: 35px; width: 20rem; min-height: 13rem;">
             <div class="card-body">
               <h5 class="card-title">{{ exercice.name }}</h5>
               <p>
                 <a
-                  class="btn btn-primary"
+                  class="btn btn-warning"
                   data-toggle="collapse"
                   href="#{{ exercice.nameId }}"
                   role="button"
