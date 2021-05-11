@@ -298,3 +298,30 @@ insert into posts (
        1,
        datetime('now')
    );
+
+   insert into likes(
+       subjectId,
+       subjectType,
+       ownerId
+   )values(
+       1,
+       "Post",
+       1
+   ),(
+       1,
+       "Post",
+       2
+   ),(
+       1,
+       "Post",
+       3
+   ),(
+       1,
+       "PostComment",
+       1
+   ),
+   (
+       1,
+       "PostComment",
+       2
+   );
