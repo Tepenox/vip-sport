@@ -5,7 +5,9 @@
         </h2>
     </div>
     <div class="threadContent" >
-        <f-post *ngFor="let post of posts" [id]="post.id"></f-post>
+        <div *ngFor="let post of posts" id="post-{{ post?.id }}" >
+            <f-post [postId]="post?.id"></f-post>
+        </div>
     </div>
     <div>
         <a [routerLink]="['./']" fragment="reply-form" [hidden]="isReplyActive">

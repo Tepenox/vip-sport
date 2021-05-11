@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThreadReply } from 'src/models/ThreadReply';
+import { User } from 'src/models/User';
 import { ForumPostService } from '../services/forum-post.service';
-import { ForumService } from '../services/forum.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'f-post',
@@ -9,24 +10,18 @@ import { ForumService } from '../services/forum.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit{
-  @Input('id') id: number
+  @Input('postId') id: number
   post: ThreadReply;
-  user: { id, username };
+  user: User;
 
-  constructor(private postService: ForumPostService, private forumService: ForumService) { }
-
-  getUsername(id) {
-    this.forumService.getUser(id)
-      .subscribe((response : { id, username }) => {
-        this.user = response[0];
-      });
-  }
+  constructor(private postService: ForumPostService, private userService: UserService) { }
 
   ngOnInit() {
     this.postService.getById(this.id)
       .subscribe((response: ThreadReply) => {
         this.post = response;
+        this.userService.getUserById(this.post.ownerId)
+          .subscribe((response : User) => this.user = response);
       });
-
   }
 }

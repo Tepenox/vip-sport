@@ -64,13 +64,15 @@ export class WallComponent implements OnInit {
       this.statutIsEmpty = true;
     }
     else{ 
-    var url = window.location.href;
-    var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, url.slice(url.lastIndexOf('=')+1));
-    this.postService.createPost(post).subscribe(data => {
-      this.posts.push(data);
-      this.isLocked = true;
-      this.posted = true; 
-    });
+    this.activatedRoute.queryParams.subscribe(params =>{
+      var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, params['categories']);
+      this.postService.createPost(post).subscribe(data => {
+        this.posts.push(data);
+        this.isLocked = true;
+        this.posted = true; 
+      });
+    })
+    
     
     }
     
