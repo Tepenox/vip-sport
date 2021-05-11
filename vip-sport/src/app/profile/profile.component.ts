@@ -6,41 +6,63 @@ import { Component, OnInit, Output } from '@angular/core';
 import { User } from '../../models/User';
 import { Post } from '../../models/Post';
 import { PostService } from '../services/post.service';
+import { FollowService } from '../services/follow.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-
 export class ProfileComponent implements OnInit {
+  isYours: boolean;
   profileModification: boolean = false;
   imc: number = 0.0;
   styleExp: string = 'black';
   posts: Post[];
 
-  user: User= new User("Bruh","Pd","caca",12,"zob@gmail.com","bruh","MEGAZOB","zobitus",145,154);
+  user: User = new User(
+    'Bruh',
+    'Pd',
+    'caca',
+    12,
+    'zob@gmail.com',
+    'bruh',
+    'MEGAZOB',
+    'zobitus',
+    145,
+    154
+  );
 
-  constructor(private userService: UserService, private route: ActivatedRoute,private postService: PostService,private activatedRoute :ActivatedRoute) {
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private postService: PostService,
+    private follow: FollowService,
+    private activatedRoute: ActivatedRoute,
+    private auth: AuthenticationService
+  ) {
     this.route.paramMap.subscribe((params) => {
       this.userService
         .getUserById(parseInt(params.get('id')))
         .subscribe((data) => {
           this.user = data;
+          this.isYours = auth.getCurrentUser().id != parseInt(params.get('id'));
           this.calculateImc();
         });
     });
-    this.getPosts(); //Les potsts ne sont pas les bons il faudra les changer
+    this.getPosts(); //Les posts ne sont pas les bons il faudra les changer
   }
 
   ngOnInit(): void {}
 
-  getPosts(){
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.postService.getPostByCategory([params['categories']]).subscribe(data => {
-        this.posts = data;
-      });
-    })
+  getPosts() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.postService
+        .getPostByCategory([params['categories']])
+        .subscribe((data) => {
+          this.posts = data;
+        });
+    });
   }
 
   enableProfileModif() {
@@ -78,5 +100,9 @@ export class ProfileComponent implements OnInit {
     if (35 < this.imc) {
       this.styleExp = 'red';
     }
+  }
+
+  addFriend() {
+    this.follow.followById(this.auth.getCurrentUser().id, this.user.id);
   }
 }

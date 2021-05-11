@@ -2,6 +2,6 @@ export class Exercice {
   id: String;
   name: String;
   description: String;
-  videoUrl:String;
+  imageUrl:String;
   nameId:String;
 }
