@@ -3,14 +3,16 @@ const db = new Sqlite("db.sqlite");
 
 let Subcategory = {};
 
-Category.getAll = function () {
+Subcategory.getAll = function () {
     return db.prepare("select * from Subcategories").all();
 };
 
-Category.getByid = function (id) {
+Subcategory.getByid = function (id) {
     return db.prepare("select * from Subcategories where id = ?").get(id);
 };
 
-Category.getAllByParentId = function (parentId) {
-    return db.prepare("select * from Subcategories where parentId = ? ORDER BY ASC").all(parentId);
+Subcategory.getAllByParentId = function (parentId) {
+    return db.prepare("select * from Subcategories where parentId = ? ORDER BY id ASC").all(parentId);
 };
+
+module.exports = Subcategory;

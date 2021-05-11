@@ -12,5 +12,7 @@ Category.getByid = function (id) {
 };
 
 Category.getAllByParentId = function (parentId) {
-    return db.prepare("select * from Categories where parentId = ? ORDER BY ASC").all(parentId);
+    return db.prepare("select * from Categories where parentId = ? ORDER BY id ASC").all(parentId);
 };
+
+module.exports = Category;
