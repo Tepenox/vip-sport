@@ -1,6 +1,7 @@
 -- drop table if exists notifications;
-drop table if  exists likes;
-drop table if  exists dislikes;
+
+drop table if exists likes;
+drop table if exists dislikes;
 drop table if exists postReplies;
 drop table if exists posts;
 drop table if exists threadReplies;
@@ -8,6 +9,7 @@ drop table if exists threads;
 drop table if exists users;
 drop table if exists categories;
 drop table if exists subcategories;
+
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -184,8 +186,8 @@ VALUES (
         'Temsoka',
         'Adriano',
         'Toronto',
+        'https://cdn.discordapp.com/attachments/582696736963821569/841646970362920980/cdn_discordapp_com-480aae5c8d082d9eb2a5cceb2df887c0.png',
         21,
-        '../assets/pp.png',
         'temsoka@gmail.com',
         "password",
         "Oui",
@@ -197,8 +199,8 @@ VALUES (
         'Tintintamarre',
         'Jean-Gaspard',
         'Feur',
+        'https://pbs.twimg.com/media/EOk4KsZX0AAFNo4?format=jpg&name=large',
         22,
-        '../assets/pp.png',
         'tintintamarre@gmail.com',
         'password',
         "Feur",
@@ -297,4 +299,31 @@ insert into posts (
        "frere te renchoouf ",
        1,
        datetime('now')
+   );
+
+   insert into likes(
+       subjectId,
+       subjectType,
+       ownerId
+   )values(
+       1,
+       "Post",
+       1
+   ),(
+       1,
+       "Post",
+       2
+   ),(
+       1,
+       "Post",
+       3
+   ),(
+       1,
+       "PostComment",
+       1
+   ),
+   (
+       1,
+       "PostComment",
+       2
    );

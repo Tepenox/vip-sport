@@ -47,6 +47,7 @@
         <div class="col-4">
           <div class="card bg-light" style="margin-bottom: 35px; width: 20rem; min-height: 13rem;">
             <div class="card-body">
+              
               <h5 class="card-title">{{ exercice.name }}</h5>
               <p>
                 <a
@@ -62,6 +63,7 @@
               </p>
               <div class="collapse" id="{{ exercice.nameId }}">
                 <div class="card card-body">
+                  <img [src]="exercice.imageUrl">
                   {{ exercice.description }}
                 </div>
               </div>

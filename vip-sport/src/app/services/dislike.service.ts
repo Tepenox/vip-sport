@@ -28,8 +28,8 @@ export class DislikeService {
       return this.httpClient.post<Dislike>(`${this.dislikeUrl}`,{subjectType,subjectId}).pipe(catchError(this.errorHandler));
   }
 
-  removeDislike(subjectType:string,subjectId:number):Observable<Dislike>{
-    return this.httpClient.delete<Dislike>(`${this.dislikeUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
+  removeDislike(subjectType:string,subjectId:number):any{
+    return this.httpClient.delete<any>(`${this.dislikeUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
 }
 
   errorHandler(error:HttpErrorResponse){
