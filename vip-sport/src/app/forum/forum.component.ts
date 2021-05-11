@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Thread } from 'src/models/Thread';
 import { CategoriesService } from '../services/categories.service';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { ThreadService } from '../services/thread.service';
@@ -12,7 +13,7 @@ import { ThreadService } from '../services/thread.service';
 export class ForumComponent implements OnInit {
   currentCategoryId: number;
   categories: any[];
-  threads: any[];
+  threads: Thread[];
 
   constructor(private route: ActivatedRoute, private categoriesService: CategoriesService, private subcategoriesService: SubcategoriesService, private threadService: ThreadService) { }
 
@@ -30,10 +31,8 @@ export class ForumComponent implements OnInit {
       });
 
     this.threadService.getByParentId(this.currentCategoryId)
-      .subscribe((response: any[]) => {
-        console.log(response);
+      .subscribe((response: Thread[]) => {
         this.threads = response;
-        console.log(this.threads);
       });
   }
 

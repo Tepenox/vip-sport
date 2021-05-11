@@ -11,6 +11,7 @@ const Posts = require('./routes/Posts');
 const PostReplies = require('./routes/PostReplies');
 const Threads = require('./routes/Threads');
 const ThreadReplies = require('./routes/ThreadReplies');
+const Categories = require('./routes/Categories');
 
 const app = express();
 
@@ -25,13 +26,15 @@ app.use(express.json());
 
 app.use('', Users);
 
-app.use('',Posts);
+app.use('', Posts);
 
-app.use('',PostReplies);
+app.use('', PostReplies);
 
 app.use('', Threads);
 
 app.use('', ThreadReplies);
+
+app.use('', Categories);
 
 app.listen(port, function(){
     console.log("Server running on localhost:" + port);
