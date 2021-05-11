@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Category } from 'src/models/Category';
 import { DataService } from './data.service';
 
 @Injectable({
@@ -7,10 +9,11 @@ import { DataService } from './data.service';
 })
 export class CategoriesService extends DataService{
   constructor(http: HttpClient) {
-      super('https://my-json-server.typicode.com/taguet/posts/categories', http);
+      super('http://localhost:3000/categories', http);
    }
 
-  getByParentId(id: number) {
-    return this.http.get(this.url + '?parent=' + id);
+  getByParentId(parentId: number): Observable<Category[]> {
+    let params = new HttpParams().set('parentId', String(parentId));
+    return this.http.get<Category[]>(this.url, { params: params });
   }
 }

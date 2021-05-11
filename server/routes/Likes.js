@@ -24,8 +24,9 @@ router.post("/likes",Middlewares.verifyToken, (req, res) => {
   if(Like.getLike(req.body.subjectType,req.body.subjectId,req.userId)){
     res.status(401).send('user already liked this object');
   }else {
-    Like.create(req.body.subjectType,req.body.subjectId,req.userId)
+    Like.create(req.body.subjectType,req.body.subjectId,req.userId);
     res.json(Like.getLike(req.body.subjectType,req.body.subjectId,req.userId));
+
   }
 });
 
@@ -37,3 +38,5 @@ router.delete("/likes/:subjecttype/:subjectid", Middlewares.verifyToken ,(req, r
     res.status(404).send("specified like with these params was not found");
   
 });
+
+module.exports = router;

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from 'src/models/Category';
+import { Subcategory } from 'src/models/Subcategory';
+import { Thread } from 'src/models/Thread';
 import { CategoriesService } from '../services/categories.service';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { ThreadService } from '../services/thread.service';
@@ -11,8 +14,9 @@ import { ThreadService } from '../services/thread.service';
 })
 export class ForumComponent implements OnInit {
   currentCategoryId: number;
-  categories: any[];
-  threads: any[];
+  categories: Category[];
+  subcategories : Subcategory[][] = Array(0);
+  threads: Thread[];
 
   constructor(private route: ActivatedRoute, private categoriesService: CategoriesService, private subcategoriesService: SubcategoriesService, private threadService: ThreadService) { }
 
@@ -21,19 +25,20 @@ export class ForumComponent implements OnInit {
       .subscribe(params => this.currentCategoryId = +params.get('subcategoryID'));
 
     this.categoriesService.getByParentId(this.currentCategoryId)
-      .subscribe((response: any[]) => {
-        this.categories = response
+      .subscribe((response: Category[]) => {
+        this.categories = response;
         for (let i = 0; i < this.categories.length; i++) {
           this.subcategoriesService.getByParentId(this.categories[i].id)
-            .subscribe((response: any[]) => this.categories[i].subcategories = response);
+            .subscribe((response: Subcategory[]) => {
+              this.subcategories.push(response);
+              console.log(this.subcategories);
+            });
         }
       });
 
     this.threadService.getByParentId(this.currentCategoryId)
-      .subscribe((response: any[]) => {
-        console.log(response);
+      .subscribe((response: Thread[]) => {
         this.threads = response;
-        console.log(this.threads);
       });
   }
 
