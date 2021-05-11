@@ -184,8 +184,8 @@ VALUES (
         'Temsoka',
         'Adriano',
         'Toronto',
+        'https://cdn.discordapp.com/attachments/582696736963821569/841646970362920980/cdn_discordapp_com-480aae5c8d082d9eb2a5cceb2df887c0.png',
         21,
-        '../assets/pp.png',
         'temsoka@gmail.com',
         "password",
         "Oui",
@@ -197,8 +197,8 @@ VALUES (
         'Tintintamarre',
         'Jean-Gaspard',
         'Feur',
+        'https://pbs.twimg.com/media/EOk4KsZX0AAFNo4?format=jpg&name=large',
         22,
-        '../assets/pp.png',
         'tintintamarre@gmail.com',
         'password',
         "Feur",
@@ -234,7 +234,7 @@ insert into threads(
 values(
         5,
         'Alors comme ça on me traite de FAIBLE ?',
-        1,
+        3,
         datetime('now'),
         1,
         4
@@ -242,7 +242,7 @@ values(
     
 insert into threadReplies(threadId, ownerId, date, content)
 values (
-        1, 2, datetime('now'),
+        1, 3, datetime('now'),
         'faible moi ? serieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps :) demande a mes potes si je suis 
         faible tu vas voir les reponses que tu vas te prendre XD rien que la semaine passee j ai soulevé donc chuuuuut ferme la 
         faible de merde car oui toi tu m as tout l air d un bon faible de merde car souvent vous etes frustrer de ne pas avoir de
@@ -256,15 +256,15 @@ values (
            le faible de merde mdddrrr pk insulter qd on est soi meme faible tu me feras toujour marrer!!'
     ),
     (
-        1, 3, datetime('now'),
+        1, 4, datetime('now'),
         "??? Fréro il t'arrives quoi ?"
     ),
     (
-        1, 4, datetime('now'),
+        1, 5, datetime('now'),
         "feur"
     ),
     (
-        1, 3, datetime('now'),
+        1, 4, datetime('now'),
         "ah ok"
     );
 
