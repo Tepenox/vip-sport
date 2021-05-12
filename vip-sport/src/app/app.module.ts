@@ -28,6 +28,7 @@ import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
 import { WallComponent } from './wall/wall.component';
 import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component';
 import {StatutComponent} from './statut/statut.component';
+import { ReplyFormComponent } from './reply-form/reply-form.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {StatutComponent} from './statut/statut.component';
     WelcomeComponent,
     WallComponent,
     CommentaireFormComponent,
-    StatutComponent
+    StatutComponent,
+    ReplyFormComponent
   ],
   imports: [
     BrowserModule,

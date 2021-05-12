@@ -1,6 +1,6 @@
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ForumPostService } from '../services/forum-post.service';
 
 @Component({
@@ -11,28 +11,20 @@ import { ForumPostService } from '../services/forum-post.service';
 export class PostFormComponent {
   @Input('threadID') threadID: number;
 
-  characterLimit = 2000;
-  form = new FormGroup({
-    postContent: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(this.characterLimit)
-    ])
-  });
+  postForm: FormGroup;
 
-  content = '';
-  contentLength = this.content.length;
-
-  constructor(private service: ForumPostService) { }
-
-  get postContent() {
-    return this.form.get('postContent');
+  constructor(private formBuilder: FormBuilder, private service: ForumPostService) {
+    this.postForm = this.formBuilder.group({
+      reply: []
+    });
   }
 
   submitPost() {
     //Placeholder: il faut récupérer l'id de l'utilisateur connecté
-    let post = { thread: this.threadID, user: 3, date: "2021-01-29 16:02:08", content: this.content };
+    let post = { thread: this.threadID, user: 3, date: "2021-01-29 16:02:08", content: this.postForm.value.reply.postContent };
     this.service.create(post)
       .subscribe((response: { id }) => {
+        console.log(response);
         post['id'] = response.id;
       })
       window.location.reload();
