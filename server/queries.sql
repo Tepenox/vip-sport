@@ -1,5 +1,6 @@
 -- drop table if exists notifications;
 
+drop table if exists notifications;
 drop table if exists likes;
 drop table if exists dislikes;
 drop table if exists postReplies;
@@ -103,18 +104,18 @@ CREATE TABLE postReplies (
 );
 
 
--- CREATE TABLE notifications (
---     id INTEGER PRIMARY KEY AUTOINCREMENT,
---     type TEXT NOT NULL,
---     fromId INTEGER NOT NULL,
---     -- the one who caused the notification
---     receiverId INTEGER NOT NULL,
---     date TEXT NOT NULL,
---     objectId INTEGER NOT NULL,
---     -- useful te redirect to the object that caused the notification , if we won t need it , the object id will be -1
---     FOREIGN KEY (from_id) REFERENCES users(id),
---     FOREIGN KEY (receiver_id) REFERENCES users(id)
--- );
+CREATE TABLE notifications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT NOT NULL,
+    fromId INTEGER NOT NULL,
+    receiverId INTEGER NOT NULL,
+    date TEXT NOT NULL,
+    objectId INTEGER NOT NULL,
+    FOREIGN KEY (from_id) REFERENCES users(id),
+    FOREIGN KEY (receiver_id) REFERENCES users(id)
+);
+
+
 insert INTO users(
         username,
         firstName,
@@ -284,7 +285,7 @@ insert into posts (
         "text",
         "c est pas normal mon imc , a laide , je veux pas finir comme cedric ",
         "",
-        1,
+        2,
         datetime('now'),
         'cyclisme'
    );
@@ -327,3 +328,17 @@ insert into posts (
        "PostComment",
        2
    );
+
+   insert into notifications (
+    type TEXT ,
+    fromId  ,
+    receiverId  ,
+    date TEXT ,
+    objectId  ,
+   ) values (
+       "PostComment",
+        1,
+        2,
+        datetime('now'),
+        1
+   )
