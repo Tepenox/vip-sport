@@ -1,5 +1,5 @@
 <div [formGroup]="form">
-    <label for="post-content" class="textAreaLabel">Nouveau message</label>
+    <label for="postContent" class="textAreaLabel">Nouveau message</label>
     <div *ngIf="postContent.touched && postContent.invalid" class="alert alert-danger">
         <div *ngIf="postContent.errors.required">Votre message ne peut pas être vide.</div>
         <div *ngIf="postContent.errors.maxlength">Votre message ne peut pas contenir plus de {{ postContent.errors.maxlength.requiredLength }} caractères. </div>
