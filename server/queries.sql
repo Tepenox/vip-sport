@@ -45,11 +45,7 @@ CREATE TABLE threads (
     title TEXT NOT NULL,
     ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
-    firstPostId INTEGER NOT NULL,
-    lastPostId INTEGER NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id),
-    FOREIGN KEY (firstPostId) REFERENCES threadReplies(id),
-    FOREIGN KEY (lastPostId) REFERENCES threadReplies(id)
+    FOREIGN KEY (ownerId) REFERENCES users(id)
 );
 CREATE TABLE threadReplies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -227,17 +223,13 @@ insert into threads(
         subcategoryId,
         title,
         ownerId,
-        date,
-        firstPostId,
-        lastPostId
+        date
     )
 values(
         5,
         'Alors comme ça on me traite de FAIBLE ?',
         3,
-        datetime('now'),
-        1,
-        4
+        datetime('now')
     );
     
 insert into threadReplies(threadId, ownerId, date, content)
