@@ -20,7 +20,7 @@
         >
       </div>
     </div>
-    <div style="padding-left: 8px">
+    <!-- <div style="padding-left: 8px">
       <button
         class="btn btn-warning dropdown-toggle"
         type="button"
@@ -39,7 +39,7 @@
           >{{ muscle.name }}</a
         >
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="container" *ngIf="exercices">
     <div class="card-deck">
@@ -59,9 +59,12 @@
                 >
                   Description
                 </a>
-              </p>
+              </p> 
+              
+              <img class="card-img" [src]="exercice.imageUrl">
               <div class="collapse" id="{{ exercice.nameId }}">
                 <div class="card card-body">
+                 
                   {{ exercice.description }}
                 </div>
               </div>
