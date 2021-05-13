@@ -101,8 +101,4 @@ export class ProfileComponent implements OnInit {
       this.styleExp = 'red';
     }
   }
-
-  addFriend() {
-    this.follow.followById(this.auth.getCurrentUser().id, this.user.id);
-  }
 }
