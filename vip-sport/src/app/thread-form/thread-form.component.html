@@ -1,0 +1,29 @@
+<div [formGroup]="form" class="container" id="threadForm">
+    <div *ngIf="title.touched && title.invalid" class="alert alert-danger row">
+        <div *ngIf="title.errors.required">Veuiller choisir un titre.</div>
+        <div *ngIf="title.errors.maxlength">Votre titre ne peut pas contenir plus de {{ title.errors.maxlength.requiredLength }} caractères. </div>
+    </div>
+    <div class="section row" id="titleSection">
+        <div class="col">
+            <label for="title">Titre :</label>
+        </div>
+
+        <div class="col-10">
+            <input formControlName="title" type="text" id="title" />
+        </div>
+    </div>
+    
+
+    <div class="section row" id="subcategorySection">
+        <div class="col">
+            <label for="subcategory">Dans sous-forum :</label>
+        </div>
+
+        <div class="col-10">
+            <select formControlName="subcategory" class="col" id="subcategory">
+                <option value="">--Veuillez choisir un sous-forum--</option>
+                <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory.id">{{ subcategory.name }}</option>
+            </select>
+        </div>
+    </div>
+</div>

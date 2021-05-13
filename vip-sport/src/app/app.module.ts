@@ -29,6 +29,8 @@ import { WallComponent } from './wall/wall.component';
 import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component';
 import {StatutComponent} from './statut/statut.component';
 import { ReplyFormComponent } from './reply-form/reply-form.component';
+import { ThreadFormComponent } from './thread-form/thread-form.component';
+import { ThreadCreationFormComponent } from './thread-creation-form/thread-creation-form.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { ReplyFormComponent } from './reply-form/reply-form.component';
     WallComponent,
     CommentaireFormComponent,
     StatutComponent,
-    ReplyFormComponent
+    ReplyFormComponent,
+    ThreadFormComponent,
+    ThreadCreationFormComponent
   ],
   imports: [
     BrowserModule,

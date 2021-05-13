@@ -32,10 +32,12 @@ export class ThreadLinkComponent implements OnInit {
         this.userService.getUserById(this.thread.ownerId)
           .subscribe((response: User) => this.author = response);
         
-        this.forumPostService.getById(this.thread.lastPostId)
+        let lastPostId: number = 4; //TODO
+
+        this.forumPostService.getById(lastPostId)
           .subscribe((response: ThreadReply) => {
             this.lastPost = response;
-            this.userService.getUserById(this.lastPost.id)
+            this.userService.getUserById(this.lastPost.ownerId)
               .subscribe((response: User) => this.lastUser = response);
           });
       });
