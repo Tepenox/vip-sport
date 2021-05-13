@@ -24,6 +24,9 @@ router.get("/threadReplies",(req,res)=>{
         res.json(ThreadReply.getAll());
 });
 
+router.get("/threadReplies/:threadId", (req, res) => {
+    res.json(ThreadReply.getLastPostInThread(req.query.threadId));
+})
 
 router.post("/threadReplies", Middlewares.verifyToken, (req,res)=>{
     let reply = req.body;
