@@ -1,5 +1,6 @@
 -- drop table if exists notifications;
 
+drop table if exists follows;
 drop table if exists notifications;
 drop table if exists likes;
 drop table if exists dislikes;
@@ -10,6 +11,7 @@ drop table if exists threads;
 drop table if exists users;
 drop table if exists categories;
 drop table if exists subcategories;
+
 
 
 CREATE TABLE users (
@@ -113,6 +115,14 @@ CREATE TABLE notifications (
     objectId INTEGER NOT NULL,
     FOREIGN KEY (from_id) REFERENCES users(id),
     FOREIGN KEY (receiver_id) REFERENCES users(id)
+);
+
+CREATE TABLE follows(
+    followerId INTEGER,
+    followedId INTEGER,
+    PRIMARY KEY (followerId, followedId),
+    FOREIGN KEY (followerId) REFERENCES users(id),
+    FOREIGN KEY (followedId) REFERENCES users(id),
 );
 
 
