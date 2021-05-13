@@ -111,8 +111,8 @@ CREATE TABLE notifications (
     receiverId INTEGER NOT NULL,
     date TEXT NOT NULL,
     objectId INTEGER NOT NULL,
-    FOREIGN KEY (from_id) REFERENCES users(id),
-    FOREIGN KEY (receiver_id) REFERENCES users(id)
+    FOREIGN KEY (fromId) REFERENCES users(id),
+    FOREIGN KEY (receiverId) REFERENCES users(id)
 );
 
 
@@ -330,15 +330,15 @@ insert into posts (
    );
 
    insert into notifications (
-    type TEXT ,
+    type  ,
     fromId  ,
     receiverId  ,
-    date TEXT ,
-    objectId  ,
+    date  ,
+    objectId  
    ) values (
        "PostComment",
         1,
         2,
         datetime('now'),
         1
-   )
+   );
