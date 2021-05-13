@@ -7,18 +7,19 @@ let Follow = require("../models/Follow")
 let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
-router.get("follows/:followerid" , (req , res) => {
+router.get("/follows/:followerid" , (req , res) => {
     res.json(Follow.getFollowers(req.params.followerid));
 });
 
-router.post("follows/:followerid/:followedid" , (req , res) => {
-    res.json(Follow.addFollower(req.params.followerid, req.params.followedid));
+router.post("/follows" , (req , res) => {
+    res.json(Follow.addFollower(req.body.followerId, req.body.followedId));
 });
 
-router.delete("follows/:followerid/:followedid" , (req , res) => {
+router.delete("/follows/:followerid/:followedid" , (req , res) => {
     res.json(Follow.deleteFollower(req.params.followerid, req.params.followedid));
 });
 
+module.exports = router;
 
 
 

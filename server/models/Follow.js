@@ -1,7 +1,7 @@
 const Sqlite = require("better-sqlite3");
 const db = new Sqlite("db.sqlite");
 
-let Follow = {};
+let Follows = {};
 
 Follows.addFollower = function(followerId, followedId){
     db.prepare("Insert into follows VALUES (?,?)").run(followerId,followedId);
@@ -15,4 +15,4 @@ Follows.deleteFollower = function(followerId, followedId){
     db.prepare("delete from follows where followerId = ? AND followedId = ? ").run(followerId,followedId);
 }
 
-module.exports = Follow;
+module.exports = Follows;

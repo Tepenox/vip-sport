@@ -15,7 +15,7 @@ const Likes = require('./routes/Likes');
 const Dislikes = require('./routes/Dislikes');
 const Categories = require('./routes/Categories');
 const Subcategories = require('./routes/Subcategories');
-
+const Follow = require('./routes/Follow');
 const app = express();
 
 app.use(cors());
@@ -26,6 +26,7 @@ app.use(express.urlencoded({
   }));
 app.use(express.json());
 
+app.use('',Follow);
 
 app.use('', Users);
 
