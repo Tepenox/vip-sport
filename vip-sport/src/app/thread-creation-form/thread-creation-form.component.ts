@@ -17,7 +17,7 @@ export class ThreadCreationFormComponent {
   threadCreationForm: FormGroup;
   subcategoryID: number;
 
-  constructor(private formBuilder: FormBuilder,private route: ActivatedRoute, private authService: AuthenticationService,
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private authService: AuthenticationService,
     private threadService: ThreadService, private replyService: ForumPostService) {
     this.threadCreationForm = this.formBuilder.group({
       thread: [],
@@ -40,13 +40,12 @@ export class ThreadCreationFormComponent {
         thread.id = response.id;
         let postContent = this.threadCreationForm.value.reply.postContent;
         let post = new ThreadReply(thread.id, this.userId, postContent);
-
         this.replyService.create(post).subscribe((response: ThreadReply) => {
           post.id = response.id;
           post.date = response.date;
         });
       });
 
-    window.location.reload();
+      window.location.reload();
   }  
 }

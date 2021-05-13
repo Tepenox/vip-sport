@@ -30,10 +30,7 @@ export class ForumComponent implements OnInit {
         this.categories = response;
         for (let i = 0; i < this.categories.length; i++) {
           this.subcategoriesService.getByParentId(this.categories[i].id)
-            .subscribe((response: Subcategory[]) => {
-              this.subcategories.push(response);
-              console.log(this.subcategories);
-            });
+            .subscribe((response: Subcategory[]) => this.subcategories.push(response));
         }
       });
 

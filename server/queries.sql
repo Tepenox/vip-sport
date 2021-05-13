@@ -54,7 +54,7 @@ CREATE TABLE threadReplies (
     date TEXT NOT NULL,
     content TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id),
-    FOREIGN KEY (threadId) REFERENCES threads(id)
+    FOREIGN KEY (threadId) REFERENCES threads(id) ON DELETE CASCADE
 );
 
 CREATE TABLE likes (

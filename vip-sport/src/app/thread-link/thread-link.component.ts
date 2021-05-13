@@ -28,7 +28,7 @@ export class ThreadLinkComponent implements OnInit {
 
     this.threadService.getById(this.id)
       .subscribe((response: Thread) =>  {
-        this.thread = response[0];
+        this.thread = response;
         this.userService.getUserById(this.thread.ownerId)
           .subscribe((response: User) => this.author = response);
         
