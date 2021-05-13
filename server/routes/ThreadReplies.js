@@ -7,6 +7,13 @@ let ThreadReply = require("../models/ThreadReply");
 let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
+function verifyReplyOwnerShip(req,res,next){
+    if(req.userId === ThreadReply.getByid(req.params.id).ownerId){
+      next();
+    } else{
+      res.status(401).send("Unauthorized");
+    }
+}
 
 router.get("/threadReplies",(req,res)=>{
     if (req.query.threadId)
@@ -18,16 +25,18 @@ router.get("/threadReplies",(req,res)=>{
 });
 
 
-router.post("/threadReplies",(req,res)=>{
-
+router.post("/threadReplies", Middlewares.verifyToken, (req,res)=>{
+    let reply = req.body;
+    let replyId = ThreadReply.create(reply);
+    return res.json(ThreadReply.getByid(replyId));
 });
 
-router.put("threadReplies/:id",(req,res)=>{
+router.put("threadReplies/:id", (req,res)=>{
     
 
 });
 
-router.delete("threadReplies/:id",(req,res)=>{
+router.delete("threadReplies/:id", (req,res)=>{
     
 
 });

@@ -20,9 +20,9 @@ ThreadReply.getAllByThreadId = function (threadId) {
 ThreadReply.create = function (threadReply) {
   return db
     .prepare(
-      "insert into threadreplies (threadId , content , ownerId)\
+      "insert into threadreplies (threadId , ownerId, date, content)\
     values (\
-        @threadId,@content,@ownerId)"
+        @threadId,@ownerId, datetime('now'), @content)"
     )
     .run(threadReply).lastInsertRowid;
 };

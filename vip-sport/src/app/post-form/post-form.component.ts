@@ -1,7 +1,9 @@
-import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { AuthenticationService } from './../services/authentication.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { ThreadReply } from 'src/models/ThreadReply';
 import { ForumPostService } from '../services/forum-post.service';
+import { User } from 'src/models/User';
 
 @Component({
   selector: 'post-form',
@@ -10,31 +12,21 @@ import { ForumPostService } from '../services/forum-post.service';
 })
 export class PostFormComponent {
   @Input('threadID') threadID: number;
+  userId: number;
+  postForm: FormGroup;
 
-  characterLimit = 2000;
-  form = new FormGroup({
-    postContent: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(this.characterLimit)
-    ])
-  });
+  constructor(private formBuilder: FormBuilder, private replyService: ForumPostService, private authService: AuthenticationService) {
+    this.postForm = this.formBuilder.group({
+      reply: []
+    });
 
-  content = '';
-  contentLength = this.content.length;
-
-  constructor(private service: ForumPostService) { }
-
-  get postContent() {
-    return this.form.get('postContent');
+    this.userId = +authService.getUserId();
   }
 
   submitPost() {
-    //Placeholder: il faut récupérer l'id de l'utilisateur connecté
-    let post = { thread: this.threadID, user: 3, date: "2021-01-29 16:02:08", content: this.content };
-    this.service.create(post)
-      .subscribe((response: { id }) => {
-        post['id'] = response.id;
-      })
-      window.location.reload();
+    let post = new ThreadReply(this.threadID, this.userId, this.postForm.value.reply.postContent);
+    this.replyService.create(post)
+      .subscribe((response: ThreadReply) => console.log(response));
+    window.location.reload();
   }
 }
