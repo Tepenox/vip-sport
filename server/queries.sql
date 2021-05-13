@@ -340,15 +340,15 @@ insert into posts (
    );
 
    insert into notifications (
-    type TEXT ,
+    type  ,
     fromId  ,
     receiverId  ,
-    date TEXT ,
-    objectId  ,
+    date  ,
+    objectId  
    ) values (
        "PostComment",
         1,
         2,
         datetime('now'),
         1
-   )
+   );
