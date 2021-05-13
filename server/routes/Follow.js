@@ -7,10 +7,13 @@ let Follow = require("../models/Follow")
 let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
-router.get("/follows/:followerid" , (req , res) => {
+router.get("/follows/:followedid" , (req , res) => {
     res.json(Follow.getFollowers(req.params.followerid));
 });
 
+router.get("/follows/:followerid/:followedid" , (req,res) => {
+    res.json(Follow.getFollow(req.params.followerid,req.params.followedid))
+});
 router.post("/follows" , (req , res) => {
     res.json(Follow.addFollower(req.body.followerId, req.body.followedId));
 });
