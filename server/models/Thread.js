@@ -21,17 +21,8 @@ Thread.getAllInSubcategory = function (subcategoryId) {
 Thread.create = function (thread) {
   let threadId = db
     .prepare(
-      `insert into threads(\
-        title ,\
-        ownerId ,\
-        date ,\
-        categories \
-    )values(\
-        @title,\
-        @ownerId,\
-        datetime('now'),\
-        @categories\
-    );`
+      `insert into threads(subcategoryId, title, ownerId, date)\ 
+      values(@subcategoryId, @title, @ownerId, datetime('now'));`
     )
     .run(thread).lastInsertRowid;
   return threadId;
