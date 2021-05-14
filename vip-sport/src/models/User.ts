@@ -12,7 +12,7 @@ export class User {
     public sport: string,
     public weight: number,
     public height: number,
-    public imageUrl:string = "https://cdn.discordapp.com/attachments/782960399464398868/839125932651315230/3467-full.png",
+    public imageUrl:string = "https://cdn.discordapp.com/attachments/582696736963821569/842824373509423135/default-profile.png",
     public roleId?: number,
     public  id?: number
     
