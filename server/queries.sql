@@ -129,6 +129,12 @@ CREATE TABLE follows(
 );
 
 
+INSERT INTO roles(name, moderationPower)
+VALUES  ("Membre", 0),
+        ("Modérateur", 50),
+        ("Administrateur", 100);
+
+
 insert INTO users(
         username,
         firstName,
@@ -157,6 +163,50 @@ VALUES (
     );
 
 
+insert INTO users(
+        username,
+        firstName,
+        lastName,
+        imageUrl,
+        age,
+        email,
+        password,
+        description,
+        sport,
+        weight,
+        height,
+        roleId
+    )
+VALUES (
+        'sesh',
+        'dorian',
+        'volt',
+        '../assets/pp.png',
+        22,
+        'sesh@gmail.com',
+        "password",
+        "Puceau moi ? Sérieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps 🙂 demande a mes potes si je suis puceau tu vas voir les réponses que tu vas te prendre XD rien que la semaine passee j ai niquer dont chuuuuut ferme la puceau de merde car toi tu m as tout tout l air d un bon puceau de merde car souvent vous etes frustrer de ne pas BAISER 🙂 ses agreable de se faire un missionnaire ou un amazone avec une meuf hein ? tu peux pas répondre car tu ne sais pas ce que c ou alors tu le sais mais tu as du taper dans ta barre de recherche « missionnaire sexe » ou « amazone sexe » pour comprendre ce que c etait mdddrrr !! cest grave quoiquil en soit....pour revenir a moi, je pense que je suis le mec le moins puceau de ma bande de 11 meilleurs amis pas psk j ai eu le plus de rapport intime mais psk j ai eu les plus jolie femme que mes amis 😀 ses pas moi qui le dit, ses eux qui commente sous mes photos insta « trop belle la fille que tu as coucher avec hier en boite notamment! » donc après si tu veux",
+        "cyclisme",
+        70,
+        200,
+        1
+    ),
+    (
+        'Gigachad',
+        'Chad',
+        'REDACTED',
+        'https://cdn.discordapp.com/attachments/582696736963821569/842759537655939142/unknown.png',
+        30,
+        'gigachad@gmail.com',
+        'password',
+        'Bonjour.',
+        'Tous',
+        80,
+        200,
+        3
+    );
+
+
     insert INTO users(
         username,
         firstName,
@@ -171,19 +221,6 @@ VALUES (
         height
     )
 VALUES (
-        'sesh',
-        'dorian',
-        'volt',
-        '../assets/pp.png',
-        22,
-        'sesh@gmail.com',
-        "password",
-        "Puceau moi ? Sérieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps 🙂 demande a mes potes si je suis puceau tu vas voir les réponses que tu vas te prendre XD rien que la semaine passee j ai niquer dont chuuuuut ferme la puceau de merde car toi tu m as tout tout l air d un bon puceau de merde car souvent vous etes frustrer de ne pas BAISER 🙂 ses agreable de se faire un missionnaire ou un amazone avec une meuf hein ? tu peux pas répondre car tu ne sais pas ce que c ou alors tu le sais mais tu as du taper dans ta barre de recherche « missionnaire sexe » ou « amazone sexe » pour comprendre ce que c etait mdddrrr !! cest grave quoiquil en soit....pour revenir a moi, je pense que je suis le mec le moins puceau de ma bande de 11 meilleurs amis pas psk j ai eu le plus de rapport intime mais psk j ai eu les plus jolie femme que mes amis 😀 ses pas moi qui le dit, ses eux qui commente sous mes photos insta « trop belle la fille que tu as coucher avec hier en boite notamment! » donc après si tu veux",
-        "cyclisme",
-        70,
-        200
-    ),
-    (
         'Issoucisse',
         'Jerry',
         'Golay',
@@ -248,13 +285,13 @@ insert into threads(
 values(
         5,
         'Alors comme ça on me traite de FAIBLE ?',
-        3,
+        4,
         datetime('now')
     );
     
 insert into threadReplies(threadId, ownerId, date, content)
 values (
-        1, 3, datetime('now'),
+        1, 4, datetime('now'),
         'faible moi ? serieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps :) demande a mes potes si je suis 
         faible tu vas voir les reponses que tu vas te prendre XD rien que la semaine passee j ai soulevé donc chuuuuut ferme la 
         faible de merde car oui toi tu m as tout l air d un bon faible de merde car souvent vous etes frustrer de ne pas avoir de
@@ -268,15 +305,15 @@ values (
            le faible de merde mdddrrr pk insulter qd on est soi meme faible tu me feras toujour marrer!!'
     ),
     (
-        1, 4, datetime('now'),
+        1, 5, datetime('now'),
         "??? Fréro il t'arrives quoi ?"
     ),
     (
-        1, 5, datetime('now'),
+        1, 6, datetime('now'),
         "feur"
     ),
     (
-        1, 4, datetime('now'),
+        1, 5, datetime('now'),
         "ah ok"
     );
 
