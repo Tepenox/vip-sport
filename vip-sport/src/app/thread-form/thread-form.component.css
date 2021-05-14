@@ -1,3 +1,17 @@
 #title, #subcategory {
     width: 80%;
+    padding: 2px 5px 2px 5px;
+}
+
+.section {
+    margin-bottom: 5px;
+}
+
+.alert {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.container {
+    padding: 0%;
 }

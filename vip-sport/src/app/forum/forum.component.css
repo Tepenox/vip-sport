@@ -2,3 +2,11 @@
     padding-top: 75px;
     background-color: rgb(214, 214, 214);
 }
+
+.thread-creation-area {
+    padding-bottom: 20px;
+}
+
+#cancel {
+    margin-bottom: 15px;
+}
