@@ -1,6 +1,9 @@
 <div class="forum-page container mx-auto shadow">
-    <div *ngFor="let category of categories; let i = index" class="category">
-        <span class="category-name">{{ category?.name }}</span>
+    <div *ngFor="let category of categories; let i = index" class="category-section">
+        <div class="category">
+            <span class="category-name">{{ category?.name }}</span>
+        </div>
+
         <div class="subcategory-list">
             <div *ngFor="let subcategory of subcategories[i]" class="subcategory">
                 <a [routerLink]="['/forum', subcategory?.id]" class="div-link">

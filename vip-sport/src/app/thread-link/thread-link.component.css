@@ -18,6 +18,11 @@ span {
     text-decoration: underline;
 }
 
+.thread {
+    padding: 10px 10px 10px 10px;
+}
+
+
 .thread-secondary {
     justify-content: right;
 }
