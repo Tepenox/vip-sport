@@ -1,5 +1,6 @@
 -- drop table if exists notifications;
 
+drop table if exists roles;
 drop table if exists follows;
 drop table if exists notifications;
 drop table if exists likes;
@@ -13,6 +14,11 @@ drop table if exists categories;
 drop table if exists subcategories;
 
 
+CREATE TABLE roles (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    moderationPower INTEGER NOT NULL CHECK (moderationPower >= 0 AND moderationPower <= 100)
+);
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,7 +33,8 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     description TEXT NOT NULL,
     sport TEXT NOT NULL,
-    isAdmin TEXT DEFAULT 'false'
+    roleId INTEGER DEFAULT 1,
+    FOREIGN KEY (roleId) REFERENCES roles(id)
 );
 
 CREATE TABLE categories (
