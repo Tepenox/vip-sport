@@ -9,7 +9,7 @@ export class Post{
         public ownerId:number, 
         public categories:string, 
         public date?:string,
-        public id?:string,
+        public id?:number,
         public postReplies?:PostReply[]
     ){
 

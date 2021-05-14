@@ -9,7 +9,7 @@ import {catchError} from 'rxjs/operators';
 })
 export class PostReplyService {
 
-  private postRepliesUrl = "/posts/:postid/postreplies";
+  private postRepliesUrl = "http://localhost:3000/posts/:postid/postreplies";
 
   constructor(private httpClient:HttpClient) { }
 
@@ -18,7 +18,7 @@ export class PostReplyService {
   }
 
   createPostReply(postId:number,postReply:PostReply):Observable<PostReply>{
-    return this.httpClient.post<PostReply>(this.postRepliesUrl.replace(":postId",String(postId)),postReply).pipe(catchError(this.errorHandler));
+    return this.httpClient.post<PostReply>(this.postRepliesUrl.replace(":postid",String(postId)),postReply).pipe(catchError(this.errorHandler));
   }
 
   editPostReply(postId:number,postReplyId:string,postReply:PostReply):Observable<PostReply>{
