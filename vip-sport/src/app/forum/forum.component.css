@@ -1,4 +1,60 @@
+span {
+    display: block;
+}
+
 .forum-page {
     padding-top: 75px;
     background-color: rgb(214, 214, 214);
+}
+
+.category {
+    border-style: solid;
+    border-color: rgb(125, 139, 179);
+    background-color: rgb(125, 139, 179);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 120%;
+    font-weight: 600;
+    color: white;
+    padding-left: 10px;
+}
+
+.thread-creation-area {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.div-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+#cancel {
+    margin-bottom: 15px;
+}
+
+.thread, .subcategory {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: rgba(0, 0, 0, 0.075);
+}
+
+.subcategory {
+    padding: 10px 10px 10px 10px;
+}
+
+.subcategory-name {
+    color: rgb(67, 72, 78);
+}
+
+.subcategory-name:hover {
+    text-decoration: underline;
+}
+
+.subcategory-info {
+    text-decoration-color: black;
 }

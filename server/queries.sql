@@ -50,11 +50,7 @@ CREATE TABLE threads (
     title TEXT NOT NULL,
     ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
-    firstPostId INTEGER NOT NULL,
-    lastPostId INTEGER NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id),
-    FOREIGN KEY (firstPostId) REFERENCES threadReplies(id),
-    FOREIGN KEY (lastPostId) REFERENCES threadReplies(id)
+    FOREIGN KEY (ownerId) REFERENCES users(id)
 );
 CREATE TABLE threadReplies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -63,7 +59,7 @@ CREATE TABLE threadReplies (
     date TEXT NOT NULL,
     content TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id),
-    FOREIGN KEY (threadId) REFERENCES threads(id)
+    FOREIGN KEY (threadId) REFERENCES threads(id) ON DELETE CASCADE
 );
 
 CREATE TABLE likes (
@@ -240,17 +236,13 @@ insert into threads(
         subcategoryId,
         title,
         ownerId,
-        date,
-        firstPostId,
-        lastPostId
+        date
     )
 values(
         5,
         'Alors comme ça on me traite de FAIBLE ?',
         3,
-        datetime('now'),
-        1,
-        4
+        datetime('now')
     );
     
 insert into threadReplies(threadId, ownerId, date, content)

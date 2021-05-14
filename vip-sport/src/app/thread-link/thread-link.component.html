@@ -1,20 +1,28 @@
 <div class="thread">
     <div class="row">
-        <div class="col">
-            <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]">{{ thread?.title }}</a>
-            <div class="thread-info">
-                <span>
-                    Par <a [routerLink]="['/profile', author?.id]" class="profile-link">{{ author?.userName }}</a> <span> le {{ thread?.date }}</span>
+        <div class="col thread-primary">
+            <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]" class="div-link">
+                <span class="thread-name link">
+                    {{ thread?.title }}
                 </span>
-            </div>
+                <div class="thread-info text-muted">
+                    <span>
+                        Par <a [routerLink]="['/profile', author?.id]" class="profile-link">{{ author?.userName }}</a> {{ thread?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }}
+                    </span>
+                </div>
+            </a>
         </div>
-        <div class="col">
+        <div class="col thread-secondary">
             <div class="thread-info">
-                <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]" fragment="post-{{ lastPost?.id }}" class="last-message-link">Dernier message</a><br>
-                <span>
-                    par <a [routerLink]="['/profile', lastUser?.id]" class="profile-link">{{ lastUser?.userName }}</a>
-                </span><br>
-                <span>le {{ lastPost?.date }}</span>
+                <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]" fragment="post-{{ lastPost?.id }}" class="last-message-link div-link">
+                    <span class="link">
+                        Dernier message
+                    </span>
+                    <span class="text-muted">
+                        par <a [routerLink]="['/profile', lastUser?.id]" class="profile-link">{{ lastUser?.userName }}</a> 
+                        le {{ lastPost?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }}
+                    </span>
+                </a>
             </div>
         </div>
     </div>

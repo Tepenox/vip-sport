@@ -17,6 +17,7 @@ export class ForumComponent implements OnInit {
   categories: Category[];
   subcategories : Subcategory[][] = Array(0);
   threads: Thread[];
+  isThreadFormVisible: boolean = false;
 
   constructor(private route: ActivatedRoute, private categoriesService: CategoriesService, private subcategoriesService: SubcategoriesService, private threadService: ThreadService) { }
 
@@ -29,10 +30,7 @@ export class ForumComponent implements OnInit {
         this.categories = response;
         for (let i = 0; i < this.categories.length; i++) {
           this.subcategoriesService.getByParentId(this.categories[i].id)
-            .subscribe((response: Subcategory[]) => {
-              this.subcategories.push(response);
-              console.log(this.subcategories);
-            });
+            .subscribe((response: Subcategory[]) => this.subcategories.push(response));
         }
       });
 
@@ -42,4 +40,7 @@ export class ForumComponent implements OnInit {
       });
   }
 
+  toggleThreadForm() {
+    this.isThreadFormVisible = !this.isThreadFormVisible;
+  }
 }

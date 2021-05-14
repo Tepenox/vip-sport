@@ -20,6 +20,8 @@ router.get("/threads", (req, res) => {
     res.json(Thread.searchByTitle(req.query.title));
   } else if (req.query.subcategoryId) {
     res.json(Thread.getAllInSubcategory(req.query.subcategoryId));
+  } else if (req.query.id) {
+    res.json(Thread.getByid(req.query.id));
   } else {
     res.json(Thread.getAll());
   }
@@ -27,9 +29,8 @@ router.get("/threads", (req, res) => {
 
 router.post("/threads", Middlewares.verifyToken, (req, res) => {
   let receivedThread = req.body;
-  receivedThread.ownerId = req.userId;
   let createdThreadId = Thread.create(receivedThread);
-  return Thread.getByid(createdThreadId);
+  return res.json(Thread.getByid(createdThreadId));
 });
 
 router.put(
