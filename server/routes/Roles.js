@@ -3,7 +3,7 @@ let router = express.Router();
 let Middlewares = require("../middlewares/middlewares");
 const util = require("util");
 
-let Role = require("../models/Roles");
+let Role = require("../models/Role");
 let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
