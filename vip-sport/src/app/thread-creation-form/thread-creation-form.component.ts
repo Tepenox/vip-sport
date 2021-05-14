@@ -43,9 +43,8 @@ export class ThreadCreationFormComponent {
         this.replyService.create(post).subscribe((response: ThreadReply) => {
           post.id = response.id;
           post.date = response.date;
+          window.location.reload();
         });
       });
-
-      window.location.reload();
   }  
 }

@@ -20,6 +20,7 @@ export class PostComponent implements OnInit{
     this.postService.getById(this.id)
       .subscribe((response: ThreadReply) => {
         this.post = response;
+        this.post.date += " UTC";
         this.userService.getUserById(this.post.ownerId)
           .subscribe((response : User) => this.user = response);
       });

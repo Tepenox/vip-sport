@@ -29,12 +29,14 @@ export class ThreadLinkComponent implements OnInit {
     this.threadService.getById(this.id)
       .subscribe((response: Thread) => {
         this.thread = response;
+        this.thread.date += " UTC"
         this.userService.getUserById(this.thread.ownerId)
           .subscribe((response: User) => this.author = response);
         
         this.forumPostService.getLastPostInThread(this.id)
           .subscribe((response: ThreadReply) => {
             this.lastPost = response;
+            this.lastPost.date += " UTC";
             this.userService.getUserById(this.lastPost.ownerId)
               .subscribe((response: User) => this.lastUser = response);
         });
