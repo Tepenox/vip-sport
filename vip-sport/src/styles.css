@@ -22,3 +22,9 @@ footer {
   left: 0;
   right: 0;
 }
+
+.profile-pic-sm {
+  height:35px;
+  width: 35px;
+  margin-right: 5px;
+}

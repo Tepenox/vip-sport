@@ -14,7 +14,7 @@ export class AuthenticationService {
 
   private currentUser:User;
 
-  constructor(private httpClient : HttpClient,private router:Router) {   
+  constructor(private httpClient : HttpClient, private router:Router) {   
     
     
    }
@@ -50,6 +50,10 @@ export class AuthenticationService {
 
    getCurrentUser(){
      return this.currentUser;
+   }
+
+   getCurrentUserRole() {
+     return this.currentUser.roleId;
    }
    
    errorHandler(error:HttpErrorResponse){

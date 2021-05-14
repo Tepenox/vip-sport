@@ -1,3 +1,16 @@
 .post {
     background-color: rgb(243, 243, 243);
 }
+
+.post-options {
+    float: right;
+}
+
+.post-head .profile-pic-sm {
+    margin-right: 10px;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

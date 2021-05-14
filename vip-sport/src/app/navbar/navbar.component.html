@@ -78,7 +78,10 @@
       class="nav-item"
       routerLinkActive="active"
     >
-      <a class="nav-link" routerLink="/profile">{{authService.getCurrentUser().userName}}</a>
+      <a class="nav-link" routerLink="/profile/{{authService.getCurrentUser().id}}">
+        <img [src]="authService.getCurrentUser().imageUrl" class="profile-pic-sm rounded-circle z-depth-2" />
+        {{authService.getCurrentUser().userName}}
+      </a>
   </div>
     <button
       *ngIf="authService.loggedIn()"
@@ -86,7 +89,7 @@
       class="btn btn-outline-danger"
       (click)="logOut()"
     >
-      logOut
+      Se déconnecter
     </button>
   </div>
 </nav>

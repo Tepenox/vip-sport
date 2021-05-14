@@ -31,6 +31,7 @@ import {StatutComponent} from './statut/statut.component';
 import { ReplyFormComponent } from './reply-form/reply-form.component';
 import { ThreadFormComponent } from './thread-form/thread-form.component';
 import { ThreadCreationFormComponent } from './thread-creation-form/thread-creation-form.component';
+import { DeleteButtonComponent } from './delete-button/delete-button.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ThreadCreationFormComponent } from './thread-creation-form/thread-creat
     StatutComponent,
     ReplyFormComponent,
     ThreadFormComponent,
-    ThreadCreationFormComponent
+    ThreadCreationFormComponent,
+    DeleteButtonComponent
   ],
   imports: [
     BrowserModule,
