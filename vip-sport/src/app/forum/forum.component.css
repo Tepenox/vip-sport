@@ -1,12 +1,43 @@
+span {
+    display: block;
+}
+
 .forum-page {
     padding-top: 75px;
     background-color: rgb(214, 214, 214);
 }
 
 .thread-creation-area {
+    margin-top: 20px;
     padding-bottom: 20px;
+}
+
+.div-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
 }
 
 #cancel {
     margin-bottom: 15px;
+}
+
+.thread, .subcategory {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: rgba(0, 0, 0, 0.075);
+}
+
+.subcategory-name {
+    color: rgb(67, 72, 78);
+}
+
+.subcategory-name:hover {
+    text-decoration: underline;
+}
+
+.subcategory-info {
+    text-decoration-color: black;
 }
