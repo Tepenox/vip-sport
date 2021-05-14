@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const port = 3000;
 
+const Roles = require('./routes/Roles');
 const Users = require('./routes/Users');
 const Posts = require('./routes/Posts');
 const PostReplies = require('./routes/PostReplies');
@@ -28,6 +29,8 @@ app.use(express.json());
 
 app.use('',Follow);
 
+app.use('', Roles);
+
 app.use('', Users);
 
 app.use('', Posts);
@@ -41,6 +44,7 @@ app.use('', ThreadReplies);
 app.use('',Likes);
 
 app.use('',Dislikes);
+
 app.use('', Categories);
 
 app.use('', Subcategories);
