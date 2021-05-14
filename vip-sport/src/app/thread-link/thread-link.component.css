@@ -2,6 +2,13 @@ span {
     display: block;
 }
 
+hr {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
 .div-link {
     display: block;
     height: 100%;
