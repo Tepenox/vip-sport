@@ -189,7 +189,7 @@ VALUES (
         "cyclisme",
         70,
         200,
-        1
+        2
     ),
     (
         'Gigachad',

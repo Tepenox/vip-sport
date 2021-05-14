@@ -1,3 +1,7 @@
 .post {
     background-color: rgb(243, 243, 243);
 }
+
+.post-options {
+    float: right;
+}
