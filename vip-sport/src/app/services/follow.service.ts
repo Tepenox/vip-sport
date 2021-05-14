@@ -28,7 +28,6 @@ export class FollowService {
   }
 
   deleteFollow(followerId: number,followedId : number){
-    //return this.httpClient.delete<any>(this.followUrl+ "/"+followerId+"/"+followedId).pipe(catchError(this.errorHandler));
     return this.httpClient.delete<any>(`${this.followUrl}/${followerId}/${followedId}`).pipe(catchError(this.errorHandler));
   }
 

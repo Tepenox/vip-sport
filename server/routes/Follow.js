@@ -8,7 +8,7 @@ let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
 router.get("/follows/:followedid" , (req , res) => {
-    res.json(Follow.getFollowers(req.params.followerid));
+    res.json(Follow.getFollowers(req.params.followedid));
 });
 
 router.get("/follows/:followerid/:followedid" , (req,res) => {

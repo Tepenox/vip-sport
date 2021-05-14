@@ -15,23 +15,14 @@ import { FollowService } from '../services/follow.service';
 })
 export class ProfileComponent implements OnInit {
   isYours: boolean;
+  followersCount: any;
+  isFollowing: any;
   profileModification: boolean = false;
   imc: number = 0.0;
   styleExp: string = 'black';
   posts: Post[];
 
-  user: User = new User(
-    'Bruh',
-    'Pd',
-    'caca',
-    12,
-    'zob@gmail.com',
-    'bruh',
-    'MEGAZOB',
-    'zobitus',
-    145,
-    154
-  );
+  user: User;
 
   constructor(
     private userService: UserService,
@@ -46,14 +37,32 @@ export class ProfileComponent implements OnInit {
         .getUserById(parseInt(params.get('id')))
         .subscribe((data) => {
           this.user = data;
+          this.setFollowing(this.user.id);
+          this.getFollowersCount(this.user.id);
           this.isYours = auth.getCurrentUser().id != parseInt(params.get('id'));
           this.calculateImc();
         });
     });
+
     this.getPosts(); //Les posts ne sont pas les bons il faudra les changer
   }
 
   ngOnInit(): void {}
+
+  setFollowing(userId: number) {
+    this.follow
+      .isFollowing(this.auth.getCurrentUser().id, userId)
+      .subscribe((val) => {
+        this.isFollowing = val;
+        console.log(this.isFollowing);
+      });
+  }
+
+  getFollowersCount(userId: number) {
+    this.follow.getCount(userId).subscribe((val) => {
+      this.followersCount = val.count;
+    });
+  }
 
   getPosts() {
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -103,6 +112,20 @@ export class ProfileComponent implements OnInit {
   }
 
   addFriend() {
-    this.follow.followById(this.auth.getCurrentUser().id, this.user.id);
+    this.follow.followById(this.user.id).subscribe((val) => {
+      this.setFollowing(this.user.id);
+      this.getFollowersCount(this.user.id);
+    });
+    //this.isFollowing = !this.isFollowing;
+  }
+
+  unfriend() {
+    this.follow
+      .deleteFollow(this.auth.getCurrentUser().id, this.user.id)
+      .subscribe((val) => {
+        this.setFollowing(this.user.id);
+        this.getFollowersCount(this.user.id);
+      });
+    //this.isFollowing = !this.isFollowing;
   }
 }
