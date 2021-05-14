@@ -32,6 +32,11 @@ span {
     width: 100%;
     text-decoration: none;
     color: black;
+    padding: 5px 10px 5px 10px; 
+}
+
+.div-link:hover {
+    background-color: rgba(0, 0, 0, 0.062);
 }
 
 #cancel {
@@ -39,14 +44,14 @@ span {
 }
 
 hr {
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 0px;
+    margin-top: 0px;
     padding-top: 0%;
     padding-bottom: 0%;
 }
 
 .subcategory {
-    padding: 0px 10px 0px 10px;
+    padding: 0px 0px 0px 0px;
 }
 
 .subcategory-name {
