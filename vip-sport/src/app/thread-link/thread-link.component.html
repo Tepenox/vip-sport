@@ -4,7 +4,7 @@
             <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]">{{ thread?.title }}</a>
             <div class="thread-info">
                 <span>
-                    Par <a [routerLink]="['/profile', author?.id]" class="profile-link">{{ author?.userName }}</a> <span> le {{ thread?.date }}</span>
+                    Par <a [routerLink]="['/profile', author?.id]" class="profile-link">{{ author?.userName }}</a> <span> {{ thread?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }}</span>
                 </span>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <span>
                     par <a [routerLink]="['/profile', lastUser?.id]" class="profile-link">{{ lastUser?.userName }}</a>
                 </span><br>
-                <span>le {{ lastPost?.date }}</span>
+                <span>le {{ lastPost?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }}</span>
             </div>
         </div>
     </div>

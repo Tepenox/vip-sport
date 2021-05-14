@@ -2,7 +2,7 @@
     <div class="card-body">
         <span>
             <a [routerLink]="['/profile', user?.id]" class="userName">{{ user?.userName }}</a>
-            <span class="postDate text-muted"> {{ post?.date }} </span>
+            <span class="postDate text-muted"> {{ post?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }} </span>
         </span>
         <p class="postContent">
             {{ post?.content }}
