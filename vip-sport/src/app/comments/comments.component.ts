@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { PostReply } from 'src/models/PostReply';
 import { ActivatedRoute } from '@angular/router';
 import { PostReplyService } from '../services/post-reply.service';
@@ -15,11 +15,10 @@ export class CommentsComponent implements OnInit {
 
   public comments:PostReply[];
   
+  
 
   constructor(private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService, private userService:UserService) { }
 
-  
-  
 
   ngOnInit(): void {
     this.getReplies();
@@ -37,5 +36,6 @@ export class CommentsComponent implements OnInit {
       });
     })
   }
+
 
 }

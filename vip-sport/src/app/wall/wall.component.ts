@@ -50,7 +50,6 @@ export class WallComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.postService.getPostByCategory([params['categories']]).subscribe(data => {
         this.posts = data;
-        console.log(this.posts)
       });
     })
   }

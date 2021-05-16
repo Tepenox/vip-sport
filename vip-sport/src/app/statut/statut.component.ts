@@ -28,6 +28,7 @@ export class StatutComponent implements OnInit {
   public ownerUser:User;
 
   public replies:PostReply[] = [];
+  public nbComs:number;
 
   
 
@@ -35,20 +36,21 @@ export class StatutComponent implements OnInit {
    
    }
 
-  /* getReplies(){
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.postReplyService.getPostRepliesFromPostId(this.ownerUser.id).subscribe(data => {
+   getReplies(){
+    
+      this.postReplyService.getPostRepliesFromPostId(this.userPost.id).subscribe(data => {
         this.replies = data;
-      });
+        console.log(this.replies)
+     
     })
-  }*/
+  }
 
   ngOnInit(): void {
     this.userService.getUserById(this.userPost.ownerId).subscribe(data => {
       this.ownerUser = data;
     } )
 
-  //  this.getReplies();
+    this.getReplies();
 
   }
 
