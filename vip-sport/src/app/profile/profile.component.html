@@ -9,15 +9,33 @@
         data-holder-rendered="true"
       />
       <div *ngIf="profileModification">
-        URL: <input type="text" [(ngModel)]="user.imageUrl" />
+        URL de votre photo de profil:
+        <input type="text" [(ngModel)]="user.imageUrl" />
       </div>
       <h1 *ngIf="!profileModification">{{ user.userName }}</h1>
+      <h4>Follower: {{ followersCount }}</h4>
       <div class="text-center padder">
-        <input *ngIf="profileModification" [(ngModel)]="user.userName" />
+        <input
+          *ngIf="profileModification && !isFollowing"
+          [(ngModel)]="user.userName"
+        />
       </div>
-
       <button
-        *ngIf="!profileModification"
+        *ngIf="isYours && !isFollowing"
+        class="btn btn-outline-success"
+        (click)="addFriend()"
+      >
+        Follow
+      </button>
+      <button
+        *ngIf="isYours && isFollowing"
+        class="btn btn-outline-danger"
+        (click)="unfriend()"
+      >
+        Unfollow
+      </button>
+      <button
+        *ngIf="!profileModification && !isYours"
         class="btn btn-outline-danger"
         (click)="enableProfileModif()"
       >
@@ -150,20 +168,14 @@
       </div>
     </div>
 
-    <div class="col-4" style="color: rgb(0, 0, 0)">
+    <div class="col-4" style="color: rgb(0, 0, 0); padding-bottom: 20px">
       <h2>Macros :</h2>
       <app-piechart></app-piechart>
     </div>
   </div>
-
-  <!-- <div class="container-fluid section-color1">
-    <h1>Public posts:</h1>
-    <app-wall></app-wall>
-  </div> -->
-  <div class="container-fluid section-color1">
+  <div class="container-fluid section-color1 padding-top padding-bottom">
     <div *ngFor="let post of posts">
-      <app-statut [userPost]="post" ></app-statut>
+      <app-statut [userPost]="post"></app-statut>
     </div>
   </div>
-  <!--AJOUTER LES POST ICI-->
 </div>

@@ -1,3 +1,10 @@
 .btn-group{
     padding-bottom: 25px;
 }
+
+.card-deck{
+    padding-top: 45px;
+}
+.card-title{
+    text-align: center;
+}

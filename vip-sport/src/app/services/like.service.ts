@@ -28,8 +28,8 @@ export class LikeService {
       return this.httpClient.post<Like>(`${this.likesUrl}`,{subjectType,subjectId}).pipe(catchError(this.errorHandler));
   }
 
-  removeLike(subjectType:string,subjectId:number):Observable<Like>{
-    return this.httpClient.delete<Like>(`${this.likesUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
+  removeLike(subjectType:string,subjectId:number):any{
+    return this.httpClient.delete<any>(`${this.likesUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
 }
 
   errorHandler(error:HttpErrorResponse){

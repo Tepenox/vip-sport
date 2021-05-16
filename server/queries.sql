@@ -1,6 +1,10 @@
 -- drop table if exists notifications;
-drop table if  exists likes;
-drop table if  exists dislikes;
+
+drop table if exists roles;
+drop table if exists follows;
+drop table if exists notifications;
+drop table if exists likes;
+drop table if exists dislikes;
 drop table if exists postReplies;
 drop table if exists posts;
 drop table if exists threadReplies;
@@ -8,6 +12,13 @@ drop table if exists threads;
 drop table if exists users;
 drop table if exists categories;
 drop table if exists subcategories;
+
+
+CREATE TABLE roles (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    moderationPower INTEGER NOT NULL CHECK (moderationPower >= 0 AND moderationPower <= 100)
+);
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,7 +33,8 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     description TEXT NOT NULL,
     sport TEXT NOT NULL,
-    isAdmin TEXT DEFAULT 'false'
+    roleId INTEGER DEFAULT 1,
+    FOREIGN KEY (roleId) REFERENCES roles(id)
 );
 
 CREATE TABLE categories (
@@ -45,11 +57,7 @@ CREATE TABLE threads (
     title TEXT NOT NULL,
     ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
-    firstPostId INTEGER NOT NULL,
-    lastPostId INTEGER NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id),
-    FOREIGN KEY (firstPostId) REFERENCES threadReplies(id),
-    FOREIGN KEY (lastPostId) REFERENCES threadReplies(id)
+    FOREIGN KEY (ownerId) REFERENCES users(id)
 );
 CREATE TABLE threadReplies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -58,7 +66,7 @@ CREATE TABLE threadReplies (
     date TEXT NOT NULL,
     content TEXT NOT NULL,
     FOREIGN KEY (ownerId) REFERENCES users(id),
-    FOREIGN KEY (threadId) REFERENCES threads(id)
+    FOREIGN KEY (threadId) REFERENCES threads(id) ON DELETE CASCADE
 );
 
 CREATE TABLE likes (
@@ -101,18 +109,32 @@ CREATE TABLE postReplies (
 );
 
 
--- CREATE TABLE notifications (
---     id INTEGER PRIMARY KEY AUTOINCREMENT,
---     type TEXT NOT NULL,
---     fromId INTEGER NOT NULL,
---     -- the one who caused the notification
---     receiverId INTEGER NOT NULL,
---     date TEXT NOT NULL,
---     objectId INTEGER NOT NULL,
---     -- useful te redirect to the object that caused the notification , if we won t need it , the object id will be -1
---     FOREIGN KEY (from_id) REFERENCES users(id),
---     FOREIGN KEY (receiver_id) REFERENCES users(id)
--- );
+CREATE TABLE notifications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT NOT NULL,
+    fromId INTEGER NOT NULL,
+    receiverId INTEGER NOT NULL,
+    date TEXT NOT NULL,
+    objectId INTEGER NOT NULL,
+    FOREIGN KEY (fromId) REFERENCES users(id),
+    FOREIGN KEY (receiverId) REFERENCES users(id)
+);
+
+CREATE TABLE follows(
+    followerId INTEGER,
+    followedId INTEGER,
+    PRIMARY KEY (followerId, followedId),
+    FOREIGN KEY (followerId) REFERENCES users(id),
+    FOREIGN KEY (followedId) REFERENCES users(id)
+);
+
+
+INSERT INTO roles(name, moderationPower)
+VALUES  ("Membre", 0),
+        ("Modérateur", 50),
+        ("Administrateur", 100);
+
+
 insert INTO users(
         username,
         firstName,
@@ -141,6 +163,50 @@ VALUES (
     );
 
 
+insert INTO users(
+        username,
+        firstName,
+        lastName,
+        imageUrl,
+        age,
+        email,
+        password,
+        description,
+        sport,
+        weight,
+        height,
+        roleId
+    )
+VALUES (
+        'sesh',
+        'dorian',
+        'volt',
+        '../assets/pp.png',
+        22,
+        'sesh@gmail.com',
+        "password",
+        "Puceau moi ? Sérieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps 🙂 demande a mes potes si je suis puceau tu vas voir les réponses que tu vas te prendre XD rien que la semaine passee j ai niquer dont chuuuuut ferme la puceau de merde car toi tu m as tout tout l air d un bon puceau de merde car souvent vous etes frustrer de ne pas BAISER 🙂 ses agreable de se faire un missionnaire ou un amazone avec une meuf hein ? tu peux pas répondre car tu ne sais pas ce que c ou alors tu le sais mais tu as du taper dans ta barre de recherche « missionnaire sexe » ou « amazone sexe » pour comprendre ce que c etait mdddrrr !! cest grave quoiquil en soit....pour revenir a moi, je pense que je suis le mec le moins puceau de ma bande de 11 meilleurs amis pas psk j ai eu le plus de rapport intime mais psk j ai eu les plus jolie femme que mes amis 😀 ses pas moi qui le dit, ses eux qui commente sous mes photos insta « trop belle la fille que tu as coucher avec hier en boite notamment! » donc après si tu veux",
+        "cyclisme",
+        70,
+        200,
+        2
+    ),
+    (
+        'Gigachad',
+        'Chad',
+        'REDACTED',
+        'https://cdn.discordapp.com/attachments/582696736963821569/842759537655939142/unknown.png',
+        30,
+        'gigachad@gmail.com',
+        'password',
+        'Bonjour.',
+        'Tous',
+        80,
+        200,
+        3
+    );
+
+
     insert INTO users(
         username,
         firstName,
@@ -155,19 +221,6 @@ VALUES (
         height
     )
 VALUES (
-        'sesh',
-        'dorian',
-        'volt',
-        '../assets/pp.png',
-        22,
-        'sesh@gmail.com',
-        "password",
-        "Puceau moi ? Sérieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps 🙂 demande a mes potes si je suis puceau tu vas voir les réponses que tu vas te prendre XD rien que la semaine passee j ai niquer dont chuuuuut ferme la puceau de merde car toi tu m as tout tout l air d un bon puceau de merde car souvent vous etes frustrer de ne pas BAISER 🙂 ses agreable de se faire un missionnaire ou un amazone avec une meuf hein ? tu peux pas répondre car tu ne sais pas ce que c ou alors tu le sais mais tu as du taper dans ta barre de recherche « missionnaire sexe » ou « amazone sexe » pour comprendre ce que c etait mdddrrr !! cest grave quoiquil en soit....pour revenir a moi, je pense que je suis le mec le moins puceau de ma bande de 11 meilleurs amis pas psk j ai eu le plus de rapport intime mais psk j ai eu les plus jolie femme que mes amis 😀 ses pas moi qui le dit, ses eux qui commente sous mes photos insta « trop belle la fille que tu as coucher avec hier en boite notamment! » donc après si tu veux",
-        "cyclisme",
-        70,
-        200
-    ),
-    (
         'Issoucisse',
         'Jerry',
         'Golay',
@@ -184,8 +237,8 @@ VALUES (
         'Temsoka',
         'Adriano',
         'Toronto',
+        'https://cdn.discordapp.com/attachments/582696736963821569/841646970362920980/cdn_discordapp_com-480aae5c8d082d9eb2a5cceb2df887c0.png',
         21,
-        '../assets/pp.png',
         'temsoka@gmail.com',
         "password",
         "Oui",
@@ -197,8 +250,8 @@ VALUES (
         'Tintintamarre',
         'Jean-Gaspard',
         'Feur',
+        'https://pbs.twimg.com/media/EOk4KsZX0AAFNo4?format=jpg&name=large',
         22,
-        '../assets/pp.png',
         'tintintamarre@gmail.com',
         'password',
         "Feur",
@@ -227,22 +280,18 @@ insert into threads(
         subcategoryId,
         title,
         ownerId,
-        date,
-        firstPostId,
-        lastPostId
+        date
     )
 values(
         5,
         'Alors comme ça on me traite de FAIBLE ?',
-        3,
-        datetime('now'),
-        1,
-        4
+        4,
+        datetime('now')
     );
     
 insert into threadReplies(threadId, ownerId, date, content)
 values (
-        1, 3, datetime('now'),
+        1, 4, datetime('now'),
         'faible moi ? serieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps :) demande a mes potes si je suis 
         faible tu vas voir les reponses que tu vas te prendre XD rien que la semaine passee j ai soulevé donc chuuuuut ferme la 
         faible de merde car oui toi tu m as tout l air d un bon faible de merde car souvent vous etes frustrer de ne pas avoir de
@@ -256,15 +305,15 @@ values (
            le faible de merde mdddrrr pk insulter qd on est soi meme faible tu me feras toujour marrer!!'
     ),
     (
-        1, 4, datetime('now'),
+        1, 5, datetime('now'),
         "??? Fréro il t'arrives quoi ?"
     ),
     (
-        1, 5, datetime('now'),
+        1, 6, datetime('now'),
         "feur"
     ),
     (
-        1, 4, datetime('now'),
+        1, 5, datetime('now'),
         "ah ok"
     );
 
@@ -282,7 +331,7 @@ insert into posts (
         "text",
         "c est pas normal mon imc , a laide , je veux pas finir comme cedric ",
         "",
-        1,
+        2,
         datetime('now'),
         'cyclisme'
    );
@@ -297,4 +346,45 @@ insert into posts (
        "frere te renchoouf ",
        1,
        datetime('now')
+   );
+
+   insert into likes(
+       subjectId,
+       subjectType,
+       ownerId
+   )values(
+       1,
+       "Post",
+       1
+   ),(
+       1,
+       "Post",
+       2
+   ),(
+       1,
+       "Post",
+       3
+   ),(
+       1,
+       "PostComment",
+       1
+   ),
+   (
+       1,
+       "PostComment",
+       2
+   );
+
+   insert into notifications (
+    type  ,
+    fromId  ,
+    receiverId  ,
+    date  ,
+    objectId  
+   ) values (
+       "PostComment",
+        1,
+        2,
+        datetime('now'),
+        1
    );

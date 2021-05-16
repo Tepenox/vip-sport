@@ -17,12 +17,18 @@ ThreadReply.getAllByThreadId = function (threadId) {
     .all(threadId);
 };
 
+ThreadReply.getLastPostInThread = function (threadId) {
+  return db
+    .prepare("SELECT * FROM threadReplies WHERE threadId = ? ORDER BY id DESC LIMIT 1")
+    .get(threadId);
+}
+
 ThreadReply.create = function (threadReply) {
   return db
     .prepare(
-      "insert into threadreplies (threadId , content , ownerId)\
+      "insert into threadreplies (threadId , ownerId, date, content)\
     values (\
-        @threadId,@content,@ownerId)"
+        @threadId,@ownerId, datetime('now'), @content)"
     )
     .run(threadReply).lastInsertRowid;
 };

@@ -16,4 +16,9 @@ export class ForumPostService extends DataService {
     let params = new HttpParams().set('threadId', String(id));
     return this.http.get<ThreadReply[]>(this.url, { params: params });
   }
+
+  getLastPostInThread(threadId: number): Observable<ThreadReply> {
+    let params = new HttpParams().set('threadId', String(threadId));
+    return this.http.get<ThreadReply>(this.url + `/${threadId}`, { params: params });
+  }
 }

@@ -8,6 +8,10 @@ let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
 router.get("/dislikes/:subjecttype/:subjectid", (req, res) => {
+  res.json(Dislike.getCountBySubjectId(req.params.subjecttype,req.params.subjectid,req.params.ownerid))
+});
+
+router.get("/dislikes/:subjecttype/:subjectid/:ownerid", (req, res) => {
   if(Dislike.getDislike(req.params.subjecttype,req.params.subjectid,req.params.ownerid)){
     res.send("true")
   }else{
@@ -15,12 +19,9 @@ router.get("/dislikes/:subjecttype/:subjectid", (req, res) => {
   }
 });
 
-router.get("/dislikes/:subjecttype/:subjectid/:onwerid", (req, res) => {
-  res.json(Dislike.getCountBySubjectId(req.params.subjecttype,req.params.subjectid,req.params.ownerid))
-});
 
 
-router.post("/dislikes", (req, res) => {
+router.post("/dislikes",Middlewares.verifyToken, (req, res) => {
   if(Dislike.getDislike(req.body.subjectType,req.body.subjectId,req.userId)){
     res.status(401).send('user already disliked this object');
   }else {
@@ -30,10 +31,12 @@ router.post("/dislikes", (req, res) => {
 });
 
 
-router.delete("/dislikes/:subjecttype/:subjectid", (req, res) => {
+router.delete("/dislikes/:subjecttype/:subjectid",Middlewares.verifyToken, (req, res) => {
     if(Dislike.delete(req.params.subjecttype,req.params.subjectid,req.userId)> 0)
     res.json("done");
     else
     res.status(404).send("specified dislike with these params was not found");
   
 });
+
+module.exports = router ;
