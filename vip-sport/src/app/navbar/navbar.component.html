@@ -39,19 +39,23 @@
     
     <div class="icon" id="bell"> <img src="https://i.imgur.com/AC7dgLA.png" alt=""> </div>
     <div class="notifications" id="box">
-        <h2>Notifications - <span>2</span></h2>
-        <div class="notifications-item"> <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
+        <h2>Notifications - <span>{{notifications.length}}</span></h2>
+        <div *ngFor = "let notification of notifications" class="notifications-item"> <img [src]=notification.fromUser.imageUrl alt="img">
             <div class="text">
-                <h4>Samso aliao</h4>
-                <p>Samso Nagaro Like your home work</p>
+                <h4 routerLink = "/profile/{{notification.fromUser.id}}" >{{notification.fromUser.userName}}</h4>
+                <p *ngIf ="notification.type ==='PostComment'">{{notification.fromUser.userName}} commented on your post</p>
             </div>
         </div>
-        <div class="notifications-item"> <img src="https://img.icons8.com/flat_round/64/000000/vote-badge.png" alt="img">
+
+         <!-- <div class="notifications-item" *ngFor = "let notification of notifications"> <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
             <div class="text">
-                <h4>John Silvester</h4>
-                <p>+20 vista badge earned</p>
+                <h4 routerLink = "/profile/{{notification.fromUser.id}}">{{notification.fromUser.userName}}</h4>
+
+                <p *ngIf ="notification.type ==='PostComment'">{{notification.fromUser.userName}} commented on your post</p>
             </div>
         </div>
+         -->
+        
     </div>
 
     <button

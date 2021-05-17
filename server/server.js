@@ -17,6 +17,7 @@ const Dislikes = require('./routes/Dislikes');
 const Categories = require('./routes/Categories');
 const Subcategories = require('./routes/Subcategories');
 const Follow = require('./routes/Follow');
+const Notifications = require('./routes/Notifications');
 const app = express();
 
 app.use(cors());
@@ -48,6 +49,8 @@ app.use('',Dislikes);
 app.use('', Categories);
 
 app.use('', Subcategories);
+
+app.use('',Notifications);
 
 app.listen(port, function(){
     console.log("Server running on localhost:" + port);

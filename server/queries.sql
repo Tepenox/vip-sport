@@ -221,14 +221,14 @@ VALUES (
         height
     )
 VALUES (
-        'Issoucisse',
-        'Jerry',
-        'Golay',
-        '../assets/pp.png',
+        'RicardoMilos',
+        'Ricardo',
+        'Milos',
+        'https://image.noelshack.com/fichiers/2019/07/2/1549988274-ezgif-1-410bb9608c45-min.gif',
         25,
-        'issoucisse@gmail.com',
+        'ricardomilos@gmail.com',
         "password",
-        "La chancla",
+        "ahaaa",
         "aucun",
         121,
         220
@@ -383,8 +383,20 @@ insert into posts (
     objectId  
    ) values (
        "PostComment",
-        1,
         2,
+        1,
+        datetime('now'),
+        1
+   ),(
+       "PostComment",
+        3,
+        1,
+        datetime('now'),
+        1
+   ),(
+       "PostComment",
+        4,
+        1,
         datetime('now'),
         1
    );
