@@ -1,6 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { ThreadReply } from 'src/models/ThreadReply';
 import { ForumPostService } from '../services/forum-post.service';
 
@@ -19,19 +20,16 @@ export class ThreadComponent implements OnInit{
   constructor(private route: ActivatedRoute, private scroller: ViewportScroller, private service: ForumPostService) { }
 
   ngOnInit() {
-    this.route.paramMap
-      .subscribe(param => {
+    this.route.paramMap.pipe(
+      switchMap(param => {
         this.id = +param.get('threadID');
         this.threadTitle = param.get('threadTitle');
-      });
-      
-      this.route.fragment
+        return this.service.getPostsByThreadID(this.id);
+      })
+    ).subscribe((response: ThreadReply[]) => this.posts = response);
+
+    this.route.fragment
       .subscribe(param => this.fragment = param);
-    
-    this.service.getPostsByThreadID(this.id)
-      .subscribe((response: ThreadReply[]) => {
-        this.posts = response;
-      });
   }
 
   ngAfterViewInit(): void {
@@ -51,5 +49,9 @@ export class ThreadComponent implements OnInit{
 
   toggleReplyForm() {
     this.isReplyActive = !this.isReplyActive;
+  }
+
+  isFirstPost() {
+    return false;
   }
 }

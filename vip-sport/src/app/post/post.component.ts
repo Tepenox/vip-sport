@@ -14,7 +14,7 @@ import { UserService } from '../services/user.service';
 })
 export class PostComponent implements OnInit{
   @Input('postId') id: number
-  @Input('firstPost') firstPost: boolean = false;
+  @Input('isFirstPost') isFirstPost: boolean = false;
   post: ThreadReply;
   user: User;
   currentUser: User;
