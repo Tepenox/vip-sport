@@ -24,11 +24,15 @@ router.get("/threadReplies",(req,res)=>{
         res.json(ThreadReply.getAll());
 });
 
-router.get("/threadReplies/:threadId", (req, res) => {
+router.get("/threadReplies/:id", (req, res) => {
+    res.json(ThreadReply.getByid(req.params.id));
+});
+
+router.get("/threadReplies/thread/:threadId", (req, res) => {
     if (req.query.option == 'first')
-        res.json(ThreadReply.getFirstPostInThread(req.query.threadId));
+        res.json(ThreadReply.getFirstPostInThread(req.params.threadId));
     else if (req.query.option == 'last')
-        res.json(ThreadReply.getLastPostInThread(req.query.threadId));
+        res.json(ThreadReply.getLastPostInThread(req.params.threadId));
 });
 
 router.post("/threadReplies", Middlewares.verifyToken, (req,res)=>{
@@ -42,11 +46,11 @@ router.put("threadReplies/:id", (req,res)=>{
 
 });
 
-router.delete("threadReplies/:id", (req,res)=>{
+router.delete("/threadReplies/:id", (req,res)=>{
     if (ThreadReply.delete(req.params.id) > 0) {
-        res.send("Message deleted.");
+        res.send('Message deleted.');
     } else {
-        res.status(500).send("Something went wrong. Message might not exist.");
+        res.status(500).send('Something went wrong. Message might not exist.');
     }
 });
 

@@ -21,13 +21,13 @@ export class ForumPostService extends DataService {
     let params = new HttpParams()
       .set('threadId', String(threadId))
       .set('option', 'first');
-    return this.http.get<ThreadReply>(this.url + `/${threadId}`, { params: params });
+    return this.http.get<ThreadReply>(this.url + `/thread/${threadId}`, { params: params });
   }
 
   getLastPostInThread(threadId: number): Observable<ThreadReply> {
     let params = new HttpParams()
     .set('threadId', String(threadId))
     .set('option', 'last');
-    return this.http.get<ThreadReply>(this.url + `/${threadId}`, { params: params });
+    return this.http.get<ThreadReply>(this.url + `/thread/${threadId}`, { params: params });
   }
 }

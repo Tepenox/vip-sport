@@ -47,7 +47,8 @@ export class PostComponent implements OnInit{
         this.delete.emit();
       else {
         this.postService.delete(this.id)
-          .subscribe(response => window.location.reload);
+          .subscribe(() => {} );
+        window.location.reload();
       }
     }
   }

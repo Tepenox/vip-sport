@@ -6,7 +6,7 @@
     </div>
     <div class="threadContent" >
         <div *ngFor="let post of posts; let isFirst = first" id="post-{{ post?.id }}" >
-            <f-post [postId]="post?.id" [isFirstPost]="isFirst && page == 1 ? true : false"></f-post>
+            <f-post [postId]="post?.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
         </div>
     </div>
     <div>

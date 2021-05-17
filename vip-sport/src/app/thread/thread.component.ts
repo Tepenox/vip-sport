@@ -1,6 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { ThreadReply } from 'src/models/ThreadReply';
 import { ForumPostService } from '../services/forum-post.service';
@@ -18,7 +18,7 @@ export class ThreadComponent implements OnInit{
   posts: ThreadReply[];
   fragment: string;
 
-  constructor(private route: ActivatedRoute, private scroller: ViewportScroller, private service: ForumPostService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, private service: ForumPostService) { }
 
   ngOnInit() {
     this.initializeThread();
@@ -43,6 +43,11 @@ export class ThreadComponent implements OnInit{
 
   toggleReplyForm() {
     this.isReplyActive = !this.isReplyActive;
+  }
+
+  deleteThread() {
+    this.service.delete(this.id)
+      .subscribe(response => this.router.navigate(['../'], { relativeTo: this.route }));
   }
 
   private initializeThread() {
