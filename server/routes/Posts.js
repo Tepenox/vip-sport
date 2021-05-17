@@ -19,6 +19,8 @@ function verifyPostOwnerShip(req,res,next){
 router.get("/posts", (req, res) => {
   if(req.query.categories){
     res.json(Post.getByCategory(req.query.categories))
+  }else if(req.query.id){
+    res.json(Post.getByid(req.query.id));
   }else {
     res.json(Post.getAll());
     console.log(req.headers);
