@@ -17,8 +17,17 @@ export class ForumPostService extends DataService {
     return this.http.get<ThreadReply[]>(this.url, { params: params });
   }
 
+  getFirstPostInThread(threadId: number): Observable<ThreadReply> {
+    let params = new HttpParams()
+      .set('threadId', String(threadId))
+      .set('option', 'first');
+    return this.http.get<ThreadReply>(this.url + `/${threadId}`, { params: params });
+  }
+
   getLastPostInThread(threadId: number): Observable<ThreadReply> {
-    let params = new HttpParams().set('threadId', String(threadId));
+    let params = new HttpParams()
+    .set('threadId', String(threadId))
+    .set('option', 'last');
     return this.http.get<ThreadReply>(this.url + `/${threadId}`, { params: params });
   }
 }

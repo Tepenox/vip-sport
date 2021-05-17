@@ -14,6 +14,7 @@ import { UserService } from '../services/user.service';
 })
 export class PostComponent implements OnInit{
   @Input('postId') id: number
+  @Input('firstPost') firstPost: boolean = false;
   post: ThreadReply;
   user: User;
   currentUser: User;
@@ -36,5 +37,9 @@ export class PostComponent implements OnInit{
       .subscribe((response: Role) => {
         this.currentUserRole = response;
       });
+  }
+
+  deletePost() {
+    console.log("Delete button clicked.");
   }
 }

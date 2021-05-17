@@ -25,8 +25,11 @@ router.get("/threadReplies",(req,res)=>{
 });
 
 router.get("/threadReplies/:threadId", (req, res) => {
-    res.json(ThreadReply.getLastPostInThread(req.query.threadId));
-})
+    if (req.query.option == 'first')
+        res.json(ThreadReply.getFirstPostInThread(req.query.threadId));
+    else if (req.query.option == 'last')
+        res.json(ThreadReply.getLastPostInThread(req.query.threadId));
+});
 
 router.post("/threadReplies", Middlewares.verifyToken, (req,res)=>{
     let reply = req.body;
