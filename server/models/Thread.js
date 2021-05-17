@@ -40,7 +40,7 @@ Thread.edit = function (thread) {
 };
 
 Thread.delete = function (id) {
-    return db.prepare("delete from threads where  id= ?").run(id).changes;
+    return db.prepare("delete from threads where id= ?").run(id).changes;
 };
 
 Thread.searchByTitle = function(title){
