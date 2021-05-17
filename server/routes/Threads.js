@@ -45,7 +45,7 @@ router.put(
   }
 );
 
-router.delete("/threads/:id", Middlewares.verifyToken, verifyThreadOwnerShip, (req, res) => {
+router.delete("/threads/:id", Middlewares.verifyToken, (req, res) => {
   if(Thread.delete(req.params.id) >= 1){
     res.send('Thread deleted.');
   }else{

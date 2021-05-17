@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { ThreadReply } from 'src/models/ThreadReply';
 import { ForumPostService } from '../services/forum-post.service';
+import { ThreadService } from '../services/thread.service';
 
 @Component({
   selector: 'f-thread',
@@ -18,7 +19,7 @@ export class ThreadComponent implements OnInit{
   posts: ThreadReply[];
   fragment: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, private service: ForumPostService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, private service: ForumPostService, private threadService: ThreadService) { }
 
   ngOnInit() {
     this.initializeThread();
@@ -46,8 +47,9 @@ export class ThreadComponent implements OnInit{
   }
 
   deleteThread() {
-    this.service.delete(this.id)
-      .subscribe(response => this.router.navigate(['../'], { relativeTo: this.route }));
+    this.threadService.delete(this.id)
+      .subscribe(() => {});
+    this.router.navigate(['../../..'], { relativeTo: this.route });
   }
 
   private initializeThread() {
