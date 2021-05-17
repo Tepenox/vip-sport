@@ -20,4 +20,8 @@ export class DataService {
   create(resource: Object): Observable<Object> {
     return this.http.post<Object>(this.url, resource);
   }
+
+  delete(id: number): Observable<Object> {
+    return this.http.delete<Object>(this.url + `/${id}`);
+  }
 }

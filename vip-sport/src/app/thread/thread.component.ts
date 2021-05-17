@@ -1,8 +1,10 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { ThreadReply } from 'src/models/ThreadReply';
 import { ForumPostService } from '../services/forum-post.service';
+import { ThreadService } from '../services/thread.service';
 
 @Component({
   selector: 'f-thread',
@@ -11,27 +13,18 @@ import { ForumPostService } from '../services/forum-post.service';
 })
 export class ThreadComponent implements OnInit{
   id: number;
+  page:number = 1; //TODO
   threadTitle: string;
   isReplyActive = false;
   posts: ThreadReply[];
   fragment: string;
 
-  constructor(private route: ActivatedRoute, private scroller: ViewportScroller, private service: ForumPostService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, private service: ForumPostService, private threadService: ThreadService) { }
 
   ngOnInit() {
-    this.route.paramMap
-      .subscribe(param => {
-        this.id = +param.get('threadID');
-        this.threadTitle = param.get('threadTitle');
-      });
-      
-      this.route.fragment
+    this.initializeThread();
+    this.route.fragment
       .subscribe(param => this.fragment = param);
-    
-    this.service.getPostsByThreadID(this.id)
-      .subscribe((response: ThreadReply[]) => {
-        this.posts = response;
-      });
   }
 
   ngAfterViewInit(): void {
@@ -51,5 +44,21 @@ export class ThreadComponent implements OnInit{
 
   toggleReplyForm() {
     this.isReplyActive = !this.isReplyActive;
+  }
+
+  deleteThread() {
+    this.threadService.delete(this.id)
+      .subscribe(() => {});
+    this.router.navigate(['../../..'], { relativeTo: this.route });
+  }
+
+  private initializeThread() {
+    this.route.paramMap.pipe(
+      switchMap(param => {
+        this.id = +param.get('threadID');
+        this.threadTitle = param.get('threadTitle');
+        return this.service.getPostsByThreadID(this.id);
+      })
+    ).subscribe((response: ThreadReply[]) => this.posts = response);
   }
 }
