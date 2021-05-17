@@ -10,7 +10,7 @@ Post.getAll = function (){
 
 
 Post.getByid = function (id){
-    return db.prepare("select * from posts where id = ? order by date desc" ).get(id);
+    return db.prepare("select * from posts where id = ?" ).get(id);
 }
 
 Post.getByCategory = function (category){
