@@ -30,4 +30,8 @@ export class ForumPostService extends DataService {
     .set('option', 'last');
     return this.http.get<ThreadReply>(this.url + `/thread/${threadId}`, { params: params });
   }
+
+  deleteAllFromThread(threadId: number) {
+    return this.http.delete(this.url + `/thread/${threadId}`);
+  }
 }

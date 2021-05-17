@@ -54,4 +54,12 @@ router.delete("/threadReplies/:id", (req,res)=>{
     }
 });
 
+router.delete("/threadReplies/thread/:threadId", (req, res) => {
+    if (ThreadReply.deleteAllFromThread(req.params.threadId) > 0) {
+        res.send('Messages deleted.');
+    } else {
+        res.status(500).send('Something went wrong. Message might not exist.');
+    }
+});
+
 module.exports = router;

@@ -48,7 +48,11 @@ ThreadReply.edit = function (threadReply) {
 
 
 ThreadReply.delete = function(id){
-    return db.prepare("delete from threadReplies where id = ?").run(id).changes;
+  return db.prepare("delete from threadReplies where id = ?").run(id).changes;
+}
+
+ThreadReply.deleteAllFromThread = function(threadId) {
+  return db.prepare("DELETE FROM threadReplies WHERE threadId = ?").run(threadId).changes;
 }
 
 module.exports = ThreadReply;
