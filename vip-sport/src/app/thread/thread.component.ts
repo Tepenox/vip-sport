@@ -12,6 +12,7 @@ import { ForumPostService } from '../services/forum-post.service';
 })
 export class ThreadComponent implements OnInit{
   id: number;
+  page:number = 1; //TODO
   threadTitle: string;
   isReplyActive = false;
   posts: ThreadReply[];
@@ -20,14 +21,7 @@ export class ThreadComponent implements OnInit{
   constructor(private route: ActivatedRoute, private scroller: ViewportScroller, private service: ForumPostService) { }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(param => {
-        this.id = +param.get('threadID');
-        this.threadTitle = param.get('threadTitle');
-        return this.service.getPostsByThreadID(this.id);
-      })
-    ).subscribe((response: ThreadReply[]) => this.posts = response);
-
+    this.initializeThread();
     this.route.fragment
       .subscribe(param => this.fragment = param);
   }
@@ -51,7 +45,13 @@ export class ThreadComponent implements OnInit{
     this.isReplyActive = !this.isReplyActive;
   }
 
-  isFirstPost() {
-    return false;
+  private initializeThread() {
+    this.route.paramMap.pipe(
+      switchMap(param => {
+        this.id = +param.get('threadID');
+        this.threadTitle = param.get('threadTitle');
+        return this.service.getPostsByThreadID(this.id);
+      })
+    ).subscribe((response: ThreadReply[]) => this.posts = response);
   }
 }

@@ -14,7 +14,7 @@ import { UserService } from '../services/user.service';
 })
 export class PostComponent implements OnInit{
   @Input('postId') id: number
-  @Input('isFirstPost') isFirstPost: boolean = false;
+  @Input('isFirstPost') isFirstPost: boolean;
   post: ThreadReply;
   user: User;
   currentUser: User;
@@ -40,6 +40,15 @@ export class PostComponent implements OnInit{
   }
 
   deletePost() {
-    console.log("Delete button clicked.");
+    let confirmation = this.setConfirmationString();
+    if (confirm(confirmation))
+      console.log("Message supprimé.");
+  }
+
+  private setConfirmationString(): string {
+    let message = "Voulez-vous vraiment supprimer ce message ?";
+    if (this.isFirstPost)
+      message += " Celui-ci étant le premier message du sujet, ce sujet sera supprimé.";
+    return message;
   }
 }

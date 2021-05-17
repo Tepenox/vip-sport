@@ -5,8 +5,8 @@
         </h2>
     </div>
     <div class="threadContent" >
-        <div *ngFor="let post of posts" id="post-{{ post?.id }}" >
-            <f-post [postId]="post?.id" [isFirstPost]="isFirstPost()"></f-post>
+        <div *ngFor="let post of posts; let isFirst = first" id="post-{{ post?.id }}" >
+            <f-post [postId]="post?.id" [isFirstPost]="isFirst && page == 1 ? true : false"></f-post>
         </div>
     </div>
     <div>
