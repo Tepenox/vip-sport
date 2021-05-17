@@ -41,7 +41,7 @@ router.put("threadReplies/:id", (req,res)=>{
 
 router.delete("threadReplies/:id", (req,res)=>{
     if (ThreadReply.delete(req.params.id) > 0) {
-        res.send("Message deleted");
+        res.send("Message deleted.");
     } else {
         res.status(500).send("Something went wrong. Message might not exist.");
     }

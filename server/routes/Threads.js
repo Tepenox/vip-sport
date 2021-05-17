@@ -45,19 +45,12 @@ router.put(
   }
 );
 
-router.delete(
-  "/threads/:id",
-  Middlewares.verifyToken,
-  verifyThreadOwnerShip,
-  (req, res) => {
-    if(Thread.delete(req.params.id)>=1){
-        res.send('deleted');
-    }else{
-        res.status(500).send('something went wrong');
-    }
-    
-
+router.delete("/threads/:id", Middlewares.verifyToken, verifyThreadOwnerShip, (req, res) => {
+  if(Thread.delete(req.params.id) >= 1){
+    res.send('Thread deleted.');
+  }else{
+    res.status(500).send('Something went wrong. Thread might not exist.');
   }
-);
+});
 
 module.exports = router;
