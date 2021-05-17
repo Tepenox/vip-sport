@@ -17,6 +17,12 @@ ThreadReply.getAllByThreadId = function (threadId) {
     .all(threadId);
 };
 
+ThreadReply.getFirstPostInThread = function (threadId) {
+  return db
+    .prepare("SELECT * FROM threadReplies WHERE threadId = ? ORDER BY id ASC LIMIT 1")
+    .get(threadId);
+}
+
 ThreadReply.getLastPostInThread = function (threadId) {
   return db
     .prepare("SELECT * FROM threadReplies WHERE threadId = ? ORDER BY id DESC LIMIT 1")
