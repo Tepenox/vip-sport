@@ -99,7 +99,7 @@ export class SignUpComponent implements OnInit {
         localStorage.setItem('token', data[1].token);
         localStorage.setItem('userId', data[0].id);
         this.authService.setCurentUser(data[0]);
-        this.router.navigate(['/secret']);
+        this.router.navigate(['/profile/'+data[0].id]);
       },
       (err) => console.log(err)
     );

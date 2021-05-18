@@ -20,7 +20,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/welcome"
-          >Accueil<span class="sr-only">(current)</span></a
+          >Home<span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item" routerLinkActive="active">
@@ -30,7 +30,7 @@
         <a class="nav-link" routerLink="/sportspage">Sports</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/trainer">Entrainement</a>
+        <a class="nav-link" routerLink="/trainer">Trainer</a>
       </li>
       <li *ngIf="authService.loggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/profile/{{authService.getCurrentUser().id}}">Profil</a>
@@ -41,22 +41,29 @@
     <div class="notifications" id="box">
         <h2>Notifications - <span>{{notifications.length}}</span></h2>
         <div *ngFor = "let notification of notifications" class="notifications-item"> <img [src]=notification.fromUser.imageUrl alt="img">
-          <h4 routerLink = "/profile/{{notification.fromUser.id}}" >{{notification.fromUser.userName}}</h4>
             <div class="text">
-                <p *ngIf ="notification.type ==='PostComment'">{{notification.fromUser.userName}} commented on your post</p>
+                <h4 class = "profile-link" routerLink = "/profile/{{notification.fromUser.id}}" >{{notification.fromUser.userName}}</h4>
+                <p class="notification-item-post-comment" *ngIf ="notification.type ==='PostComment'">{{notification.fromUser.userName}} a commenté sur ton poste</p>
+                <p class="notification-item-post-follow" *ngIf ="notification.type ==='Follow'">{{notification.fromUser.userName}} a commmencé de vous suivre</p>
             </div>
-        </div>
-
-         <!-- <div class="notifications-item" *ngFor = "let notification of notifications"> <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
-            <div class="text">
-                <h4 routerLink = "/profile/{{notification.fromUser.id}}">{{notification.fromUser.userName}}</h4>
-
-                <p *ngIf ="notification.type ==='PostComment'">{{notification.fromUser.userName}} commented on your post</p>
-            </div>
-        </div>
-         -->    
-
+        </div>        
     </div>
+
+    <div class="user-search-results" id="box-search">
+      <h2>User search results  - <span> {{userSearchResults.length}} </span></h2>
+      <div *ngFor= "let user of userSearchResults" class="user-search-results-item"> <img [src]="user.imageUrl" alt="img">
+          <div routerLink = "/profile/{{user.id}}" class="text">
+              <h4 class = "profile-link" >{{user.userName}}</h4>
+          </div>
+      </div>        
+  </div>
+
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    
 
     <button
       *ngIf="!authService.loggedIn()"
