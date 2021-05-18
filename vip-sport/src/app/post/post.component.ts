@@ -21,7 +21,7 @@ export class PostComponent implements OnInit{
   currentUser: User;
   currentUserRole: Role;
 
-  constructor(private postService: ForumPostService, private userService: UserService, private authService: AuthenticationService, private roleService: RoleService) { }
+  constructor(private postService: ForumPostService, private userService: UserService, public authService: AuthenticationService, private roleService: RoleService) { }
 
   ngOnInit() {
     this.postService.getById(this.id)

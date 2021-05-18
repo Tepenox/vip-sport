@@ -36,7 +36,11 @@ export class SignUpComponent implements OnInit {
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
         age: ['', Validators.required],
-        sport: ['', Validators.required],
+        heigth: ['', Validators.required],
+        weigth: ['', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        username: ['', Validators.required],
       },
       {
         validator: this.checkPassword('password', 'confirmPassword'),
@@ -47,27 +51,32 @@ export class SignUpComponent implements OnInit {
   onSubmitForm() {
     const formValue = this.loginForm.value;
 
-    const username = 'tepenox';
-    const firstName = 'anass';
-    const lastName = 'el afya';
-    const age = 'string';
+    const username = formValue['username'];
+    const firstName = formValue['firstName'];
+    const lastName = formValue['lastName'];
+    const age = formValue['age'];
+    const weigth = formValue['weigth'];
+    const heigth = formValue['heigth'];
+    const sport = '';
     const email = formValue['email'];
     const password = formValue['password'];
-    const passwordConfirmation = formValue['confirmPassword'];
-    const description = 'sessshhhh';
+    const description = '';
 
-    // let newUser = new User(
-    //   username,
-    //   firstName,
-    //   lastName,
-    //   age,
-    //   email,
-    //   password,
-    //   description
-    // );
-    // console.log(newUser);
-    
-    // this.registerUser(newUser);
+    let newUser = new User(
+      username,
+      firstName,
+      lastName,
+      age,
+      email,
+      password,
+      description,
+      sport,
+      weigth,
+      heigth
+    );
+    console.log(newUser);
+
+    this.registerUser(newUser);
   }
   checkPassword(password: string, otherPassword: string) {
     return (formGroup: FormGroup) => {
@@ -88,7 +97,7 @@ export class SignUpComponent implements OnInit {
     this.authService.registerUser(user).subscribe(
       (data) => {
         localStorage.setItem('token', data[1].token);
-        localStorage.setItem('userId',data[0].id);
+        localStorage.setItem('userId', data[0].id);
         this.authService.setCurentUser(data[0]);
         this.router.navigate(['/secret']);
       },
