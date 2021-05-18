@@ -13,6 +13,8 @@ import { TrainerComponent } from './trainer/trainer.component';
 import { WallComponent } from './wall/wall.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NoContentPageComponent } from './no-content-page/no-content-page.component';
+import { ThreadReplyResolver } from './resolvers/thread-reply.resolver';
+import { ThreadResolver } from './resolvers/thread.resolver';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -29,7 +31,7 @@ const routes: Routes = [
   {path: 'sportspage', component : CardComponent},
   {path: 'trainer', component : TrainerComponent},
   {path: 'secret', canActivate :[AuthGuard],component : SecretComponent},
-  {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent},
+  {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent, resolve: { replies: ThreadReplyResolver, thread: ThreadResolver }},
   {path: 'forum/:subcategoryID', component : ForumComponent},
   {path: 'forum', component : ForumComponent},
   {path: 'posts', component : WallComponent},
