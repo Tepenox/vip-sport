@@ -41,10 +41,10 @@ export class ProfileComponent implements OnInit {
           this.getFollowersCount(this.user.id);
           this.isYours = auth.getCurrentUser().id != parseInt(params.get('id'));
           this.calculateImc();
+          this.getPosts();
         });
     });
 
-    this.getPosts(); //Les posts ne sont pas les bons il faudra les changer
   }
 
   ngOnInit(): void {}
@@ -54,7 +54,6 @@ export class ProfileComponent implements OnInit {
       .isFollowing(this.auth.getCurrentUser().id, userId)
       .subscribe((val) => {
         this.isFollowing = val;
-        console.log(this.isFollowing);
       });
   }
 
@@ -67,7 +66,7 @@ export class ProfileComponent implements OnInit {
   getPosts() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.postService
-        .getPostByCategory([params['categories']])
+        .getPostsByOwnerId(this.user.id)
         .subscribe((data) => {
           this.posts = data;
         });
@@ -116,7 +115,6 @@ export class ProfileComponent implements OnInit {
       this.setFollowing(this.user.id);
       this.getFollowersCount(this.user.id);
     });
-    //this.isFollowing = !this.isFollowing;
   }
 
   unfriend() {
@@ -126,6 +124,5 @@ export class ProfileComponent implements OnInit {
         this.setFollowing(this.user.id);
         this.getFollowersCount(this.user.id);
       });
-    //this.isFollowing = !this.isFollowing;
   }
 }
