@@ -97,6 +97,8 @@ export class LikeDislikeComponent implements OnInit {
   }
 
   getCounterUp(){
+    console.log(this.subject)
+    console.log(this.commentId)
     this.likeService.getLikesCount(this.subject.type,this.commentId).subscribe(data => {
       this.counterUp = data;
     })
