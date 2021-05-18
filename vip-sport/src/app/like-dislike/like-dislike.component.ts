@@ -33,8 +33,13 @@ export class LikeDislikeComponent implements OnInit {
 
   upVoteClick(){
     if(this.isClickedDown == true && this.isClickedUp == false){
-      this.counterUp += 1;
-      this.counterDown -= 1;
+
+     // this.counterUp += 1;
+      this.addLike();
+      
+      //this.counterDown -= 1;
+      this.removeDislike();
+
       this.isClickedDown = false;
       this.isClickedUp = true;
       this.imageDown = "./assets/dumbDown.png";
@@ -42,12 +47,14 @@ export class LikeDislikeComponent implements OnInit {
     }
     else if(this.isClickedUp == true && this.isClickedDown == false){
       this.isClickedUp = false;
-      this.counterUp -= 1;
+      //this.counterUp -= 1;
+      this.removeLike();
       this.imageUp = "./assets/dumbDown.png"
     }
     
     else if(this.isClickedDown == false && this.isClickedUp == false){
-    this.counterUp += 1;
+    //this.counterUp += 1;
+    this.addLike();
     this.imageUp = "./assets/dumbDownActived2.png"
     this.isClickedUp = true;
     }
