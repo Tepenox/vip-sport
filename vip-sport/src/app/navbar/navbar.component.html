@@ -20,7 +20,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/welcome"
-          >Home<span class="sr-only">(current)</span></a
+          >Accueil<span class="sr-only">(current)</span></a
         >
       </li>
       <li class="nav-item" routerLinkActive="active">
@@ -30,7 +30,7 @@
         <a class="nav-link" routerLink="/sportspage">Sports</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/trainer">Trainer</a>
+        <a class="nav-link" routerLink="/trainer">Entrainement</a>
       </li>
       <li *ngIf="authService.loggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/profile/{{authService.getCurrentUser().id}}">Profil</a>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="user-search-results" id="box-search">
-      <h2>User search results  - <span> {{userSearchResults.length}} </span></h2>
+      <h2>Résultats  - <span> {{userSearchResults.length}} </span></h2>
       <div *ngFor= "let user of userSearchResults" class="user-search-results-item"> <img [src]="user.imageUrl" alt="img">
           <div routerLink = "/profile/{{user.id}}" class="text">
               <h4 class = "profile-link" >{{user.userName}}</h4>
@@ -61,7 +61,7 @@
 
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
     </form>
     
 

@@ -13,7 +13,7 @@
         <input type="text" [(ngModel)]="user.imageUrl" />
       </div>
       <h1 *ngIf="!profileModification">{{ user.userName }}</h1>
-      <h4>Follower: {{ followersCount }}</h4>
+      <h4>Abonnés: {{ followersCount }}</h4>
       <div class="text-center padder">
         <input
           *ngIf="profileModification && !isFollowing"
@@ -25,14 +25,14 @@
         class="btn btn-outline-success"
         (click)="addFriend()"
       >
-        Follow
+        S'abonner
       </button>
       <button
         *ngIf="isYours && isFollowing"
         class="btn btn-outline-danger"
         (click)="unfriend()"
       >
-        Unfollow
+        Se désabonner
       </button>
       <button
         *ngIf="!profileModification && !isYours"
@@ -163,7 +163,7 @@
           aria-valuemin="0"
           aria-valuemax="100"
         >
-          Adios
+          Danger
         </div>
       </div>
     </div>
