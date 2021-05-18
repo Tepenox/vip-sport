@@ -13,6 +13,11 @@ Post.getByid = function (id){
     return db.prepare("select * from posts where id = ?" ).get(id);
 }
 
+Post.getByOwnerId = function (id){
+    return db.prepare("select * from posts where ownerId = ?" ).all(id);
+}
+
+
 Post.getByCategory = function (category){
 
     return db.prepare("select * from posts where categories like ? order by date desc").all('%'+category+'%');

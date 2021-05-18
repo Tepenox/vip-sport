@@ -21,6 +21,8 @@ router.get("/posts", (req, res) => {
     res.json(Post.getByCategory(req.query.categories))
   }else if(req.query.id){
     res.json(Post.getByid(req.query.id));
+  }else if(req.query.ownerId) {
+    res.json(Post.getByOwnerId(req.query.ownerId));
   }else {
     res.json(Post.getAll());
     console.log(req.headers);
