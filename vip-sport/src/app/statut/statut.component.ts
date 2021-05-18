@@ -40,7 +40,7 @@ export class StatutComponent implements OnInit {
     
       this.postReplyService.getPostRepliesFromPostId(this.userPost.id).subscribe(data => {
         this.replies = data;
-        console.log(this.replies)
+        //console.log(this.replies)
      
     })
   }

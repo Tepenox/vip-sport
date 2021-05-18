@@ -22,7 +22,7 @@
     </div>
 
     <div *ngIf="replies.length != 0" style="padding-left: 100px;">  
-         <a id="userName" style="color: white; font-weight: bold;" routerLink = "/posts/replies" [queryParams]="{postId: userPost.id}" >Voir les commentaires ({{replies.length}})</a>
+         <a id="userName" style="color: white; font-weight: bold;"  routerLink = "/posts/replies" [queryParams]="{postId: userPost.id}" >Voir les commentaires ({{replies.length}})</a>
     </div>
 
     <app-commentaire-form (giveTextEvent)="postReply($event)"></app-commentaire-form>

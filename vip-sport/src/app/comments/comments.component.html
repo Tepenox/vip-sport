@@ -1,5 +1,19 @@
-<div *ngFor = "let comment of comments" style="padding-top: 100px;">
+<div id="comment" *ngFor = "let comment of comments" style="padding-top: 100px;">
+    
+    <div class="row">
 
+        <div id="profilePicDiv">
+            
+            <img id='profilePic' [userId]="comment.ownerId" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/> 
+        </div>
+        
+
+        <div *ngIf ="comment.ownerId == opOwnerId">
+            <img id='OP' src ="./assets/Trash-Trophee/trophee.png" data-holder-rendered="true"/>
+        </div> 
+
+
+    </div>
     
 
     <div class="row">
