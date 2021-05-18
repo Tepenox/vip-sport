@@ -33,6 +33,7 @@ import { ThreadFormComponent } from './thread-form/thread-form.component';
 import { ThreadCreationFormComponent } from './thread-creation-form/thread-creation-form.component';
 import { DeleteButtonComponent } from './delete-button/delete-button.component';
 import { CommentsComponent } from './comments/comments.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { CommentsComponent } from './comments/comments.component';
     ThreadFormComponent,
     ThreadCreationFormComponent,
     DeleteButtonComponent,
-    CommentsComponent
+    CommentsComponent,
+    NoContentPageComponent
   ],
   imports: [
     BrowserModule,

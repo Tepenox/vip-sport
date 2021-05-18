@@ -7,7 +7,7 @@
             </a>
             <span class="postDate text-muted"> {{ post?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }} </span>
             <span class="post-options">
-                <delete-button *ngIf="currentUserRole?.moderationPower >= 50 || currentUser?.id == user?.id" [postId]="id"></delete-button>
+                <delete-button *ngIf="(currentUserRole?.moderationPower >= 50 || currentUser?.id == user?.id) && authService.loggedIn()" [postId]="id" (delete)="deletePost()"></delete-button>
             </span>
         </span>
         <hr>

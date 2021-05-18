@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Role } from 'src/models/Role';
 import { ThreadReply } from 'src/models/ThreadReply';
 import { User } from 'src/models/User';
@@ -14,12 +14,14 @@ import { UserService } from '../services/user.service';
 })
 export class PostComponent implements OnInit{
   @Input('postId') id: number
+  @Input('isFirstPost') isFirstPost: boolean;
+  @Output('delete') delete = new EventEmitter();
   post: ThreadReply;
   user: User;
   currentUser: User;
   currentUserRole: Role;
 
-  constructor(private postService: ForumPostService, private userService: UserService, private authService: AuthenticationService, private roleService: RoleService) { }
+  constructor(private postService: ForumPostService, private userService: UserService, public authService: AuthenticationService, private roleService: RoleService) { }
 
   ngOnInit() {
     this.postService.getById(this.id)
@@ -36,5 +38,25 @@ export class PostComponent implements OnInit{
       .subscribe((response: Role) => {
         this.currentUserRole = response;
       });
+  }
+
+  deletePost() {
+    let confirmation = this.setConfirmationString();
+    if (confirm(confirmation)) {
+      if (this.isFirstPost)
+        this.delete.emit();
+      else {
+        this.postService.delete(this.id)
+          .subscribe(() => {} );
+        window.location.reload();
+      }
+    }
+  }
+
+  private setConfirmationString(): string {
+    let message = "Voulez-vous vraiment supprimer ce message ?";
+    if (this.isFirstPost)
+      message += " Celui-ci étant le premier message du sujet, ce sujet sera supprimé.";
+    return message;
   }
 }

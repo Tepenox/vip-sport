@@ -13,6 +13,7 @@ import { TrainerComponent } from './trainer/trainer.component';
 import { WallComponent } from './wall/wall.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CommentsComponent } from './comments/comments.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page.component';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path: 'forum/:subcategoryID', component : ForumComponent},
   {path: 'forum', component : ForumComponent},
   {path: 'posts', component : WallComponent},
-  {path: 'posts/replies', component: CommentsComponent}
+  {path: 'posts/replies', component: CommentsComponent},
+  {path: '**', component : NoContentPageComponent}
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'delete-button',
@@ -7,11 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DeleteButtonComponent {
   @Input('postId') postId: number;
+  @Output('delete') delete = new EventEmitter();
 
   constructor() { }
 
   deletePost() {
-    console.log(this.postId);
+    this.delete.emit();
   }
-
 }
