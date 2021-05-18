@@ -32,6 +32,7 @@ import { ReplyFormComponent } from './reply-form/reply-form.component';
 import { ThreadFormComponent } from './thread-form/thread-form.component';
 import { ThreadCreationFormComponent } from './thread-creation-form/thread-creation-form.component';
 import { DeleteButtonComponent } from './delete-button/delete-button.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { DeleteButtonComponent } from './delete-button/delete-button.component';
     ReplyFormComponent,
     ThreadFormComponent,
     ThreadCreationFormComponent,
-    DeleteButtonComponent
+    DeleteButtonComponent,
+    NoContentPageComponent
   ],
   imports: [
     BrowserModule,
