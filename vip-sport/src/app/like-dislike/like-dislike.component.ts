@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DislikeService } from '../services/dislike.service';
+import { LikeService } from '../services/like.service';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class LikeDislikeComponent implements OnInit {
   public imageUp = "./assets/dumbDown.png";
   public imageDown = "./assets/dumbDown.png";
 
-  constructor() { }
+  constructor(private likeService:LikeService, private dislikeService:DislikeService) { }
 
   ngOnInit(): void {
   }

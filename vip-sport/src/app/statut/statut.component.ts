@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { data } from 'jquery';
 import { Post } from 'src/models/Post';
 import { PostReply } from 'src/models/PostReply';
 import { User } from 'src/models/User';
@@ -26,13 +27,14 @@ export class StatutComponent implements OnInit {
   @Output() text:string;
 
   public ownerUser:User;
+  public currentUser:User;
 
   public replies:PostReply[] = [];
   public nbComs:number;
 
   
 
-  constructor(private userService:UserService, private postReplyService:PostReplyService, private activatedRoute:ActivatedRoute, private authentificationService:AuthenticationService) {
+  constructor(private userService:UserService, private postReplyService:PostReplyService, private authentificationService:AuthenticationService, private postService:PostService) {
    
    }
 
@@ -52,6 +54,8 @@ export class StatutComponent implements OnInit {
 
     this.getReplies();
 
+   this.currentUser = this.authentificationService.getCurrentUser();
+
   }
 
   postReply($event:any){
@@ -65,6 +69,7 @@ export class StatutComponent implements OnInit {
     }
    
   }
+
 
   
 

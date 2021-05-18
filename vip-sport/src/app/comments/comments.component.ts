@@ -6,6 +6,7 @@ import { User } from 'src/models/User';
 import { Post } from 'src/models/Post';
 import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
+import { data } from 'jquery';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class CommentsComponent implements OnInit {
   public originalPost:Post;
   
   
+  
 
   constructor(private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService, private userService:UserService, private postService:PostService) { }
 
@@ -31,6 +33,8 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
     this.getPost();
     this.getReplies();
+
+    this.comments.map
   }
 
   
@@ -59,6 +63,12 @@ export class CommentsComponent implements OnInit {
         this.comments = data;
       // console.log(this.comments)
       });
+    })
+  }
+
+  deleteReply(){
+    this.postReplyService.deletePostReply().subscribe(data => {
+      this.comments.slice(data)
     })
   }
 

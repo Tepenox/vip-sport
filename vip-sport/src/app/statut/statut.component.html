@@ -2,6 +2,11 @@
     <div class="row" id="profileName">
         <img id='profilePicture' [src]="ownerUser.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
         <a id="userName" style="color: white;" routerLink = "/profile">{{ownerUser.userName}}</a>
+
+        <div *ngIf="ownerUser.id == currentUser.id" id="deleteDiv">
+        <input type="image" id='delete'  src ="./assets/Trash-Trophee/delete.png" data-holder-rendered="true"/>
+        </div>
+
     </div>
 
     <div class="row">
