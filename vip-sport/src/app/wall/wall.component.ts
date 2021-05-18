@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from './../../models/Post';
+import { PostReply } from 'src/models/PostReply';
+import { User } from './../../models/User';
 import {PostService} from '../services/post.service';
 import {AuthenticationService} from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { PostReplyService } from '../services/post-reply.service';
 
 
 
@@ -20,6 +24,11 @@ export class WallComponent implements OnInit {
   public statutIsEmpty = false;
 
   posts:Post[] = [];
+  public replies:PostReply[] = [];
+
+  @Input() public text;
+
+  
 
   
 
@@ -27,11 +36,13 @@ export class WallComponent implements OnInit {
 
   
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
+
+  //public currentUser:User;
+  
+  
   
 
-  
-
-  constructor(private postService : PostService, private authentificationService : AuthenticationService, private activatedRoute:ActivatedRoute) {
+  constructor(private postService : PostService, private authentificationService : AuthenticationService, private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService) {
     
   }
 
@@ -39,12 +50,8 @@ export class WallComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.postService.getPostByCategory([params['categories']]).subscribe(data => {
         this.posts = data;
-        console.log(this.posts)
       });
     })
-    
-
-    
   }
   
 
@@ -64,19 +71,28 @@ export class WallComponent implements OnInit {
       this.statutIsEmpty = true;
     }
     else{ 
-    this.activatedRoute.queryParams.subscribe(params =>{
-      var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, params['categories']);
-      this.postService.createPost(post).subscribe(data => {
-        this.posts.push(data);
-        this.isLocked = true;
-        this.posted = true; 
-      });
-    })
-    
-    
-    }
-    
+      this.activatedRoute.queryParams.subscribe(params =>{
+        var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, params['categories']);
+        this.postService.createPost(post).subscribe(data => {
+          this.posts.push(data);
+          this.isLocked = true;
+          this.posted = true; 
+        });
+      })
+    }    
   }
+
+  deletePost(post:Post){
+    if(post.ownerId == this.authentificationService.getCurrentUser().id){
+      this.activatedRoute.queryParams.subscribe(params =>{
+        this.postService.deletePost(post.id).subscribe(data => {
+          this.posts.splice(data.length-1,1);
+        });
+      })
+    }
+  }
+
+  
 
   
 
