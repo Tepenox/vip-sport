@@ -16,6 +16,7 @@ export class ThreadLinkComponent implements OnInit {
   @Input('threadId') id: number;
   subcategoryID: number;
   thread: Thread;
+  url: string;
   author: User;
   lastPost: ThreadReply;
   lastUser: User;
@@ -29,6 +30,7 @@ export class ThreadLinkComponent implements OnInit {
     this.threadService.getById(this.id)
       .subscribe((response: Thread) => {
         this.thread = response;
+        this.url = this.thread.title.replace(/[^a-zA-Z0-9 ]/g, "").trim().split(' ').join('-');
         this.thread.date += " UTC"
         this.userService.getUserById(this.thread.ownerId)
           .subscribe((response: User) => this.author = response);

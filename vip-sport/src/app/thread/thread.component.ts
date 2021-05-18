@@ -54,7 +54,6 @@ export class ThreadComponent implements OnInit {
 
   private initializeThread() {
     this.route.data.subscribe((response: any) => {
-      console.log(response);
       this.posts = response.replies;
       this.id = response.thread.id;
       this.threadTitle = response.thread.title;
