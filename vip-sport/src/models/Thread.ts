@@ -1,10 +1,10 @@
 export class Thread {
     constructor(
         public subcategoryId: number,
-        public title: String,
+        public title: string,
         public ownerId: number,
         public id?: number,
-        public date?: String
+        public date?: string
     ) { }
 }
   

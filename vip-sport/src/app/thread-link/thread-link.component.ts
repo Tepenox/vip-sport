@@ -5,6 +5,7 @@ import { ThreadReply } from 'src/models/ThreadReply';
 import { User } from 'src/models/User';
 import { ForumPostService } from '../services/forum-post.service';
 import { ThreadService } from '../services/thread.service';
+import { UrlParserService } from '../services/url-parser.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class ThreadLinkComponent implements OnInit {
     this.threadService.getById(this.id)
       .subscribe((response: Thread) => {
         this.thread = response;
-        this.url = this.thread.title.replace(/[^a-zA-Z0-9 ]/g, "").trim().split(' ').join('-');
+        this.url = new UrlParserService().parse(this.thread.title);
         this.thread.date += " UTC"
         this.userService.getUserById(this.thread.ownerId)
           .subscribe((response: User) => this.author = response);
