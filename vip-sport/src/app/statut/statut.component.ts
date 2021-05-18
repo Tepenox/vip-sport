@@ -23,6 +23,7 @@ import { UserService } from '../services/user.service';
 export class StatutComponent implements OnInit {
 
   @Input() userPost:Post;
+  @Input() posts:Post[];
 
   @Output() text:string;
 
@@ -56,6 +57,12 @@ export class StatutComponent implements OnInit {
 
    this.currentUser = this.authentificationService.getCurrentUser();
 
+  }
+
+  deletePost(){
+    this.postService.deletePost(this.userPost.id).subscribe(data => {
+      this.posts.splice(this.posts.length-1,1);
+    })
   }
 
   postReply($event:any){

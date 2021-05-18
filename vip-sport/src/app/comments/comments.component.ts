@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 import { PostReply } from 'src/models/PostReply';
 import { ActivatedRoute } from '@angular/router';
 import { PostReplyService } from '../services/post-reply.service';
@@ -6,7 +6,7 @@ import { User } from 'src/models/User';
 import { Post } from 'src/models/Post';
 import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
-import { data } from 'jquery';
+
 
 
 @Component({
@@ -15,6 +15,8 @@ import { data } from 'jquery';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
+
+  @Input() comment:PostReply;
 
   public comments:PostReply[];
 
@@ -34,7 +36,7 @@ export class CommentsComponent implements OnInit {
     this.getPost();
     this.getReplies();
 
-    this.comments.map
+    
   }
 
   
@@ -52,7 +54,7 @@ export class CommentsComponent implements OnInit {
   }
 
   getUser(){
-    this.userService.getUserById(this.userId).subscribe(data => {
+    this.userService.getUserById(this.comment.ownerId).subscribe(data => {
       this.user = data;
     } )
   }
@@ -67,8 +69,8 @@ export class CommentsComponent implements OnInit {
   }
 
   deleteReply(){
-    this.postReplyService.deletePostReply().subscribe(data => {
-      this.comments.slice(data)
+    this.postReplyService.deletePostReply(this.originalPost.id,this.comment.id).subscribe(data => {
+
     })
   }
 

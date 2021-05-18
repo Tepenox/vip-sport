@@ -15,7 +15,8 @@ export class LikeService {
 
 
   getLikesCount(subjectType:string,subjectId:number):Observable<Like[]>{
-      return this.httpClient.get<Like[]>(`${this.likesUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
+    return this.httpClient.get<Like[]>(`${this.likesUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
+      
   }
 
   
@@ -26,10 +27,12 @@ export class LikeService {
 
   createLike(subjectType:string,subjectId:number):Observable<Like>{
       return this.httpClient.post<Like>(`${this.likesUrl}`,{subjectType,subjectId}).pipe(catchError(this.errorHandler));
+     
   }
 
   removeLike(subjectType:string,subjectId:number):any{
     return this.httpClient.delete<any>(`${this.likesUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
+   
 }
 
   errorHandler(error:HttpErrorResponse){

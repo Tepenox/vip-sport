@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from 'src/models/Post';
+import { PostReply } from 'src/models/PostReply';
 import { DislikeService } from '../services/dislike.service';
 import { LikeService } from '../services/like.service';
 
@@ -11,9 +13,12 @@ import { LikeService } from '../services/like.service';
 
 
 export class LikeDislikeComponent implements OnInit {
+
+  @Input() commentId;
+  @Input() subject: Post | PostReply;
  
-  public counterUp = 0;
-  public counterDown = 0;
+  public counterUp;
+  public counterDown;
   public isClickedUp = false;
   public isClickedDown = false;
   public imageUp = "./assets/dumbDown.png";
@@ -22,6 +27,8 @@ export class LikeDislikeComponent implements OnInit {
   constructor(private likeService:LikeService, private dislikeService:DislikeService) { }
 
   ngOnInit(): void {
+    this.getCounterUp();
+    this.getCounterDown();
   }
 
   upVoteClick(){
@@ -50,8 +57,13 @@ export class LikeDislikeComponent implements OnInit {
   downVoteClick(){
 
     if(this.isClickedDown == false && this.isClickedUp == true){
-      this.counterUp -= 1;
-      this.counterDown += 1;
+      
+      //this.counterUp -= 1;
+      this.removeLike();
+
+      //this.counterDown += 1;
+      this.addDislike();
+
       this.isClickedDown = true;
       this.isClickedUp = false;
       this.imageUp = "./assets/dumbDown.png";
@@ -59,16 +71,58 @@ export class LikeDislikeComponent implements OnInit {
     }
     else if(this.isClickedUp == false && this.isClickedDown == true){
       this.isClickedDown = false;
-      this.counterDown -= 1;
+
+      //this.counterDown -= 1;
+      this.removeDislike();
+
       this.imageDown = "./assets/dumbDown.png"
     }
     
     else if(this.isClickedDown == false && this.isClickedUp == false){
-    this.counterDown += 1;
+    
+    //  this.counterDown += 1;
+    this.addDislike();
+
     this.imageDown = "./assets/dumbDownActived2.png"
     this.isClickedDown = true;
     }
     
+  }
+
+  getCounterUp(){
+    this.likeService.getLikesCount(this.subject.type,this.commentId).subscribe(data => {
+      this.counterUp = data;
+    })
+  }
+
+  getCounterDown(){
+    this.dislikeService.getDislikesCount(this.subject.type,this.commentId).subscribe(data => {
+      this.counterDown = data;
+    })
+  }
+
+  addLike(){
+    this.likeService.createLike(this.subject.type,this.commentId).subscribe(data => {
+      this.counterUp = data;
+    })
+  }
+
+  removeLike(){
+    this.likeService.removeLike(this.subject.type,this.commentId).subscribe(data => {
+      this.counterUp = data;
+    })
+  }
+
+  addDislike(){
+    this.dislikeService.createDislike(this.subject.type,this.commentId).subscribe(data => {
+      this.counterDown = data;
+    })
+  }
+
+  removeDislike(){
+    this.dislikeService.removeDislike(this.subject.type,this.commentId).subscribe(data => {
+      this.counterDown = data;
+    })
   }
 
 }
