@@ -20,11 +20,11 @@ export class ThreadResolver implements Resolve<Thread> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Thread> {
     let threadId = +route.paramMap.get('threadID');
     let title = route.paramMap.get('threadTitle');
-    title = new UrlParserService().unparse(title);
+    title = UrlParserService.unparse(title);
 
     return this.threadService.getById(threadId).pipe(
       map((thread: Thread) => {
-        let simpleTitle = new SimpleParserService().parse(thread.title);
+        let simpleTitle = SimpleParserService.parse(thread.title);
         console.log(simpleTitle);
         console.log(title);
         if (threadId == thread.id && title == simpleTitle) {

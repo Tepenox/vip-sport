@@ -8,11 +8,11 @@ export class UrlParserService {
 
   constructor() { }
 
-  parse(str: string): string {
-    return new SimpleParserService().parse(str).split(' ').join('-');
+  static parse(str: string): string {
+    return SimpleParserService.parse(str).split(' ').join('-');
   }
 
-  unparse(str: string): string {
+  static unparse(str: string): string {
     return str.split('-').join(' ');
   }
 }

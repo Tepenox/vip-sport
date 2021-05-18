@@ -31,7 +31,7 @@ export class ThreadLinkComponent implements OnInit {
     this.threadService.getById(this.id)
       .subscribe((response: Thread) => {
         this.thread = response;
-        this.url = new UrlParserService().parse(this.thread.title);
+        this.url = UrlParserService.parse(this.thread.title);
         this.thread.date += " UTC"
         this.userService.getUserById(this.thread.ownerId)
           .subscribe((response: User) => this.author = response);

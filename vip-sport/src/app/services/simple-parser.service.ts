@@ -7,11 +7,11 @@ export class SimpleParserService {
 
   constructor() { }
 
-  parse(str: string): string {
+  static parse(str: string): string {
     return str.replace(/[^a-zA-Z0-9 ]/g, "").trim();
   }
 
-  unparse(str: string): string {
+  static unparse(str: string): string {
     return str;
   }
 }
