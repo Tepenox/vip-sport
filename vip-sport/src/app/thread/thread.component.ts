@@ -11,7 +11,7 @@ import { ThreadService } from '../services/thread.service';
   templateUrl: './thread.component.html',
   styleUrls: ['./thread.component.css']
 })
-export class ThreadComponent implements OnInit{
+export class ThreadComponent implements OnInit {
   id: number;
   page:number = 1; //TODO
   threadTitle: string;
