@@ -7,7 +7,7 @@ Subcategory.getAll = function () {
     return db.prepare("select * from Subcategories").all();
 };
 
-Subcategory.getByid = function (id) {
+Subcategory.getById = function (id) {
     return db.prepare("select * from Subcategories where id = ?").get(id);
 };
 

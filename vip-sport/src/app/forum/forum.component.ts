@@ -23,16 +23,14 @@ export class ForumComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap
-      .subscribe(params => this.currentCategoryId = +params.get('subcategoryID'));
-
-    this.categoriesService.getByParentId(this.currentCategoryId)
-      .subscribe((response: Category[]) => {
-        this.categories = response;
-        for (let i = 0; i < this.categories.length; i++) {
-          this.subcategoriesService.getByParentId(this.categories[i].id)
-            .subscribe((response: Subcategory[]) => this.subcategories.push(response));
-        }
+      .subscribe(params => {
+        this.currentCategoryId = +params.get('subcategoryID');
       });
+
+    this.route.data.subscribe(response => {
+      this.categories = response.categories;
+      this.subcategories = response.subcategories;
+    });
 
     this.threadService.getByParentId(this.currentCategoryId)
       .subscribe((response: Thread[]) => {
