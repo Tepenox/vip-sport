@@ -53,12 +53,10 @@ export class ThreadComponent implements OnInit {
   }
 
   private initializeThread() {
-    this.route.paramMap.pipe(
-      switchMap(param => {
-        this.id = +param.get('threadID');
-        this.threadTitle = param.get('threadTitle');
-        return this.service.getPostsByThreadID(this.id);
-      })
-    ).subscribe((response: ThreadReply[]) => this.posts = response);
+    this.route.data.subscribe((response: any) => {
+      this.posts = response.replies;
+      this.id = response.thread.id;
+      this.threadTitle = response.thread.title;
+    });
   }
 }
