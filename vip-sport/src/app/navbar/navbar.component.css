@@ -13,6 +13,10 @@
     vertical-align: top;
     margin-left: -25px
 }
+.icone-hide{
+    display: none;
+    visibility: hidden;
+}
 
 .icon img {
     display: inline-block;

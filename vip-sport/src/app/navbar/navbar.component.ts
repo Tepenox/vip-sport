@@ -19,17 +19,22 @@ export class NavbarComponent implements OnInit {
 
 
   constructor(public authService:AuthenticationService,public notificationService:NotificationService,public userService:UserService) {
-    this.notificationService.getNotifications(1).subscribe(data =>{
-      this.notifications = data;
-      // this.notifications[0].fromUser={};
-      // this.notifications[0].fromUser.userName="anass";
-
-      this.notifications.forEach(value => this.userService.getUserById(value.fromId).subscribe(data => value.fromUser = data ));
-      console.log( this.notifications);
-      this.searchUsers("ricardo");
-
-    });
-  
+    this.authService.getIsLoggedInObservable().subscribe(isLoggedIn =>{
+      if (isLoggedIn) {
+        this.notificationService.getNotifications(this.authService.getCurrentUser().id).subscribe(data =>{
+          this.notifications = data;
+          // this.notifications[0].fromUser={};
+          // this.notifications[0].fromUser.userName="anass";
+    
+          this.notifications.forEach(value => this.userService.getUserById(value.fromId).subscribe(data => value.fromUser = data ));
+          console.log( this.notifications);
+          this.searchUsers("ricardo");
+    
+        });
+      }
+    
+    })
+    
   }  
 
   

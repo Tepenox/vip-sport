@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {throwError as observableThrowError , Observable, pipe} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import { BehaviorSubject } from "rxjs";
+import { Subject } from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { BehaviorSubject } from "rxjs";
 export class AuthenticationService {
   private signUpUrl = "http://localhost:3000/signup";
   private loginUrl = "http://localhost:3000/login";
-
+  private isLoggedIn = new Subject();
   private currentUser:User;
 
   constructor(private httpClient : HttpClient, private router:Router) {   
@@ -31,6 +32,8 @@ export class AuthenticationService {
    logOutUser(){
      localStorage.removeItem('token');
      this.router.navigate(['/']);
+     this.isLoggedIn.next(false);
+
    }
 
    getToken(){
@@ -43,6 +46,11 @@ export class AuthenticationService {
 
    setCurentUser(user:User){
      this.currentUser = user;
+     this.isLoggedIn.next(true);
+   }
+
+   getIsLoggedInObservable(){
+     return this.isLoggedIn;
    }
 
    getUserId(){
