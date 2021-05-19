@@ -2,7 +2,9 @@ import { ViewportScroller } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Thread } from 'src/models/Thread';
 import { ThreadReply } from 'src/models/ThreadReply';
+import { AuthenticationService } from '../services/authentication.service';
 import { ForumPostService } from '../services/forum-post.service';
 import { ThreadService } from '../services/thread.service';
 
@@ -12,14 +14,14 @@ import { ThreadService } from '../services/thread.service';
   styleUrls: ['./thread.component.css']
 })
 export class ThreadComponent implements OnInit {
-  id: number;
+  thread: Thread;
   page:number = 1; //TODO
-  threadTitle: string;
   isReplyActive = false;
   posts: ThreadReply[];
   fragment: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, private service: ForumPostService, private threadService: ThreadService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, 
+    public authService: AuthenticationService, private service: ForumPostService, private threadService: ThreadService) { }
 
   ngOnInit() {
     this.initializeThread();
@@ -47,16 +49,24 @@ export class ThreadComponent implements OnInit {
   }
 
   deleteThread() {
-    this.threadService.delete(this.id)
+    this.threadService.delete(this.thread.id)
       .subscribe(() => {});
     this.router.navigate(['../../..'], { relativeTo: this.route });
+  }
+
+  pinThread() {
+    this.threadService.togglePinned(this.thread)
+      .subscribe((thread: Thread) => console.log(thread));
+  }
+
+  lockThread() {
+    this.threadService.toggleLocked(this.thread);
   }
 
   private initializeThread() {
     this.route.data.subscribe((response: any) => {
       this.posts = response.replies;
-      this.id = response.thread.id;
-      this.threadTitle = response.thread.title;
+      this.thread = response.thread;
     });
   }
 }

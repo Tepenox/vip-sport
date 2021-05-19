@@ -1,12 +1,16 @@
 <div class="thread container p-4 shadow">
+    <span *ngIf="authService.getModerationPower() >= 50 && authService.loggedIn()" class="moderation-controls">
+        <button class="btn btn-success" (click)="pinThread()">Épingler</button>
+        <button class="btn btn-danger" (click)="lockThread()">Verrouiller</button>
+    </span>
     <div class="thread-title-box">
         <h2 class="threadTitle p-3 my-2">
-            {{ threadTitle }}
+            {{ thread.title }}
         </h2>
     </div>
     <div class="threadContent" >
-        <div *ngFor="let post of posts; let isFirst = first" id="post-{{ post?.id }}" >
-            <f-post [postId]="post?.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
+        <div *ngFor="let post of posts; let isFirst = first" id="post-{{ post.id }}" >
+            <f-post [postId]="post.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
         </div>
     </div>
     <div>
@@ -16,6 +20,6 @@
     </div>
     <div [hidden]="!isReplyActive">
         <button class="btn btn-primary" (click)="toggleReplyForm()">Annuler</button>
-        <post-form [threadID]="id" id="reply-form"></post-form>
+        <post-form [threadID]="thread.id" id="reply-form"></post-form>
     </div>
 </div>

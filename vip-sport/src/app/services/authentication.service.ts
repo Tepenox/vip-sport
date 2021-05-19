@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import {throwError as observableThrowError , Observable, pipe} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import { BehaviorSubject } from "rxjs";
+import { RoleService } from './role.service';
+import { Role } from 'src/models/Role';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,9 @@ export class AuthenticationService {
   private loginUrl = "http://localhost:3000/login";
 
   private currentUser:User;
+  private moderationPower: number = 0;
 
-  constructor(private httpClient : HttpClient, private router:Router) {   
+  constructor(private httpClient : HttpClient, private router:Router, private roleService: RoleService) {   
     
     
    }
@@ -43,6 +46,8 @@ export class AuthenticationService {
 
    setCurentUser(user:User){
      this.currentUser = user;
+     this.roleService.getById(user.roleId)
+      .subscribe((role: Role) => this.moderationPower = role.moderationPower);
    }
 
    getUserId(){
@@ -55,6 +60,10 @@ export class AuthenticationService {
 
    getCurrentUserRole() {
      return this.currentUser.roleId;
+   }
+
+   getModerationPower() {
+     return this.moderationPower;
    }
    
    errorHandler(error:HttpErrorResponse){
