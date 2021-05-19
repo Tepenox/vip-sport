@@ -4,7 +4,9 @@ export class Thread {
         public title: string,
         public ownerId: number,
         public id?: number,
-        public date?: string
+        public date?: string,
+        public isPinned?: boolean,
+        public isLocked?: boolean
     ) { }
 }
   
