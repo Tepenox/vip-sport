@@ -1,3 +1,4 @@
+import { User } from './../../models/User';
 import { UserService } from './../services/user.service';
 import { NotificationService } from './../services/notification.service';
 import * as $ from 'jquery';
@@ -14,6 +15,9 @@ export class NavbarComponent implements OnInit {
   cheminImage = '../assets/logo.png';
 
   public notifications:any[] =[];
+  public userSearchResults:User[] = []; 
+
+
   constructor(public authService:AuthenticationService,public notificationService:NotificationService,public userService:UserService) {
     this.notificationService.getNotifications(1).subscribe(data =>{
       this.notifications = data;
@@ -22,6 +26,7 @@ export class NavbarComponent implements OnInit {
 
       this.notifications.forEach(value => this.userService.getUserById(value.fromId).subscribe(data => value.fromUser = data ));
       console.log( this.notifications);
+      this.searchUsers("ricardo");
 
     });
   
@@ -31,27 +36,46 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
    
-      var down = false;
+      var downBell = false;
       
       $('#bell').on("click",function(e){
       var color = $(this).text();
-      if(down){
+      if(downBell){
       
       $('#box').css('height','0px');
       $('#box').css('opacity','0');
-      down = false;
+      downBell = false;
       }else{
       
       $('#box').css('height','auto');
       $('#box').css('opacity','1');
-      down = true;
-      
+      downBell = true;
       }
-      
 
       });
 
-     
+      var downSearch = false;
+      
+      $('#bell').on("click",function(e){
+      var color = $(this).text();
+      if(downSearch){
+      
+      $('#box-search').css('height','0px');
+      $('#box-search').css('opacity','0');
+      downSearch = false;
+      }else{
+      
+      $('#box-search').css('height','auto');
+      $('#box-search').css('opacity','1');
+      downSearch = true;
+      
+      }});
+  }
+
+  searchUsers(userName:string){
+     this.userService.getUsersByUserName(userName).subscribe(data=>{
+      this.userSearchResults = data;
+    })
   }
 
   logOut(){

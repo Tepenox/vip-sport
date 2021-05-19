@@ -26,7 +26,7 @@
 
         <div class="col" id="addPostButton">
             <div *ngIf="isLocked == true">
-                <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
+                <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Ajouter un post</button>
             </div>
         </div>
 
@@ -34,8 +34,8 @@
 
    <div *ngIf="posts.length == 0">
     <div class="col" id="addPostButton" style="padding-top: 150px;">
-        <h2 style="color: white;">Nobody has written anything yet. Now is your chance !</h2>
-        <button type="button" id="addButton2" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
+        <h2 style="color: white;">Personne n'a encore écrit. C'est votre chance !</h2>
+        <button type="button" id="addButton2" class="btn btn-warning btn-lg" (click)="unlockForm()">Ajouter un post</button>
     </div>
    </div>
 
@@ -64,7 +64,7 @@
         </div>
 
         <div id="addStatutButton">
-            <button type="submit" class="btn btn-warning mb-3" (click)="postStatut()">Add Statut</button>
+            <button type="submit" class="btn btn-warning mb-3" (click)="postStatut()">Ajouter un status</button>
         </div>
 
     </div>

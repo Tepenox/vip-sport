@@ -29,6 +29,11 @@ export class PostService {
 
   }
 
+  getPostsByOwnerId(ownerId:number):Observable<Post[]>{
+    let params = new HttpParams().set('ownerId',String(ownerId));
+    return this.httpClient.get<Post[]>(this.postsUrl, {params:params} ).pipe(catchError(this.errorHandler));
+  }
+  
   createPost(post:Post):Observable<Post>{
     return this.httpClient.post<Post>(this.postsUrl,post).pipe(catchError(this.errorHandler))
   }

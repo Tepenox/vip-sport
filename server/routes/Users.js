@@ -8,8 +8,8 @@ let Token = require("../models/Token");
 let jwt = require("jsonwebtoken");
 
 router.get("/users", (req, res) => {
-  if (req.query.username) {
-    res.json(User.searchByUserName(req.query.username));
+  if (req.query.userName) {
+    res.json(User.searchByUserName(req.query.userName));
   } else {
     res.json(User.getAllUsers());
   }

@@ -1,8 +1,10 @@
+import { NotificationService } from './notification.service';
 import { HttpClient,HttpErrorResponse ,HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {throwError as observableThrowError , Observable, pipe, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service';
+import { Notification } from 'src/models/Notification';
 
 
 
@@ -13,9 +15,10 @@ export class FollowService {
 
   private followUrl = "http://localhost:3000/follows";
 
-  constructor(private httpClient: HttpClient, private auth : AuthenticationService) { }
+  constructor(private httpClient: HttpClient, private auth : AuthenticationService,private notificationService:NotificationService) { }
 
   followById(followedId:number){
+    this.notificationService.createNotification(new Notification("Follow",this.auth.getCurrentUser().id,followedId,followedId)).subscribe(data =>console.log(data));
     return this.httpClient.post<any>(this.followUrl,{followedId:followedId, followerId:this.auth.getCurrentUser().id}).pipe(catchError(this.errorHandler));
   }
 
