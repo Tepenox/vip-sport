@@ -68,10 +68,9 @@ export class StatutComponent implements OnInit {
   postReply($event:any){
 
     if($event != ""){
-        var postReply = new PostReply(this.userPost.id,$event,this.authentificationService.getCurrentUser().id);
+        var postReply = new PostReply(this.userPost.id,$event,this.authentificationService.getCurrentUser().id,"PostComment");
         this.postReplyService.createPostReply(this.userPost.id,postReply).subscribe(data => {
           this.replies.push(data);
-          console.log(this.replies)
         });
     }
    

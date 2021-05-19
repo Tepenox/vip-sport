@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { data } from 'jquery';
 import { Post } from 'src/models/Post';
 import { PostReply } from 'src/models/PostReply';
 import { DislikeService } from '../services/dislike.service';
@@ -24,11 +25,26 @@ export class LikeDislikeComponent implements OnInit {
   public imageUp = "./assets/dumbDown.png";
   public imageDown = "./assets/dumbDown.png";
 
-  constructor(private likeService:LikeService, private dislikeService:DislikeService) { }
+  constructor(private likeService:LikeService, private dislikeService:DislikeService) {}
 
   ngOnInit(): void {
+
+    this.likeService.ifLikeExists(this.subject.type,this.subject.id,this.subject.ownerId).subscribe(data => {
+      this.isClickedUp = Boolean(data);
+      if(this.isClickedUp == true)
+        this.imageUp = "./assets/dumbDownActived2.png";
+    })
+
+    this.dislikeService.ifDislikeExists(this.subject.type,this.subject.id,this.subject.ownerId).subscribe(data => {
+      this.isClickedDown = Boolean(data);
+      if(this.isClickedDown == true)
+        this.imageDown = "./assets/dumbDownActived2.png";
+    })
+
     this.getCounterUp();
     this.getCounterDown();
+
+    console.log(this.subject)
   }
 
   upVoteClick(){
@@ -47,14 +63,18 @@ export class LikeDislikeComponent implements OnInit {
     }
     else if(this.isClickedUp == true && this.isClickedDown == false){
       this.isClickedUp = false;
+
       //this.counterUp -= 1;
       this.removeLike();
+
       this.imageUp = "./assets/dumbDown.png"
     }
     
     else if(this.isClickedDown == false && this.isClickedUp == false){
+
     //this.counterUp += 1;
     this.addLike();
+
     this.imageUp = "./assets/dumbDownActived2.png"
     this.isClickedUp = true;
     }
@@ -67,9 +87,11 @@ export class LikeDislikeComponent implements OnInit {
       
       //this.counterUp -= 1;
       this.removeLike();
+     
 
       //this.counterDown += 1;
       this.addDislike();
+      
 
       this.isClickedDown = true;
       this.isClickedUp = false;
@@ -97,8 +119,6 @@ export class LikeDislikeComponent implements OnInit {
   }
 
   getCounterUp(){
-    console.log(this.subject)
-    console.log(this.commentId)
     this.likeService.getLikesCount(this.subject.type,this.commentId).subscribe(data => {
       this.counterUp = data;
     })
@@ -112,25 +132,25 @@ export class LikeDislikeComponent implements OnInit {
 
   addLike(){
     this.likeService.createLike(this.subject.type,this.commentId).subscribe(data => {
-      this.counterUp = data;
+      this.getCounterUp();
     })
   }
 
   removeLike(){
     this.likeService.removeLike(this.subject.type,this.commentId).subscribe(data => {
-      this.counterUp = data;
+      this.getCounterUp();
     })
   }
 
   addDislike(){
     this.dislikeService.createDislike(this.subject.type,this.commentId).subscribe(data => {
-      this.counterDown = data;
+      this.getCounterDown();
     })
   }
 
   removeDislike(){
     this.dislikeService.removeDislike(this.subject.type,this.commentId).subscribe(data => {
-      this.counterDown = data;
+      this.getCounterDown();
     })
   }
 

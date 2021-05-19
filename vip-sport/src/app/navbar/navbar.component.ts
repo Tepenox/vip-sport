@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
       // this.notifications[0].fromUser.userName="anass";
 
       this.notifications.forEach(value => this.userService.getUserById(value.fromId).subscribe(data => value.fromUser = data ));
-      console.log( this.notifications);
+      //console.log( this.notifications);
       this.searchUsers("ricardo");
 
     });

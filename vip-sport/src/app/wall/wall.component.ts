@@ -50,6 +50,7 @@ export class WallComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.postService.getPostByCategory([params['categories']]).subscribe(data => {
         this.posts = data;
+        console.log(this.posts)
       });
     })
   }
@@ -72,7 +73,7 @@ export class WallComponent implements OnInit {
     }
     else{ 
       this.activatedRoute.queryParams.subscribe(params =>{
-        var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, params['categories']);
+        var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, params['categories'],"Post");
         this.postService.createPost(post).subscribe(data => {
           this.posts.push(data);
           this.isLocked = true;

@@ -14,8 +14,8 @@ export class LikeService {
   constructor(private httpClient:HttpClient) { }
 
 
-  getLikesCount(subjectType:string,subjectId:number):Observable<Like[]>{
-    return this.httpClient.get<Like[]>(`${this.likesUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
+  getLikesCount(subjectType:string,subjectId:number):any{
+    return this.httpClient.get<any>(`${this.likesUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
       
   }
 

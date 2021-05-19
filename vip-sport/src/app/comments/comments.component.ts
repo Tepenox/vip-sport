@@ -63,7 +63,7 @@ export class CommentsComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.postReplyService.getPostRepliesFromPostId(params['postId']).subscribe(data => {
         this.comments = data;
-      // console.log(this.comments)
+      console.log(this.comments)
       });
     })
   }

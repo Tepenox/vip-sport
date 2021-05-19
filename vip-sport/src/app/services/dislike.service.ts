@@ -14,8 +14,8 @@ export class DislikeService {
   constructor(private httpClient:HttpClient) { }
 
 
-  getDislikesCount(subjectType:string, subjectId:number):Observable<Dislike[]>{
-      return this.httpClient.get<Dislike[]>(`${this.dislikeUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
+  getDislikesCount(subjectType:string, subjectId:number):any{
+      return this.httpClient.get<any>(`${this.dislikeUrl}/${subjectType}/${subjectId}`).pipe(catchError(this.errorHandler));
   }
 
   

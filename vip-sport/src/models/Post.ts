@@ -8,7 +8,7 @@ export class Post{
         public contentUrl:string, 
         public ownerId:number, 
         public categories:string,
-        public type:string = "Post",
+        public type:string,
         public date?:string,
         public id?:number,
         public postReplies?:PostReply[]
