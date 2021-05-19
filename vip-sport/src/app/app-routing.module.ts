@@ -16,6 +16,8 @@ import { CommentsComponent } from './comments/comments.component';
 import { NoContentPageComponent } from './no-content-page/no-content-page.component';
 import { ThreadReplyResolver } from './resolvers/thread-reply.resolver';
 import { ThreadResolver } from './resolvers/thread.resolver';
+import { CategoriesResolver } from './resolvers/categories.resolver';
+import { SubcategoriesResolver } from './resolvers/subcategories.resolver';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -32,9 +34,9 @@ const routes: Routes = [
   {path: 'sportspage', component : CardComponent},
   {path: 'trainer', component : TrainerComponent},
   {path: 'secret', canActivate :[AuthGuard],component : SecretComponent},
-  {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent, resolve: { replies: ThreadReplyResolver, thread: ThreadResolver }},
-  {path: 'forum/:subcategoryID', component : ForumComponent},
-  {path: 'forum', component : ForumComponent},
+  {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent, resolve: { replies: ThreadReplyResolver, thread: ThreadResolver, subcategories: SubcategoriesResolver }},
+  {path: 'forum/:subcategoryID', component : ForumComponent, resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver }},
+  {path: 'forum', component : ForumComponent, resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver }},
   {path: 'posts', component : WallComponent},
   {path: 'posts/replies', component: CommentsComponent},
   {path: '**', component : NoContentPageComponent}
