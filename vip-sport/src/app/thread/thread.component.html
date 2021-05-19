@@ -1,8 +1,23 @@
 <div class="thread container p-4 shadow">
-    <span *ngIf="authService.getModerationPower() >= 50 && authService.loggedIn()" class="moderation-controls">
-        <button class="btn btn-success" (click)="pinThread()">Épingler</button>
-        <button class="btn btn-danger" (click)="lockThread()">Verrouiller</button>
-    </span>
+    <section *ngIf="authService.getModerationPower() >= 50 && authService.loggedIn()" class="moderation-controls">
+        <span id="pinButton">
+            <span *ngIf="!thread.isPinned; else unpinButton"> 
+                <button class="btn btn-success" (click)="togglePin()">Épingler</button>
+            </span>
+            <ng-template #unpinButton>
+                <button class="btn btn-success" (click)="togglePin()">Désépingler</button>
+            </ng-template>
+        </span>
+        <span id="lockButton">
+            <span *ngIf="!thread.isLocked; else unlockButton">
+                <button class="btn btn-danger" (click)="toggleLock()">Verrouiller</button>
+            </span>
+            <ng-template #unlockButton>
+                <button class="btn btn-danger" (click)="toggleLock()">Déverrouiller</button>
+            </ng-template>
+        </span>
+    </section>
+
     <div class="thread-title-box">
         <h2 class="threadTitle p-3 my-2">
             {{ thread.title }}
@@ -13,13 +28,25 @@
             <f-post [postId]="post.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
         </div>
     </div>
-    <div>
-        <a [routerLink]="['./']" fragment="reply-form" [hidden]="isReplyActive">
-            <button class="btn btn-primary" (click)="toggleReplyForm()">Répondre</button>
-        </a>
-    </div>
-    <div [hidden]="!isReplyActive">
-        <button class="btn btn-primary" (click)="toggleReplyForm()">Annuler</button>
-        <post-form [threadID]="thread.id" id="reply-form"></post-form>
-    </div>
+    
+    <section *ngIf="authService.loggedIn()" class="form-section">
+        <div *ngIf="authService.getModerationPower() >= 50 || !thread.isLocked; else locked" id="unlocked">
+            <div *ngIf="thread.isLocked">
+                <p class="alert alert-info">Ce sujet est verrouillé. Vous avez cependant le droit d'y répondre car vous avez le rôle {{ authService.getRoleName() | lowercase }}</p>
+            </div>
+            <div>
+                <a [routerLink]="['./']" fragment="reply-form" [hidden]="isReplyActive">
+                    <button class="btn btn-primary" (click)="toggleReplyForm()">Répondre</button>
+                </a>
+            </div>
+            <div [hidden]="!isReplyActive">
+                <button class="btn btn-primary" (click)="toggleReplyForm()">Annuler</button>
+                <post-form [threadID]="thread.id" id="reply-form"></post-form>
+            </div>
+        </div>
+        <ng-template #locked>
+            <p class="alert alert-info">Ce sujet est verrouillé.</p>
+        </ng-template>
+    </section>
+    
 </div>

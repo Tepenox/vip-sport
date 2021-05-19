@@ -16,6 +16,7 @@ export class AuthenticationService {
   private loginUrl = "http://localhost:3000/login";
 
   private currentUser:User;
+  private roleName: string;
   private moderationPower: number = 0;
 
   constructor(private httpClient : HttpClient, private router:Router, private roleService: RoleService) {   
@@ -47,7 +48,10 @@ export class AuthenticationService {
    setCurentUser(user:User){
      this.currentUser = user;
      this.roleService.getById(user.roleId)
-      .subscribe((role: Role) => this.moderationPower = role.moderationPower);
+      .subscribe((role: Role) => {
+        this.roleName = role.name;
+        this.moderationPower = role.moderationPower;
+      });
    }
 
    getUserId(){
@@ -61,6 +65,10 @@ export class AuthenticationService {
    getCurrentUserRole() {
      return this.currentUser.roleId;
    }
+
+   getRoleName() {
+    return this.roleName;
+  }
 
    getModerationPower() {
      return this.moderationPower;

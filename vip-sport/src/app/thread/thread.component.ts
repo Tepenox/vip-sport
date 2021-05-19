@@ -54,13 +54,14 @@ export class ThreadComponent implements OnInit {
     this.router.navigate(['../../..'], { relativeTo: this.route });
   }
 
-  pinThread() {
+  togglePin() {
     this.threadService.togglePinned(this.thread)
-      .subscribe((thread: Thread) => console.log(thread));
+      .subscribe(() => window.location.reload());
   }
 
-  lockThread() {
-    this.threadService.toggleLocked(this.thread);
+  toggleLock() {
+    this.threadService.toggleLocked(this.thread)
+      .subscribe(() => window.location.reload());
   }
 
   private initializeThread() {
