@@ -1,7 +1,7 @@
 <div class="thread">
     <div class="row">
         <div class="col thread-primary">
-            <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, url]" class="div-link">
+            <a [routerLink]="['/forum', currentSubcategory.id, 'thread', thread?.id, url]" class="div-link">
                 <span class="thread-name link">
                     {{ thread?.title }}
                 </span>
@@ -14,7 +14,7 @@
         </div>
         <div class="col thread-secondary">
             <div class="thread-info">
-                <a [routerLink]="['/forum', subcategoryID, 'thread', thread?.id, thread?.title]" fragment="post-{{ lastPost?.id }}" class="last-message-link div-link">
+                <a [routerLink]="['/forum', currentSubcategory.id, 'thread', thread?.id, thread?.title]" fragment="post-{{ lastPost?.id }}" class="last-message-link div-link">
                     <span class="link">
                         Dernier message
                     </span>

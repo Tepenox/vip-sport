@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subcategory } from 'src/models/Subcategory';
 import { Thread } from 'src/models/Thread';
 import { ThreadReply } from 'src/models/ThreadReply';
 import { User } from 'src/models/User';
@@ -14,35 +15,32 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./thread-link.component.css']
 })
 export class ThreadLinkComponent implements OnInit {
-  @Input('threadId') id: number;
-  subcategoryID: number;
-  thread: Thread;
+  @Input('thread') thread: Thread;
+  currentSubcategory: Subcategory;
   url: string;
   author: User;
   lastPost: ThreadReply;
   lastUser: User;
 
-  constructor(private route: ActivatedRoute, private threadService: ThreadService, private userService: UserService, private forumPostService: ForumPostService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private forumPostService: ForumPostService) { }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .subscribe(params => this.subcategoryID = +params.get('subcategoryID'));
+    this.route.data.subscribe(response  => {
+        this.currentSubcategory = response.currentSubcategory;
+      });
+      
+    this.url = UrlParserService.parse(this.thread.title);
+    this.thread.date += " UTC"
 
-    this.threadService.getById(this.id)
-      .subscribe((response: Thread) => {
-        this.thread = response;
-        this.url = UrlParserService.parse(this.thread.title);
-        this.thread.date += " UTC"
-        this.userService.getUserById(this.thread.ownerId)
-          .subscribe((response: User) => this.author = response);
-        
-        this.forumPostService.getLastPostInThread(this.id)
-          .subscribe((response: ThreadReply) => {
-            this.lastPost = response;
-            this.lastPost.date += " UTC";
-            this.userService.getUserById(this.lastPost.ownerId)
-              .subscribe((response: User) => this.lastUser = response);
-        });
+    this.userService.getUserById(this.thread.ownerId)
+      .subscribe((response: User) => this.author = response);
+
+    this.forumPostService.getLastPostInThread(this.thread.id)
+      .subscribe((response: ThreadReply) => {
+        this.lastPost = response;
+        this.lastPost.date += " UTC";
+        this.userService.getUserById(this.lastPost.ownerId)
+          .subscribe((response: User) => this.lastUser = response);
     });
   }
 }

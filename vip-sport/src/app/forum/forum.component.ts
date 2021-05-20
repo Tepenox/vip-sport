@@ -29,8 +29,6 @@ export class ForumComponent implements OnInit {
       this.subcategories = response.subcategories;
       this.threads = response.threadList;
 
-      console.log(response);
-
       if (this.currentSubcategory.id != 0)
       this.titleService.setTitle(this.titleService.getTitle() + " " + this.currentSubcategory.name)
     });

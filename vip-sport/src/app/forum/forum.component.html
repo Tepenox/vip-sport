@@ -25,7 +25,7 @@
     <section id="threads">
         <ul id="thread-list">
             <li *ngFor="let thread of threads" class="thread">
-                <thread-link [threadId]="thread?.id"></thread-link>
+                <thread-link [thread]="thread"></thread-link>
             </li>
         </ul>
     </section>
