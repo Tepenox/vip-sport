@@ -1,10 +1,10 @@
-<div class="text-center" style="padding-top : 150px">
+<div class="text-center" style="padding-top: 150px">
   <div class="form-signin row justify-content-center">
     <form
       class="rounder"
       [formGroup]="loginForm"
       (ngSubmit)="onSubmitForm()"
-      style="background-color: ghostwhite;margin-bottom: 150px;"
+      style="background-color: ghostwhite; margin-bottom: 150px"
     >
       <img
         class="mb-4"
@@ -15,90 +15,119 @@
         class="text-center"
       />
       <h1 class="h3 mb-3 fw-normal text-center">Inscription</h1>
-      <input
-        formControlName="username"
-        type="text"
-        id="inputUsername"
-        class="form-control"
-        placeholder="Pseudo"
-        required=""
-        autofocus=""
-      />
-      <input
-        formControlName="firstName"
-        type="text"
-        id="inputFirstName"
-        class="form-control"
-        placeholder="Prenom"
-        required=""
-        autofocus=""
-      />
-      <input
-        formControlName="lastName"
-        type="text"
-        id="inputLastName"
-        class="form-control"
-        placeholder="Nom de famille"
-        required=""
-        autofocus=""
-      />
-      <br />
-      <input
-        formControlName="email"
-        type="email"
-        id="inputEmail"
-        class="form-control"
-        placeholder="Adresse mail"
-        required=""
-        autofocus=""
-      />
-      <br />
-      <input
-        formControlName="age"
-        type=""
-        id="ageInput"
-        class="form-control"
-        placeholder="Age"
-        required=""
-      />
-      <input
-        formControlName="weigth"
-        type="text"
-        id="inputWeigth"
-        class="form-control"
-        placeholder="Poid"
-        required=""
-        autofocus=""
-      />
-      <input
-        formControlName="heigth"
-        type="text"
-        id="inputHeigth"
-        class="form-control"
-        placeholder="Taille"
-        required=""
-        autofocus=""
-      />
-      <br />
-      <input
-        formControlName="password"
-        type="password"
-        id="inputPassword"
-        class="form-control"
-        placeholder="Mot de passe"
-        required=""
-        style="margin-top: 5px"
-      />
-      <input
-        formControlName="confirmPassword"
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirmer le mot de passe"
-        required=""
-        style="margin-top: 5px"
-      />
-      <br />
+      <div class="row">
+        <div class="col">
+          <input
+            formControlName="username"
+            type="text"
+            id="inputUsername"
+            class="form-control"
+            placeholder="Pseudo"
+            required=""
+            autofocus=""
+          />
+          <input
+            formControlName="firstName"
+            type="text"
+            id="inputFirstName"
+            class="form-control"
+            placeholder="Prenom"
+            required=""
+            autofocus=""
+          />
+          <input
+            formControlName="lastName"
+            type="text"
+            id="inputLastName"
+            class="form-control"
+            placeholder="Nom de famille"
+            required=""
+            autofocus=""
+          />
+          <br />
+          <input
+            formControlName="email"
+            type="email"
+            id="inputEmail"
+            class="form-control"
+            placeholder="Adresse mail"
+            required=""
+            autofocus=""
+          />
+          <small
+            *ngIf="
+              loginForm.get('email').invalid &&
+              (loginForm.get('email').dirty || loginForm.get('email').touched)
+            "
+            class="text-danger"
+          >
+            Veullez rentrer un email valide.</small
+          >
+          <br />
+        </div>
+        <div class="col">
+          <input
+            formControlName="age"
+            type="number"
+            id="ageInput"
+            class="form-control"
+            placeholder="Age"
+            required=""
+            [class.invalid]="loginForm.get('age').invalid"
+          />
+          <input
+            formControlName="weigth"
+            type="number"
+            id="inputWeigth"
+            class="form-control"
+            placeholder="Poid"
+            required=""
+            autofocus=""
+          />
+          <input
+            formControlName="heigth"
+            type="number"
+            id="inputHeigth"
+            class="form-control"
+            placeholder="Taille"
+            required=""
+            autofocus=""
+          />
+          <br />
+          <input
+            formControlName="password"
+            type="password"
+            id="inputPassword"
+            class="form-control"
+            placeholder="Mot de passe"
+            required=""
+            style="margin-top: 5px"
+          />
+
+          <input
+            formControlName="confirmPassword"
+            type="password"
+            id="confirmPassword"
+            class="form-control"
+            placeholder="Confirmer le mot de passe"
+            required=""
+            style="margin-top: 5px"
+          />
+          <small
+            *ngIf="
+              loginForm.get('password').invalid &&
+              (loginForm.get('password').dirty ||
+                loginForm.get('password').touched)
+            "
+            class="text-danger"
+          >
+            Le mot de passe est invalide. </small
+          ><small id="passwordHelpBlock" class="form-text text-muted">
+            Votre mot de passe doit faire entre 8 et 20 caractères.
+          </small>
+          <br />
+        </div>
+      </div>
       <button
         class="w-100 btn btn-lg btn-warning"
         type="submit"
@@ -106,6 +135,7 @@
       >
         S'inscrire
       </button>
+      <small class="text-danger" *ngIf="loginForm.invalid"> Merci de remplir tout les champs.</small>
       <br />
       <br />
       <div class="dropdown-divider black" style="color: black"></div>
