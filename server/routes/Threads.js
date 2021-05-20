@@ -33,17 +33,21 @@ router.post("/threads", Middlewares.verifyToken, (req, res) => {
   return res.json(Thread.getByid(createdThreadId));
 });
 
-router.put(
-  "/threads/:id",
-  Middlewares.verifyToken,
-  verifyThreadOwnerShip,
-  (req, res) => {
-    let receivedThread = req.body;
-    receivedThread.id = req.params.id;
-    Thread.edit(receivedThread) 
-    return Thread.getByid(req.params.id);
-  }
-);
+router.put("/threads/:id/pin", Middlewares.verifyToken, (req, res) => {
+  let changes = Thread.setIsPinned(req.params.id, req.body.isPinned);
+  if (changes == 0)
+    res.status(500).send('Something went wrong.');
+  else 
+    return res.json(Thread.getByid(req.params.id));
+});
+
+router.put("/threads/:id/lock", Middlewares.verifyToken, (req, res) => {
+  let changes = Thread.setIsLocked(req.params.id, req.body.isLocked);
+  if (changes == 0)
+    res.status(500).send('Something went wrong.');
+  else 
+    return res.json(Thread.getByid(req.params.id));
+});
 
 router.delete("/threads/:id", Middlewares.verifyToken, (req, res) => {
   if(Thread.delete(req.params.id) >= 1){

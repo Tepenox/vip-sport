@@ -1,8 +1,8 @@
 
 .icon {
     cursor: pointer;
-    margin-right: 50px;
-    line-height: 60px
+    margin-right: 21px;
+    margin-bottom: 4px;
 }
 
 .icon span {
@@ -12,6 +12,10 @@
     color: #fff;
     vertical-align: top;
     margin-left: -25px
+}
+.icone-hide{
+    display: none;
+    visibility: hidden;
 }
 
 .icon img {
@@ -39,7 +43,7 @@
     position: absolute;
     top: 63px;
     right: 279px;
-    border-radius: 5px 0px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
@@ -112,8 +116,8 @@
     opacity: 0;
     position: absolute;
     top: 63px;
-    right: 62px;
-    border-radius: 5px 0px 5px 5px;
+    right: 216px;
+    border-radius: 5px 5px 5px 5px;
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }

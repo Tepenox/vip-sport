@@ -28,16 +28,19 @@ Thread.create = function (thread) {
   return threadId;
 };
 
-Thread.edit = function (thread) {
- return db.prepare(
-    "update threads set\
-    title = @title ,\
-    ownerId = @ownerId ,\
-    categories = @categories\
-    where id = @id\
-    "
-  ).run(thread).changes;
+Thread.setIsPinned = function (id, isPinned) {
+  parsedIsPinned = isPinned ? "1" : "0";
+  return db.prepare("update threads set isPinned = ?\
+                    where id = ?"
+  ).run(parsedIsPinned, id).changes;
 };
+
+Thread.setIsLocked = function (id, isLocked) {
+  parsedIsLocked = isLocked ? "1" : "0";
+  return db.prepare("update threads set isLocked = ?\
+                     where id = ?"
+   ).run(parsedIsLocked, id).changes;
+ };
 
 Thread.delete = function (id) {
     return db.prepare("delete from threads where id= ?").run(id).changes;

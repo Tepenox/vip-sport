@@ -37,7 +37,7 @@
       </li>
     </ul>
     
-    <div class="icon" id="bell"> <img src="https://i.imgur.com/AC7dgLA.png" alt=""> </div>
+    <div [ngClass]="{'icone-hide' : !authService.loggedIn()}" class="icon" id="bell"> <img src="https://i.imgur.com/AC7dgLA.png" alt=""> </div>
     <div class="notifications" id="box">
         <h2>Notifications - <span>{{notifications.length}}</span></h2>
         <div *ngFor = "let notification of notifications" class="notifications-item"> <img [src]=notification.fromUser.imageUrl alt="img">
@@ -51,17 +51,16 @@
 
     <div class="user-search-results" id="box-search">
       <h2>Résultats  - <span> {{userSearchResults.length}} </span></h2>
-      <div *ngFor= "let user of userSearchResults" class="user-search-results-item"> <img [src]="user.imageUrl" alt="img">
-          <div routerLink = "/profile/{{user.id}}" class="text">
+      <div (click)="clearSearshForm()" routerLink = "/profile/{{user.id}}" *ngFor= "let user of userSearchResults" class="user-search-results-item"> <img [src]="user.imageUrl" alt="img">
+          <div  class="text">
               <h4 class = "profile-link" >{{user.userName}}</h4>
           </div>
       </div>        
   </div>
 
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+    <form  class="form-inline my-2 my-lg-0" autocomplete="off">
+      <input id="form-user-search" class="form-control mr-sm-2" type="search" placeholder="Recherchez utilisateur" aria-label="Search">
     </form>
     
 
