@@ -1,7 +1,8 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { Thread } from 'src/models/Thread';
 import { ThreadReply } from 'src/models/ThreadReply';
 import { AuthenticationService } from '../services/authentication.service';
@@ -21,7 +22,7 @@ export class ThreadComponent implements OnInit {
   fragment: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, 
-    public authService: AuthenticationService, private service: ForumPostService, private threadService: ThreadService) { }
+    public authService: AuthenticationService, private service: ForumPostService, private threadService: ThreadService, private titleService: Title) { }
 
   ngOnInit() {
     this.initializeThread();
@@ -68,6 +69,7 @@ export class ThreadComponent implements OnInit {
     this.route.data.subscribe((response: any) => {
       this.posts = response.replies;
       this.thread = response.thread;
+      this.titleService.setTitle(this.titleService.getTitle() + " " + this.thread.title);
     });
   }
 }
