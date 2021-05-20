@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
     
           this.notifications.forEach(value => this.userService.getUserById(value.fromId).subscribe(data => value.fromUser = data ));
           console.log( this.notifications);
-          this.searchUsers("ricardo");
     
         });
       }
@@ -40,34 +39,46 @@ export class NavbarComponent implements OnInit {
   
   ngAfterViewInit(){
     var downBell = false;
-      
+    $('#box').css('visibility','hidden');
+    $("#box").children().prop('disabled', true);
+
     $('#bell').on("click",function(e){
     if(downBell){
     
     $('#box').css('height','0px');
     $('#box').css('opacity','0');
+    $('#box').css('visibility','hidden');
+    $("#box").children().prop('disabled', true);
+
     downBell = false;
     }else{
     
     $('#box').css('height','auto');
     $('#box').css('opacity','1');
+    $('#box').css('visibility','visible');
+
     downBell = true;
     }
 
     });
 
       
-    $('#form-user-search').on("input",(e)=>{
+    $('#form-user-search').on("input propertychange",(e)=>{
     if(!String($('#form-user-search').val())){
     
     $('#box-search').css('height','0px');
     $('#box-search').css('opacity','0');
-    
+    $('#box-search').css('visibility','hidden');
+    $("#box-search").children().prop('disabled', true);
+
     }else{
     this.searchUsers(String($('#form-user-search').val()))
 
     $('#box-search').css('height','auto');
     $('#box-search').css('opacity','1');
+    $('#box-search').css('visibility','visible');
+
+
     
     }
     
@@ -93,8 +104,9 @@ export class NavbarComponent implements OnInit {
   clearSearshForm(){
     $('#form-user-search').val("");
     $('#box-search').css('height','0px');
-    $('#box-search').css('opacity','0');
-    
+    $('#box-search').css('opacity','0'); 
+    $('#box-search').css('visibility','hidden');
+    $("#box-search").children().prop('disabled', true);
   }
 
   logOut(){

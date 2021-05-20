@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-piechart',
@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./piechart.component.css'],
 })
 export class PiechartComponent implements OnInit {
+  
   public pieLabels = ['Protéines', 'Glucides', 'Lipides'];
-  public pieData = [200, 180, 90];
+
+  pieData: number[];
   public pieType = 'pie';
+
+  @Input() prot: number;
+  @Input() gluc: number;
+  @Input() lip: number;
 
   public colorFont: any = {
     legend: {
@@ -20,5 +26,15 @@ export class PiechartComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  refreshPie() {
+    location.reload();
+  }
+
+  ngOnInit(): void {
+    this.pieData = [this.prot, this.gluc, this.lip];
+  }
+
+  ngOnChanges() {
+    this.pieData = [this.prot, this.gluc, this.lip];
+  }
 }

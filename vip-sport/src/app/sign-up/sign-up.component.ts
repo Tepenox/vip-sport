@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
           Validators.required,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ]),
-        password: ['', Validators.required],
+        password: ['', [Validators.required,Validators.minLength(8),Validators.maxLength(20)]],
         confirmPassword: ['', Validators.required],
         age: ['', Validators.required],
         heigth: ['', Validators.required],
@@ -74,10 +74,11 @@ export class SignUpComponent implements OnInit {
       weigth,
       heigth
     );
-    console.log(newUser);
+    
 
     this.registerUser(newUser);
   }
+  
   checkPassword(password: string, otherPassword: string) {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[password];
@@ -85,7 +86,7 @@ export class SignUpComponent implements OnInit {
       if (matchingControl.errors && !matchingControl.errors.mustMatch) {
         return;
       }
-      if (control.value !== matchingControl.value) {
+      if (control.value !== matchingControl.value ) {
         matchingControl.setErrors({ mustMatch: true });
       } else {
         matchingControl.setErrors(null);
