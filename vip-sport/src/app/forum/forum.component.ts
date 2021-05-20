@@ -23,21 +23,17 @@ export class ForumComponent implements OnInit {
   constructor(private route: ActivatedRoute, private threadService: ThreadService, private titleService: Title) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe((response: { categories: Category[], subcategories: Subcategory[][], currentSubcategory: Subcategory } ) => {
+    this.route.data.subscribe(response  => {
       this.categories = response.categories;
       this.currentSubcategory = response.currentSubcategory;
       this.subcategories = response.subcategories;
+      this.threads = response.threadList;
 
       console.log(response);
 
       if (this.currentSubcategory.id != 0)
       this.titleService.setTitle(this.titleService.getTitle() + " " + this.currentSubcategory.name)
     });
-
-    this.threadService.getByParentId(this.currentSubcategory.id)
-      .subscribe((response: Thread[]) => {
-        this.threads = response;
-      });
   }
 
   toggleThreadForm() {

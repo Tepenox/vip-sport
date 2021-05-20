@@ -7,7 +7,13 @@ span {
     background-color: rgb(214, 214, 214);
 }
 
-#category-section {
+#category-list {
+    padding-bottom: 10px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+#thread-list {
     padding-bottom: 10px;
     padding-left: 0px;
     list-style: none;

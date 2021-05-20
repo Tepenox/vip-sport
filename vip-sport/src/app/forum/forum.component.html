@@ -1,29 +1,33 @@
 <div class="forum-page container mx-auto shadow">
     <h1>{{ currentSubcategory.name }}</h1>
-    <ul id="category-section">
-        <li *ngFor="let category of categories; let i = index">
-            <h2 class="category-name">{{ category?.name }}</h2>
-            <dl class="subcategory-list">
-                <ng-container *ngFor="let subcategory of subcategories[i]">
-                    <dt class="subcategory-name">
-                        <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
-                            <h3>{{ subcategory?.name }}</h3>
-                        </a>
-                    </dt>
-                    <dd class="subcategory-info">
-                        <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
-                            <span>{{ subcategory?.description }}</span>
-                        </a>
-                    </dd>
-                </ng-container>
-            </dl>
-        </li>
-    </ul>
+    <section id="categories">
+        <ul id="category-list">
+            <li *ngFor="let category of categories; let i = index">
+                <h2 class="category-name">{{ category?.name }}</h2>
+                <dl class="subcategory-list">
+                    <ng-container *ngFor="let subcategory of subcategories[i]">
+                        <dt class="subcategory-name">
+                            <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
+                                <h3>{{ subcategory?.name }}</h3>
+                            </a>
+                        </dt>
+                        <dd class="subcategory-info">
+                            <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
+                                <span>{{ subcategory?.description }}</span>
+                            </a>
+                        </dd>
+                    </ng-container>
+                </dl>
+            </li>
+        </ul>
+    </section>
 
-    <section id="thread-list">
-        <div *ngFor="let thread of threads" class="thread">
-            <thread-link [threadId]="thread?.id"></thread-link>
-        </div>
+    <section id="threads">
+        <ul id="thread-list">
+            <li *ngFor="let thread of threads" class="thread">
+                <thread-link [threadId]="thread?.id"></thread-link>
+            </li>
+        </ul>
     </section>
 
     <section *ngIf="currentSubcategory.id != 0" id="thread-creation-area">
