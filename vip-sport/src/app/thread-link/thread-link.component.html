@@ -1,4 +1,4 @@
-<div class="thread">
+<div class="thread" [class.pinned]="thread.isPinned">
     <div class="row">
         <div class="col thread-primary">
             <a [routerLink]="['/forum', currentSubcategory.id, 'thread', thread.id, url]" class="div-link">
