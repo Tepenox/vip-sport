@@ -5,7 +5,6 @@ import { Thread } from 'src/models/Thread';
 import { ThreadReply } from 'src/models/ThreadReply';
 import { User } from 'src/models/User';
 import { ForumPostService } from '../services/forum-post.service';
-import { ThreadService } from '../services/thread.service';
 import { UrlParserService } from '../services/url-parser.service';
 import { UserService } from '../services/user.service';
 

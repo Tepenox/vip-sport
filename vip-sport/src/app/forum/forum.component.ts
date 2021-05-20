@@ -4,9 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/models/Category';
 import { Subcategory } from 'src/models/Subcategory';
 import { Thread } from 'src/models/Thread';
-import { CategoriesService } from '../services/categories.service';
-import { SubcategoriesService } from '../services/subcategories.service';
-import { ThreadService } from '../services/thread.service';
 
 @Component({
   selector: 'app-forum',
