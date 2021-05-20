@@ -43,7 +43,7 @@ export class StatutComponent implements OnInit {
     
       this.postReplyService.getPostRepliesFromPostId(this.userPost.id).subscribe(data => {
         this.replies = data;
-        //console.log(this.replies)
+       // console.log(this.replies)
      
     })
   }
@@ -60,8 +60,10 @@ export class StatutComponent implements OnInit {
   }
 
   deletePost(){
-    this.postService.deletePost(this.userPost.id).subscribe(data => {
-      this.posts.splice(this.posts.length-1,1);
+    this.postService.deletePost(this.userPost.id).subscribe(
+      data => {
+        console.log(this.userPost.id)
+        window.location.reload();
     })
   }
 
@@ -71,6 +73,7 @@ export class StatutComponent implements OnInit {
         var postReply = new PostReply(this.userPost.id,$event,this.authentificationService.getCurrentUser().id,"PostComment");
         this.postReplyService.createPostReply(this.userPost.id,postReply).subscribe(data => {
           this.replies.push(data);
+         // console.log(data)
         });
     }
    

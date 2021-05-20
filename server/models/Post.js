@@ -31,7 +31,8 @@ Post.create = function(post){
         contentUrl , \
         ownerId ,\
         date ,\
-        categories \
+        categories, \
+        type \
         )values(\
             @title,\
             @contentType,\
@@ -39,7 +40,8 @@ Post.create = function(post){
             @contentUrl,\
             @ownerId,\
             datetime('now'),\
-            @categories\
+            @categories,\
+            'Post'\
        );").run(post).lastInsertRowid;
 
 }

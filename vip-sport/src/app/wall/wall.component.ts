@@ -37,13 +37,12 @@ export class WallComponent implements OnInit {
   
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
 
-  //public currentUser:User;
-  
+  public currentUser:User;
   
   
 
   constructor(private postService : PostService, private authentificationService : AuthenticationService, private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService) {
-    
+    this.currentUser = this.authentificationService.getCurrentUser();
   }
 
   getPosts(){
@@ -74,6 +73,7 @@ export class WallComponent implements OnInit {
     else{ 
       this.activatedRoute.queryParams.subscribe(params =>{
         var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, params['categories'],"Post");
+        console.log(post.type)
         this.postService.createPost(post).subscribe(data => {
           this.posts.push(data);
           this.isLocked = true;
@@ -83,15 +83,7 @@ export class WallComponent implements OnInit {
     }    
   }
 
-  deletePost(post:Post){
-    if(post.ownerId == this.authentificationService.getCurrentUser().id){
-      this.activatedRoute.queryParams.subscribe(params =>{
-        this.postService.deletePost(post.id).subscribe(data => {
-          this.posts.splice(data.length-1,1);
-        });
-      })
-    }
-  }
+ 
 
   
 

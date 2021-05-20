@@ -31,6 +31,7 @@ export class LikeDislikeComponent implements OnInit {
 
     this.likeService.ifLikeExists(this.subject.type,this.subject.id,this.subject.ownerId).subscribe(data => {
       this.isClickedUp = Boolean(data);
+     // console.log(this.isClickedUp)
       if(this.isClickedUp == true)
         this.imageUp = "./assets/dumbDownActived2.png";
     })
@@ -44,7 +45,6 @@ export class LikeDislikeComponent implements OnInit {
     this.getCounterUp();
     this.getCounterDown();
 
-    console.log(this.subject)
   }
 
   upVoteClick(){

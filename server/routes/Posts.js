@@ -47,7 +47,7 @@ router.put("/posts/:id",Middlewares.verifyToken, verifyPostOwnerShip,(req, res) 
 
 router.delete("/posts/:id", Middlewares.verifyToken,verifyPostOwnerShip,(req, res) => {
   if (Post.delete(req.params.id) > 0){
-    res.send("deleted");
+    res.send({deleted:true});
   }else{
     res.status(500).send('something went wrong');
 }

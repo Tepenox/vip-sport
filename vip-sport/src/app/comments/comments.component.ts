@@ -16,7 +16,7 @@ import { PostService } from '../services/post.service';
 })
 export class CommentsComponent implements OnInit {
 
-  @Input() comment:PostReply;
+  @Input() public comment:PostReply;
 
   public comments:PostReply[];
 
@@ -63,14 +63,14 @@ export class CommentsComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.postReplyService.getPostRepliesFromPostId(params['postId']).subscribe(data => {
         this.comments = data;
-      console.log(this.comments)
+        console.log(this.comments)
       });
     })
   }
 
   deleteReply(){
-    this.postReplyService.deletePostReply(this.originalPost.id,this.comment.id).subscribe(data => {
-
+      this.postReplyService.deletePostReply(this.originalPost.id,this.comment.id).subscribe(data => {
+      window.location.reload();
     })
   }
 

@@ -90,7 +90,7 @@ CREATE TABLE dislikes (
 
 CREATE TABLE posts(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
+    title TEXT,
     contentType TEXT NOT NULL, -- text
     content TEXT , 
     contentUrl TEXT , 
@@ -98,7 +98,7 @@ CREATE TABLE posts(
     date TEXT NOT NULL,
     categories TEXT NOT NULL,
     type TEXT NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id)
+    FOREIGN KEY (ownerId) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE postReplies (
@@ -108,8 +108,8 @@ CREATE TABLE postReplies (
     ownerId INTEGER NOT NULL,
     type TEXT NOT NULL,
     date TEXT NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id),
-    FOREIGN KEY (postId) REFERENCES posts(id)
+    FOREIGN KEY (ownerId) REFERENCES users(id) ON DELETE CASCADE, 
+    FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE CASCADE
 );
 
 
