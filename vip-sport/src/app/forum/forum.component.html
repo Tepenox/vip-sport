@@ -1,27 +1,36 @@
 <div class="forum-page container mx-auto shadow">
-    <div *ngFor="let category of categories; let i = index" class="category-section">
-        <div class="category">
-            <span class="category-name">{{ category?.name }}</span>
-        </div>
+    <h1>Forum</h1>
+    <ul id="category-section">
+        <li *ngFor="let category of categories; let i = index">
+            <h2 class="category-name">{{ category?.name }}</h2>
+            <dl class="subcategory-list">
+                <ng-container *ngFor="let subcategory of subcategories[i]">
+                    <dt class="subcategory-name">
+                        <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
+                            <h3>{{ subcategory?.name }}</h3>
+                        </a>
+                    </dt>
+                    <dd class="subcategory-info">
+                        <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
+                            <span>{{ subcategory?.description }}</span>
+                        </a>
+                    </dd>
+                </ng-container>
+            </dl>
+        </li>
+    </ul>
 
-        <div class="subcategory-list">
-            <div *ngFor="let subcategory of subcategories[i]" class="subcategory">
-                <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
-                    <span class="subcategory-name">{{ subcategory?.name }}</span>
-                    <span class="subcategory-info text-muted">{{ subcategory?.description }}</span>
-                </a>
-                <hr>
-            </div>
+    <section id="thread-list">
+        <div *ngFor="let thread of threads" class="thread">
+            <thread-link [threadId]="thread?.id"></thread-link>
         </div>
-    </div>
-    <div *ngFor="let thread of threads" class="thread">
-        <thread-link [threadId]="thread?.id"></thread-link>
-    </div>
-    <div *ngIf="currentSubcategory.id != 0" class="thread-creation-area">
+    </section>
+
+    <section *ngIf="currentSubcategory.id != 0" id="thread-creation-area">
         <button class="btn btn-primary" [hidden]="isThreadFormVisible" (click)="toggleThreadForm()">Nouveau sujet</button>
         <div [hidden]="!isThreadFormVisible" class="form">
             <button class="btn btn-primary" id="cancel" (click)="toggleThreadForm()">Annuler</button>
             <thread-creation-form></thread-creation-form>
         </div>
-    </div>
+    </section>
 </div>
