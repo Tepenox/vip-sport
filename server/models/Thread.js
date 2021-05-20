@@ -14,7 +14,10 @@ Thread.getAll = function () {
 };
 
 Thread.getAllInSubcategory = function (subcategoryId) {
-  let threads = db.prepare("select * from Threads where subcategoryId = ? order by date DESC").all(subcategoryId);
+  let threads = db.prepare("select * from threads\
+   INNER JOIN (SELECT max(id), threadId, date FROM threadReplies GROUP BY threadId ORDER BY date) AS tr\
+   ON threads.id = tr.threadId\
+   where subcategoryId = ? order by tr.date DESC").all(subcategoryId);
   return threads;
 };
 
