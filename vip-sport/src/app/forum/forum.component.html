@@ -17,7 +17,7 @@
     <div *ngFor="let thread of threads" class="thread">
         <thread-link [threadId]="thread?.id"></thread-link>
     </div>
-    <div *ngIf="currentCategoryId != 0" class="thread-creation-area">
+    <div *ngIf="currentSubcategory.id != 0" class="thread-creation-area">
         <button class="btn btn-primary" [hidden]="isThreadFormVisible" (click)="toggleThreadForm()">Nouveau sujet</button>
         <div [hidden]="!isThreadFormVisible" class="form">
             <button class="btn btn-primary" id="cancel" (click)="toggleThreadForm()">Annuler</button>

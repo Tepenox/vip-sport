@@ -7,6 +7,7 @@ import { User } from '../../models/User';
 import { Post } from '../../models/Post';
 import { PostService } from '../services/post.service';
 import { FollowService } from '../services/follow.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +31,8 @@ export class ProfileComponent implements OnInit {
     private postService: PostService,
     private follow: FollowService,
     private activatedRoute: ActivatedRoute,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private titleService: Title
   ) {
     this.route.paramMap.subscribe((params) => {
       this.userService
@@ -42,6 +44,7 @@ export class ProfileComponent implements OnInit {
           this.isYours = auth.getCurrentUser().id != parseInt(params.get('id'));
           this.calculateImc();
           this.getPosts();
+          this.titleService.setTitle(this.titleService.getTitle() + " " + this.user.userName);
         });
     });
 

@@ -57,6 +57,8 @@ CREATE TABLE threads (
     title TEXT NOT NULL,
     ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
+    isPinned BOOLEAN NOT NULL DEFAULT 0,
+    isLocked BOOLEAN NOT NULL DEFAULT 0,
     FOREIGN KEY (ownerId) REFERENCES users(id)
 );
 CREATE TABLE threadReplies (
