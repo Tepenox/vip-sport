@@ -16,11 +16,11 @@ import { ThreadService } from '../services/thread.service';
 export class ForumComponent implements OnInit {
   currentSubcategory: Subcategory;
   categories: Category[];
-  subcategories : Subcategory[][] = Array(0);
+  subcategories : Subcategory[][];
   threads: Thread[];
   isThreadFormVisible: boolean = false;
 
-  constructor(private route: ActivatedRoute, private threadService: ThreadService, private titleService: Title) { }
+  constructor(private route: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(response  => {

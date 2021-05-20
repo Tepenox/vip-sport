@@ -3,17 +3,17 @@
     <section id="categories">
         <ul id="category-list">
             <li *ngFor="let category of categories; let i = index">
-                <h2 class="category-name">{{ category?.name }}</h2>
+                <h2 class="category-name">{{ category.name }}</h2>
                 <dl class="subcategory-list">
                     <ng-container *ngFor="let subcategory of subcategories[i]">
                         <dt class="subcategory-name">
-                            <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
-                                <h3>{{ subcategory?.name }}</h3>
+                            <a [routerLink]="['/forum', subcategory.id]" class="div-link">
+                                <h3>{{ subcategory.name }}</h3>
                             </a>
                         </dt>
                         <dd class="subcategory-info">
-                            <a [routerLink]="['/forum', subcategory?.id]" class="div-link">
-                                <span>{{ subcategory?.description }}</span>
+                            <a [routerLink]="['/forum', subcategory.id]" class="div-link">
+                                <span>{{ subcategory.description }}</span>
                             </a>
                         </dd>
                     </ng-container>
