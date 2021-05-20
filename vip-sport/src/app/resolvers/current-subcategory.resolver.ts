@@ -17,7 +17,7 @@ export class CurrentSubcategoryResolver implements Resolve<Subcategory> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Subcategory> {
     let currentCategoryId = +route.paramMap.get('subcategoryID');
     if (currentCategoryId == 0) {
-      return of(new Subcategory(0, "Accueil", 0, "Accueil"));
+      return of(new Subcategory(0, "Forum", 0, "Accueil"));
     }
     return this.subcategoriesService.getById(currentCategoryId);
   }

@@ -1,5 +1,5 @@
 <div class="forum-page container mx-auto shadow">
-    <h1>Forum</h1>
+    <h1>{{ currentSubcategory.name }}</h1>
     <ul id="category-section">
         <li *ngFor="let category of categories; let i = index">
             <h2 class="category-name">{{ category?.name }}</h2>
