@@ -18,17 +18,19 @@
         </span>
     </section>
 
-    <div class="thread-title-box">
-        <h2 class="threadTitle p-3 my-2">
-            {{ thread.title }}
-        </h2>
-    </div>
-    <div class="threadContent" >
-        <div *ngFor="let post of posts; let isFirst = first" id="post-{{ post.id }}" >
-            <f-post [postId]="post.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
+    <article class="page">
+        <div class="thread-title-box">
+            <h2 class="threadTitle p-3 my-2">
+                {{ thread.title }}
+            </h2>
         </div>
-    </div>
-    
+        <div class="threadContent" >
+            <div *ngFor="let post of posts; let isFirst = first" id="post-{{ post.id }}" >
+                <f-post [postId]="post.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
+            </div>
+        </div>
+    </article>
+        
     <section *ngIf="authService.loggedIn()" class="form-section">
         <div *ngIf="authService.getModerationPower() >= 50 || !thread.isLocked; else locked" id="unlocked">
             <div *ngIf="thread.isLocked">
