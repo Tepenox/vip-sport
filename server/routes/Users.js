@@ -2,6 +2,8 @@ let express = require("express");
 let router = express.Router(); //new instance of the express router
 let Middlewares = require("../middlewares/middlewares");
 const util = require("util");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 let User = require("../models/User");
 let Token = require("../models/Token");
@@ -31,43 +33,49 @@ router.post("/signup", (req, res) => {
   } else if (User.getByUserName(receivedData.username)) {
     res.status(401).send("user name already exists");
   } else {
-    let userId = User.create(receivedData);
-    let createdUser = User.getById(userId);
-    let paylaod = { subject: userId };
-    let token = jwt.sign(paylaod, Token.hashKey);
-
-    console.log(
-      "received :" +
-        util.inspect([req.body], false, null, true) +
-        "\n" +
-        "sent:" +
-        util.inspect([createdUser, { token }], false, null, true)
-    );
-    res.json([createdUser, { token }]);
+   
+    bcrypt.hash(receivedData.password, saltRounds, function(err, hash) {
+      receivedData.password = hash;
+      let userId = User.create(receivedData);
+      let createdUser = User.getById(userId);
+      let paylaod = { subject: userId };
+      let token = jwt.sign(paylaod, Token.hashKey);
+  
+      console.log(
+        "received :" +
+          util.inspect([req.body], false, null, true) +
+          "\n" +
+          "sent:" +
+          util.inspect([createdUser, { token }], false, null, true)
+      );
+      res.json([createdUser, { token }]);  });
   }
 });
 
 router.post("/login", (req, res) => {
   let receivedData = req.body;
   let user = User.getByEmail(receivedData.email);
-  if (!user) {
-    res.status(401).send("Ivalid email");
-  } else if (user.password !== receivedData.password) {
-    // TODO decrypt here
-    res.status(401).send("Invalid Password");
-  } else {
-    let paylaod = { subject: user.id };
-    let token = jwt.sign(paylaod, Token.hashKey); // should be set to a global variable , it s encrypt the payload
-    console.log(
-      "received :" +
-        util.inspect([req.body], false, null, true) +
-        "\n" +
-        "sent:" +
-        util.inspect([user, { token }], false, null, true)
-    );
-    res.json([user, { token }]);
+  if (user) {
+  bcrypt.compare(req.receivedData, user.password, function(err, result) {
+    if (result) {
+      res.status(401).send("Invalid Password");
+    } else {
+      let paylaod = { subject: user.id };
+      let token = jwt.sign(paylaod, Token.hashKey); // should be set to a global variable , it s encrypt the payload
+      console.log(
+        "received :" +
+          util.inspect([req.body], false, null, true) +
+          "\n" +
+          "sent:" +
+          util.inspect([user, { token }], false, null, true)
+      );
+      res.json([user, { token }]);
+    }});
+  }else{
+    res.status(401).send("Invalid Email");
   }
 });
+
 
 router.put("/users/:id", Middlewares.verifyToken, (req, res) => {
   let receivedData = req.body;
@@ -80,8 +88,11 @@ router.put("/users/:id", Middlewares.verifyToken, (req, res) => {
   }
 });
 
-// router.get("/test", (req ,res)=>{
-//   res.json(req.query);
-// })
+router.get("/test", (req ,res)=>{
+
+  bcrypt.hash("password", saltRounds, function(err, hash) {
+    res.send(hash);
+  })
+})
 
 module.exports = router;
