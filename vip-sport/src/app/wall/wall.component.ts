@@ -41,7 +41,7 @@ export class WallComponent implements OnInit {
   
   
 
-  constructor(private postService : PostService, private authentificationService : AuthenticationService, private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService) {
+  constructor(private postService : PostService, public authentificationService : AuthenticationService, private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService) {
     this.currentUser = this.authentificationService.getCurrentUser();
   }
 

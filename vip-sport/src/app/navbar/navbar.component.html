@@ -37,7 +37,7 @@
       </li>
     </ul>
     
-    <div [ngClass]="{'icone-hide' : !authService.loggedIn()}" class="icon" id="bell"> <img src="https://i.imgur.com/AC7dgLA.png" alt=""> </div>
+    <div [attr.value] = "notifications.length" [ngClass]="{'icone-hide' : !authService.loggedIn(),badge : notifications.length != 0}" class="icon" id="bell"><img id="bellImage"src="https://i.imgur.com/AC7dgLA.png" alt=""> </div>
     <div class="notifications" id="box">
         <h2>Notifications - <span>{{notifications.length}}</span></h2>
         <div *ngFor = "let notification of notifications" class="notifications-item"> <img [src]=notification.fromUser.imageUrl alt="img">

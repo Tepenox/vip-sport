@@ -26,6 +26,18 @@
             required=""
             autofocus=""
           />
+          <small  class="form-text text-muted">
+            Votre mot de passe doit faire maximum 40 caractères.
+          </small>
+          <small
+            *ngIf="
+              loginForm.get('username').invalid &&
+              (loginForm.get('username').dirty || loginForm.get('username').touched)
+            "
+            class="text-danger"
+          >
+            Veullez rentrer un pseudo valide.</small
+          >
           <input
             formControlName="firstName"
             type="text"
@@ -150,6 +162,9 @@
       </div>
       <a class="text-center" href="">Déja un compte? Connectez vous ici</a>
       <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+      <small  class="form-text text-muted">
+        Ce site est réservé aux majeurs.
+      </small>
     </form>
   </div>
 </div>

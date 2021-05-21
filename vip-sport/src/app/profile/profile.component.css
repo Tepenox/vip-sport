@@ -38,6 +38,7 @@ textarea {
   height: 320px;
   width: 35%;
   resize: none;
+  max-lines: 1;
 }
 
 .imc {

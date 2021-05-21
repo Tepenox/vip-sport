@@ -20,7 +20,11 @@ router.get("/notifications",(req,res)=>{
 });
 
 router.post("/notifications",(req,res)=>{
-    res.json(Notification.getById(Notification.create(req.body)));
+    if(Notification.getByDettails(req.body)){
+        res.send("no need to send the same notification twice")
+    }else {
+        res.json(Notification.getById(Notification.create(req.body)));
+    }
 })
 
 router.delete("/notifications",(req,res)=>{
