@@ -17,19 +17,33 @@
 
     </div>
 
-    <div class="row">
-        <app-like-dislike [subject]= "userPost" [commentId]="userPost.id" id="likeDislike"></app-like-dislike>
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-body">
-                        {{userPost.content}}
+
+    <div *ngIf="isPost == false">
+        <div class="row">
+            <app-like-dislike [subject]= "userReply" [commentId]="userReply.id" id="likeDislike"></app-like-dislike>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            {{userReply.content}}
+                        </div>
                     </div>
                 </div>
-            </div>
+        </div>
     </div>
 
     
    <div *ngIf="isPost == true"> 
+
+        <div class="row">
+            <app-like-dislike [subject]= "userPost" [commentId]="userPost.id" id="likeDislike"></app-like-dislike>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            {{userPost.content}}
+                        </div>
+                    </div>
+                </div>
+        </div>
 
         <div *ngIf="replies.length != 0" style="padding-left: 100px;">  
             <a id="userName" style="color: white; font-weight: bold;"  routerLink = "/posts/replies" [queryParams]="{postId: userPost.id}" >Voir les commentaires ({{replies.length}})</a>
