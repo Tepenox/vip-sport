@@ -29,6 +29,21 @@
                 <f-post [postId]="post.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
             </div>
         </div>
+        <span id="pages">
+            <ng-container *ngFor="let page of pages; let i = index">
+                <a *ngIf="currentPage != page; else currentPageNumber" href=#>
+                    {{ page }}
+                </a>
+                <span *ngIf="pages.length >= 12 && ((i == 0 && currentPage > 6) || (i == pages.length-2 && currentPage < page-4))">
+                    ...
+                </span>
+                <ng-template #currentPageNumber id="currentPage">
+                    <span>
+                        {{ page }}
+                    </span>
+                </ng-template>
+            </ng-container>
+        </span>
     </main>
         
     <section *ngIf="authService.loggedIn()" class="form-section">

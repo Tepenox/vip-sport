@@ -16,7 +16,8 @@ import { ThreadService } from '../services/thread.service';
 })
 export class ThreadComponent implements OnInit {
   thread: Thread;
-  page:number = 1; //TODO
+  currentPage: number;
+  pages: number[];
   isReplyActive = false;
   posts: ThreadReply[];
   fragment: string;

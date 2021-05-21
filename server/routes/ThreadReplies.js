@@ -15,17 +15,8 @@ function verifyReplyOwnerShip(req,res,next){
     }
 }
 
-router.get("/threadReplies",(req,res)=>{
-    if (req.query.threadId)
-        res.json(ThreadReply.getAllByThreadId(req.query.threadId));
-    else if (req.query.id)
-        res.json(ThreadReply.getByid(req.query.id));
-    else
-        res.json(ThreadReply.getAll());
-});
-
-router.get("/threadReplies/:id", (req, res) => {
-    res.json(ThreadReply.getByid(req.params.id));
+router.get("/threadReplies/thread/:threadId/pages", (req, res) => {
+    res.json(ThreadReply.getAmountOfPages(req.params.threadId));
 });
 
 router.get("/threadReplies/thread/:threadId", (req, res) => {
@@ -33,6 +24,21 @@ router.get("/threadReplies/thread/:threadId", (req, res) => {
         res.json(ThreadReply.getFirstPostInThread(req.params.threadId));
     else if (req.query.option == 'last')
         res.json(ThreadReply.getLastPostInThread(req.params.threadId));
+    else {
+        let page = req.query.page ? req.query.page : "1";
+        res.json(ThreadReply.getAllByThreadId(req.params.threadId, page));
+    }
+});
+
+router.get("/threadReplies/:id", (req, res) => {
+    res.json(ThreadReply.getByid(req.params.id));
+});
+
+router.get("/threadReplies",(req,res)=>{
+    if (req.query.id)
+        res.json(ThreadReply.getByid(req.query.id));
+    else
+        res.json(ThreadReply.getAll());
 });
 
 router.post("/threadReplies", Middlewares.verifyToken, (req,res)=>{

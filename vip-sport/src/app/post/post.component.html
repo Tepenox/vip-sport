@@ -6,7 +6,7 @@
                 <span class="username">{{ user?.userName }}</span>
             </a>
             <span class="postDate text-muted">
-                <time attr.datetime="{{ post.date | date:'YYYY-MM-dd HH:mm:ss':'UTC+2' }}"> {{ post?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }} </time>
+                <time attr.datetime="{{ post?.date | date:'YYYY-MM-dd HH:mm:ss':'UTC+2' }}"> {{ post?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }} </time>
             </span>
             <span class="post-options">
                 <delete-button *ngIf="(currentUserRole?.moderationPower >= 50 || currentUser?.id == user?.id) && authService.loggedIn()" [postId]="id" (delete)="deletePost()"></delete-button>
