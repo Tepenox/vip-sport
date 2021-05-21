@@ -2,19 +2,15 @@
    padding-left: 250px;
 }
 
-#OP{
-    height: 40px;
-    width: 40px;
-   
+#yellowCard{
+    padding-left: 100px;
+    padding-top: 100px;
 }
 
-#delete{
-    height: 40px;
-    width: 40px;
-}
 
-#deleteDiv{
-    padding-left: 600px;
+#userName{
+    padding-top: 10px;
+    padding-left: 15px;
 }
 
 #profilePic{
@@ -22,8 +18,8 @@
     width: 70px;
 }
 
-#profilePicDiv{
-    padding-left: 100px;
+
+#profileName{
     padding-right: 5px;
     padding-bottom: 10px;
 }
