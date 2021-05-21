@@ -38,7 +38,7 @@ const routes: Routes = [
   {path: 'trainer', component : TrainerComponent, data: { title: 'Exercices' }},
   {path: 'secret', canActivate :[AuthGuard],component : SecretComponent, data: { title: 'AMOGUS' }},
   {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent, 
-      resolve: { replies: ThreadReplyResolver, thread: ThreadResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver, pages: PagesResolver },
+      resolve: { thread: ThreadResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver, pages: PagesResolver },
       data: { title: 'Sujet: ' }},
   {path: 'forum/:subcategoryID', component : ForumComponent, 
       resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver, threadList: ThreadListResolver },

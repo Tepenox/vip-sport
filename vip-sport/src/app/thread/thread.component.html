@@ -52,7 +52,7 @@
                 <p class="alert alert-info">Ce sujet est verrouillé. Vous avez cependant le droit d'y répondre car vous avez le rôle {{ authService.getRoleName() | lowercase }}</p>
             </div>
             <div>
-                <a [routerLink]="['./']" fragment="reply-form" [hidden]="isReplyActive">
+                <a [routerLink]="['./']" [queryParams]="{ page: currentPage }" fragment="reply-form" [hidden]="isReplyActive">
                     <button class="btn btn-primary" (click)="toggleReplyForm()">Répondre</button>
                 </a>
             </div>
