@@ -13,7 +13,7 @@
         <input type="text" [(ngModel)]="user.imageUrl" />
       </div>
       <h1 *ngIf="!profileModification">{{ user.userName }}</h1>
-      <h4>Abonnés: {{ followersCount }}</h4>
+      <h4 *ngIf="!profileModification">Abonnés: {{ followersCount }}</h4>
       <div class="text-center padder">
         <input
           *ngIf="profileModification && !isFollowing"
