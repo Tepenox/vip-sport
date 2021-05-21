@@ -35,8 +35,6 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
     this.getPost();
     this.getReplies();
-
-    
   }
 
   
@@ -63,16 +61,16 @@ export class CommentsComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.postReplyService.getPostRepliesFromPostId(params['postId']).subscribe(data => {
         this.comments = data;
-        console.log(this.comments)
+        //console.log(this.comments)
       });
     })
   }
 
-  deleteReply(){
+ /* deleteReply(){
       this.postReplyService.deletePostReply(this.originalPost.id,this.comment.id).subscribe(data => {
       window.location.reload();
     })
-  }
+  }*/
 
 
 }
