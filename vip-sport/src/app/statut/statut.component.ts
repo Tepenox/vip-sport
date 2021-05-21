@@ -23,7 +23,9 @@ import { UserService } from '../services/user.service';
 export class StatutComponent implements OnInit {
 
   @Input() userPost:Post;
+  @Input() userReply:PostReply;
   @Input() posts:Post[];
+  @Input() isPost:boolean;
 
   @Output() text:string;
 
@@ -41,17 +43,32 @@ export class StatutComponent implements OnInit {
 
    getReplies(){
     
+    if(this.isPost == true){
       this.postReplyService.getPostRepliesFromPostId(this.userPost.id).subscribe(data => {
         this.replies = data;
        // console.log(this.replies)
      
     })
+    }
+    else{
+      this.postReplyService.getPostRepliesFromPostId(this.userReply.postId).subscribe(data => {
+        this.replies = data;
+      })
+    }
   }
 
   ngOnInit(): void {
-    this.userService.getUserById(this.userPost.ownerId).subscribe(data => {
-      this.ownerUser = data;
-    } )
+    if(this.isPost == true){
+      this.userService.getUserById(this.userPost.ownerId).subscribe(data => {
+        this.ownerUser = data;
+      } )
+    }
+    else{
+      this.userService.getUserById(this.userReply.ownerId).subscribe(data => {
+        this.ownerUser = data;
+      } )
+    }
+    
 
     this.getReplies();
 
@@ -66,6 +83,12 @@ export class StatutComponent implements OnInit {
         window.location.reload();
     })
   }
+
+  deleteReply(){
+    this.postReplyService.deletePostReply(this.userReply.postId,this.userReply.id).subscribe(data => {
+      window.location.reload();
+  })
+}
 
   postReply($event:any){
 

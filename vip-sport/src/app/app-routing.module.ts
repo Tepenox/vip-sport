@@ -45,7 +45,7 @@ const routes: Routes = [
   {path: 'forum', component : ForumComponent, resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver },
       data: { title: 'Forum' }},
   {path: 'posts', component : WallComponent, data: { title: 'Mur' }},
-  {path: 'posts/replies', component: CommentsComponent, data: { title: 'Mur' }},
+  {path: 'posts/replies', component: CommentsComponent, data: { title: 'Commentaires' }},
   {path: '**', component : NoContentPageComponent, data: { title: '404' }}
 ];
 

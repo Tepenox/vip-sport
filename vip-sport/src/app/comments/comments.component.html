@@ -1,6 +1,9 @@
-<div id="comment" *ngFor = "let comment of comments; let com = comment" [comment]="comment"  style="padding-top: 100px;">
+<div id="comment" *ngFor = "let comment of comments"  style="padding-top: 100px;">
+
+
+    <app-statut [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
     
-    <div class="row">
+   <!-- <div class="row">
 
         <div id="profilePicDiv">
             <img id='profilePic' [src]="" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/> 
@@ -29,6 +32,6 @@
             </div>
         </div>
     </div>
-
+ -->
 
 </div>
