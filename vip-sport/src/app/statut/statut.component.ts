@@ -85,8 +85,7 @@ export class StatutComponent implements OnInit {
   }
 
   deleteReply(){
-    console.log(this.userReply.id)
-    this.postReplyService.deletePostReply(this.userPost.id,this.userReply.id).subscribe(data => {
+    this.postReplyService.deletePostReply(this.userReply.postId,this.userReply.id).subscribe(data => {
       window.location.reload();
   })
 }

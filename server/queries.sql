@@ -108,8 +108,8 @@ CREATE TABLE postReplies (
     ownerId INTEGER NOT NULL,
     type TEXT NOT NULL,
     date TEXT NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id) ON DELETE CASCADE, 
-    FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE CASCADE
+    FOREIGN KEY (ownerId) REFERENCES users(id), 
+    FOREIGN KEY (postId) REFERENCES posts(id)
 );
 
 
