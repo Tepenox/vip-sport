@@ -90,14 +90,15 @@ CREATE TABLE dislikes (
 
 CREATE TABLE posts(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
+    title TEXT,
     contentType TEXT NOT NULL, -- text
     content TEXT , 
     contentUrl TEXT , 
     ownerId INTEGER NOT NULL,
     date TEXT NOT NULL,
     categories TEXT NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id)
+    type TEXT NOT NULL,
+    FOREIGN KEY (ownerId) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE postReplies (
@@ -105,9 +106,10 @@ CREATE TABLE postReplies (
     postId INTEGER NOT NULL,
     content TEXT NOT NULL,
     ownerId INTEGER NOT NULL,
+    type TEXT NOT NULL,
     date TEXT NOT NULL,
-    FOREIGN KEY (ownerId) REFERENCES users(id),
-    FOREIGN KEY (postId) REFERENCES posts(id)
+    FOREIGN KEY (ownerId) REFERENCES users(id) ON DELETE CASCADE, 
+    FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE CASCADE
 );
 
 
@@ -327,7 +329,8 @@ insert into posts (
     contentUrl , 
     ownerId ,
     date ,
-    categories 
+    categories,
+    type 
     )values(
         "est ce que avoir un imc de 17 est normal ?",
         "text",
@@ -335,18 +338,21 @@ insert into posts (
         "",
         2,
         datetime('now'),
-        'cyclisme'
+        'cyclisme',
+        "Post"
    );
 
    insert into postReplies(
     postId ,
     content ,
     ownerId ,
+    type,
     date 
    )values(
        1,
        "frere te renchoouf ",
        1,
+       "PostComment",
        datetime('now')
    );
 

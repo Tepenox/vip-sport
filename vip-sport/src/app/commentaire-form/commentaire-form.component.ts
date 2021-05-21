@@ -10,13 +10,9 @@ import { AuthenticationService } from '../services/authentication.service';
 export class CommentaireFormComponent implements OnInit {
 
   public currentUser:User;
-  //public textReply:string;
 
   @Output() giveTextEvent = new EventEmitter<string>();
 
-  sendText(){
-   // this.giveTextEvent.emit(this.textReply);
-  }
 
   constructor(private authentificationService:AuthenticationService) {
     this.currentUser = this.authentificationService.getCurrentUser();
@@ -36,7 +32,6 @@ export class CommentaireFormComponent implements OnInit {
   
 
   ngOnInit(): void {
-   // this.getText;
   }
 
 }

@@ -13,6 +13,16 @@
     padding-left: 10px;
 }
 
+#delete{
+    height: 40px;
+    width: 40px;
+}
+
+#deleteDiv{
+    padding-left: 400px;
+    padding-top: 20px;
+}
+
 #profileName{
     padding-left: 100px;
     padding-bottom: 10px;

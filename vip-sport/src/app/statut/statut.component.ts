@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { data } from 'jquery';
 import { Post } from 'src/models/Post';
 import { PostReply } from 'src/models/PostReply';
 import { User } from 'src/models/User';
@@ -22,17 +23,19 @@ import { UserService } from '../services/user.service';
 export class StatutComponent implements OnInit {
 
   @Input() userPost:Post;
+  @Input() posts:Post[];
 
   @Output() text:string;
 
   public ownerUser:User;
+  public currentUser:User;
 
   public replies:PostReply[] = [];
   public nbComs:number;
 
   
 
-  constructor(private userService:UserService, private postReplyService:PostReplyService, private activatedRoute:ActivatedRoute, private authentificationService:AuthenticationService) {
+  constructor(private userService:UserService, private postReplyService:PostReplyService, private authentificationService:AuthenticationService, private postService:PostService) {
    
    }
 
@@ -40,7 +43,7 @@ export class StatutComponent implements OnInit {
     
       this.postReplyService.getPostRepliesFromPostId(this.userPost.id).subscribe(data => {
         this.replies = data;
-        //console.log(this.replies)
+       // console.log(this.replies)
      
     })
   }
@@ -52,19 +55,30 @@ export class StatutComponent implements OnInit {
 
     this.getReplies();
 
+   this.currentUser = this.authentificationService.getCurrentUser();
+
+  }
+
+  deletePost(){
+    this.postService.deletePost(this.userPost.id).subscribe(
+      data => {
+        console.log(this.userPost.id)
+        window.location.reload();
+    })
   }
 
   postReply($event:any){
 
     if($event != ""){
-        var postReply = new PostReply(this.userPost.id,$event,this.authentificationService.getCurrentUser().id);
+        var postReply = new PostReply(this.userPost.id,$event,this.authentificationService.getCurrentUser().id,"PostComment");
         this.postReplyService.createPostReply(this.userPost.id,postReply).subscribe(data => {
           this.replies.push(data);
-          console.log(this.replies)
+         // console.log(data)
         });
     }
    
   }
+
 
   
 

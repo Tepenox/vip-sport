@@ -7,7 +7,8 @@ export class Post{
         public content:string, 
         public contentUrl:string, 
         public ownerId:number, 
-        public categories:string, 
+        public categories:string,
+        public type:string,
         public date?:string,
         public id?:number,
         public postReplies?:PostReply[]

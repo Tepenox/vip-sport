@@ -3,6 +3,7 @@ export class PostReply{
         public postId:number,
         public content:string,
         public ownerId:number,
+        public type:string,
         public date?:string,
         public id?:number
     ){

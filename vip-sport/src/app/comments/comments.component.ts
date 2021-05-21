@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 import { PostReply } from 'src/models/PostReply';
 import { ActivatedRoute } from '@angular/router';
 import { PostReplyService } from '../services/post-reply.service';
@@ -8,12 +8,15 @@ import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
 
 
+
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
+
+  @Input() public comment:PostReply;
 
   public comments:PostReply[];
 
@@ -24,6 +27,7 @@ export class CommentsComponent implements OnInit {
   public originalPost:Post;
   
   
+  
 
   constructor(private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService, private userService:UserService, private postService:PostService) { }
 
@@ -31,6 +35,8 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
     this.getPost();
     this.getReplies();
+
+    
   }
 
   
@@ -48,7 +54,7 @@ export class CommentsComponent implements OnInit {
   }
 
   getUser(){
-    this.userService.getUserById(this.userId).subscribe(data => {
+    this.userService.getUserById(this.comment.ownerId).subscribe(data => {
       this.user = data;
     } )
   }
@@ -57,8 +63,14 @@ export class CommentsComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.postReplyService.getPostRepliesFromPostId(params['postId']).subscribe(data => {
         this.comments = data;
-      // console.log(this.comments)
+        console.log(this.comments)
       });
+    })
+  }
+
+  deleteReply(){
+      this.postReplyService.deletePostReply(this.originalPost.id,this.comment.id).subscribe(data => {
+      window.location.reload();
     })
   }
 
