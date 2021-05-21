@@ -8,6 +8,11 @@
     padding-left: 300px;
 }
 
+#mic{
+    height: 40px;
+    width: 40px; 
+}
+
 #userName{
     padding-top: 20px;
     padding-left: 10px;
