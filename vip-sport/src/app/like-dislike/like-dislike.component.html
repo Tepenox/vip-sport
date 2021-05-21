@@ -2,12 +2,12 @@
 <div class="col">
     <div class="nav-item" href="#">
         <input type="image" class="btTxt submit" id='imageUp' [src] = 'imageUp' (click)="upVoteClick()">
-        <span class="badge bg-light">{{counterUp}}</span>
+        <span class="badge bg-light">{{counterUp.count}}</span>
     </div>
 
     <div class="nav-item" href="#">
         <input type="image" class="png-icon d-inline-block align-middle" id='imageDown' [src] = 'imageDown' (click)="downVoteClick()">
-        <span class="badge bg-light">{{counterDown}}</span>
+        <span class="badge bg-light">{{counterDown.count}}</span>
     </div>
 </div>
 

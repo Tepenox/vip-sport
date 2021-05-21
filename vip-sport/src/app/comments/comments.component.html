@@ -1,15 +1,21 @@
-<div id="comment" *ngFor = "let comment of comments" style="padding-top: 100px;">
+<div id="comment" *ngFor = "let comment of comments"  style="padding-top: 100px;">
+
+
+    <app-statut [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
     
-    <div class="row">
+   <!-- <div class="row">
 
         <div id="profilePicDiv">
-            
-            <img id='profilePic' [userId]="comment.ownerId" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/> 
+            <img id='profilePic' [src]="" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/> 
         </div>
         
 
         <div *ngIf ="comment.ownerId == opOwnerId">
-            <img id='OP' src ="./assets/Trash-Trophee/trophee.png" data-holder-rendered="true"/>
+
+            <div id="deleteDiv">
+            <input type="image" id='delete'  src ="./assets/Trash-Trophee/delete.png" (click)="deleteReply()" data-holder-rendered="true"/>  
+            </div>
+
         </div> 
 
 
@@ -17,7 +23,7 @@
     
 
     <div class="row">
-        <app-like-dislike></app-like-dislike>
+        <app-like-dislike [subject]="comment" [commentId]="comment.id"></app-like-dislike>
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
@@ -26,4 +32,6 @@
             </div>
         </div>
     </div>
+ -->
+
 </div>

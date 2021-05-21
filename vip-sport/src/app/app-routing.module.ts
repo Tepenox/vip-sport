@@ -19,6 +19,7 @@ import { ThreadResolver } from './resolvers/thread.resolver';
 import { CategoriesResolver } from './resolvers/categories.resolver';
 import { SubcategoriesResolver } from './resolvers/subcategories.resolver';
 import { CurrentSubcategoryResolver } from './resolvers/current-subcategory.resolver';
+import { ThreadListResolver } from './resolvers/thread-list.resolver';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -39,12 +40,12 @@ const routes: Routes = [
       resolve: { replies: ThreadReplyResolver, thread: ThreadResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver },
       data: { title: 'Sujet: ' }},
   {path: 'forum/:subcategoryID', component : ForumComponent, 
-      resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver },
+      resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver, threadList: ThreadListResolver },
       data: { title: 'Forum - ' }},
   {path: 'forum', component : ForumComponent, resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver },
       data: { title: 'Forum' }},
   {path: 'posts', component : WallComponent, data: { title: 'Mur' }},
-  {path: 'posts/replies', component: CommentsComponent, data: { title: 'Mur' }},
+  {path: 'posts/replies', component: CommentsComponent, data: { title: 'Commentaires' }},
   {path: '**', component : NoContentPageComponent, data: { title: '404' }}
 ];
 

@@ -22,11 +22,11 @@ export class PostReplyService {
   }
 
   editPostReply(postId:number,postReplyId:string,postReply:PostReply):Observable<PostReply>{
-    return this.httpClient.put<PostReply>(this.postRepliesUrl.replace(":postId",String(postId))+"/"+postReplyId,postReply)
+    return this.httpClient.put<PostReply>(this.postRepliesUrl.replace(":postid",String(postId))+"/"+postReplyId,postReply)
   }
 
   deletePostReply(postId:number,postReplyId){
-    return this.httpClient.delete<any>(this.postRepliesUrl.replace(":postId",String(postId))+"/"+postReplyId).pipe(catchError(this.errorHandler))
+    return this.httpClient.delete<any>(this.postRepliesUrl.replace(":postid",String(postId))+"/"+postReplyId).pipe(catchError(this.errorHandler))
   }
 
   errorHandler(error:HttpErrorResponse){

@@ -9,11 +9,7 @@
             <!-------Statut---------->
 
             <div style="padding-top: 100px;">
-            <app-statut  [userPost] = "post"></app-statut>
-           <!-- <input type="image" class="btTxt submit" id='delete' src = "./assets/Like_Dislike_Trash/delete.png"> -->
-           <div style="padding-top: 10px;">
-           <button type="button" (click)="deletePost(post)" class="btn btn-danger">Supprimer</button>
-           </div>
+            <app-statut  [userPost] = "post" [posts]="posts" [isPost]=true></app-statut>
                       
            
 
@@ -68,7 +64,7 @@
         </div>
 
         <div id="addStatutButton">
-            <button type="submit" class="btn btn-warning mb-3" (click)="postStatut()">Ajouter un status</button>
+            <button type="submit" class="btn btn-warning mb-3" (click)="postStatut()">Ajouter un statut</button>
         </div>
 
     </div>

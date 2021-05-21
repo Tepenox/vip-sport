@@ -7,7 +7,20 @@ span {
     background-color: rgb(214, 214, 214);
 }
 
-.category {
+#category-list {
+    padding-bottom: 10px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+#thread-list {
+    padding-bottom: 10px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+.category-name {
+    padding: 3px 10px 3px 10px;
     border-style: solid;
     border-color: rgb(125, 139, 179);
     background-color: rgb(125, 139, 179);
@@ -15,10 +28,9 @@ span {
     width: 100%;
     margin-top: 10px;
     margin-bottom: 5px;
-    font-size: 120%;
-    font-weight: 600;
+    font-size: 100%;
+    font-weight: 500;
     color: white;
-    padding-left: 10px;
 }
 
 .thread-creation-area {
@@ -35,33 +47,40 @@ span {
     padding: 5px 10px 5px 10px; 
 }
 
-.div-link:hover {
-    background-color: rgba(0, 0, 0, 0.062);
-}
-
 #cancel {
     margin-bottom: 15px;
 }
 
-hr {
-    margin-bottom: 0px;
-    margin-top: 0px;
-    padding-top: 0%;
-    padding-bottom: 0%;
+.subcategory-name > .div-link > h3 {
+    font-size: 100%;
+    font-weight: 400;
+    color: rgba(67, 72, 78, 0.925);
 }
 
-.subcategory {
-    padding: 0px 0px 0px 0px;
+.subcategory-info > .div-link {
+    color: rgba(67, 72, 78, 0.829);
 }
 
-.subcategory-name {
-    color: rgb(67, 72, 78);
+.div-link {
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
-.subcategory-name:hover {
+dt {
+    padding-top: 5px;
+    height: 3.8em;
+    margin-bottom: -2em;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(70, 70, 70, 0.226);
+}  
+
+dd {
+    pointer-events: none;
+}
+  
+dt:hover {
     text-decoration: underline;
-}
-
-.subcategory-info {
-    text-decoration-color: black;
+    background-color: rgba(0, 0, 0, 0.062);
+    border-bottom-color: rgba(70, 70, 70, 0.048);
 }
