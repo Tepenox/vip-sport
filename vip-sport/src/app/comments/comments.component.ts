@@ -44,6 +44,7 @@ export class CommentsComponent implements OnInit {
       this.postService.getPostById(params['postId']).subscribe(data => {
         this.originalPost = data;
         this.opOwnerId = this.originalPost.ownerId;
+        this.getUser();
       });
       
     })
@@ -52,8 +53,8 @@ export class CommentsComponent implements OnInit {
   }
 
   getUser(){
-    this.userService.getUserById(this.comment.ownerId).subscribe(data => {
-      this.user = data;
+    this.userService.getUserById(this.opOwnerId).subscribe(data => {
+      this.opOwner = data;
     } )
   }
 
@@ -66,11 +67,6 @@ export class CommentsComponent implements OnInit {
     })
   }
 
- /* deleteReply(){
-      this.postReplyService.deletePostReply(this.originalPost.id,this.comment.id).subscribe(data => {
-      window.location.reload();
-    })
-  }*/
 
 
 }
