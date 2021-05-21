@@ -1,37 +1,32 @@
-<div id="comment" *ngFor = "let comment of comments"  style="padding-top: 100px;">
 
+<div class="row" id="yellowCard">
+<div class="card text-dark bg-warning text-center">
+    <div class="card-body">
+        <div class="row" id="profileName">
 
-    <app-statut [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
-    
-   <!-- <div class="row">
-
-        <div id="profilePicDiv">
-            <img id='profilePic' [src]="" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/> 
-        </div>
+            <img id='profilePic' [src]="opOwner.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+            <a id="userName" style="color: white;" routerLink = "/profile/{{opOwner.id}}">{{opOwner.userName}}</a>
         
 
-        <div *ngIf ="comment.ownerId == opOwnerId">
-
-            <div id="deleteDiv">
-            <input type="image" id='delete'  src ="./assets/Trash-Trophee/delete.png" (click)="deleteReply()" data-holder-rendered="true"/>  
-            </div>
-
-        </div> 
-
-
-    </div>
-    
-
-    <div class="row">
-        <app-like-dislike [subject]="comment" [commentId]="comment.id"></app-like-dislike>
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    {{comment.content}}
-                </div>
-            </div>
         </div>
-    </div>
- -->
 
+
+        <div class="row" id="content">
+                    <div class="card">
+                        <div class="card-body">
+                            {{originalPost.content}}
+                        </div>
+                    </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+
+<div id="comment" *ngFor = "let comment of comments"  style="padding-top: 100px;">
+
+    <app-statut [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
+     
 </div>
