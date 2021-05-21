@@ -23,7 +23,7 @@ export class ThreadComponent implements OnInit {
   fragment: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, 
-    public authService: AuthenticationService, private service: ForumPostService, private threadService: ThreadService, private titleService: Title) { }
+    public authService: AuthenticationService, private threadService: ThreadService, private titleService: Title) { }
 
   ngOnInit() {
     this.initializeThread();
@@ -70,6 +70,8 @@ export class ThreadComponent implements OnInit {
     this.route.data.subscribe((response: any) => {
       this.posts = response.replies;
       this.thread = response.thread;
+      this.pages = response.pages.pages;
+      this.currentPage = response.pages.current;
       this.titleService.setTitle(this.titleService.getTitle() + " " + this.thread.title);
     });
   }

@@ -31,7 +31,7 @@ ThreadReply.getLastPostInThread = function (threadId) {
 }
 
 ThreadReply.getAmountOfPages = function (threadId) {
-  return db.prepare("SELECT COUNT(*)/10 + 1 FROM threadReplies WHERE threadId = ?")
+  return db.prepare("SELECT (COUNT(*)-1)/10 + 1 AS pageAmount FROM threadReplies WHERE threadId = ?")
     .get(threadId);
 }
 

@@ -13,7 +13,7 @@ export class ForumPostService extends DataService {
   }
 
   getPostsByThreadID(id: number, page: number): Observable<ThreadReply[]> {
-    let params = new HttpParams().set('page', String(id));
+    let params = new HttpParams().set('page', String(page));
     return this.http.get<ThreadReply[]>(this.url + `/thread/${id}`, { params: params });
   }
 

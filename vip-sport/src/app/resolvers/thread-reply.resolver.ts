@@ -21,6 +21,7 @@ export class ThreadReplyResolver implements Resolve<ThreadReply[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ThreadReply[]> {
     let threadId = +route.paramMap.get('threadID');
     let page = +route.queryParamMap.get('page');
+    
     return this.replyService.getPostsByThreadID(threadId, page).pipe(
       map((replies: ThreadReply[]) => {
         if (replies.length > 0) {

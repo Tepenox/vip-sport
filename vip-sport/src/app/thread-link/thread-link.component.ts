@@ -45,6 +45,6 @@ export class ThreadLinkComponent implements OnInit {
     });
 
     this.forumPostService.getAmountOfPages(this.thread.id)
-      .subscribe((pages: number) => this.pages = pages);
+      .subscribe((pages: any) => this.pages = pages.pageAmount);
   }
 }

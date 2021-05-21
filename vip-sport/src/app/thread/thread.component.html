@@ -31,7 +31,7 @@
         </div>
         <span id="pages">
             <ng-container *ngFor="let page of pages; let i = index">
-                <a *ngIf="currentPage != page; else currentPageNumber" href=#>
+                <a *ngIf="currentPage != page; else currentPageNumber" [routerLink]="[]" [queryParams]="{ page: i+1 }">
                     {{ page }}
                 </a>
                 <span *ngIf="pages.length >= 12 && ((i == 0 && currentPage > 6) || (i == pages.length-2 && currentPage < page-4))">
