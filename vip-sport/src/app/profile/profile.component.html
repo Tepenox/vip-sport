@@ -53,11 +53,13 @@
           !(
             user.userName.length <= usernameMaxLength &&
             user.description.length <= descriptionMaxLength
+            && user.age >= 18 && user.weight > 20 && user.height > 70
           )
         "
         [enabled]="
           user.userName.length <= usernameMaxLength &&
           user.description.length <= descriptionMaxLength
+          && user.age >= 18 && user.weight > 20 && user.height > 70
         "
       >
         Enregistrer les mofifications
