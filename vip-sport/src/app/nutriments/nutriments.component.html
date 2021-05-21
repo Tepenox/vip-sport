@@ -1,5 +1,4 @@
 <div>
-  
   <div class="dropdown show">
     <a
       class="btn btn-secondary dropdown-toggle"
@@ -9,32 +8,44 @@
       aria-haspopup="true"
       aria-expanded="false"
     >
-      Votre activité sportive
+      {{ lastSelected }}
     </a>
 
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <a class="dropdown-item" (click)="calculateCalories(1)">Sédentaire </a>
-      <a class="dropdown-item" (click)="calculateCalories(1.5)">1 à 3 fois/semaine</a>
-      <a class="dropdown-item" (click)="calculateCalories(1.8)">+ de 3 fois/semaine</a>
+      <a class="dropdown-item" (click)="calculateCalories(1.5)"
+        >1 à 3 fois/semaine</a
+      >
+      <a class="dropdown-item" (click)="calculateCalories(1.8)"
+        >+ de 3 fois/semaine</a
+      >
     </div>
   </div>
+  <br />
   <div *ngIf="calories">
-    <app-piechart [prot]="proteines" [gluc]="glucides" [lip]="lipides"></app-piechart>
-    <p>Voila notre programme:</p>
+    <p>Pourcentage de chaque sous nutriments a consommer par jour:</p>
+    <app-piechart
+      [prot]="proteines"
+      [gluc]="glucides"
+      [lip]="lipides"
+    ></app-piechart>
+    <br />
+    <p>Voila votre apport calorique selon votre choix:</p>
     <ul>
       <li>
         <p style="color: blue">
-          Pour maigrir: {{ 0.8 * calories | number: "1.0-2"}} calories/jour
+          Pour maigrir: {{ 0.8 * calories | number: "1.0-2" }} calories/jour
         </p>
       </li>
       <li>
         <p style="color: green">
-          Pour maintenir votre poid: {{ calories | number: "1.0-2"}} calories/jour
+          Pour maintenir votre poid:
+          {{ calories | number: "1.0-2" }} calories/jour
         </p>
       </li>
       <li>
         <p style="color: red">
-          Pour grossir: {{ 1.2 * calories | number: "1.0-2"}} calories/jour
+          Pour grossir: {{ 1.2 * calories | number: "1.0-2" }} calories/jour
         </p>
       </li>
     </ul>

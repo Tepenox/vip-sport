@@ -16,13 +16,14 @@ import { Title } from '@angular/platform-browser';
 })
 export class ProfileComponent implements OnInit {
   isYours: boolean;
+  descriptionMaxLength: number = 500;
+  usernameMaxLength: number = 40;
   followersCount: any;
   isFollowing: any;
   profileModification: boolean = false;
   imc: number = 0.0;
   styleExp: string = 'black';
   posts: Post[];
-
   user: User;
 
   constructor(
@@ -44,13 +45,15 @@ export class ProfileComponent implements OnInit {
           this.isYours = auth.getCurrentUser().id != parseInt(params.get('id'));
           this.calculateImc();
           this.getPosts();
-          this.titleService.setTitle(this.titleService.getTitle() + " " + this.user.userName);
+          this.titleService.setTitle(
+            this.titleService.getTitle() + ' ' + this.user.userName
+          );
         });
     });
-
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   setFollowing(userId: number) {
     this.follow
@@ -68,11 +71,9 @@ export class ProfileComponent implements OnInit {
 
   getPosts() {
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.postService
-        .getPostsByOwnerId(this.user.id)
-        .subscribe((data) => {
-          this.posts = data;
-        });
+      this.postService.getPostsByOwnerId(this.user.id).subscribe((data) => {
+        this.posts = data;
+      });
     });
   }
 

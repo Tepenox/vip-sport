@@ -14,11 +14,15 @@
       </div>
       <h1 *ngIf="!profileModification">{{ user.userName }}</h1>
       <h4 *ngIf="!profileModification">Abonnés: {{ followersCount }}</h4>
-      <div class="text-center padder">
+      <div class="text-center padder" *ngIf="profileModification">
+        Votre pseudo:
         <input
           *ngIf="profileModification && !isFollowing"
           [(ngModel)]="user.userName"
         />
+        <small class="text-danger text-center" *ngIf="profileModification">
+          {{ user.userName.length }} / {{ usernameMaxLength }}</small
+        >
       </div>
       <button
         *ngIf="isYours && !isFollowing"
@@ -45,6 +49,16 @@
         *ngIf="profileModification"
         class="btn btn-success"
         (click)="saveModification()"
+        [disabled]="
+          !(
+            user.userName.length <= usernameMaxLength &&
+            user.description.length <= descriptionMaxLength
+          )
+        "
+        [enabled]="
+          user.userName.length <= usernameMaxLength &&
+          user.description.length <= descriptionMaxLength
+        "
       >
         Enregistrer les mofifications
       </button>
@@ -60,10 +74,21 @@
       *ngIf="profileModification"
       [(ngModel)]="user.description"
     ></textarea>
+    <small class="text-danger text-center" *ngIf="profileModification">
+      {{ user.description.length }} / {{ descriptionMaxLength }}</small
+    >
   </div>
 </div>
-<h2 *ngIf="!(isFollowing && isYours || !isYours)" class="text-center text-warning padding-top"> Vous devez suivre cet utilisateur si vous voulez accéder à ces informations.</h2>
-<div class="container-fluid section-color2 padding-bottom-25" *ngIf="isFollowing && isYours || !isYours">
+<h2
+  *ngIf="!((isFollowing && isYours) || !isYours)"
+  class="text-center text-warning padding-top"
+>
+  Vous devez suivre cet utilisateur si vous voulez accéder à ces informations.
+</h2>
+<div
+  class="container-fluid section-color2 padding-bottom-25"
+  *ngIf="(isFollowing && isYours) || !isYours"
+>
   <div class="row justify-content-around" id="infos">
     <div class="col-2" style="color: rgb(0, 0, 0)">
       <h2>Information personnelle:</h2>
@@ -168,8 +193,12 @@
       </div>
     </div>
 
-    <div class="col-4" style="color: rgb(0, 0, 0); padding-bottom: 20px">
-      <h2>Macros :</h2>
+    <div
+      class="col-3 justify-content-around"
+      style="color: rgb(0, 0, 0); padding-bottom: 20px"
+    >
+      <h2>Nutriments et activité sportive:</h2>
+      <br />
       <app-nutriments [user]="user"></app-nutriments>
     </div>
   </div>
