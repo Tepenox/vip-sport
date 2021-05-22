@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs/operators';
@@ -27,9 +27,17 @@ export class ThreadComponent implements OnInit {
     public authService: AuthenticationService, private threadService: ThreadService, private replyService: ForumPostService, private titleService: Title) { }
 
   ngOnInit() {
-    this.initializeThread();
-    this.route.fragment
-      .subscribe(param => this.fragment = param);
+    
+    this.route.params.subscribe(val => {
+      this.initializeThread();
+
+      this.route.queryParams.subscribe(val => {
+        setTimeout(() => this.titleService.setTitle("Sujet : " + this.thread.title));
+      });
+
+      this.route.fragment
+        .subscribe(param => this.fragment = param);
+    })
   }
 
   ngAfterViewInit(): void {
@@ -72,7 +80,6 @@ export class ThreadComponent implements OnInit {
       this.thread = response.thread;
       this.pages = response.pages.pages;
       this.currentPage = response.pages.current;
-      this.titleService.setTitle(this.titleService.getTitle() + " " + this.thread.title);
     });
 
     this.route.queryParams.subscribe(val => {
