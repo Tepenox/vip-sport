@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { data } from 'jquery';
 import { Post } from 'src/models/Post';
 import { PostReply } from 'src/models/PostReply';
+import { AuthenticationService } from '../services/authentication.service';
 import { DislikeService } from '../services/dislike.service';
 import { LikeService } from '../services/like.service';
 
@@ -25,18 +26,18 @@ export class LikeDislikeComponent implements OnInit {
   public imageUp = "./assets/dumbDown.png";
   public imageDown = "./assets/dumbDown.png";
 
-  constructor(private likeService:LikeService, private dislikeService:DislikeService) {}
+  constructor(private authService:AuthenticationService, private likeService:LikeService, private dislikeService:DislikeService) {}
 
   ngOnInit(): void {
 
-    this.likeService.ifLikeExists(this.subject.type,this.subject.id,this.subject.ownerId).subscribe(data => {
+    this.likeService.ifLikeExists(this.subject.type,this.subject.id,this.authService.getCurrentUser().id).subscribe(data => {
       this.isClickedUp = Boolean(data);
-     // console.log(this.isClickedUp)
+      console.log(this.isClickedUp)
       if(this.isClickedUp == true)
         this.imageUp = "./assets/dumbDownActived2.png";
     })
 
-    this.dislikeService.ifDislikeExists(this.subject.type,this.subject.id,this.subject.ownerId).subscribe(data => {
+    this.dislikeService.ifDislikeExists(this.subject.type,this.subject.id,this.authService.getCurrentUser().id).subscribe(data => {
       this.isClickedDown = Boolean(data);
       if(this.isClickedDown == true)
         this.imageDown = "./assets/dumbDownActived2.png";

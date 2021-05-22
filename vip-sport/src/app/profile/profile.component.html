@@ -3,7 +3,7 @@
     <div class="col-md-12 col-lg-4 text-center">
       <img
         *ngIf="!profileModification"
-        [src]="user.imageUrl"
+        [src]="user?.imageUrl"
         alt="100*100"
         class="profile-pic rounded-circle z-depth-2"
         data-holder-rendered="true"
@@ -12,7 +12,7 @@
         URL de votre photo de profil:
         <input type="text" [(ngModel)]="user.imageUrl" />
       </div>
-      <h1 *ngIf="!profileModification">{{ user.userName }}</h1>
+      <h1 *ngIf="!profileModification">{{ user?.userName }}</h1>
       <h4 *ngIf="!profileModification">Abonnés: {{ followersCount }}</h4>
       <div class="text-center padder" *ngIf="profileModification">
         Votre pseudo:
@@ -70,7 +70,7 @@
       class="col-md-12 col-lg-4"
       style="color: rgb(0, 0, 0)"
     >
-      {{ user.description }}
+      {{ user?.description }}
     </div>
     <textarea
       *ngIf="profileModification"
@@ -97,25 +97,25 @@
       <ul>
         <p>
           <li *ngIf="!profileModification">
-            {{ "Age: " + user.age + " ans" }}
+            {{ "Age: " + user?.age + " ans" }}
           </li>
           <li *ngIf="profileModification">
             Age:
             <input type="number" min="18" max="100" [(ngModel)]="user.age" />
           </li>
-          <li *ngIf="!profileModification">{{ "Sport: " + user.sport }}</li>
+          <li *ngIf="!profileModification">{{ "Sport: " + user?.sport }}</li>
           <li *ngIf="profileModification">
             Sport: <input type="text" [(ngModel)]="user.sport" />
           </li>
           <li *ngIf="!profileModification">
-            {{ "Poids: " + user.weight + "kg" }}
+            {{ "Poids: " + user?.weight + "kg" }}
           </li>
           <li *ngIf="profileModification">
             Poids:
             <input type="number" min="30" max="400" [(ngModel)]="user.weight" />
           </li>
           <li *ngIf="!profileModification">
-            {{ "Taille: " + user.height + "cm" }}
+            {{ "Taille: " + user?.height + "cm" }}
           </li>
           <li *ngIf="profileModification">
             Taille:
@@ -162,7 +162,7 @@
           Normal
         </div>
         <div
-          class="progress-bar bg-warning"
+          class="progress-bar surpoid"
           role="progressbar"
           style="width: 20%"
           aria-valuenow="20"
@@ -172,8 +172,7 @@
           Surpoids
         </div>
         <div
-          class="progress-bar"
-          style="color: orangered"
+          class="progress-bar obesite"
           role="progressbar"
           style="width: 20%"
           aria-valuenow="20"
@@ -218,7 +217,7 @@
     <h2 *ngIf="isFollowing && isYours && posts.length == 0">
       Cet utilisateur n'a pas encore posté sur son mur.
     </h2>
-    <h2 *ngIf="!isYours && posts.length == 0">
+    <h2 *ngIf="!isYours && posts?.length == 0">
       Vous n'avez encore rien posté sur votre mur.
     </h2>
     <div *ngIf="isFollowing">

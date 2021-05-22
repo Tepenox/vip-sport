@@ -1,17 +1,17 @@
 <div id="statut">
     <div class="row" id="profileName">
 
-        <img id='profilePicture' [src]="ownerUser.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
-        <a id="userName" style="color: white;" routerLink = "/profile/{{ownerUser.id}}">{{ownerUser.userName}}</a>
+        <img id='profilePicture' [src]="ownerUser?.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+        <a id="userName" style="color: white;" routerLink = "/profile/{{ownerUser?.id}}">{{ownerUser?.userName}}</a>
 
 
-        <div *ngIf="ownerUser.id == currentUser.id && isPost == true" id="deleteDiv">
+        <div *ngIf="ownerUser?.id == currentUser.id && isPost == true" id="deleteDiv">
             <input type="image" id='icon'  src ="./assets/icons/pen.png" (click)="edit = true" data-holder-rendered="true"/>
             <input type="image" id='icon'  src ="./assets/icons/delete.png" (click)="deletePost()" data-holder-rendered="true"/>
         </div>
         
 
-       <div *ngIf="ownerUser.id == currentUser.id && isPost == false" id="deleteDiv">
+       <div *ngIf="ownerUser?.id == currentUser.id && isPost == false" id="deleteDiv">
             <input type="image" id='icon'  src ="./assets/icons/pen.png" (click)="edit = true" data-holder-rendered="true"/>
             <input type="image" id='icon'  src ="./assets/icons/delete.png" (click)="deleteReply()" data-holder-rendered="true"/>
         </div>
@@ -27,7 +27,7 @@
                     <div class="col-4">
                         <div class="card">
                             <div class="card-body" style="width: 100%;">
-                                {{userReply.content}}
+                                {{userReply?.content}}
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-body">
-                                {{userPost.content}}
+                                {{userPost?.content}}
                             </div>
                         </div>
                     </div>

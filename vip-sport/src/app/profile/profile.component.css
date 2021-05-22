@@ -47,5 +47,12 @@ textarea {
   padding-left: 2px;
   padding-right: 2px;
   border-radius: 3px;
-  background-color: rgb(117, 117, 117);
+}
+
+.obesite{
+  background-color: orangered;
+}
+
+.surpoid{
+  background-color: rgb(243, 159, 3);
 }
