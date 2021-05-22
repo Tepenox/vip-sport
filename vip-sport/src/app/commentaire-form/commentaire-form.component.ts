@@ -21,7 +21,6 @@ export class CommentaireFormComponent implements OnInit {
 
    getText(){
      if(document.forms["replyForm"]["replyTextarea"].value != ""){
-      // this.textReply = document.forms["replyForm"]["replyTextarea"].value;
        this.giveTextEvent.emit(document.forms["replyForm"]["replyTextarea"].value);
        document.forms["replyForm"]["replyTextarea"].value = "";
      }

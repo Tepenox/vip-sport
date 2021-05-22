@@ -1,6 +1,6 @@
 
 <div class="row" id="yellowCard">
-<div class="card text-dark bg-warning text-center">
+<div class="card text-dark border-warning text-center" style="border-width: 10px;">
     <div class="card-body">
         <div class="row" id="profileName">
 
@@ -31,6 +31,6 @@
     <img id='mic' src="./assets/icons/mic.png"  class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
     </div>
 
-    <app-statut [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
+    <app-statut [postId]="originalPost.id" [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
      
 </div>
