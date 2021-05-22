@@ -236,7 +236,7 @@ VALUES (
         2
     );
 
-    insert INTO users(
+insert INTO users(
         username,
         firstName,
         lastName,
@@ -253,7 +253,7 @@ VALUES (
         'Hugo',
         'hugo',
         'sanchez',
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fleap-fitness-group-home-workout.fr.uptodown.com%2Fandroid&psig=AOvVaw0GGvIgNQ-8bgwu4sxChF95&ust=1621775026278000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNC11fas3fACFQAAAAAdAAAAABAD',
+        'https://www.abatextermination.ca/wp-content/uploads/2017/05/1-phasme-batonnet-ordinaire.jpg',
         21,
         'hugosanchez@gmail.com',
         "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
@@ -281,7 +281,7 @@ VALUES (
         'Oguh',
         'Oguh',
         'zehcnas',
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.fr%2FREDWPQ-Dwayne-Johnson-Affiche-Impression%2Fdp%2FB07WRBW9PV&psig=AOvVaw0l0GbN5Fyag-cV5wsYq_3_&ust=1621775774975000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDpsN2v3fACFQAAAAAdAAAAABAD',
+        'https://akns-images.eonline.com/eol_images/Entire_Site/201538/rs_600x600-150408141046-600-the-rock-akaka-falls.jw.4815_2.jpg',
         21,
         'therock@gmail.com',
         "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
@@ -292,7 +292,7 @@ VALUES (
     );
 
 
-    insert INTO users(
+insert INTO users(
         username,
         firstName,
         lastName,
