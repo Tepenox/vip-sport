@@ -257,7 +257,7 @@ VALUES (
         'https://pbs.twimg.com/media/EOk4KsZX0AAFNo4?format=jpg&name=large',
         22,
         'tintintamarre@gmail.com',
-        '$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u',
+        '$ost',
         "Feur",
         "course",
         72,
