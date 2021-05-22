@@ -24,15 +24,11 @@ export class WallComponent implements OnInit {
   public statutIsEmpty = false;
 
   posts:Post[] = [];
-  public replies:PostReply[] = [];
+  
 
   @Input() public text;
 
-  
 
-  
-
- //public userInput = document.forms["statutForm"]["statutTextarea"].value
 
   
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];

@@ -35,7 +35,7 @@ export class StatutComponent implements OnInit {
   public ownerUser:User;
   public currentUser:User;
 
-  public replies:PostReply[] = [];
+  public replies:PostReply[];
   public nbComs:number;
 
   
@@ -97,9 +97,10 @@ export class StatutComponent implements OnInit {
     let updatedPost = new Post("null","text",document.forms["editPostForm"]["editPostTextarea"].value,"null",this.userPost.ownerId,this.userPost.categories,this.userPost.type);
     this.postService.editPost(this.userPost.id,updatedPost).subscribe(data => {
       this.posts.push(data);
-      this.edit = false;
-      window.location.reload();
+      
     })
+    this.edit = false;
+    window.location.reload();
     
   }
 
