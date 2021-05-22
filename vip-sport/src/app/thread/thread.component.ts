@@ -32,7 +32,7 @@ export class ThreadComponent implements OnInit {
       this.initializeThread();
 
       this.route.queryParams.subscribe(val => {
-        setTimeout(() => this.titleService.setTitle("Sujet : " + this.thread.title));
+        setTimeout(() => this.titleService.setTitle("Sujet : " + this.thread.title), 1);
       });
 
       this.route.fragment

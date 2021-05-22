@@ -37,10 +37,8 @@
                 <span *ngIf="pages.length >= 12 && ((i == 0 && currentPage > 6) || (i == pages.length-2 && currentPage < page-4))">
                     ...
                 </span>
-                <ng-template #currentPageNumber id="currentPage">
-                    <span>
-                        {{ page }}
-                    </span>
+                <ng-template #currentPageNumber>
+                    <span id="currentPage">{{ page }}</span>
                 </ng-template>
             </ng-container>
         </span>
