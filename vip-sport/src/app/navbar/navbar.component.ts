@@ -134,4 +134,8 @@ ngOnInit(): void {
   logOut(){
     this.authService.logOutUser();
   }
+
+  onNotificationClick(notification:Notification){
+    this.notificationService.deleteNotification
+  }
 }
