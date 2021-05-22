@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
           // this.notifications[0].fromUser.userName="anass";
     
           this.notifications.forEach(value => this.userService.getUserById(value.fromId).subscribe(data => value.fromUser = data ));
+          console.log( "notifications are ");
           console.log( this.notifications);
     
         });
@@ -70,7 +71,8 @@ export class NavbarComponent implements OnInit {
     $('#box-search').css('opacity','0');
     $('#box-search').css('visibility','hidden');
     $("#box-search").children().prop('disabled', true);
-
+    console.log( this.userSearchResults);
+    
     }else{
     this.searchUsers(String($('#form-user-search').val()))
 
@@ -78,17 +80,38 @@ export class NavbarComponent implements OnInit {
     $('#box-search').css('opacity','1');
     $('#box-search').css('visibility','visible');
 
+    }
 
     
-    }
-    
+   
     
 
   });
     
-  
-  }
-  ngOnInit(): void {
+  $('html').on("click",function(e) {                    
+    if(!$(e.target).hasClass('icon') && !(e.target.id == "bellImage") )
+    {
+    $('#box').css('height','0px');
+    $('#box').css('opacity','0');
+    $('#box').css('visibility','hidden');
+    $("#box").children().prop('disabled', true);
+
+    downBell = false;
+    console.log("u clicked");
+    }
+    if (!(e.target.id == "form-user-search")) {
+      
+    $('#form-user-search').val("");
+    $('#box-search').css('height','0px');
+    $('#box-search').css('opacity','0'); 
+    $('#box-search').css('visibility','hidden');
+    $("#box-search").children().prop('disabled', true);
+    }
+    
+ }); 
+}
+
+ngOnInit(): void {
    
       
 

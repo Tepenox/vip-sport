@@ -409,28 +409,28 @@ insert into posts (
        2
    );
 
-   insert into notifications (
-    type  ,
-    fromId  ,
-    receiverId  ,
-    date  ,
-    objectId  
-   ) values (
-       "PostComment",
-        2,
-        1,
-        datetime('now'),
-        1
-   ),(
-       "PostComment",
-        3,
-        1,
-        datetime('now'),
-        1
-   ),(
-       "PostComment",
-        4,
-        1,
-        datetime('now'),
-        1
-   );
+--    insert into notifications (
+--     type  ,
+--     fromId  ,
+--     receiverId  ,
+--     date  ,
+--     objectId  
+--    ) values (
+--        "PostComment",
+--         2,
+--         1,
+--         datetime('now'),
+--         1
+--    ),(
+--        "PostComment",
+--         3,
+--         1,
+--         datetime('now'),
+--         1
+--    ),(
+--        "PostComment",
+--         4,
+--         1,
+--         datetime('now'),
+--         1
+--    );

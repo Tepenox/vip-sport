@@ -1,8 +1,12 @@
 
 .icon {
     cursor: pointer;
-    margin-right: 21px;
+    margin-right: 5px;
     margin-bottom: 4px;
+    width:100px;
+    text-align:center;
+    vertical-align:middle;
+    position: relative;
 }
 
 .icon span {
@@ -167,3 +171,36 @@
     margin-top: 3px
 }
 
+*.icon-blue {color: #0088cc}
+*.icon-grey {color: grey}
+
+.badge:after{
+    content: attr(value);;
+    position: absolute;
+    background: rgb(243, 156, 18);
+    height:1.5rem;
+    top:-0.5rem;
+    right:1.5rem;
+    width:1.5rem;
+    text-align: center;
+    line-height: 1.5rem;;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    color:white;
+    border:1px solid rgb(243, 156, 18);
+}
+/* .badge:after{
+    content:"100";
+    position: absolute;
+    background: rgb(243, 156, 18);
+    height:2rem;
+    top:1rem;
+    right:1.5rem;
+    width:2rem;
+    text-align: center;
+    line-height: 2rem;;
+    font-size: 1rem;
+    border-radius: 50%;
+    color:white;
+    border:1px solid rgb(243, 156, 18); */
+/* } */

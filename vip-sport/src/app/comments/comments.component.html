@@ -27,6 +27,10 @@
 
 <div id="comment" *ngFor = "let comment of comments"  style="padding-top: 100px;">
 
+    <div *ngIf="originalPost.ownerId == comment.ownerId">
+    <img id='mic' src="./assets/icons/mic.png"  class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+    </div>
+
     <app-statut [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
      
 </div>
