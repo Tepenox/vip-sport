@@ -236,6 +236,61 @@ VALUES (
         2
     );
 
+    insert INTO users(
+        username,
+        firstName,
+        lastName,
+        imageUrl,
+        age,
+        email,
+        password,
+        description,
+        sport,
+        weight,
+        height
+    )
+VALUES (
+        'Hugo',
+        'hugo',
+        'sanchez',
+        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fleap-fitness-group-home-workout.fr.uptodown.com%2Fandroid&psig=AOvVaw0GGvIgNQ-8bgwu4sxChF95&ust=1621775026278000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNC11fas3fACFQAAAAAdAAAAABAD',
+        21,
+        'hugosanchez@gmail.com',
+        "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
+        "Essaie de se motiver à faire du sport",
+        "Actuellement aucun",
+        47,
+        167  
+    );
+
+
+insert INTO users(
+        username,
+        firstName,
+        lastName,
+        imageUrl,
+        age,
+        email,
+        password,
+        description,
+        sport,
+        weight,
+        height
+    )
+VALUES (
+        'Oguh',
+        'Oguh',
+        'zehcnas',
+        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.fr%2FREDWPQ-Dwayne-Johnson-Affiche-Impression%2Fdp%2FB07WRBW9PV&psig=AOvVaw0l0GbN5Fyag-cV5wsYq_3_&ust=1621775774975000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDpsN2v3fACFQAAAAAdAAAAABAD',
+        21,
+        'therock@gmail.com',
+        "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
+        "Starfoubinks le sang, ca pousse à la salle un rouge par semaine le sang ! Abonnes toi tu prendras 15kg de muscle instantanément le sang",
+        "Bodybuilder, Acteur, Producteur, Catcheur, Routier, Boxeur, Forgeron",
+        118,
+        196
+    );
+
 
     insert INTO users(
         username,
