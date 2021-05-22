@@ -44,7 +44,8 @@
             <div class="text" (click)="onNotificationClick(notification)">
                 <h4 class = "profile-link" routerLink = "/profile/{{notification.fromUser?.id}}" >{{notification.fromUser?.userName}}</h4>
                 <p class="notification-item-post-comment" *ngIf ="notification.type ==='PostComment'">{{notification.fromUser?.userName}} a commenté sur ton poste</p>
-                <p routerLink = "/profile/{{notification.fromUser?.id}}" class="notification-item-post-follow" *ngIf ="notification.type ==='Follow'">{{notification.fromUser?.userName}} a commmencé de vous suivre</p>
+                <p routerLink = "/profile/{{notification.fromUser?.id}}" class="notification-item-post-follow" *ngIf ="notification.type ==='Follow'">{{notification.fromUser?.userName}} a commencé de vous suivre</p>
+                <p routerLink = "/profile/{{notification.fromUser?.id}}" class="notification-item-post-follow" *ngIf ="notification.type ==='ThreadReply'">{{notification.fromUser?.userName}} a commonté sur votre thread </p>
             </div>
         </div>        
     </div>
