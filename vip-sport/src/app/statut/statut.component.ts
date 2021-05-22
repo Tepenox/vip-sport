@@ -45,14 +45,14 @@ export class StatutComponent implements OnInit {
     
     if(this.isPost == true){
       this.postReplyService.getPostRepliesFromPostId(this.userPost.id).subscribe(data => {
-        this.replies = data;
+        this.replies = data.reverse();
        // console.log(this.replies)
      
     })
     }
     else{
       this.postReplyService.getPostRepliesFromPostId(this.userReply.postId).subscribe(data => {
-        this.replies = data;
+        this.replies = data.reverse();
       })
     }
   }
