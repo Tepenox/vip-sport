@@ -1,20 +1,20 @@
-<div class="thread">
+<div class="thread" [class.pinned]="thread.isPinned" [class.locked]="thread.isLocked">
     <div class="row">
         <div class="col thread-primary">
             <a [routerLink]="['/forum', currentSubcategory.id, 'thread', thread.id, url]" class="div-link">
                 <span class="thread-name link">
-                    {{ thread?.title }}
+                    {{ thread.title }}
                 </span>
                 <div class="thread-info text-muted">
                     <span>
-                        Par <a [routerLink]="['/profile', author?.id]" class="profile-link">{{ author?.userName }}</a> {{ thread?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }}
+                        Par <a [routerLink]="['/profile', author?.id]" class="profile-link">{{ author?.userName }}</a> {{ thread.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }}
                     </span>
                 </div>
             </a>
         </div>
         <div class="col thread-secondary">
             <div class="thread-info">
-                <a [routerLink]="['/forum', currentSubcategory.id, 'thread', thread.id, url]" fragment="post-{{ lastPost?.id }}" class="last-message-link div-link">
+                <a [routerLink]="['/forum', currentSubcategory.id, 'thread', thread.id, url]" [queryParams]="{ page: pages }" fragment="post-{{ lastPost?.id }}" class="last-message-link div-link">
                     <span class="link">
                         Dernier message
                     </span>

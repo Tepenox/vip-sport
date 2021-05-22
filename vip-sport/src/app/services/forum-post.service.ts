@@ -12,9 +12,9 @@ export class ForumPostService extends DataService {
     super('http://localhost:3000/threadReplies', http);
   }
 
-  getPostsByThreadID(id: number): Observable<ThreadReply[]> {
-    let params = new HttpParams().set('threadId', String(id));
-    return this.http.get<ThreadReply[]>(this.url, { params: params });
+  getPostsByThreadID(id: number, page: number): Observable<ThreadReply[]> {
+    let params = new HttpParams().set('page', String(page));
+    return this.http.get<ThreadReply[]>(this.url + `/thread/${id}`, { params: params });
   }
 
   getFirstPostInThread(threadId: number): Observable<ThreadReply> {
@@ -29,6 +29,10 @@ export class ForumPostService extends DataService {
     .set('threadId', String(threadId))
     .set('option', 'last');
     return this.http.get<ThreadReply>(this.url + `/thread/${threadId}`, { params: params });
+  }
+
+  getAmountOfPages(threadId: number): Observable<number> {
+    return this.http.get<number>(this.url + `/thread/${threadId}/pages`);
   }
 
   deleteAllFromThread(threadId: number) {

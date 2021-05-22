@@ -29,9 +29,11 @@ export class ThreadListResolver implements Resolve<Thread[]> {
 
   private filterPinnedThreads(threads: Thread[], pinnedThreads: Thread[]) {
     for (let i = 0; i < threads.length; i++) {
+      console.log(i)
       if (threads[i].isPinned) {
         pinnedThreads.push(threads[i]);
         threads.splice(i, 1);
+        i--;
       }
     }
   }
