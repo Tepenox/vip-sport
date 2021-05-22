@@ -208,6 +208,32 @@ VALUES (
         80,
         200,
         3
+    ),(
+        'Dorian',
+        'Dorian',
+        'Volt',
+        'https://steamuserimages-a.akamaihd.net/ugc/950731295329353962/95DE977C77C191A732A29A68AB72A19CD644F7F2/',
+        20,
+        'vdoralex@gmail.com',
+        "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
+        "Where is Candice ?",
+        "Cyclisme/Musculation",
+        75,
+        180,
+        3
+    ),(
+        'Nairod',
+        'Nairod',
+        'Tolv',
+        'https://steamuserimages-a.akamaihd.net/ugc/267220742942030776/ACCDA599A23603541C1C35D20FC9FB2B41C01295/',
+        20,
+        'playernoodle@gmail.com',
+        "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
+        "I found Candice.",
+        "Escalade de l'Olympe",
+        57,
+        180,
+        2
     );
 
 
