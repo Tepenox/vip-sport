@@ -27,8 +27,8 @@ router.post("/notifications",(req,res)=>{
     }
 })
 
-router.delete("/notifications",(req,res)=>{
-    if(Notification.delete(req.body.id) > 0)
+router.delete("/notifications/:id",(req,res)=>{
+    if(Notification.delete(req.params.id) > 0)
     res.json("done");
     else{
         res.status(500).send("something went wrong while trying to delete Notification")
