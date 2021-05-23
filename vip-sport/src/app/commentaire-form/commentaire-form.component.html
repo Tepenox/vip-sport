@@ -1,6 +1,6 @@
 <div class="row" id="comment">
     <div>
-        <img id='profilePicture' [src] ="currentUser.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+        <img id='profilePicture' [src] ="authentificationService.getCurrentUser().imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
     </div>
     <div class="col-5">
         <form name="replyForm">

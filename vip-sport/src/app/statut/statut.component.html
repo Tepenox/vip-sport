@@ -71,12 +71,13 @@
         </div>
 
 
-        <div *ngIf="replies.length != 0" style="padding-left: 100px;">  
-            <a id="userName" style="color: white; font-weight: bold;"  routerLink = "/posts/replies" [queryParams]="{postId: userPost.id}" >Voir plus de commentaires ({{replies.length}})</a>
+        <div *ngIf="replies.length != 0" style="padding-left: 100px; padding-bottom: 50px;">  
+            <a id="userName" style="color: white; font-weight: bold;"  routerLink = "/posts/replies" [queryParams]="{postId: userPost.id}" >Voir les commentaires ({{replies.length}})</a>
         </div>
 
-
-        <app-commentaire-form (giveTextEvent)="postReply($event)"></app-commentaire-form>
+        <div *ngIf="replies.length == 0">
+            <app-commentaire-form (giveTextEvent)="postReply($event)"></app-commentaire-form> 
+        </div>
 
     </div>
 
