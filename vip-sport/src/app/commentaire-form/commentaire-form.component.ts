@@ -14,7 +14,7 @@ export class CommentaireFormComponent implements OnInit {
   @Output() giveTextEvent = new EventEmitter<string>();
 
 
-  constructor(private authentificationService:AuthenticationService) {
+  constructor(public authentificationService:AuthenticationService) {
     this.currentUser = this.authentificationService.getCurrentUser();
      
    }
