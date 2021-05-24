@@ -14,14 +14,13 @@ export class CommentaireFormComponent implements OnInit {
   @Output() giveTextEvent = new EventEmitter<string>();
 
 
-  constructor(private authentificationService:AuthenticationService) {
+  constructor(public authentificationService:AuthenticationService) {
     this.currentUser = this.authentificationService.getCurrentUser();
      
    }
 
    getText(){
      if(document.forms["replyForm"]["replyTextarea"].value != ""){
-      // this.textReply = document.forms["replyForm"]["replyTextarea"].value;
        this.giveTextEvent.emit(document.forms["replyForm"]["replyTextarea"].value);
        document.forms["replyForm"]["replyTextarea"].value = "";
      }

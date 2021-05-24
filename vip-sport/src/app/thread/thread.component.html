@@ -29,6 +29,19 @@
                 <f-post [postId]="post.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
             </div>
         </div>
+        <span id="pages">
+            <ng-container *ngFor="let page of pages; let i = index">
+                <a *ngIf="currentPage != page; else currentPageNumber" [routerLink]="[]" [queryParams]="{ page: page }">
+                    {{ page }}
+                </a>
+                <span *ngIf="pages.length >= 12 && ((i == 0 && currentPage > 6) || (i == pages.length-2 && currentPage < page-4))">
+                    ...
+                </span>
+                <ng-template #currentPageNumber>
+                    <span id="currentPage">{{ page }}</span>
+                </ng-template>
+            </ng-container>
+        </span>
     </main>
         
     <section *ngIf="authService.loggedIn()" class="form-section">
@@ -37,7 +50,7 @@
                 <p class="alert alert-info">Ce sujet est verrouillé. Vous avez cependant le droit d'y répondre car vous avez le rôle {{ authService.getRoleName() | lowercase }}</p>
             </div>
             <div>
-                <a [routerLink]="['./']" fragment="reply-form" [hidden]="isReplyActive">
+                <a [routerLink]="['./']" [queryParams]="{ page: currentPage }" fragment="reply-form" [hidden]="isReplyActive" (click)="test()">
                     <button class="btn btn-primary" (click)="toggleReplyForm()">Répondre</button>
                 </a>
             </div>
@@ -50,5 +63,4 @@
             <p class="alert alert-info">Ce sujet est verrouillé.</p>
         </ng-template>
     </section>
-    
 </div>

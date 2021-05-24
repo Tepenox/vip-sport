@@ -20,6 +20,7 @@ export class ThreadLinkComponent implements OnInit {
   author: User;
   lastPost: ThreadReply;
   lastUser: User;
+  pages: number;
 
   constructor(private route: ActivatedRoute, private userService: UserService, private forumPostService: ForumPostService) { }
 
@@ -28,6 +29,7 @@ export class ThreadLinkComponent implements OnInit {
         this.currentSubcategory = response.currentSubcategory;
       });
       
+    console.log("thread: ", this.thread);
     this.url = UrlParserService.parse(this.thread.title);
     this.thread.date += " UTC"
 
@@ -41,5 +43,8 @@ export class ThreadLinkComponent implements OnInit {
         this.userService.getUserById(this.lastPost.ownerId)
           .subscribe((response: User) => this.lastUser = response);
     });
+
+    this.forumPostService.getAmountOfPages(this.thread.id)
+      .subscribe((pages: any) => this.pages = pages.pageAmount);
   }
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { data } from 'jquery';
 import { Post } from 'src/models/Post';
 import { PostReply } from 'src/models/PostReply';
+import { AuthenticationService } from '../services/authentication.service';
 import { DislikeService } from '../services/dislike.service';
 import { LikeService } from '../services/like.service';
 
@@ -25,18 +26,17 @@ export class LikeDislikeComponent implements OnInit {
   public imageUp = "./assets/dumbDown.png";
   public imageDown = "./assets/dumbDown.png";
 
-  constructor(private likeService:LikeService, private dislikeService:DislikeService) {}
+  constructor(private authService:AuthenticationService, private likeService:LikeService, private dislikeService:DislikeService) {}
 
   ngOnInit(): void {
 
-    this.likeService.ifLikeExists(this.subject.type,this.subject.id,this.subject.ownerId).subscribe(data => {
+    this.likeService.ifLikeExists(this.subject.type,this.subject.id,this.authService.getCurrentUser().id).subscribe(data => {
       this.isClickedUp = Boolean(data);
-     // console.log(this.isClickedUp)
       if(this.isClickedUp == true)
         this.imageUp = "./assets/dumbDownActived2.png";
     })
 
-    this.dislikeService.ifDislikeExists(this.subject.type,this.subject.id,this.subject.ownerId).subscribe(data => {
+    this.dislikeService.ifDislikeExists(this.subject.type,this.subject.id,this.authService.getCurrentUser().id).subscribe(data => {
       this.isClickedDown = Boolean(data);
       if(this.isClickedDown == true)
         this.imageDown = "./assets/dumbDownActived2.png";
@@ -49,13 +49,8 @@ export class LikeDislikeComponent implements OnInit {
 
   upVoteClick(){
     if(this.isClickedDown == true && this.isClickedUp == false){
-
-     // this.counterUp += 1;
       this.addLike();
-      
-      //this.counterDown -= 1;
       this.removeDislike();
-
       this.isClickedDown = false;
       this.isClickedUp = true;
       this.imageDown = "./assets/dumbDown.png";
@@ -63,18 +58,12 @@ export class LikeDislikeComponent implements OnInit {
     }
     else if(this.isClickedUp == true && this.isClickedDown == false){
       this.isClickedUp = false;
-
-      //this.counterUp -= 1;
       this.removeLike();
-
       this.imageUp = "./assets/dumbDown.png"
     }
     
     else if(this.isClickedDown == false && this.isClickedUp == false){
-
-    //this.counterUp += 1;
     this.addLike();
-
     this.imageUp = "./assets/dumbDownActived2.png"
     this.isClickedUp = true;
     }
@@ -84,15 +73,8 @@ export class LikeDislikeComponent implements OnInit {
   downVoteClick(){
 
     if(this.isClickedDown == false && this.isClickedUp == true){
-      
-      //this.counterUp -= 1;
       this.removeLike();
-     
-
-      //this.counterDown += 1;
       this.addDislike();
-      
-
       this.isClickedDown = true;
       this.isClickedUp = false;
       this.imageUp = "./assets/dumbDown.png";
@@ -100,18 +82,12 @@ export class LikeDislikeComponent implements OnInit {
     }
     else if(this.isClickedUp == false && this.isClickedDown == true){
       this.isClickedDown = false;
-
-      //this.counterDown -= 1;
       this.removeDislike();
-
       this.imageDown = "./assets/dumbDown.png"
     }
     
     else if(this.isClickedDown == false && this.isClickedUp == false){
-    
-    //  this.counterDown += 1;
     this.addDislike();
-
     this.imageDown = "./assets/dumbDownActived2.png"
     this.isClickedDown = true;
     }

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/models/Category';
 import { Subcategory } from 'src/models/Subcategory';
 import { Thread } from 'src/models/Thread';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-forum',
@@ -17,7 +18,7 @@ export class ForumComponent implements OnInit {
   threads: Thread[];
   isThreadFormVisible: boolean = false;
 
-  constructor(private route: ActivatedRoute, private titleService: Title) { }
+  constructor(private route: ActivatedRoute, private titleService: Title, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(response  => {

@@ -236,8 +236,63 @@ VALUES (
         2
     );
 
+insert INTO users(
+        username,
+        firstName,
+        lastName,
+        imageUrl,
+        age,
+        email,
+        password,
+        description,
+        sport,
+        weight,
+        height
+    )
+VALUES (
+        'Hugo',
+        'hugo',
+        'sanchez',
+        'https://www.abatextermination.ca/wp-content/uploads/2017/05/1-phasme-batonnet-ordinaire.jpg',
+        21,
+        'hugosanchez@gmail.com',
+        "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
+        "Essaie de se motiver à faire du sport",
+        "Actuellement aucun",
+        47,
+        167  
+    );
 
-    insert INTO users(
+
+insert INTO users(
+        username,
+        firstName,
+        lastName,
+        imageUrl,
+        age,
+        email,
+        password,
+        description,
+        sport,
+        weight,
+        height
+    )
+VALUES (
+        'Oguh',
+        'Oguh',
+        'zehcnas',
+        'https://akns-images.eonline.com/eol_images/Entire_Site/201538/rs_600x600-150408141046-600-the-rock-akaka-falls.jw.4815_2.jpg',
+        21,
+        'therock@gmail.com',
+        "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
+        "Starfoubinks le sang, ca pousse à la salle un rouge par semaine le sang ! Abonnes toi tu prendras 15kg de muscle instantanément le sang",
+        "Bodybuilder, Acteur, Producteur, Catcheur, Routier, Boxeur, Forgeron",
+        118,
+        196
+    );
+
+
+insert INTO users(
         username,
         firstName,
         lastName,
@@ -283,7 +338,7 @@ VALUES (
         'https://pbs.twimg.com/media/EOk4KsZX0AAFNo4?format=jpg&name=large',
         22,
         'tintintamarre@gmail.com',
-        '$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u',
+        '$ost',
         "Feur",
         "course",
         72,

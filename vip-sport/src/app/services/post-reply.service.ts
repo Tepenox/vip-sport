@@ -28,7 +28,7 @@ export class PostReplyService {
     return this.httpClient.post<PostReply>(this.postRepliesUrl.replace(":postid",String(postId)),postReply).pipe(catchError(this.errorHandler));
   }
 
-  editPostReply(postId:number,postReplyId:string,postReply:PostReply):Observable<PostReply>{
+  editPostReply(postId:number,postReplyId:number,postReply:PostReply):Observable<PostReply>{
     return this.httpClient.put<PostReply>(this.postRepliesUrl.replace(":postid",String(postId))+"/"+postReplyId,postReply)
   }
 

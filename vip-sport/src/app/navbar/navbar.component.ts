@@ -97,7 +97,6 @@ export class NavbarComponent implements OnInit {
     $("#box").children().prop('disabled', true);
 
     downBell = false;
-    console.log("u clicked");
     }
     if (!(e.target.id == "form-user-search")) {
       
@@ -134,5 +133,11 @@ ngOnInit(): void {
 
   logOut(){
     this.authService.logOutUser();
+  }
+
+  onNotificationClick(notification:Notification){
+    this.notificationService.deleteNotification(notification.id).subscribe();
+    console.log("a battard ta clické");
+    
   }
 }
