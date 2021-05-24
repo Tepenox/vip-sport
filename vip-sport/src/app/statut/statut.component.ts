@@ -48,14 +48,14 @@ export class StatutComponent implements OnInit {
     
     if(this.isPost == true){
       this.postReplyService.getPostRepliesFromPostId(this.userPost.id).subscribe(data => {
-        this.replies = data.reverse();
+        this.replies = data;
        // console.log(this.replies)
      
     })
     }
     else{
       this.postReplyService.getPostRepliesFromPostId(this.userReply.postId).subscribe(data => {
-        this.replies = data.reverse();
+        this.replies = data;
       })
     }
   }
@@ -94,13 +94,17 @@ export class StatutComponent implements OnInit {
 }
 
   editPost(){
+    console.log(this.userPost)
+    console.log(this.userPost.id)
+    if (document.forms["editPostForm"]["editPostTextarea"].value != "") { 
     let updatedPost = new Post("null","text",document.forms["editPostForm"]["editPostTextarea"].value,"null",this.userPost.ownerId,this.userPost.categories,this.userPost.type);
     this.postService.editPost(this.userPost.id,updatedPost).subscribe(data => {
+      console.log(updatedPost)
       this.posts.push(data);
-      
     })
-    this.edit = false;
-    window.location.reload();
+    //this.edit = false;
+   // window.location.reload();
+  }
     
   }
 
@@ -108,9 +112,9 @@ export class StatutComponent implements OnInit {
     let updatedReply = new PostReply(this.postId,document.forms["editReplyForm"]["editReplyTextarea"].value,this.userReply.ownerId,this.userReply.type);
     this.postReplyService.editPostReply(this.postId,this.userReply.id,updatedReply).subscribe(data =>{
       this.replies.push(data);
-      this.edit = false;
-      window.location.reload();
     })
+    this.edit = false;
+    window.location.reload();
   }
 
 
