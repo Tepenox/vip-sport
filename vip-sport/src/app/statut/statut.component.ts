@@ -26,13 +26,16 @@ export class StatutComponent implements OnInit {
   @Input() userReply:PostReply;
   @Input() posts:Post[];
   @Input() isPost:boolean;
+  @Input() postId:number;
 
   @Output() text:string;
+
+  public edit:boolean = false;
 
   public ownerUser:User;
   public currentUser:User;
 
-  public replies:PostReply[] = [];
+  public replies:PostReply[];
   public nbComs:number;
 
   
@@ -89,6 +92,27 @@ export class StatutComponent implements OnInit {
       window.location.reload();
   })
 }
+
+  editPost(){
+    let updatedPost = new Post("null","text",document.forms["editPostForm"]["editPostTextarea"].value,"null",this.userPost.ownerId,this.userPost.categories,this.userPost.type);
+    this.postService.editPost(this.userPost.id,updatedPost).subscribe(data => {
+      this.posts.push(data);
+      
+    })
+    this.edit = false;
+    window.location.reload();
+    
+  }
+
+  editReply(){
+    let updatedReply = new PostReply(this.postId,document.forms["editReplyForm"]["editReplyTextarea"].value,this.userReply.ownerId,this.userReply.type);
+    this.postReplyService.editPostReply(this.postId,this.userReply.id,updatedReply).subscribe(data =>{
+      this.replies.push(data);
+      this.edit = false;
+      window.location.reload();
+    })
+  }
+
 
   postReply($event:any){
 

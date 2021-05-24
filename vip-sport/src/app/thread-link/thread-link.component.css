@@ -45,3 +45,23 @@ hr {
 .thread-primary, .thread-secondary {
     color: rgb(67, 72, 78);
 }
+
+.locked {
+    background-color: rgb(194, 194, 194);
+}
+
+.locked:hover {
+    background-color: rgb(172, 172, 172);
+}
+
+.pinned {
+    background-color: rgba(129, 243, 148, 0.219);
+}
+
+.pinned:hover {
+    background-color:  rgba(157, 206, 165, 0.479);
+}
+
+.pinned .thread-name {
+    color: rgb(36, 153, 0);
+}

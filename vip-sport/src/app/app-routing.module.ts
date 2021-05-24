@@ -20,6 +20,7 @@ import { CategoriesResolver } from './resolvers/categories.resolver';
 import { SubcategoriesResolver } from './resolvers/subcategories.resolver';
 import { CurrentSubcategoryResolver } from './resolvers/current-subcategory.resolver';
 import { ThreadListResolver } from './resolvers/thread-list.resolver';
+import { PagesResolver } from './resolvers/pages.resolver';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -37,7 +38,7 @@ const routes: Routes = [
   {path: 'trainer', component : TrainerComponent, data: { title: 'Exercices' }},
   {path: 'secret', canActivate :[AuthGuard],component : SecretComponent, data: { title: 'AMOGUS' }},
   {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent, 
-      resolve: { replies: ThreadReplyResolver, thread: ThreadResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver },
+      resolve: { thread: ThreadResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver, pages: PagesResolver },
       data: { title: 'Sujet: ' }},
   {path: 'forum/:subcategoryID', component : ForumComponent, 
       resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver, threadList: ThreadListResolver },

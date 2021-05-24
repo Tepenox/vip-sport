@@ -32,7 +32,6 @@ export class LikeDislikeComponent implements OnInit {
 
     this.likeService.ifLikeExists(this.subject.type,this.subject.id,this.authService.getCurrentUser().id).subscribe(data => {
       this.isClickedUp = Boolean(data);
-      console.log(this.isClickedUp)
       if(this.isClickedUp == true)
         this.imageUp = "./assets/dumbDownActived2.png";
     })
@@ -50,13 +49,8 @@ export class LikeDislikeComponent implements OnInit {
 
   upVoteClick(){
     if(this.isClickedDown == true && this.isClickedUp == false){
-
-     // this.counterUp += 1;
       this.addLike();
-      
-      //this.counterDown -= 1;
       this.removeDislike();
-
       this.isClickedDown = false;
       this.isClickedUp = true;
       this.imageDown = "./assets/dumbDown.png";
@@ -64,18 +58,12 @@ export class LikeDislikeComponent implements OnInit {
     }
     else if(this.isClickedUp == true && this.isClickedDown == false){
       this.isClickedUp = false;
-
-      //this.counterUp -= 1;
       this.removeLike();
-
       this.imageUp = "./assets/dumbDown.png"
     }
     
     else if(this.isClickedDown == false && this.isClickedUp == false){
-
-    //this.counterUp += 1;
     this.addLike();
-
     this.imageUp = "./assets/dumbDownActived2.png"
     this.isClickedUp = true;
     }
@@ -85,15 +73,8 @@ export class LikeDislikeComponent implements OnInit {
   downVoteClick(){
 
     if(this.isClickedDown == false && this.isClickedUp == true){
-      
-      //this.counterUp -= 1;
       this.removeLike();
-     
-
-      //this.counterDown += 1;
       this.addDislike();
-      
-
       this.isClickedDown = true;
       this.isClickedUp = false;
       this.imageUp = "./assets/dumbDown.png";
@@ -101,18 +82,12 @@ export class LikeDislikeComponent implements OnInit {
     }
     else if(this.isClickedUp == false && this.isClickedDown == true){
       this.isClickedDown = false;
-
-      //this.counterDown -= 1;
       this.removeDislike();
-
       this.imageDown = "./assets/dumbDown.png"
     }
     
     else if(this.isClickedDown == false && this.isClickedUp == false){
-    
-    //  this.counterDown += 1;
     this.addDislike();
-
     this.imageDown = "./assets/dumbDownActived2.png"
     this.isClickedDown = true;
     }

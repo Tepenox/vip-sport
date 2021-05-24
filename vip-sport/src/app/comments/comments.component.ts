@@ -6,6 +6,7 @@ import { User } from 'src/models/User';
 import { Post } from 'src/models/Post';
 import { UserService } from '../services/user.service';
 import { PostService } from '../services/post.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 
 
@@ -29,7 +30,7 @@ export class CommentsComponent implements OnInit {
   
   
 
-  constructor(private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService, private userService:UserService, private postService:PostService) { }
+  constructor(private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService, private userService:UserService, private postService:PostService, private authentificationService:AuthenticationService) { }
 
 
   ngOnInit(): void {
@@ -62,9 +63,19 @@ export class CommentsComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       this.postReplyService.getPostRepliesFromPostId(params['postId']).subscribe(data => {
         this.comments = data;
-        //console.log(this.comments)
       });
     })
+  }
+
+  postReply($event:any){
+    if($event != ""){
+        var postReply = new PostReply(this.originalPost.id,$event,this.authentificationService.getCurrentUser().id,"PostComment");
+        this.postReplyService.createPostReply(this.originalPost.id,postReply).subscribe(data => {
+          this.comments.push(data);
+          console.log(data)
+        });
+    }
+   
   }
 
 

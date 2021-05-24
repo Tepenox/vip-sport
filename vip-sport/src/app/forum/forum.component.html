@@ -22,7 +22,7 @@
         </ul>
     </section>
 
-    <section id="threads">
+    <section *ngIf="currentSubcategory.id != 0" id="threads">
         <ul id="thread-list">
             <li *ngFor="let thread of threads" class="thread">
                 <thread-link [thread]="thread"></thread-link>
@@ -30,7 +30,7 @@
         </ul>
     </section>
 
-    <section *ngIf="currentSubcategory.id != 0" id="thread-creation-area">
+    <section *ngIf="currentSubcategory.id != 0 && authService.loggedIn()" id="thread-creation-area">
         <button class="btn btn-primary" [hidden]="isThreadFormVisible" (click)="toggleThreadForm()">Nouveau sujet</button>
         <div [hidden]="!isThreadFormVisible" class="form">
             <button class="btn btn-primary" id="cancel" (click)="toggleThreadForm()">Annuler</button>

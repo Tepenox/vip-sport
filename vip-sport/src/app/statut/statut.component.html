@@ -5,13 +5,15 @@
         <a id="userName" style="color: white;" routerLink = "/profile/{{ownerUser?.id}}">{{ownerUser?.userName}}</a>
 
 
-        <div *ngIf="ownerUser?.id == currentUser?.id && isPost == true" id="deleteDiv">
-        <input type="image" id='delete'  src ="./assets/icons/delete.png" (click)="deletePost()" data-holder-rendered="true"/>
+        <div *ngIf="ownerUser?.id == currentUser.id && isPost == true" id="deleteDiv">
+            <input type="image" id='icon'  src ="./assets/icons/pen.png" (click)="edit = true" data-holder-rendered="true"/>
+            <input type="image" id='icon'  src ="./assets/icons/delete.png" (click)="deletePost()" data-holder-rendered="true"/>
         </div>
         
 
-       <div *ngIf="ownerUser?.id == currentUser?.id && isPost == false" id="deleteDiv">
-            <input type="image" id='delete'  src ="./assets/icons/delete.png" (click)="deleteReply()" data-holder-rendered="true"/>
+       <div *ngIf="ownerUser?.id == currentUser.id && isPost == false" id="deleteDiv">
+            <input type="image" id='icon'  src ="./assets/icons/pen.png" (click)="edit = true" data-holder-rendered="true"/>
+            <input type="image" id='icon'  src ="./assets/icons/delete.png" (click)="deleteReply()" data-holder-rendered="true"/>
         </div>
        
 
@@ -19,37 +21,63 @@
 
 
     <div *ngIf="isPost == false">
-        <div class="row">
-            <app-like-dislike [subject]= "userReply" [commentId]="userReply?.id" id="likeDislike"></app-like-dislike>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-body" style="width: 100%;">
-                            {{userReply?.content}}
+        <div *ngIf="edit == false">
+            <div class="row">
+                <app-like-dislike [subject]= "userReply" [commentId]="userReply.id" id="likeDislike"></app-like-dislike>
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body" style="width: 100%;">
+                                {{userReply?.content}}
+                            </div>
                         </div>
                     </div>
-                </div>
+            </div>
+        </div>
+
+        <div *ngIf="edit == true">
+            <div class="col-6">
+                <form name="editReplyForm" style="padding-left: 100px;">
+                    <textarea class="form-control" placeholder="{{userReply.content}}" id="editReplyTextarea" style="height: 100px"></textarea>
+                </form>
+                <button type="button" class="btn btn-success" (click)="editReply()">Edit</button>
+            </div>
         </div>
     </div>
+
 
     
    <div *ngIf="isPost == true"> 
 
-        <div class="row">
-            <app-like-dislike [subject]= "userPost" [commentId]="userPost.id" id="likeDislike"></app-like-dislike>
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-body">
-                            {{userPost?.content}}
+        <div *ngIf="edit == false">
+            <div class="row">
+                <app-like-dislike [subject]= "userPost" [commentId]="userPost.id" id="likeDislike"></app-like-dislike>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                {{userPost?.content}}
+                            </div>
                         </div>
                     </div>
-                </div>
+            </div>
         </div>
 
-        <div *ngIf="replies.length != 0" style="padding-left: 100px;">  
+        <div *ngIf="edit == true">
+            <div class="col-6">
+                <form name="editPostForm" style="padding-left: 100px;">
+                    <textarea class="form-control" placeholder="{{userPost.content}}" id="editPostTextarea" style="height: 100px"></textarea>
+                </form>
+                <button type="button" class="btn btn-success" (click)="editPost()">Edit</button>
+            </div>
+        </div>
+
+
+        <div *ngIf="replies.length != 0" style="padding-left: 100px; padding-bottom: 50px;">  
             <a id="userName" style="color: white; font-weight: bold;"  routerLink = "/posts/replies" [queryParams]="{postId: userPost.id}" >Voir les commentaires ({{replies.length}})</a>
         </div>
 
-        <app-commentaire-form (giveTextEvent)="postReply($event)"></app-commentaire-form>
+        <div *ngIf="replies.length == 0">
+            <app-commentaire-form (giveTextEvent)="postReply($event)"></app-commentaire-form> 
+        </div>
 
     </div>
 

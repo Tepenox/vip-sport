@@ -22,7 +22,7 @@ export class ThreadResolver implements Resolve<Thread> {
     let title = route.paramMap.get('threadTitle');
     let currentCategoryId = +route.paramMap.get('subcategoryID');
     title = UrlParserService.unparse(title);
-
+    
     return this.threadService.getById(threadId).pipe(
       map((thread: Thread) => {
         let simpleTitle = SimpleParserService.parse(thread.title);

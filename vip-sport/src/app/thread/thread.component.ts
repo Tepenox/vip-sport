@@ -1,10 +1,11 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { Thread } from 'src/models/Thread';
 import { ThreadReply } from 'src/models/ThreadReply';
+import { ThreadReplyResolver } from '../resolvers/thread-reply.resolver';
 import { AuthenticationService } from '../services/authentication.service';
 import { ForumPostService } from '../services/forum-post.service';
 import { ThreadService } from '../services/thread.service';
@@ -16,18 +17,27 @@ import { ThreadService } from '../services/thread.service';
 })
 export class ThreadComponent implements OnInit {
   thread: Thread;
-  page:number = 1; //TODO
+  currentPage: number;
+  pages: number[];
   isReplyActive = false;
   posts: ThreadReply[];
   fragment: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private scroller: ViewportScroller, 
-    public authService: AuthenticationService, private service: ForumPostService, private threadService: ThreadService, private titleService: Title) { }
+    public authService: AuthenticationService, private threadService: ThreadService, private replyService: ForumPostService, private titleService: Title) { }
 
   ngOnInit() {
-    this.initializeThread();
-    this.route.fragment
-      .subscribe(param => this.fragment = param);
+    
+    this.route.params.subscribe(val => {
+      this.initializeThread();
+
+      this.route.queryParams.subscribe(val => {
+        setTimeout(() => this.titleService.setTitle("Sujet : " + this.thread.title), 1);
+      });
+
+      this.route.fragment
+        .subscribe(param => this.fragment = param);
+    })
   }
 
   ngAfterViewInit(): void {
@@ -67,9 +77,16 @@ export class ThreadComponent implements OnInit {
 
   private initializeThread() {
     this.route.data.subscribe((response: any) => {
-      this.posts = response.replies;
       this.thread = response.thread;
-      this.titleService.setTitle(this.titleService.getTitle() + " " + this.thread.title);
+      this.pages = response.pages.pages;
+      this.currentPage = response.pages.current;
+    });
+
+    this.route.queryParams.subscribe(val => {
+      let page = val.page ? val.page : 1;
+      this.currentPage = page;
+      this.replyService.getPostsByThreadID(this.thread.id, page)
+        .subscribe((posts: ThreadReply[]) => this.posts = posts)
     });
   }
 }

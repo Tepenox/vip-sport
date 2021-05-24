@@ -1,36 +1,42 @@
+<div style="padding-left: 200px;">
+    <div class="row" id="yellowCard">
+    <div class="card text-dark border-warning text-center" style="border-width: 5px;">
+        <div class="card-body">
+            <div class="row" id="profileName">
 
-<div class="row" id="yellowCard">
-<div class="card text-dark bg-warning text-center">
-    <div class="card-body">
-        <div class="row" id="profileName">
+                <img id='profilePic' [src]="opOwner?.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+                <a id="userName" style="color: white;" routerLink = "/profile/{{opOwner?.id}}">{{opOwner?.userName}}</a>
+            
 
-            <img id='profilePic' [src]="opOwner?.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
-            <a id="userName" style="color: white;" routerLink = "/profile/{{opOwner?.id}}">{{opOwner?.userName}}</a>
-        
-
-        </div>
+            </div>
 
 
-        <div class="row" id="content">
-                    <div class="card">
-                        <div class="card-body">
-                            {{originalPost?.content}}
+            <div class="row" id="content">
+                        <div class="card">
+                            <div class="card-body">
+                                {{originalPost?.content}}
+                            </div>
                         </div>
-                    </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+
+    <div id="comment" *ngFor = "let comment of comments"  style="padding-top: 100px;">
+
+        <div *ngIf="originalPost.ownerId == comment.ownerId">
+        <img id='mic' src="./assets/icons/mic.png"  class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
         </div>
 
-    </div>
-</div>
-</div>
-
-
-
-<div id="comment" *ngFor = "let comment of comments"  style="padding-top: 100px;">
-
-    <div *ngIf="originalPost.ownerId == comment.ownerId">
-    <img id='mic' src="./assets/icons/mic.png"  class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+        <app-statut [postId]="originalPost.id" [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
+        
     </div>
 
-    <app-statut [userReply] = "comment" [posts]="comments" [isPost]=false></app-statut>
-     
+    <div style="padding-right: 100px; padding-top: 50px;">
+     <app-commentaire-form (giveTextEvent)="postReply($event)"></app-commentaire-form> 
+    </div>
+
 </div>
