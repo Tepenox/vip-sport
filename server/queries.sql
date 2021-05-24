@@ -212,7 +212,7 @@ VALUES (
         'Dorian',
         'Dorian',
         'Volt',
-        'https://steamuserimages-a.akamaihd.net/ugc/950731295329353962/95DE977C77C191A732A29A68AB72A19CD644F7F2/',
+        'https://media.discordapp.net/attachments/799685283628449813/826874165625225276/cuit.gif',
         20,
         'vdoralex@gmail.com',
         "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
@@ -233,6 +233,32 @@ VALUES (
         "Escalade de l'Olympe",
         57,
         180,
+        2
+    ),(
+        'Benjamin',
+        'Benjamin',
+        'Taguet',
+        'https://media.discordapp.net/attachments/799685283628449813/826902270943428639/ezgif-6-97255fb9ce89.gif',
+        21,
+        'benj13@gmail.com',
+        "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
+        "",
+        "Touhou",
+        60,
+        185,
+        2
+    ),(
+        'Cédric',
+        'Cédric',
+        'Massat',
+        'https://media.discordapp.net/attachments/799685283628449813/827294599688749116/ezgif-4-cd9d1f6cf1d1.gif',
+        21,
+        'ceduic@gmail.com',
+        "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
+        "",
+        "Aucun",
+        50,
+        175,
         2
     );
 
