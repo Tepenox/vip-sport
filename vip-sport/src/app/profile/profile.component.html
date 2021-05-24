@@ -1,6 +1,7 @@
 <div class="container-fluid section-color1 padding-top padding-bottom-25">
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-4 text-center">
+
       <img
         *ngIf="!profileModification"
         [src]="user?.imageUrl"
@@ -215,10 +216,10 @@
       Vous devez suivre cet utilisateur pour voir son fil d'actualité.
     </h2>
     <h2 *ngIf="isFollowing && isYours && posts.length == 0">
-      Cet utilisateur n'a pas encore posté sur son mur.
+      Cet utilisateur n'a pas encore posté.
     </h2>
     <h2 *ngIf="!isYours && posts?.length == 0">
-      Vous n'avez encore rien posté sur votre mur.
+      Vous n'avez encore rien posté.
     </h2>
     <div *ngIf="isFollowing">
       <div *ngFor="let post of posts">
