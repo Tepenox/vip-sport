@@ -160,8 +160,8 @@ VALUES (
         23,
         'anasselafya@gmail.com',
         "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
-        "puceau ? moi ? serieusement ?",
-        "cyclisme",
+        "Dormir ? Moi ? Sérieusement ?",
+        "Dormir",
         45,
         170
     );
@@ -190,7 +190,7 @@ VALUES (
         'sesh@gmail.com',
         "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
         "Puceau moi ? Sérieusement ^^ haha on me l avait pas sortie celle la depuis loooongtemps 🙂 demande a mes potes si je suis puceau tu vas voir les réponses que tu vas te prendre XD rien que la semaine passee j ai niquer dont chuuuuut ferme la puceau de merde car toi tu m as tout tout l air d un bon puceau de merde car souvent vous etes frustrer de ne pas BAISER 🙂 ses agreable de se faire un missionnaire ou un amazone avec une meuf hein ? tu peux pas répondre car tu ne sais pas ce que c ou alors tu le sais mais tu as du taper dans ta barre de recherche « missionnaire sexe » ou « amazone sexe » pour comprendre ce que c etait mdddrrr !! cest grave quoiquil en soit....pour revenir a moi, je pense que je suis le mec le moins puceau de ma bande de 11 meilleurs amis pas psk j ai eu le plus de rapport intime mais psk j ai eu les plus jolie femme que mes amis 😀 ses pas moi qui le dit, ses eux qui commente sous mes photos insta « trop belle la fille que tu as coucher avec hier en boite notamment! » donc après si tu veux",
-        "cyclisme",
+        "Cyclisme",
         70,
         200,
         2
@@ -447,6 +447,51 @@ insert into posts (
         datetime('now'),
         'cyclisme',
         "Post"
+   ),(
+        "des conseils ?",
+        "text",
+        "Des conseils pour un bon vélo ?",
+        "",
+        4,
+        datetime('now'),
+        'cyclisme',
+        "Post"
+   ),(
+        "PR",
+        "text",
+        "Bonne séance aujourd'hui, peut être un nouveau PR à 200kg",
+        "",
+        9,
+        datetime('now'),
+        'Haltérophilie',
+        "Post"
+   ),(
+        "equipe",
+        "text",
+        "Recherche une équipe pour les jeux Olympiques d'hiver",
+        "",
+        7,
+        datetime('now'),
+        'Bobsleigh',
+        "Post"
+   ),(
+        "conseils",
+        "text",
+        "Des conseils pour un débutant qui veut savoir se battre ?",
+        "",
+        8,
+        datetime('now'),
+        'Judo',
+        "Post"
+   ),(
+        "conseils",
+        "text",
+        "Rien de tel qu'un aprem de freeze avec les potes",
+        "",
+        1,
+        datetime('now'),
+        'Ultimate',
+        "Post"
    );
 
    insert into postReplies(
@@ -457,8 +502,32 @@ insert into posts (
     date 
    )values(
        1,
-       "frere te renchoouf ",
+       "Bravo à toi, encore un petit effort",
        1,
+       "PostComment",
+       datetime('now')
+   ),(
+       4,
+       "Je suis intéressé, quand tu veux",
+       1,
+       "PostComment",
+       datetime('now')
+   ),(
+       6,
+       "Grave",
+       4,
+       "PostComment",
+       datetime('now')
+   ),(
+       6,
+       "Mouais",
+       6,
+       "PostComment",
+       datetime('now')
+   ),(
+       6,
+       "Invitez moi la prochaine fois !",
+       2,
        "PostComment",
        datetime('now')
    );
@@ -488,7 +557,27 @@ insert into posts (
        1,
        "PostComment",
        2
+   ),(
+       3,
+       "PostComment",
+       1
+   ),(
+       3,
+       "PostComment",
+       2
    );
+
+    insert into dislikes(
+       subjectId,
+       subjectType,
+       ownerId
+   )values(
+       4,
+       "PostComment",
+       1
+   );
+
+   
 
 --    insert into notifications (
 --     type  ,
