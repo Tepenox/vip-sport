@@ -47,7 +47,7 @@ Post.create = function(post){
 }
 
 Post.edit = function(post){
-    return db.prepare("update posts set title = @title,contentType= @contentType , content = @content ,contentUrl = @contentUrl,categories = @categories ").run(post).changes;
+    return db.prepare("update posts set title = @title,contentType= @contentType , content = @content ,contentUrl = @contentUrl,categories = @categories where id = @id").run(post).changes;
 }
 
 Post.delete = function(id){

@@ -12,6 +12,7 @@ export class TrainerComponent implements OnInit {
   categories: number[];
   muscles: number[];
   exercicesId: number[];
+  lastSelected:string = "Partie du corps";
 
   constructor(private apiSportService: ApiService) {
     this.getCategories();
@@ -39,6 +40,10 @@ export class TrainerComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+  }
+
+  changeLastSelected(name:string){
+    this.lastSelected = name;
   }
 
   getCategories() {

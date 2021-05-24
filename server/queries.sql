@@ -441,7 +441,7 @@ insert into posts (
     )values(
         "est ce que avoir un imc de 17 est normal ?",
         "text",
-        "c est pas normal mon imc , a laide , je veux pas finir comme cedric ",
+        "Record battu ! 2 km, bientôt le tour de france !!!!",
         "",
         2,
         datetime('now'),
