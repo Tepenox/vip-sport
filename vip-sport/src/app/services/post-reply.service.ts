@@ -23,7 +23,7 @@ export class PostReplyService {
 
   createPostReply(postId:number,postReply:PostReply):Observable<PostReply>{
     this.postService.getPostById(postId).subscribe(post => {
-      this.notificatonService.createNotification(new Notification('PostComment',this.authService.getCurrentUser().id,post.ownerId,postId)).subscribe();
+      this.notificatonService.createNotification(new Notification('PostComment',this.authService.getCurrentUser().id,post.ownerId,"/posts/replies?postId="+postId)).subscribe();
     })
     return this.httpClient.post<PostReply>(this.postRepliesUrl.replace(":postid",String(postId)),postReply).pipe(catchError(this.errorHandler));
   }

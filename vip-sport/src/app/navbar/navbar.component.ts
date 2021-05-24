@@ -137,7 +137,6 @@ ngOnInit(): void {
 
   onNotificationClick(notification:Notification){
     this.notificationService.deleteNotification(notification.id).subscribe();
-    console.log("a battard ta clické");
-    
+    // window.location.reload();
   }
 }

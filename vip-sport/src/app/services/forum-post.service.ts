@@ -1,3 +1,4 @@
+import { UrlParserService } from './url-parser.service';
 import { data } from 'jquery';
 import { ThreadService } from './thread.service';
 import { Notification } from 'src/models/Notification';
@@ -14,7 +15,7 @@ import { DataService } from './data.service';
   providedIn: 'root'
 })
 export class ForumPostService extends DataService {
-  constructor(protected threadService:ThreadService,protected authService:AuthenticationService,protected notificationService:NotificationService,http: HttpClient) { 
+  constructor(protected urlParserService:UrlParserService,protected threadService:ThreadService,protected authService:AuthenticationService,protected notificationService:NotificationService,http: HttpClient) { 
     super('http://localhost:3000/threadReplies', http);
   }
 
@@ -46,14 +47,4 @@ export class ForumPostService extends DataService {
   }
 
   
-  create(resource:Object):Observable<Object>{
-    if (resource instanceof ThreadReply ) {
-      this.threadService.getById(resource.threadId).subscribe(thread =>{
-        this.notificationService.createNotification(new Notification("ThreadReply",this.authService.getCurrentUser().id,(<Thread>thread).ownerId,resource.threadId)).subscribe(data =>{
-
-        });
-      })
-    }
-    return this.http.post<Object>(this.url, resource);
-  }
 }

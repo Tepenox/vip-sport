@@ -7,7 +7,7 @@ Notification.getById = function(id){
     return db.prepare("select * from notifications where id = ?").get(id);
 }
 Notification.getByDettails=function (notification){
-    return db.prepare("select * from notifications where type = @type and fromId = @fromId and receiverId = @receiverId and objectId = @objectId").get(notification);
+    return db.prepare("select * from notifications where type = @type and fromId = @fromId and receiverId = @receiverId and objectIdUrl = @objectIdUrl").get(notification);
 }
 
 Notification.getByReceiverId  = function (receiverId){
@@ -15,7 +15,8 @@ Notification.getByReceiverId  = function (receiverId){
 }
 
 Notification.create  = function (notification){
-    return db.prepare("insert into notifications (type,fromId,receiverId,date,objectId) values(@type,@fromId,@receiverId,datetime('now'),@objectId)").run(notification).lastInsertRowid;
+    console.log(notification);
+    return db.prepare("insert into notifications (type,fromId,receiverId,date,objectIdUrl) values(@type,@fromId,@receiverId,datetime('now'),@objectIdUrl)").run(notification).lastInsertRowid;
 }
 
 Notification.delete = function(id){
