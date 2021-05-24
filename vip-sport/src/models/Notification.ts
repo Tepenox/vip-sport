@@ -3,7 +3,7 @@ export class Notification {
         public type:string,
         public fromId:number,
         public receiverId : number,
-        public objectId : number,
+        public objectIdUrl : string,
         public date? : string,
         public id?:number
     ){

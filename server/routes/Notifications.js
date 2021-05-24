@@ -22,6 +22,8 @@ router.get("/notifications",(req,res)=>{
 router.post("/notifications",(req,res)=>{
     if(Notification.getByDettails(req.body)){
         res.send("no need to send the same notification twice")
+    }else if(req.body.fromId == req.body.receiverId){
+        res.send("no need to notify the user with actions of himself");
     }else {
         res.json(Notification.getById(Notification.create(req.body)));
     }

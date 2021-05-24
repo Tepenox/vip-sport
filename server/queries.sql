@@ -119,7 +119,7 @@ CREATE TABLE notifications (
     fromId INTEGER NOT NULL,
     receiverId INTEGER NOT NULL,
     date TEXT NOT NULL,
-    objectId INTEGER NOT NULL,
+    objectIdUrl TEXT NOT NULL,
     FOREIGN KEY (fromId) REFERENCES users(id),
     FOREIGN KEY (receiverId) REFERENCES users(id)
 );

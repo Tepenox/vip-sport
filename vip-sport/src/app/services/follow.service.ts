@@ -18,7 +18,7 @@ export class FollowService {
   constructor(private httpClient: HttpClient, private auth : AuthenticationService,private notificationService:NotificationService) { }
 
   followById(followedId:number){
-    this.notificationService.createNotification(new Notification("Follow",this.auth.getCurrentUser().id,followedId,followedId)).subscribe(data =>console.log(data));
+    this.notificationService.createNotification(new Notification("Follow",this.auth.getCurrentUser().id,followedId,"/profile/"+this.auth.getCurrentUser().id)).subscribe(data =>console.log(data));
     return this.httpClient.post<any>(this.followUrl,{followedId:followedId, followerId:this.auth.getCurrentUser().id}).pipe(catchError(this.errorHandler));
   }
 
