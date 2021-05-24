@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
   loginForm: FormGroup;
+  errorMessage:string = "";
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -102,7 +103,9 @@ export class SignUpComponent implements OnInit {
         this.authService.setCurentUser(data[0]);
         this.router.navigate(['/profile/'+data[0].id]);
       },
-      (err) => console.log(err)
+      (err) => {console.log(err)
+        this.errorMessage ="Une erreur est survenue"
+      }
     );
   }
 }

@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  errorMessage: string = "";
   constructor(private router:Router,private authService:AuthenticationService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -46,7 +47,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userId',data[0].id);
         this.authService.setCurentUser(data[0]);
         this.router.navigate(['/profile/'+data[0].id]);
-      },err=> console.error("authentication service login :"+ err )
+      },err=> {console.error("authentication service login :"+ err )
+      this.errorMessage = "Compte inexistant."
+    }
       )
   }
 }
