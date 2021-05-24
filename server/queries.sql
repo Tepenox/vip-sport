@@ -255,7 +255,7 @@ VALUES (
         21,
         'ceduic@gmail.com',
         "$2b$10$/nJ68kDy/44jTpZqFXrDYOvYsJnlbYPvk7A7lPYZj6KMxMMHPtF6u",
-        "",
+        "Why",
         "Aucun",
         50,
         175,
