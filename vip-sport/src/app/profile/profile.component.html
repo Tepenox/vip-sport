@@ -26,21 +26,21 @@
         >
       </div>
       <button
-        *ngIf="isYours && !isFollowing"
+        *ngIf="notYours && !isFollowing"
         class="btn btn-outline-success"
         (click)="addFriend()"
       >
         Suivre
       </button>
       <button
-        *ngIf="isYours && isFollowing"
+        *ngIf="notYours && isFollowing"
         class="btn btn-outline-danger"
         (click)="unfriend()"
       >
         Se désabonner
       </button>
       <button
-        *ngIf="!profileModification && !isYours"
+        *ngIf="!profileModification && !notYours"
         class="btn btn-outline-danger"
         (click)="enableProfileModif()"
       >
@@ -83,14 +83,14 @@
   </div>
 </div>
 <h2
-  *ngIf="!((isFollowing && isYours) || !isYours)"
+  *ngIf="!((isFollowing && notYours) || !notYours)"
   class="text-center text-warning padding-top"
 >
   Vous devez suivre cet utilisateur si vous voulez accéder à ses informations.
 </h2>
 <div
   class="container-fluid section-color2 padding-bottom-25"
-  *ngIf="(isFollowing && isYours) || !isYours"
+  *ngIf="(isFollowing && notYours) || !notYours"
 >
   <div class="row justify-content-around" id="infos">
     <div class="col-2" style="color: rgb(0, 0, 0)">
@@ -212,18 +212,18 @@
       text-center
     "
   >
-    <h2 *ngIf="!isFollowing && isYours">
+    <h2 *ngIf="!isFollowing && notYours">
       Vous devez suivre cet utilisateur pour voir son fil d'actualité.
     </h2>
-    <h2 *ngIf="isFollowing && isYours && posts.length == 0">
+    <h2 *ngIf="isFollowing && notYours && posts.length == 0">
       Cet utilisateur n'a pas encore posté.
     </h2>
-    <h2 *ngIf="!isYours && posts?.length == 0">
+    <h2 *ngIf="!notYours && posts?.length == 0">
       Vous n'avez encore rien posté.
     </h2>
-    <div *ngIf="isFollowing">
+    <div *ngIf="isFollowing || !notYours">
       <div *ngFor="let post of posts">
-        <app-statut [userPost]="post"></app-statut>
+        <app-statut [userPost]="post" [posts]=posts [isPost]=true></app-statut>
       </div>
     </div>
   </div>

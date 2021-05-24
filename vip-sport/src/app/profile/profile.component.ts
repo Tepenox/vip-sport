@@ -15,7 +15,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  isYours: boolean;
+  notYours: boolean;
   descriptionMaxLength: number = 500;
   usernameMaxLength: number = 40;
   followersCount: any;
@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
           this.user = data;
           this.setFollowing(this.user.id);
           this.getFollowersCount(this.user.id);
-          this.isYours = auth.getCurrentUser().id != parseInt(params.get('id'));
+          this.notYours = auth.getCurrentUser().id != parseInt(params.get('id'));
           this.calculateImc();
           this.getPosts();
           this.titleService.setTitle(
@@ -70,11 +70,12 @@ export class ProfileComponent implements OnInit {
   }
 
   getPosts() {
-    this.activatedRoute.queryParams.subscribe((params) => {
+   // this.activatedRoute.queryParams.subscribe((params) => {
       this.postService.getPostsByOwnerId(this.user.id).subscribe((data) => {
         this.posts = data;
+        console.log(this.posts)
       });
-    });
+   // });
   }
 
   enableProfileModif() {
