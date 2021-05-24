@@ -10,37 +10,17 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Partie du corps
+        {{lastSelected}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a
           *ngFor="let category of categories"
           class="dropdown-item"
-          (click)="getExercise(category.id, null)"
+          (click)="getExercise(category.id, null); changeLastSelected(category.name)"
           >{{ category.name }}</a
         >
       </div>
     </div>
-    <!-- <div style="padding-left: 8px">
-      <button
-        class="btn btn-warning dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton2"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Select a muscle
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-        <a
-          *ngFor="let muscle of muscles"
-          class="dropdown-item"
-          (click)="getExercise(null, muscle.id)"
-          >{{ muscle.name }}</a
-        >
-      </div>
-    </div> -->
   </div>
   <div class="container" *ngIf="exercices">
     <div class="card-deck">

@@ -94,16 +94,14 @@ export class StatutComponent implements OnInit {
 }
 
   editPost(){
-    console.log(this.userPost)
-    console.log(this.userPost.id)
     if (document.forms["editPostForm"]["editPostTextarea"].value != "") { 
     let updatedPost = new Post("null","text",document.forms["editPostForm"]["editPostTextarea"].value,"null",this.userPost.ownerId,this.userPost.categories,this.userPost.type);
     this.postService.editPost(this.userPost.id,updatedPost).subscribe(data => {
       console.log(updatedPost)
       this.posts.push(data);
     })
-    //this.edit = false;
-   // window.location.reload();
+    this.edit = false;
+    window.location.reload();
   }
     
   }
