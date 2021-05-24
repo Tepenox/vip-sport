@@ -9,10 +9,10 @@ let jwt = require("jsonwebtoken");
 const PostReply = require("../models/PostReply");
 
 function vertifyPostReplyOwnerShip(req,res,next){
-  if(PostReply.getById(req.params.id) === req.userId){
+  if(PostReply.getById(req.params.id).ownerId == req.userId){
     next();
   }else {
-    res.status(401).send("a batard tu fumes");
+    res.status(401).send("a batard tu fumes" + " " + PostReply.getById(req.params.id).ownerId + " " + req.userId);
   }
 }
 
@@ -40,8 +40,8 @@ router.put("/posts/:postid/postreplies/:id",Middlewares.verifyToken,vertifyPostR
 });
 
 router.delete("/posts/:postid/postreplies/:id",Middlewares.verifyToken,vertifyPostReplyOwnerShip ,(req, res) => {
-  if (PostReplies.delete(req.params.id) > 0){
-    res.send("deleted");
+  if (PostReply.delete(req.params.id) > 0){
+    res.send({deleted:true});
   }else{
     res.status(500).send('something went wrong');
 }

@@ -1,23 +1,84 @@
 <div id="statut">
-<div class="row" id="profileName">
-    <img id='profilePicture' [src]="ownerUser.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
-    <a id="userName" style="color: white;" routerLink = "/profile">{{ownerUser.userName}}</a>
-</div>
+    <div class="row" id="profileName">
 
-<div class="row">
-  <app-like-dislike id="likeDislike"></app-like-dislike>
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body">
+        <img id='profilePicture' [src]="ownerUser?.imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+        <a id="userName" style="color: white;" routerLink = "/profile/{{ownerUser?.id}}">{{ownerUser?.userName}}</a>
 
-               <!-- It is written; “Though training of iron and steel verily strengthens thy body and soul, neglect not thy push-ups, pull ups, and dips. 
-                For how can thou raise up thy brothers and sisters if thou canst lift thyself?” - the Gospel of Massthew, 25:17. 
-                Brothers and Swolesisters, though ye may call me an agent of Broki, I implore you hear my plea! For just as Wheysus was first cast out by his people, so too will his gospel be met with Iron-hardened hearts. 
-                Our prayers in the iron temple are always heard, but home workouts and supplemental body weight exercises please the Allspotter as well - for he knows all, including the value of body weight strength.-->
 
-                {{userPost.content}}
+        <div *ngIf="ownerUser?.id == currentUser.id && isPost == true" id="deleteDiv">
+            <input type="image" id='icon'  src ="./assets/icons/pen.png" (click)="edit = true" data-holder-rendered="true"/>
+            <input type="image" id='icon'  src ="./assets/icons/delete.png" (click)="deletePost()" data-holder-rendered="true"/>
+        </div>
+        
+
+       <div *ngIf="ownerUser?.id == currentUser.id && isPost == false" id="deleteDiv">
+            <input type="image" id='icon'  src ="./assets/icons/pen.png" (click)="edit = true" data-holder-rendered="true"/>
+            <input type="image" id='icon'  src ="./assets/icons/delete.png" (click)="deleteReply()" data-holder-rendered="true"/>
+        </div>
+       
+
+    </div>
+
+
+    <div *ngIf="isPost == false">
+        <div *ngIf="edit == false">
+            <div class="row">
+                <app-like-dislike [subject]= "userReply" [commentId]="userReply.id" id="likeDislike"></app-like-dislike>
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body" style="width: 100%;">
+                                {{userReply?.content}}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div *ngIf="edit == true">
+            <div class="col-6">
+                <form name="editReplyForm" style="padding-left: 100px;">
+                    <textarea class="form-control" placeholder="{{userReply.content}}" id="editReplyTextarea" style="height: 100px"></textarea>
+                </form>
+                <button type="button" class="btn btn-success" (click)="editReply()">Edit</button>
             </div>
         </div>
     </div>
-</div>
+
+
+    
+   <div *ngIf="isPost == true"> 
+
+        <div *ngIf="edit == false">
+            <div class="row">
+                <app-like-dislike [subject]= "userPost" [commentId]="userPost.id" id="likeDislike"></app-like-dislike>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                {{userPost?.content}}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <div *ngIf="edit == true">
+            <div class="col-6">
+                <form name="editPostForm" style="padding-left: 100px;">
+                    <textarea class="form-control" placeholder="{{userPost.content}}" id="editPostTextarea" style="height: 100px"></textarea>
+                </form>
+                <button type="button" class="btn btn-success" (click)="editPost()">Edit</button>
+            </div>
+        </div>
+
+
+        <div *ngIf="replies.length != 0" style="padding-left: 100px; padding-bottom: 50px;">  
+            <a id="userName" style="color: white; font-weight: bold;"  routerLink = "/posts/replies" [queryParams]="{postId: userPost.id}" >Voir les commentaires ({{replies.length}})</a>
+        </div>
+
+        <div *ngIf="replies.length == 0">
+            <app-commentaire-form (giveTextEvent)="postReply($event)"></app-commentaire-form> 
+        </div>
+
+    </div>
+
 </div>

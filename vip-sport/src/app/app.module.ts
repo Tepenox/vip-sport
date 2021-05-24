@@ -28,6 +28,13 @@ import { LikeDislikeComponent } from './like-dislike/like-dislike.component';
 import { WallComponent } from './wall/wall.component';
 import { CommentaireFormComponent } from './commentaire-form/commentaire-form.component';
 import {StatutComponent} from './statut/statut.component';
+import { ReplyFormComponent } from './reply-form/reply-form.component';
+import { ThreadFormComponent } from './thread-form/thread-form.component';
+import { ThreadCreationFormComponent } from './thread-creation-form/thread-creation-form.component';
+import { DeleteButtonComponent } from './delete-button/delete-button.component';
+import { CommentsComponent } from './comments/comments.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page.component';
+import { NutrimentsComponent } from './nutriments/nutriments.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +57,14 @@ import {StatutComponent} from './statut/statut.component';
     WelcomeComponent,
     WallComponent,
     CommentaireFormComponent,
-    StatutComponent
+    StatutComponent,
+    ReplyFormComponent,
+    ThreadFormComponent,
+    ThreadCreationFormComponent,
+    DeleteButtonComponent,
+    CommentsComponent,
+    NoContentPageComponent,
+    NutrimentsComponent
   ],
   imports: [
     BrowserModule,

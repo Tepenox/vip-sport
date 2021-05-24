@@ -1,19 +1,66 @@
 <div class="thread container p-4 shadow">
-    <div class="thread-title-box">
-        <h2 class="threadTitle p-3 my-2">
-            {{ threadTitle }}
-        </h2>
-    </div>
-    <div class="threadContent" >
-        <f-post *ngFor="let post of posts" [id]="post.id"></f-post>
-    </div>
-    <div>
-        <a [routerLink]="['./']" fragment="reply-form" [hidden]="isReplyActive">
-            <button class="btn btn-primary" (click)="toggleReplyForm()">Répondre</button>
-        </a>
-    </div>
-    <div [hidden]="!isReplyActive">
-        <button class="btn btn-primary" (click)="toggleReplyForm()">Annuler</button>
-        <post-form [threadID]="id" id="reply-form"></post-form>
-    </div>
+    <section *ngIf="authService.getModerationPower() >= 50 && authService.loggedIn()" class="moderation-controls">
+        <span id="pinButton">
+            <span *ngIf="!thread.isPinned; else unpinButton"> 
+                <button class="btn btn-success" (click)="togglePin()">Épingler</button>
+            </span>
+            <ng-template #unpinButton>
+                <button class="btn btn-success" (click)="togglePin()">Désépingler</button>
+            </ng-template>
+        </span>
+        <span id="lockButton">
+            <span *ngIf="!thread.isLocked; else unlockButton">
+                <button class="btn btn-danger" (click)="toggleLock()">Verrouiller</button>
+            </span>
+            <ng-template #unlockButton>
+                <button class="btn btn-danger" (click)="toggleLock()">Déverrouiller</button>
+            </ng-template>
+        </span>
+    </section>
+
+    <main class="page">
+        <div class="thread-title-box">
+            <h1 class="threadTitle p-3 my-2">
+                {{ thread.title }}
+            </h1>
+        </div>
+        <div class="threadContent" >
+            <div *ngFor="let post of posts; let isFirst = first" id="post-{{ post.id }}" >
+                <f-post [postId]="post.id" [isFirstPost]="isFirst && page == 1 ? true : false" (delete)="deleteThread()"></f-post>
+            </div>
+        </div>
+        <span id="pages">
+            <ng-container *ngFor="let page of pages; let i = index">
+                <a *ngIf="currentPage != page; else currentPageNumber" [routerLink]="[]" [queryParams]="{ page: page }">
+                    {{ page }}
+                </a>
+                <span *ngIf="pages.length >= 12 && ((i == 0 && currentPage > 6) || (i == pages.length-2 && currentPage < page-4))">
+                    ...
+                </span>
+                <ng-template #currentPageNumber>
+                    <span id="currentPage">{{ page }}</span>
+                </ng-template>
+            </ng-container>
+        </span>
+    </main>
+        
+    <section *ngIf="authService.loggedIn()" class="form-section">
+        <div *ngIf="authService.getModerationPower() >= 50 || !thread.isLocked; else locked" id="unlocked">
+            <div *ngIf="thread.isLocked">
+                <p class="alert alert-info">Ce sujet est verrouillé. Vous avez cependant le droit d'y répondre car vous avez le rôle {{ authService.getRoleName() | lowercase }}</p>
+            </div>
+            <div>
+                <a [routerLink]="['./']" [queryParams]="{ page: currentPage }" fragment="reply-form" [hidden]="isReplyActive" (click)="test()">
+                    <button class="btn btn-primary" (click)="toggleReplyForm()">Répondre</button>
+                </a>
+            </div>
+            <div [hidden]="!isReplyActive">
+                <button class="btn btn-primary" (click)="toggleReplyForm()">Annuler</button>
+                <post-form [threadID]="thread.id" id="reply-form"></post-form>
+            </div>
+        </div>
+        <ng-template #locked>
+            <p class="alert alert-info">Ce sujet est verrouillé.</p>
+        </ng-template>
+    </section>
 </div>

@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from './../../models/Post';
+import { PostReply } from 'src/models/PostReply';
+import { User } from './../../models/User';
 import {PostService} from '../services/post.service';
 import {AuthenticationService} from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { PostReplyService } from '../services/post-reply.service';
 
 
 
@@ -20,19 +24,21 @@ export class WallComponent implements OnInit {
   public statutIsEmpty = false;
 
   posts:Post[] = [];
-
   
 
- //public userInput = document.forms["statutForm"]["statutTextarea"].value
+  @Input() public text;
+
+
 
   
   categories:String[] = ["Halterophilie","Cyclisme","Judo","Bobsleigh","Ultimate","Tennis","Other"];
+
+  public currentUser:User;
+  
   
 
-  
-
-  constructor(private postService : PostService, private authentificationService : AuthenticationService, private activatedRoute:ActivatedRoute) {
-    
+  constructor(private postService : PostService, public authentificationService : AuthenticationService, private activatedRoute:ActivatedRoute, private postReplyService:PostReplyService) {
+    this.currentUser = this.authentificationService.getCurrentUser();
   }
 
   getPosts(){
@@ -60,17 +66,21 @@ export class WallComponent implements OnInit {
       this.statutIsEmpty = true;
     }
     else{ 
-    var url = window.location.href;
-    var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, url.slice(url.lastIndexOf('=')+1));
-    this.postService.createPost(post).subscribe(data => {
-      this.posts.push(data);
-      this.isLocked = true;
-      this.posted = true; 
-    });
-    
-    }
-    
+      this.activatedRoute.queryParams.subscribe(params =>{
+        var post = new Post("null","text",document.forms["statutForm"]["statutTextarea"].value,"null",this.authentificationService.getCurrentUser().id, params['categories'],"Post");
+        console.log(post.type)
+        this.postService.createPost(post).subscribe(data => {
+          this.posts.push(data);
+          this.isLocked = true;
+          this.posted = true; 
+        });
+      })
+    }    
   }
+
+ 
+
+  
 
   
 

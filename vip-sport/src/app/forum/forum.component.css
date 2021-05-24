@@ -1,4 +1,87 @@
+span {
+    display: block;
+}
+
 .forum-page {
     padding-top: 75px;
+    padding-bottom: 20px;
     background-color: rgb(214, 214, 214);
+}
+
+#category-list {
+    padding-bottom: 10px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+#thread-list {
+    padding-bottom: 10px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+.category-name {
+    padding: 3px 10px 3px 10px;
+    border-style: solid;
+    border-color: rgb(125, 139, 179);
+    background-color: rgb(125, 139, 179);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 100%;
+    font-weight: 500;
+    color: white;
+}
+
+.thread-creation-area {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.div-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px 5px 10px; 
+}
+
+#cancel {
+    margin-bottom: 15px;
+}
+
+.subcategory-name > .div-link > h3 {
+    font-size: 100%;
+    font-weight: 400;
+    color: rgba(67, 72, 78, 0.925);
+}
+
+.subcategory-info > .div-link {
+    color: rgba(67, 72, 78, 0.829);
+}
+
+.div-link {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+dt {
+    padding-top: 5px;
+    height: 3.8em;
+    margin-bottom: -2em;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(70, 70, 70, 0.226);
+}  
+
+dd {
+    pointer-events: none;
+}
+  
+dt:hover {
+    text-decoration: underline;
+    background-color: rgba(0, 0, 0, 0.062);
+    border-bottom-color: rgba(70, 70, 70, 0.048);
 }

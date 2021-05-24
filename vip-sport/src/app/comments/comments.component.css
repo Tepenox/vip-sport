@@ -1,0 +1,29 @@
+#comment{
+   padding-left: 250px;
+}
+
+#yellowCard{
+    padding-left: 100px;
+    padding-top: 100px;
+}
+
+#mic{
+    height: 40px;
+    width: 40px;
+}
+
+#userName{
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+#profilePic{
+    height: 70px;
+    width: 70px;
+}
+
+
+#profileName{
+    padding-right: 5px;
+    padding-bottom: 10px;
+}

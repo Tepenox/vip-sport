@@ -1,0 +1,67 @@
+span {
+    display: block;
+}
+
+hr {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.div-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px 5px 10px;
+}
+
+.link {
+    color: rgb(67, 72, 78);
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.thread {
+    padding: 0px 10px 0px 10px;
+}
+
+.thread .row {
+    padding: 0%;
+}
+
+.thread:hover {
+    background-color: rgba(0, 0, 0, 0.062);
+}
+
+.thread-secondary {
+    justify-content: right;
+}
+
+.thread-primary, .thread-secondary {
+    color: rgb(67, 72, 78);
+}
+
+.locked {
+    background-color: rgb(194, 194, 194);
+}
+
+.locked:hover {
+    background-color: rgb(172, 172, 172);
+}
+
+.pinned {
+    background-color: rgba(129, 243, 148, 0.219);
+}
+
+.pinned:hover {
+    background-color:  rgba(157, 206, 165, 0.479);
+}
+
+.pinned .thread-name {
+    color: rgb(36, 153, 0);
+}

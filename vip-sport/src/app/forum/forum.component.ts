@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { CategoriesService } from '../services/categories.service';
-import { SubcategoriesService } from '../services/subcategories.service';
-import { ThreadService } from '../services/thread.service';
+import { Category } from 'src/models/Category';
+import { Subcategory } from 'src/models/Subcategory';
+import { Thread } from 'src/models/Thread';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-forum',
@@ -10,31 +12,27 @@ import { ThreadService } from '../services/thread.service';
   styleUrls: ['./forum.component.css']
 })
 export class ForumComponent implements OnInit {
-  currentCategoryId: number;
-  categories: any[];
-  threads: any[];
+  currentSubcategory: Subcategory;
+  categories: Category[];
+  subcategories : Subcategory[][];
+  threads: Thread[];
+  isThreadFormVisible: boolean = false;
 
-  constructor(private route: ActivatedRoute, private categoriesService: CategoriesService, private subcategoriesService: SubcategoriesService, private threadService: ThreadService) { }
+  constructor(private route: ActivatedRoute, private titleService: Title, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .subscribe(params => this.currentCategoryId = +params.get('subcategoryID'));
+    this.route.data.subscribe(response  => {
+      this.categories = response.categories;
+      this.currentSubcategory = response.currentSubcategory;
+      this.subcategories = response.subcategories;
+      this.threads = response.threadList;
 
-    this.categoriesService.getByParentId(this.currentCategoryId)
-      .subscribe((response: any[]) => {
-        this.categories = response
-        for (let i = 0; i < this.categories.length; i++) {
-          this.subcategoriesService.getByParentId(this.categories[i].id)
-            .subscribe((response: any[]) => this.categories[i].subcategories = response);
-        }
-      });
-
-    this.threadService.getByParentId(this.currentCategoryId)
-      .subscribe((response: any[]) => {
-        console.log(response);
-        this.threads = response;
-        console.log(this.threads);
-      });
+      if (this.currentSubcategory.id != 0)
+      this.titleService.setTitle(this.titleService.getTitle() + " " + this.currentSubcategory.name)
+    });
   }
 
+  toggleThreadForm() {
+    this.isThreadFormVisible = !this.isThreadFormVisible;
+  }
 }

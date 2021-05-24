@@ -8,9 +8,24 @@
     padding-left: 300px;
 }
 
+#mic{
+    height: 40px;
+    width: 40px; 
+}
+
 #userName{
     padding-top: 20px;
     padding-left: 10px;
+}
+
+#icon{
+    height: 40px;
+    width: 40px;
+}
+
+#deleteDiv{
+    padding-left: 400px;
+    padding-top: 20px;
 }
 
 #profileName{

@@ -1,10 +1,12 @@
 export class Thread {
     constructor(
-        public id: number,
         public subcategoryId: number,
-        public title: String,
-        public firstPostId: number,
-        public lastPostId: number
+        public title: string,
+        public ownerId: number,
+        public id?: number,
+        public date?: string,
+        public isPinned?: boolean,
+        public isLocked?: boolean
     ) { }
 }
   

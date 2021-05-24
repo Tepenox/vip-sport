@@ -4,7 +4,7 @@ const db = new Sqlite("db.sqlite");
 let Dislikes = {};
 
 Dislikes.getCountBySubjectId = function (subjectType, subjectId){
-    return db.prepare("select count(*) from dislikes where subjectType = ? and subjectId = ?").get(subjectType,subjectId);
+    return db.prepare("select count(*) as count from dislikes where subjectType = ? and subjectId = ?").get(subjectType,subjectId);
 }
 
 Dislikes.getDislike = function (subjectType,subjectId,ownerId){
@@ -12,7 +12,7 @@ Dislikes.getDislike = function (subjectType,subjectId,ownerId){
 } 
 
 Dislikes.create = function(subjectType,subjectId,ownerId) {
-    return db.prepare("insert into dislikes(subjectId,subjectType,ownerId) values (?,?,?)").run(subjectType,subjectId,ownerId).lastInsertRowid;
+    return db.prepare("insert into dislikes(subjectType,subjectId,ownerId) values (?,?,?)").run(subjectType,subjectId,ownerId).lastInsertRowid;
 
 }
 

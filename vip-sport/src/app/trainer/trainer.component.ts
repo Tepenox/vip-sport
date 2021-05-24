@@ -33,6 +33,7 @@ export class TrainerComponent implements OnInit {
             ''
           );
           exercice.nameId = exercice.name.replace(/(\s+|\d+)/gi, '');
+          exercice.imageUrl = "../assets/Workout/" + exercice.name + ".jpg";
           return exercice;
         });
       },

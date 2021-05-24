@@ -12,6 +12,15 @@ import { ThreadComponent } from './thread/thread.component';
 import { TrainerComponent } from './trainer/trainer.component';
 import { WallComponent } from './wall/wall.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CommentsComponent } from './comments/comments.component';
+import { NoContentPageComponent } from './no-content-page/no-content-page.component';
+import { ThreadReplyResolver } from './resolvers/thread-reply.resolver';
+import { ThreadResolver } from './resolvers/thread.resolver';
+import { CategoriesResolver } from './resolvers/categories.resolver';
+import { SubcategoriesResolver } from './resolvers/subcategories.resolver';
+import { CurrentSubcategoryResolver } from './resolvers/current-subcategory.resolver';
+import { ThreadListResolver } from './resolvers/thread-list.resolver';
+import { PagesResolver } from './resolvers/pages.resolver';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -20,18 +29,25 @@ const routerOptions: ExtraOptions = {
 };
 
 const routes: Routes = [
-  {path: '', component : WelcomeComponent},
-  {path: 'welcome', component : WelcomeComponent},
-  {path: 'profile/:id',canActivate:[AuthGuard],component : ProfileComponent},
-  {path: 'login', component : LoginComponent},
-  {path: 'signup', component : SignUpComponent},
-  {path: 'sportspage', component : CardComponent},
-  {path: 'trainer', component : TrainerComponent},
-  {path: 'secret', canActivate :[AuthGuard],component : SecretComponent},
-  {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent},
-  {path: 'forum/:subcategoryID', component : ForumComponent},
-  {path: 'forum', component : ForumComponent},
-  {path: 'posts', component : WallComponent}
+  {path: '', component : WelcomeComponent, data: { title: 'VipSport' }},
+  {path: 'welcome', component : WelcomeComponent, data: { title: 'VipSport' }},
+  {path: 'profile/:id',canActivate:[AuthGuard], component : ProfileComponent, data: { title: 'Profil de ' }},
+  {path: 'login', component : LoginComponent, data: { title: 'Connexion' }},
+  {path: 'signup', component : SignUpComponent, data: { title: 'Inscription' }},
+  {path: 'sportspage', component : CardComponent, data: { title: 'Sports' }},
+  {path: 'trainer', component : TrainerComponent, data: { title: 'Exercices' }},
+  {path: 'secret', canActivate :[AuthGuard],component : SecretComponent, data: { title: 'AMOGUS' }},
+  {path: 'forum/:subcategoryID/thread/:threadID/:threadTitle', component : ThreadComponent, 
+      resolve: { thread: ThreadResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver, pages: PagesResolver },
+      data: { title: 'Sujet: ' }},
+  {path: 'forum/:subcategoryID', component : ForumComponent, 
+      resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver, threadList: ThreadListResolver },
+      data: { title: 'Forum - ' }},
+  {path: 'forum', component : ForumComponent, resolve: { categories: CategoriesResolver, subcategories: SubcategoriesResolver, currentSubcategory: CurrentSubcategoryResolver },
+      data: { title: 'Forum' }},
+  {path: 'posts', component : WallComponent, data: { title: 'Mur' }},
+  {path: 'posts/replies', component: CommentsComponent, data: { title: 'Commentaires' }},
+  {path: '**', component : NoContentPageComponent, data: { title: '404' }}
 ];
 
 @NgModule({

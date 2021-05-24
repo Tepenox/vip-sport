@@ -1,29 +1,42 @@
 
 <div class="col-9 offset-md-3" id="post">
-    <div *ngFor="let post of posts" let i = index; trackBy:index>
-        
-        <!-------Statut---------->
 
-        <div style="padding-top: 100px;">
-        <app-statut  [userPost] = "post"></app-statut>
+    <div *ngIf ="posts.length > 0">
+        <div *ngFor="let post of posts" let i = index; trackBy:index>
 
-     </div>
-    
+            
+            
+            <!-------Statut---------->
 
+            <div style="padding-top: 100px;">
+            <app-statut  [userPost] = "post" [posts]="posts" [isPost]=true></app-statut>
+ 
+           
 
-        <!-------Commentaire du post---------->
-
-    <app-commentaire-form id="comment"></app-commentaire-form>
-
-    </div>
-
-    <div class="col" id="addPostButton">
-        <div *ngIf="isLocked == true">
-            <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Add a post</button>
         </div>
+        
+       
+
+        </div>
+
+        <div class="col" id="addPostButton">
+            <div *ngIf="isLocked == true">
+                <button type="button" id="addButton" class="btn btn-warning btn-lg" (click)="unlockForm()">Ajouter un post</button>
+            </div>
+        </div>
+
+   </div> 
+
+   <div *ngIf="posts.length == 0">
+    <div class="col" id="addPostButton" style="padding-top: 150px;">
+        <h2 style="color: white;">Personne n'a encore écrit. C'est votre chance !</h2>
+        <button type="button" id="addButton2" class="btn btn-warning btn-lg" (click)="unlockForm()">Ajouter un post</button>
     </div>
-    
+   </div>
+
 </div>
+
+
 
 <!---------Ajout d'un post----------->
 
@@ -33,18 +46,8 @@
             <div class="input-group mb-3">
                 <div class="col-auto">
                     <div id="profilePicture">
-                        <img id='profilePicture' src="../assets/pp.png" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
+                        <img id='profilePicture' [src] ="authentificationService.getCurrentUser().imageUrl" class="profile-pic rounded-circle z-depth-2" data-holder-rendered="true"/>
                     </div>
-                  <!--  <div class="dropdown">
-                        <button data-flip="false" class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Category
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <div *ngFor="let category of categories ">
-                                <a class="dropdown-item" >{{category}}</a>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="col">
                     <form name="statutForm">
@@ -56,7 +59,7 @@
         </div>
 
         <div id="addStatutButton">
-            <button type="submit" class="btn btn-warning mb-3" (click)="postStatut()">Add Statut</button>
+            <button type="submit" class="btn btn-warning mb-3" (click)="postStatut()">Ajouter un statut</button>
         </div>
 
     </div>

@@ -1,11 +1,20 @@
-<div class="post card mb-2 shadow-sm" id="post-{{ id }}">
+<div class="post card mb-2 shadow-sm">
     <div class="card-body">
-        <span>
-            <a class="userName">Utilisateur</a>
-            <span class="postDate text-muted"> {{ post.date }} </span>
+        <span class="post-head">
+            <a [routerLink]="['/profile', user?.id]" class="profile">
+                <img [src]="user?.imageUrl" class="profile-pic-sm rounded-circle"/>
+                <span class="username">{{ user?.userName }}</span>
+            </a>
+            <span class="postDate text-muted">
+                <time attr.datetime="{{ post?.date | date:'YYYY-MM-dd HH:mm:ss':'UTC+2' }}"> {{ post?.date | date:'le dd/MM/YYYY à HH:mm:ss':'UTC+2' }} </time>
+            </span>
+            <span class="post-options">
+                <delete-button *ngIf="(currentUserRole?.moderationPower >= 50 || currentUser?.id == user?.id) && authService.loggedIn()" [postId]="id" (delete)="deletePost()"></delete-button>
+            </span>
         </span>
+        <hr>
         <p class="postContent">
-            {{ post.content }}
+            {{ post?.content }}
         </p>
     </div>
 </div>

@@ -18,12 +18,14 @@ PostReply.create = function(postReply){
         postId , \
         content , \
         ownerId , \
-        date \
+        date, \
+        type \
        )values( \
            @postId, \
            @content, \
            @ownerId, \
-           datetime('now') \
+           datetime('now'), \
+           'PostComment' \
        );").run(postReply).lastInsertRowid;
 }
 

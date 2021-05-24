@@ -11,18 +11,36 @@ ThreadReply.getByid = function (id) {
   return db.prepare("select * from threadreplies where id = ?").get(id);
 };
 
-ThreadReply.getAllByThreadId = function (threadId) {
+ThreadReply.getAllByThreadId = function (threadId, page) {
+  let offset = 10 * (parseInt(page, 10) - 1);
   return db
-    .prepare("select * from threadReplies where threadId = ? order by id ASC")
-    .all(threadId);
+    .prepare("select * from threadReplies where threadId = ? order by id ASC LIMIT 10 OFFSET ?")
+    .all(threadId, offset);
 };
+
+ThreadReply.getFirstPostInThread = function (threadId) {
+  return db
+    .prepare("SELECT * FROM threadReplies WHERE threadId = ? ORDER BY id ASC LIMIT 1")
+    .get(threadId);
+}
+
+ThreadReply.getLastPostInThread = function (threadId) {
+  return db
+    .prepare("SELECT * FROM threadReplies WHERE threadId = ? ORDER BY id DESC LIMIT 1")
+    .get(threadId);
+}
+
+ThreadReply.getAmountOfPages = function (threadId) {
+  return db.prepare("SELECT (COUNT(*)-1)/10 + 1 AS pageAmount FROM threadReplies WHERE threadId = ?")
+    .get(threadId);
+}
 
 ThreadReply.create = function (threadReply) {
   return db
     .prepare(
-      "insert into threadreplies (threadId , content , ownerId)\
+      "insert into threadreplies (threadId , ownerId, date, content)\
     values (\
-        @threadId,@content,@ownerId)"
+        @threadId,@ownerId, datetime('now'), @content)"
     )
     .run(threadReply).lastInsertRowid;
 };
@@ -36,7 +54,11 @@ ThreadReply.edit = function (threadReply) {
 
 
 ThreadReply.delete = function(id){
-    return db.prepare("delete from threadReplies where id = ?").run(id).changes;
+  return db.prepare("delete from threadReplies where id = ?").run(id).changes;
+}
+
+ThreadReply.deleteAllFromThread = function(threadId) {
+  return db.prepare("DELETE FROM threadReplies WHERE threadId = ?").run(threadId).changes;
 }
 
 module.exports = ThreadReply;

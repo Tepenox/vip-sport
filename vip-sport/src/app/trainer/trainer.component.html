@@ -1,4 +1,5 @@
-<div class="text" style="padding-top: 150px; padding-left: 50px">
+<div class="text" style="padding-top: 125px; padding-left: 50px;">
+  <h1 class="text-center">Exercices de musculation</h1><br>
   <div class="btn-group" style="padding-bottom: 25px">
     <div class="dropdown">
       <button
@@ -9,7 +10,7 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Select a body part
+        Partie du corps
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a
@@ -20,7 +21,7 @@
         >
       </div>
     </div>
-    <div style="padding-left: 8px">
+    <!-- <div style="padding-left: 8px">
       <button
         class="btn btn-warning dropdown-toggle"
         type="button"
@@ -39,18 +40,18 @@
           >{{ muscle.name }}</a
         >
       </div>
-    </div>
+    </div> -->
   </div>
-  <div class="container mx-auto" *ngIf="exercices">
-    <div class="row">
+  <div class="container" *ngIf="exercices">
+    <div class="card-deck">
       <div *ngFor="let exercice of exercices">
-        <div class="col-4">
-          <div class="card" style="margin-bottom: 35px; width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">{{ exercice.name }}</h5>
-              <p>
+        <div class="card bg-light" style="margin-bottom: 35px; width: 21rem; min-height: 13rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ exercice.name }}</h5>
+               <img class="card-img-top d-block" style="height: 250px; padding-bottom: 25px;" [src]="exercice.imageUrl">
+                <p>
                 <a
-                  class="btn btn-primary"
+                  class="btn btn-warning"
                   data-toggle="collapse"
                   href="#{{ exercice.nameId }}"
                   role="button"
@@ -59,16 +60,17 @@
                 >
                   Description
                 </a>
-              </p>
+              </p> 
               <div class="collapse" id="{{ exercice.nameId }}">
                 <div class="card card-body">
+                 
                   {{ exercice.description }}
                 </div>
               </div>
             </div>
           </div>
         </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+

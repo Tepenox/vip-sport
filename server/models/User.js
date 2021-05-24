@@ -27,6 +27,9 @@ VALUES (\
     @firstName,\
     @lastName,\
     @imageUrl,\
+    @height,\
+    @weight,\
+    @sport,\
     @age,\
     @email,\
     @password,\

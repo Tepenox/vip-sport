@@ -6,41 +6,75 @@ import { Component, OnInit, Output } from '@angular/core';
 import { User } from '../../models/User';
 import { Post } from '../../models/Post';
 import { PostService } from '../services/post.service';
+import { FollowService } from '../services/follow.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-
 export class ProfileComponent implements OnInit {
+  isYours: boolean;
+  descriptionMaxLength: number = 500;
+  usernameMaxLength: number = 40;
+  followersCount: any;
+  isFollowing: any;
   profileModification: boolean = false;
   imc: number = 0.0;
   styleExp: string = 'black';
   posts: Post[];
+  user: User;
 
-  user: User= new User("Bruh","Pd","caca",12,"zob@gmail.com","bruh","MEGAZOB","zobitus",145,154);
-
-  constructor(private userService: UserService, private route: ActivatedRoute,private postService: PostService,private activatedRoute :ActivatedRoute) {
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private postService: PostService,
+    private follow: FollowService,
+    private activatedRoute: ActivatedRoute,
+    private auth: AuthenticationService,
+    private titleService: Title
+  ) {
     this.route.paramMap.subscribe((params) => {
       this.userService
         .getUserById(parseInt(params.get('id')))
         .subscribe((data) => {
           this.user = data;
+          this.setFollowing(this.user.id);
+          this.getFollowersCount(this.user.id);
+          this.isYours = auth.getCurrentUser().id != parseInt(params.get('id'));
           this.calculateImc();
+          this.getPosts();
+          this.titleService.setTitle(
+            this.titleService.getTitle() + ' ' + this.user.userName
+          );
         });
     });
-    this.getPosts(); //Les potsts ne sont pas les bons il faudra les changer
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-  getPosts(){
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.postService.getPostByCategory([params['categories']]).subscribe(data => {
+  setFollowing(userId: number) {
+    this.follow
+      .isFollowing(this.auth.getCurrentUser().id, userId)
+      .subscribe((val) => {
+        this.isFollowing = val;
+      });
+  }
+
+  getFollowersCount(userId: number) {
+    this.follow.getCount(userId).subscribe((val) => {
+      this.followersCount = val.count;
+    });
+  }
+
+  getPosts() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.postService.getPostsByOwnerId(this.user.id).subscribe((data) => {
         this.posts = data;
       });
-    })
+    });
   }
 
   enableProfileModif() {
@@ -78,5 +112,21 @@ export class ProfileComponent implements OnInit {
     if (35 < this.imc) {
       this.styleExp = 'red';
     }
+  }
+
+  addFriend() {
+    this.follow.followById(this.user.id).subscribe((val) => {
+      this.setFollowing(this.user.id);
+      this.getFollowersCount(this.user.id);
+    });
+  }
+
+  unfriend() {
+    this.follow
+      .deleteFollow(this.auth.getCurrentUser().id, this.user.id)
+      .subscribe((val) => {
+        this.setFollowing(this.user.id);
+        this.getFollowersCount(this.user.id);
+      });
   }
 }

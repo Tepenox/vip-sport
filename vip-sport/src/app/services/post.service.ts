@@ -19,12 +19,21 @@ export class PostService {
     return this.httpClient.get<Post[]>(this.postsUrl).pipe(catchError(this.errorHandler));
   }
 
+  getPostById(id:number):Observable<Post>{
+      let params = new HttpParams().set('id',String(id));
+      return this.httpClient.get<Post>(this.postsUrl,{params:params}).pipe(catchError(this.errorHandler));
+  }
   getPostByCategory(categories:string[]):Observable<Post[]>{
     let params = new HttpParams().set('categories',categories.join('$$'));
     return this.httpClient.get<Post[]>(this.postsUrl, {params:params} ).pipe(catchError(this.errorHandler));
 
   }
 
+  getPostsByOwnerId(ownerId:number):Observable<Post[]>{
+    let params = new HttpParams().set('ownerId',String(ownerId));
+    return this.httpClient.get<Post[]>(this.postsUrl, {params:params} ).pipe(catchError(this.errorHandler));
+  }
+  
   createPost(post:Post):Observable<Post>{
     return this.httpClient.post<Post>(this.postsUrl,post).pipe(catchError(this.errorHandler))
   }

@@ -14,42 +14,39 @@ Thread.getAll = function () {
 };
 
 Thread.getAllInSubcategory = function (subcategoryId) {
-  let threads = db.prepare("select * from Threads where subcategoryId = ? order by date DESC").all(subcategoryId);
+  let threads = db.prepare("select * from threads\
+   INNER JOIN (SELECT max(id), threadId, date FROM threadReplies GROUP BY threadId ORDER BY date) AS tr\
+   ON threads.id = tr.threadId\
+   where subcategoryId = ? order by tr.date DESC").all(subcategoryId);
   return threads;
 };
 
 Thread.create = function (thread) {
   let threadId = db
     .prepare(
-      `insert into threads(\
-        title ,\
-        ownerId ,\
-        date ,\
-        categories \
-    )values(\
-        @title,\
-        @ownerId,\
-        datetime('now'),\
-        @categories\
-    );`
+      `insert into threads(subcategoryId, title, ownerId, date)\ 
+      values(@subcategoryId, @title, @ownerId, datetime('now'));`
     )
     .run(thread).lastInsertRowid;
   return threadId;
 };
 
-Thread.edit = function (thread) {
- return db.prepare(
-    "update threads set\
-    title = @title ,\
-    ownerId = @ownerId ,\
-    categories = @categories\
-    where id = @id\
-    "
-  ).run(thread).changes;
+Thread.setIsPinned = function (id, isPinned) {
+  parsedIsPinned = isPinned ? "1" : "0";
+  return db.prepare("update threads set isPinned = ?\
+                    where id = ?"
+  ).run(parsedIsPinned, id).changes;
 };
 
+Thread.setIsLocked = function (id, isLocked) {
+  parsedIsLocked = isLocked ? "1" : "0";
+  return db.prepare("update threads set isLocked = ?\
+                     where id = ?"
+   ).run(parsedIsLocked, id).changes;
+ };
+
 Thread.delete = function (id) {
-    return db.prepare("delete from threads where  id= ?").run(id).changes;
+    return db.prepare("delete from threads where id= ?").run(id).changes;
 };
 
 Thread.searchByTitle = function(title){

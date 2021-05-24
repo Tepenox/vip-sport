@@ -10,8 +10,13 @@ Post.getAll = function (){
 
 
 Post.getByid = function (id){
-    return db.prepare("select * from posts where id = ? order by date desc" ).get(id);
+    return db.prepare("select * from posts where id = ?" ).get(id);
 }
+
+Post.getByOwnerId = function (id){
+    return db.prepare("select * from posts where ownerId = ?" ).all(id);
+}
+
 
 Post.getByCategory = function (category){
 
@@ -26,7 +31,8 @@ Post.create = function(post){
         contentUrl , \
         ownerId ,\
         date ,\
-        categories \
+        categories, \
+        type \
         )values(\
             @title,\
             @contentType,\
@@ -34,7 +40,8 @@ Post.create = function(post){
             @contentUrl,\
             @ownerId,\
             datetime('now'),\
-            @categories\
+            @categories,\
+            'Post'\
        );").run(post).lastInsertRowid;
 
 }

@@ -17,7 +17,11 @@ export class DataService {
     return this.http.get<Object>(this.url, { params: params });
   }
 
-  create(resource) {
-    return this.http.post(this.url, resource);
+  create(resource: Object): Observable<Object> {
+    return this.http.post<Object>(this.url, resource);
+  }
+
+  delete(id: number): Observable<Object> {
+    return this.http.delete<Object>(this.url + `/${id}`);
   }
 }
