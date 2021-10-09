@@ -1,3 +1,6 @@
+##Description
+a social network for athletes !
+
 ## Team members: 
 - VOLPE Dorian
 - POLO Charlène
